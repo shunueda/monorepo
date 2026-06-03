@@ -33,13 +33,13 @@
       url = "github:nix-darwin/nix-darwin/pull/1690/head";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-25-11.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-terraform-providers-bin = {
       url = "github:nix-community/nixpkgs-terraform-providers-bin/pull/98/head";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-    nixpkgs-25-11.url = "github:nixos/nixpkgs/nixos-25.11";
     nocommit = {
       url = "github:shunueda/nocommit";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -89,13 +89,13 @@
         ./modules/darwin/common.nix
         ./modules/darwin/linux-builder.nix
         ./modules/home/common.nix
+        ./nix/flake-modules/codegen.nix
         ./nix/flake-modules/devshells.nix
         ./nix/flake-modules/misc.nix
         ./nix/flake-modules/treefmt.nix
         ./nix/flake-modules/ueda-scope.nix
-        ./nix/flake-modules/codegen.nix
-        inputs.devshell.flakeModule
         inputs.codegen.flakeModules.default
+        inputs.devshell.flakeModule
         inputs.home-manager.flakeModules.home-manager
         inputs.nix-darwin-flake-module.flakeModules.default
         inputs.tools.flakeModules.checkBuildAll

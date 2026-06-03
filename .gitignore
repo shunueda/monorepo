@@ -266,3 +266,7 @@ override.tf.json
 terraform.rc
 
 # End of https://www.toptal.com/developers/gitignore/api/emacs,macos,direnv,terraform,node
+
+### Nix ###
+result
+result-*

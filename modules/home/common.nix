@@ -65,6 +65,8 @@
               sops -d --output-type=json "${../../secrets/common.yaml}" |
                 jq -r ".''${KEY_NAME}"
             }
+
+            . "${pkgs.passExtensions.pass-otp}/share/bash-completion/completions/pass-otp"
           '';
         };
         direnv = {
