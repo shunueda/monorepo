@@ -223,8 +223,9 @@
             ]
           );
           settings = {
-            # TODO: don't hard-code
-            PASSWORD_STORE_KEY = "6E370FA33F7CDE7B5C9018910CCE2D6849A8D4EF";
+            PASSWORD_STORE_KEY = lib.removeSuffix ".asc" (
+              baseNameOf ../keys/6E370FA33F7CDE7B5C9018910CCE2D6849A8D4EF.asc
+            );
           };
         };
         ssh = {
