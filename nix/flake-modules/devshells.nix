@@ -1,16 +1,23 @@
 { ... }:
 {
   perSystem =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
+    let
+      uedaScope = config.ueda.scope;
+    in
     {
       devshells.default = {
-        packages = with pkgs; [
-          # keep-sorted start
-          awscli2
-          nixd
-          terraform
-          # keep-sorted end
-        ];
+        packages =
+          with pkgs;
+          with uedaScope;
+          [
+            # keep-sorted start
+            awscli2
+            nixd
+            nodejs
+            terraform
+            # keep-sorted end
+          ];
       };
     };
 }

@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "declarationDir": "dist",
+    "noCheck": true,
+    "noEmit": false,
+    "outDir": "dist",
+    "rootDir": "gen",
+
+        "allowImportingTsExtensions": true,
+    "allowJs": true,
+    "composite": true,
+    "erasableSyntaxOnly": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "lib": ["esnext"],
+    "module": "nodenext",
+    "moduleDetection": "force",
+    "moduleResolution": "nodenext",
+    "noEmit": true,
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true,
+    "noUncheckedSideEffectImports": true,
+    "rewriteRelativeImportExtensions": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2022",
+    "types": ["node"],
+    "useUnknownInCatchVariables": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": ["gen/**/*"]
+}

@@ -1,6 +1,13 @@
 {
   inputs = {
     # keep-sorted start block=yes
+    codegen = {
+      url = "github:anteriorcore/codegen";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+      inputs.systems.follows = "systems";
+    };
     devshell = {
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,11 +34,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-terraform-providers-bin = {
-      url = "github:nix-community/nixpkgs-terraform-providers-bin";
+      url = "github:nix-community/nixpkgs-terraform-providers-bin/pull/98/head";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs-25-11.url = "github:nixos/nixpkgs/nixos-25.11";
     nocommit = {
       url = "github:shunueda/nocommit";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +51,13 @@
       url = "github:nix-community/nur";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
+    };
+    package-lock2nix = {
+      url = "github:anteriorcore/package-lock2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+      inputs.systems.follows = "systems";
     };
     sops-nix = {
       url = "github:mic92/sops-nix";
@@ -60,6 +75,7 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # keep-sorted end
   };
   outputs =
@@ -77,7 +93,9 @@
         ./nix/flake-modules/misc.nix
         ./nix/flake-modules/treefmt.nix
         ./nix/flake-modules/ueda-scope.nix
+        ./nix/flake-modules/codegen.nix
         inputs.devshell.flakeModule
+        inputs.codegen.flakeModules.default
         inputs.home-manager.flakeModules.home-manager
         inputs.nix-darwin-flake-module.flakeModules.default
         inputs.tools.flakeModules.checkBuildAll
