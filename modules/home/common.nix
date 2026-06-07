@@ -17,7 +17,15 @@
         inputs.sops-nix.homeManagerModules.sops
         ./ghq.nix
       ];
-      xdg.enable = true;
+      xdg = {
+        enable = true;
+        configFile = {
+          "emacs" = {
+            source = ../../emacs;
+            recursive = true;
+          };
+        };
+      };
       programs = {
         # keep-sorted start block=yes
         alacritty = {
@@ -280,10 +288,6 @@
             ns
           ]);
         file = {
-          ".emacs.d" = {
-            source = ../../.emacs.d;
-            recursive = true;
-          };
           ".hushlogin" = {
             text = "";
           };
