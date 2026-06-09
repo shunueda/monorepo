@@ -116,8 +116,6 @@
         ;; Add more `completion-styles' to improve candidate selection.
         completion-styles '(basic partial-completion substring initials))
 
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-
 ;; auto-mode-alist entries
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
@@ -241,7 +239,6 @@
   :config
   (direnv-mode))
 
-;; Undo tree
 (use-package undo-tree
   :config
   (setq undo-tree-auto-save-history nil)
@@ -284,40 +281,18 @@
           :models '(x-ai/grok-4.20)))
   (setq gptel-model 'x-ai/grok-4.20))
 
-(use-package leetgo
-  :ensure nil
-  :custom
-  ;; TODO hard coded
-  (leetgo-directory "~/code/github.com/shunueda/dsa/")
-  :bind
-  (("C-c l p" . leetgo-pick-with-emacs-fzf)
-   ("C-c l t" . leetgo-test-current)
-   ("C-c l s" . leetgo-submit-current)))
-
 (use-package avy
   :ensure t
   :config
   (global-set-key (kbd "C-'") 'avy-goto-char-2))
 
+;; Prevent accidentally quitting Emacs
 (global-set-key (kbd "s-q") nil)
 (global-set-key (kbd "C-x C-c") nil)
 
+;; Causes Emacs to freeze
 (global-unset-key [C-wheel-up])
 (global-unset-key [C-wheel-down])
 
-;; (setq ns-option-modifier 'none)
-;; (setq ns-right-option-modifier 'none)
-(setq ns-command-modifier 'none)
-
-(global-unset-key (kbd "<up>"))
-(global-unset-key (kbd "<down>"))
-(global-unset-key (kbd "<left>"))
-(global-unset-key (kbd "<right>"))
-
-(global-set-key (kbd "C-x <right>") nil)
-(global-set-key (kbd "C-x <left>") nil)
-
+;; Remap from help
 (define-key global-map (kbd "C-h") 'delete-backward-char)
-
-(define-key key-translation-map (kbd "<backspace>") [nil])
-(define-key key-translation-map (kbd "DEL") [nil])
