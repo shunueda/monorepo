@@ -1,4 +1,1 @@
-{ self, ... }:
-{
-  imports = [ self.homeModules.common ];
-}
+{ self, ... }: { imports = [ self.homeModules.common ]; }

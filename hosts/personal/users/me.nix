@@ -1,5 +1,4 @@
-{ self, pkgs, ... }:
-{
+{ self, pkgs, ... }: {
   imports = [ self.homeModules.common ];
 
   home.packages = with pkgs; [ leetgo ];

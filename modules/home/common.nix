@@ -1,5 +1,4 @@
-{ inputs, ... }:
-{
+{ inputs, ... }: {
   flake.homeModules.common =
     {
       self,
@@ -107,6 +106,7 @@
               ocaml-eglot
               orderless
               paredit
+              rg
               rust-mode
               smartparens
               sops
@@ -238,6 +238,7 @@
             );
           };
         };
+        ripgrep.enable = true;
         ssh = {
           enable = true;
           enableDefaultConfig = false;
