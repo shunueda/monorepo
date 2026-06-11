@@ -1,9 +1,6 @@
 { inputs, ... }: {
   flake.darwinModules.common = { ... }: {
-    imports = [
-      inputs.home-manager.darwinModules.home-manager
-      ./default-browser.nix
-    ];
+    imports = [ inputs.home-manager.darwinModules.home-manager ];
     nix = {
       settings = {
         allow-import-from-derivation = false;
@@ -29,10 +26,6 @@
     };
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
-    services.defaultBrowser = {
-      enable = true;
-      browser = "librewolf";
-    };
     system = {
       startup.chime = false;
       defaults = {

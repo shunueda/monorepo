@@ -160,7 +160,7 @@
           enable = true;
           publicKeys = [
             {
-              source = ../../ueda.asc;
+              source = ../../keys/6E370FA33F7CDE7B5C9018910CCE2D6849A8D4EF.asc;
               trust = "ultimate";
             }
           ];
@@ -237,7 +237,7 @@
           );
           settings = {
             PASSWORD_STORE_KEY = lib.removeSuffix ".asc" (
-              baseNameOf ../keys/6E370FA33F7CDE7B5C9018910CCE2D6849A8D4EF.asc
+              baseNameOf ../../keys/6E370FA33F7CDE7B5C9018910CCE2D6849A8D4EF.asc
             );
           };
         };
@@ -294,6 +294,11 @@
           ".hushlogin" = {
             text = "";
           };
+        };
+        activation = {
+          afterWiteBoundary = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            ${lib.getExe pkgs.defaultbrowser} librewolf
+          '';
         };
       };
       sops = {
