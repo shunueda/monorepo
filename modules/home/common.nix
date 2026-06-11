@@ -75,6 +75,9 @@
 
             . "${pkgs.passExtensions.pass-otp}/share/bash-completion/completions/pass-otp"
           '';
+          shellAliases = {
+            z = "cd $(ghq list --full-path | fzf)";
+          };
         };
         direnv = {
           enable = true;
@@ -261,7 +264,6 @@
             };
           };
         };
-        zoxide.enable = true;
         # keep-sorted end
       };
       services = {

@@ -75,7 +75,6 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     # keep-sorted end
   };
   outputs =
