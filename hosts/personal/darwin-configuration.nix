@@ -9,17 +9,28 @@ in
     inherit specialArgs;
     modules = [
       self.darwinModules.common
-      {
+      ({ pkgs, ... }: {
         nixpkgs.hostPlatform = system;
-        users.users.${user}.home = "/Users/${user}";
-        system.primaryUser = user;
-        system.stateVersion = 7;
-        home-manager.extraSpecialArgs = specialArgs;
-        home-manager.users.${user} = {
-          imports = [ ./users/me.nix ];
-          home.stateVersion = "26.05";
+        programs.bash.enable = true;
+        users = {
+          knownUsers = [ user ];
+          users.${user} = {
+            uid = 501;
+            home = "/Users/${user}";
+          };
         };
-      }
+        system = {
+          primaryUser = user;
+          stateVersion = 7;
+        };
+        home-manager = {
+          extraSpecialArgs = specialArgs;
+          users.${user} = {
+            imports = [ ./users/me.nix ];
+            home.stateVersion = "26.05";
+          };
+        };
+      })
     ];
   };
 }

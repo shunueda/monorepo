@@ -10,21 +10,28 @@ in
     modules = [
       self.darwinModules.common
       self.darwinModules.linux-builder
-      {
+      ({ pkgs, ... }: {
         nixpkgs.hostPlatform = system;
-        users.users.${user}.home = "/Users/${user}";
-        system.primaryUser = user;
-        system.stateVersion = 6;
-        environment.systemPackages = [
-          self.packages.${system}.ensure-jupyter-no-output
-          inputs.nocommit.packages.${system}.default
-        ];
-        home-manager.extraSpecialArgs = specialArgs;
-        home-manager.users.${user} = {
-          imports = [ ./users/me.nix ];
-          home.stateVersion = "26.05";
+        programs.bash.enable = true;
+        users = {
+          knownUsers = [ user ];
+          users.${user} = {
+            uid = 501;
+            home = "/Users/${user}";
+          };
         };
-      }
+        system = {
+          primaryUser = user;
+          stateVersion = 6;
+        };
+        home-manager = {
+          extraSpecialArgs = specialArgs;
+          users.${user} = {
+            imports = [ ./users/me.nix ];
+            home.stateVersion = "26.05";
+          };
+        };
+      })
     ];
   };
 }

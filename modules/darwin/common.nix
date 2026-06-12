@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.darwinModules.common = { self, ... }: {
+  flake.darwinModules.common = { self, pkgs, ... }: {
     imports = [ inputs.home-manager.darwinModules.home-manager ];
     nix = {
       settings = {
@@ -40,10 +40,15 @@
       useGlobalPkgs = true;
       useUserPackages = true;
     };
+    environment.shells = with pkgs; [ bash ];
     system = {
       startup.chime = false;
       defaults = {
         LaunchServices.LSQuarantine = false;
+        NSGlobalDomain = {
+          KeyRepeat = 1;
+          InitialKeyRepeat = 15;
+        };
         WindowManager.StandardHideWidgets = true;
         dock = {
           show-recents = false;
@@ -56,6 +61,7 @@
         };
         CustomUserPreferences = {
           "com.apple.HIToolbox" = {
+            AppleFnUsageType = 1;
             AppleEnabledInputSources = [
               {
                 InputSourceKind = "Keyboard Layout";
