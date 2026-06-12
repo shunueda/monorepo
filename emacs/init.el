@@ -53,7 +53,7 @@
       (project-remember-projects-under path))))
 
 ;; Font
-(set-frame-font "JetBrains Mono 13")
+;; (set-frame-font "JetBrains Mono 13")
 
 ;; Core modes
 (repeat-mode 1)                ;; Enable repeating key maps
