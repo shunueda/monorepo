@@ -43,13 +43,16 @@
     system = {
       startup.chime = false;
       defaults = {
-        finder.QuitMenuItem = true;
         LaunchServices.LSQuarantine = false;
         WindowManager.StandardHideWidgets = true;
         dock = {
+          show-recents = false;
           autohide = true;
-          # Set to very big number to "disable" the dock.
-          autohide-delay = 1000.0;
+          orientation = "bottom";
+          tilesize = 32;
+          static-only = true;
+          autohide-delay = 0.5;
+          autohide-time-modifier = 0.5;
         };
         CustomUserPreferences = {
           "com.apple.HIToolbox" = {

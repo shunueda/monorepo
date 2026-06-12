@@ -1,7 +1,5 @@
-{ self, pkgs, ... }: {
+{ self, ... }: {
   imports = [ self.homeModules.common ];
-
-  home.packages = with pkgs; [ leetgo ];
 
   programs = {
     discord.enable = true;
