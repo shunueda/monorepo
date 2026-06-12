@@ -60,18 +60,6 @@
           historyFileSize = 1000000;
           historyFile = "${config.home.homeDirectory}/.sh_history";
           bashrcExtra = ''
-            sops-read() {
-              local KEY_NAME="$1"
-
-              if [[ -z "$KEY_NAME" ]]; then
-                >&2 echo "Usage: sops-read <KEY_NAME>"
-                return 1
-              fi
-
-              sops -d --output-type=json "${../../secrets/common.yaml}" |
-                jq -r ".''${KEY_NAME}"
-            }
-
             . "${pkgs.passExtensions.pass-otp}/share/bash-completion/completions/pass-otp"
           '';
           shellAliases = {
@@ -108,6 +96,7 @@
               ocaml-eglot
               orderless
               paredit
+              password-store
               rg
               rust-mode
               smartparens
@@ -234,11 +223,6 @@
               pass-otp
             ]
           );
-          settings = {
-            PASSWORD_STORE_KEY = lib.removeSuffix ".asc" (
-              baseNameOf ../../keys/6E370FA33F7CDE7B5C9018910CCE2D6849A8D4EF.asc
-            );
-          };
         };
         ripgrep.enable = true;
         ssh = {

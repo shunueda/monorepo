@@ -46,10 +46,6 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(defun ueda/sops-read (key-name)
-  (string-trim
-   (shell-command-to-string (format "sops-read %s" (shell-quote-argument key-name)))))
-
 (defun ueda/sync-ghq-to-project-el ()
   (interactive)
   (let ((paths (split-string (shell-command-to-string "ghq list --full-path") "\n" t)))
@@ -277,7 +273,7 @@
           :host "openrouter.ai"
           :endpoint "/api/v1/chat/completions"
           :stream t
-          :key (lambda () (ueda/sops-read "OPENROUTER_API_KEY"))
+          :key (lambda () (password-store-get "ApiKeys/Openrouter"))
           :models '(x-ai/grok-4.20)))
   (setq gptel-model 'x-ai/grok-4.20))
 
