@@ -13,7 +13,7 @@ in
         nixpkgs.hostPlatform = system;
         users.users.${user}.home = "/Users/${user}";
         system.primaryUser = user;
-        system.stateVersion = 6;
+        system.stateVersion = 7;
         home-manager.extraSpecialArgs = specialArgs;
         home-manager.users.${user} = {
           imports = [ ./users/me.nix ];
