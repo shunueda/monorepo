@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.darwinModules.common = { ... }: {
+  flake.darwinModules.common = { self, ... }: {
     imports = [ inputs.home-manager.darwinModules.home-manager ];
     nix = {
       settings = {
@@ -22,50 +22,37 @@
     };
     nixpkgs = {
       config.allowUnfree = true;
-      overlays = [ inputs.nur.overlays.default ];
+      overlays = [
+        inputs.nur.overlays.default
+        (
+          final: prev:
+          let
+            inherit (final.stdenv.hostPlatform) system;
+          in
+          {
+            # My custom packages
+            inherit (self.packages.${system}) ns homerow;
+          }
+        )
+      ];
     };
-    home-manager.useGlobalPkgs = true;
-    home-manager.useUserPackages = true;
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+    };
     system = {
       startup.chime = false;
       defaults = {
+        finder.QuitMenuItem = true;
         LaunchServices.LSQuarantine = false;
-        NSGlobalDomain = {
-          AppleShowAllExtensions = true;
-          KeyRepeat = 1;
-          InitialKeyRepeat = 15;
-        };
         WindowManager.StandardHideWidgets = true;
         dock = {
-          show-recents = false;
           autohide = true;
-          orientation = "bottom";
-          tilesize = 32;
-          static-only = true;
-        };
-        CustomSystemPreferences = {
-          "com.apple.finder" = {
-            ShowHardDrivesOnDesktop = false;
-            ShowRemovableMediaOnDesktop = false;
-            ShowExternalHardDrivesOnDesktop = false;
-            ShowMountedServersOnDesktop = false;
-          };
-          "com.apple.Safari" = {
-            IncludeDevelopMenu = true;
-          };
-          "com.apple.desktopservices" = {
-            DSDontWriteUSBStores = true;
-            DSDontWriteNetworkStores = true;
-          };
-          "com.apple.AdLib" = {
-            forceLimitAdTracking = true;
-            allowApplePersonalizedAdvertising = false;
-            allowIdentifierForAdvertising = false;
-          };
+          # Set to very big number to "disable" the dock.
+          autohide-delay = 1000.0;
         };
         CustomUserPreferences = {
           "com.apple.HIToolbox" = {
-            AppleFnUsageType = 1;
             AppleEnabledInputSources = [
               {
                 InputSourceKind = "Keyboard Layout";

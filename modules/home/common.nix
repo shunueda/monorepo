@@ -13,7 +13,6 @@
     {
       imports = [
         inputs.nocommit.homeModules.default
-        inputs.sops-nix.homeManagerModules.sops
         ./ghq.nix
       ];
       xdg = {
@@ -280,31 +279,27 @@
       };
       fonts.fontconfig.enable = true;
       home = {
-        packages =
-          (with pkgs; [
-            sops
-            jetbrains-mono
-            docker
-          ])
-          ++ (with self.packages.${system}; [
-            homerow
-            ns
-          ]);
+        packages = with pkgs; [
+          # keep-sorted start
+          docker
+          homerow
+          jetbrains-mono
+          ns
+          sops
+          # keep-sorted end
+        ];
         file = {
           ".hushlogin" = {
             text = "";
           };
         };
         activation = {
-          afterWiteBoundary = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-            ${lib.getExe pkgs.defaultbrowser} librewolf
-          '';
+          darwinSetDefaultBrowser = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
+            lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              ${lib.getExe pkgs.defaultbrowser} ${pkgs.librewolf.pname}
+            ''
+          );
         };
-      };
-      sops = {
-        gnupg.sshKeyPaths = [ ];
-        defaultSopsFile = ../../secrets/default.yaml;
-        secrets = { };
       };
     };
 }

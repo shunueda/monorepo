@@ -59,10 +59,6 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.systems.follows = "systems";
     };
-    sops-nix = {
-      url = "github:mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     systems.url = "github:nix-systems/default";
     tools = {
       url = "github:anteriorcore/tools";
