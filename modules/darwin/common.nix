@@ -31,7 +31,7 @@
           in
           {
             # My custom packages
-            inherit (self.packages.${system}) ns homerow;
+            inherit (self.packages.${system}) ns homerow displaymode;
           }
         )
       ];

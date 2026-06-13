@@ -1,7 +1,6 @@
 { inputs, ... }: {
   flake.homeModules.common =
     {
-      self,
       pkgs,
       config,
       lib,
@@ -41,7 +40,7 @@
               #  family = "JetBrains Mono";
               #  style = "Regular";
               # };
-              size = 13;
+              # size = 13;
             };
           };
         };
@@ -278,9 +277,14 @@
           };
         };
         activation = {
-          darwinSetDefaultBrowser = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
+          # Darwin-specific activation script
+          darwinActivation = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
             lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              # Set the default browser
               ${lib.getExe pkgs.defaultbrowser} ${pkgs.librewolf.pname}
+
+              # Set display resolution, assumes 14-inch.
+              ${lib.getExe pkgs.displaymode} t 1800 1169
             ''
           );
         };
