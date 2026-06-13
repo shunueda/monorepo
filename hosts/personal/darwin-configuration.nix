@@ -17,6 +17,7 @@ in
           users.${user} = {
             uid = 501;
             home = "/Users/${user}";
+            shell = pkgs.bash;
           };
         };
         system = {
