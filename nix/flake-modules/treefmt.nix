@@ -4,6 +4,7 @@
       # keep-sorted start block=yes
       actionlint.enable = true;
       autocorrect.enable = true;
+      clang-format.enable = true;
       keep-sorted.enable = true;
       mdformat = {
         enable = true;

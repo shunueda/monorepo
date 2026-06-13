@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation (finalAttrs: {
   name = "displaymode";
-  version = "1.0";
+  version = "1.4.0";
 
   src = ./displaymode.c;
 
