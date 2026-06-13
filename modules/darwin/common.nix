@@ -56,8 +56,6 @@
           orientation = "bottom";
           tilesize = 32;
           static-only = true;
-          autohide-delay = 0.5;
-          autohide-time-modifier = 0.5;
         };
         CustomUserPreferences = {
           "com.apple.HIToolbox" = {

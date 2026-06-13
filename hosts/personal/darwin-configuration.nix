@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 let
-  user = "me";
+  user = "ueda";
   specialArgs = { inherit self inputs; };
   system = "aarch64-darwin";
 in
@@ -27,7 +27,7 @@ in
         home-manager = {
           extraSpecialArgs = specialArgs;
           users.${user} = {
-            imports = [ ./users/me.nix ];
+            imports = [ ./users/ueda.nix ];
             home.stateVersion = "26.05";
           };
         };
