@@ -75,12 +75,45 @@
           "com.apple.inputmethod.Kotoeri" = {
             JIMPrefLiveConversionKey = 0;
           };
+
+          "com.apple.symbolichotkeys" = {
+            AppleSymbolicHotKeys = {
+              # "Select the previous input source"
+              "60" = {
+                enabled = true;
+                value = {
+                  parameters = [
+                    32
+                    49
+                    262144
+                  ];
+                  type = "standard";
+                };
+              };
+              # "Select the next source in the Input menu"
+              "61" = {
+                enabled = true;
+                value = {
+                  parameters = [
+                    32
+                    49
+                    786432
+                  ];
+                  type = "standard";
+                };
+              };
+            };
+          };
         };
       };
       keyboard = {
         enableKeyMapping = true;
         remapCapsLockToControl = true;
       };
+      activationScripts.postActivation.text = ''
+        echo "Flushing macOS preference caches..."
+        /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+      '';
     };
     security.pam.services.sudo_local = {
       enable = true;
