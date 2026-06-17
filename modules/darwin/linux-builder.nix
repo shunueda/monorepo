@@ -7,10 +7,10 @@
         systems = lib.platforms.linux;
         config = {
           boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
-          virtualization = {
+          virtualisation = {
             cores = 6;
-            memorySize = 12 * 1000;
-            diskSize = 100 * 1000;
+            memorySize = lib.mkForce (12 * 1000);
+            diskSize = lib.mkForce (100 * 1000);
           };
         };
         maxJobs = 12;

@@ -25,6 +25,10 @@ in
           primaryUser = user;
           stateVersion = 6;
         };
+        environment.systemPackages = [
+          self.packages.${system}.ensure-jupyter-no-output
+          inputs.nocommit.packages.${system}.default
+        ];
         home-manager = {
           extraSpecialArgs = specialArgs;
           users.${user} = {
