@@ -3,5 +3,6 @@
 
   programs = {
     prismlauncher.enable = true;
+    discord.enable = true;
   };
 }

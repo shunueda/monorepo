@@ -274,7 +274,9 @@
           homerow
           jetbrains-mono
           ns
+          pngpaste
           sops
+          zbar
           # keep-sorted end
         ];
         file = {
