@@ -17,10 +17,6 @@
         strict = true;
       };
       shellcheck.enable = true;
-      typos = {
-        enable = true;
-        excludes = [ "secrets/*" ];
-      };
       typstyle.enable = true;
       # keep-sorted end
     };

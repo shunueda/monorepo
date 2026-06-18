@@ -153,12 +153,21 @@
           enable = true;
           publicKeys = [
             {
-              source = ../../keys/6E370FA33F7CDE7B5C9018910CCE2D6849A8D4EF.asc;
+              source = ../../keys/C879B61CBD7C81A8783AD90965A3009821043C2C.asc;
               trust = "ultimate";
             }
           ];
           scdaemonSettings = {
             disable-ccid = true;
+          };
+          settings = {
+            keyid-format = "0xlong";
+            with-fingerprint = true;
+            list-options = "show-uid-validity";
+            verify-options = "show-uid-validity";
+            no-comments = true;
+            no-emit-version = true;
+            no-greeting = true;
           };
         };
         home-manager.enable = true;
@@ -276,6 +285,7 @@
           ns
           pngpaste
           sops
+          yubikey-manager
           zbar
           # keep-sorted end
         ];
