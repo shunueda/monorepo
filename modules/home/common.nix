@@ -285,6 +285,7 @@
           ns
           pngpaste
           sops
+          qrcode
           yubikey-manager
           zbar
           # keep-sorted end
