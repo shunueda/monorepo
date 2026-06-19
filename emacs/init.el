@@ -274,8 +274,10 @@
           :endpoint "/api/v1/chat/completions"
           :stream t
           :key (lambda () (password-store-get "ApiKeys/Openrouter"))
-          :models '(x-ai/grok-4.20)))
-  (setq gptel-model 'x-ai/grok-4.20))
+          :models '(openrouter/auto)))
+  (setq
+    gptel-model 'openrouter/auto
+    gptel-system-prompt ""))
 
 (use-package avy
   :ensure t
