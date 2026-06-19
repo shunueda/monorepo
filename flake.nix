@@ -80,7 +80,7 @@
       imports = [
         # keep-sorted start
         ./hosts/anterior/darwin-configuration.nix
-        ./hosts/personal/darwin-configuration.nix
+        ./hosts/silver/darwin-configuration.nix
         ./modules/darwin/common.nix
         ./modules/darwin/linux-builder.nix
         ./modules/home/common.nix

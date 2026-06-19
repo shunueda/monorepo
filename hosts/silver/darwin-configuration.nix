@@ -3,9 +3,10 @@ let
   user = "ueda";
   specialArgs = { inherit self inputs; };
   system = "aarch64-darwin";
+  name = "silver";
 in
 {
-  flake.darwinConfigurations.personal = inputs.nix-darwin.lib.darwinSystem {
+  flake.darwinConfigurations.${name} = inputs.nix-darwin.lib.darwinSystem {
     inherit specialArgs;
     modules = [
       self.darwinModules.common
@@ -30,6 +31,11 @@ in
             imports = [ ./users/ueda.nix ];
             home.stateVersion = "26.05";
           };
+        };
+        networking = {
+          computerName = name;
+          localHostName = name;
+          hostName = name;
         };
       })
     ];
