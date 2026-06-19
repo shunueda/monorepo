@@ -75,7 +75,9 @@
           "com.apple.inputmethod.Kotoeri" = {
             JIMPrefLiveConversionKey = 0;
           };
-
+          "com.apple.batteryui.charging.mac" = {
+            "com.apple.batteryui.charging.mac.prior.limit" = 80;
+          };
           "com.apple.symbolichotkeys" = {
             AppleSymbolicHotKeys = {
               # "Select the previous input source"

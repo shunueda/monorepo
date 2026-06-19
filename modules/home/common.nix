@@ -284,8 +284,8 @@
           jetbrains-mono
           ns
           pngpaste
-          sops
           qrcode
+          sops
           yubikey-manager
           zbar
           # keep-sorted end
