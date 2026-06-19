@@ -205,6 +205,10 @@
               "browser.newtab.url" = "about:blank";
               "signon.rememberSignons" = false;
               "browser.toolbars.bookmarks.visibility" = "never";
+              # Make rendering smoother
+              "privacy.resistFingerprinting" = false;
+              "layers.acceleration.force-enabled" = true;
+              "gfx.webrender.all" = true;
             };
           };
         };

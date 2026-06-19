@@ -19,5 +19,5 @@ git clone git@git.sr.ht:~ueda/password-store ~/.password-store
 Switch:
 
 ```console
-sudo darwin-rebuild switch --flake .#
+sudo darwin-rebuild switch --flake .
 ```
