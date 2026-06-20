@@ -1,6 +1,7 @@
 #!/usr/bin/env node --enable-source-maps
 import { App, CloudBackend, NamedCloudWorkspace, TerraformStack } from "cdktf";
 import { CloudflareProvider } from "@ueda/cdktf-providers/cloudflare/provider";
+import { RegistrarDomain } from "@ueda/cdktf-providers/cloudflare/registrar-domain";
 
 function synth() {
   const app = new App();

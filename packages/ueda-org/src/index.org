@@ -1,0 +1,7 @@
+#+TITLE: Shun's org notes
+
+My org notes!
+
+* First Thing
+
+* Second Thing

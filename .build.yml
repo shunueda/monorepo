@@ -1,0 +1,11 @@
+image: nixos/26.05
+
+oauth: pages.sr.ht/PAGES:RW
+
+environment:
+  NIX_CONFIG: "experimental-features = nix-command flakes"
+
+tasks:
+  - publish-org: |
+      cd monorepo
+      nix run .#ueda-org.publish
