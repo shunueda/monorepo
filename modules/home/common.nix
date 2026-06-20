@@ -58,7 +58,22 @@
           historySize = 1000000;
           historyFileSize = 1000000;
           historyFile = "${config.home.homeDirectory}/.sh_history";
-          bashrcExtra = ''
+          initExtra = ''
+            histsync() {
+              history -a
+
+              local passentry=ShellHistories/"$HOSTNAME"
+
+              (cat "$HISTFILE" 2>/dev/null; pass show "$passentry" 2>/dev/null) |
+                awk '!a[$0]++' |
+                ${pkgs.moreutils}/bin/sponge "$HISTFILE"
+
+              <"$HISTFILE" pass insert -mf "$passentry"
+
+              history -c
+              history -r
+            }
+
             . "${pkgs.passExtensions.pass-otp}/share/bash-completion/completions/pass-otp"
           '';
           shellAliases =
