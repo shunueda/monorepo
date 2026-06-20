@@ -76,15 +76,6 @@
 
             . "${pkgs.passExtensions.pass-otp}/share/bash-completion/completions/pass-otp"
           '';
-          shellAliases =
-            let
-              passHistoryPath = "ShellHistories/$HOSTNAME";
-            in
-            {
-              z = "cd $(ghq list --full-path | fzf)";
-              ueda-hist-insert = "<$HISTFILE pass insert -mf ${passHistoryPath}";
-              ueda-hist-sync = ">$HISTFILE pass show ${passHistoryPath}";
-            };
         };
         direnv = {
           enable = true;
