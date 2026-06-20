@@ -214,16 +214,9 @@
   (global-corfu-mode))
 
 ;; Git gutter
-(global-git-gutter-mode t)
-(custom-set-variables
- '(git-gutter:update-interval 1))
-(custom-set-variables
- '(git-gutter:modified-sign " ")
- '(git-gutter:added-sign "+")
- '(git-gutter:deleted-sign "-"))
-(set-face-background 'git-gutter:modified "orange")
-(set-face-foreground 'git-gutter:added "green")
-(set-face-foreground 'git-gutter:deleted "red")
+(use-package git-gutter
+  :init
+  (global-git-gutter-mode t))
 
 ;; exec-path-from-shell
 (when (memq window-system '(mac ns x))
