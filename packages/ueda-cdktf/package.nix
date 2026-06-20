@@ -1,8 +1,8 @@
 {
   package-lock2nix,
-  cdktf-cli,
   terraform,
   writeShellApplication,
+  ueda-cdktf-providers,
   lib,
 }:
 let
@@ -14,7 +14,7 @@ writeShellApplication {
     CDKTF_APP = lib.getExe uedaCdktf;
   };
   runtimeInputs = [
-    cdktf-cli
+    ueda-cdktf-providers
     terraform
   ];
   text = ''

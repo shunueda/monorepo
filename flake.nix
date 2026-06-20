@@ -33,7 +33,6 @@
       url = "github:nix-darwin/nix-darwin/pull/1690/head";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-25-11.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-terraform-providers-bin = {
       url = "github:nix-community/nixpkgs-terraform-providers-bin";
       inputs.nixpkgs.follows = "nixpkgs";

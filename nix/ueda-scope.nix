@@ -10,34 +10,42 @@ let
 
   tfProviders = inputs.nixpkgs-terraform-providers-bin.legacyPackages.${system}.providers;
 
-  uedaTfProviders = with tfProviders; [
+  uedaTerraformProviders = with tfProviders; [
     wombelix.sourcehut
     integrations.github
   ];
-in
-lib.makeScope pkgs.newScope (
-  scopeSelf:
-  let
-    inherit (scopeSelf) callPackage;
-  in
-  {
-    inherit inputs uedaTfProviders;
 
-    inherit (inputs.tools.packages.${system}) nix-flake-check-changed nix-grep-to-build;
+  scope = lib.makeScope pkgs.newScope (
+    scopeSelf:
+    let
+      inherit (scopeSelf) callPackage;
+    in
+    {
+      inherit inputs uedaTerraformProviders;
 
-    terraform = pkgs.terraform.withPlugins (_: uedaTfProviders);
+      inherit (inputs.tools.packages.${system}) nix-flake-check-changed nix-grep-to-build;
 
-    nodejs = pkgs.nodejs_24;
+      terraform = pkgs.terraform.withPlugins (_: uedaTerraformProviders);
 
-    sopsWrapper = callPackage ./sops-wrapper.nix { };
+      nodejs = pkgs.nodejs_24;
 
-    package-lock2nix = callPackage inputs.package-lock2nix.lib.package-lock2nix {
-      inherit (scopeSelf) nodejs;
-      overrideScope = _: _: { };
+      package-lock2nix = callPackage inputs.package-lock2nix.lib.package-lock2nix {
+        inherit (scopeSelf) nodejs;
+        overrideScope = _: _: { };
+      };
+    }
+    // lib.packagesFromDirectoryRecursive {
+      inherit callPackage;
+      directory = ../packages;
+    }
+  );
+  overlay = final: prev: {
+    ueda-cdktf = prev.ueda-cdktf.override {
+      package-lock2nix = final.package-lock2nix.override { nodejs = pkgs.nodejs_22; };
     };
-  }
-  // lib.packagesFromDirectoryRecursive {
-    inherit callPackage;
-    directory = ../packages;
-  }
-)
+    ueda-cdktf-providers = prev.ueda-cdktf-providers.override {
+      package-lock2nix = final.package-lock2nix.override { nodejs = pkgs.nodejs_22; };
+    };
+  };
+in
+scope.overrideScope overlay

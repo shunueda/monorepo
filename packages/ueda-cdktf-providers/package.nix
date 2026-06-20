@@ -1,16 +1,19 @@
 {
-  cdktf-cli,
   writableTmpDirAsHomeHook,
   nodejs,
   terraform,
   stdenv,
   writeTextFile,
   lib,
-  uedaTfProviders,
+  uedaTerraformProviders,
   package-lock2nix,
 }:
 
 let
+  final = package-lock2nix.mkNpmModule {
+    src = ./.;
+    passthru = { inherit gen; };
+  };
   # Minimal cdktf.json used for geneting the bindings.
   cdktfJson = writeTextFile {
     name = "cdktf.json";
@@ -22,14 +25,14 @@ let
         # Assuming registry.terraform.io because nixpkgs-terraform-providers-bin has
         # an everlasting TODO: https://github.com/nix-community/nixpkgs-terraform-providers-bin/blob/4f8dfea41cd94403a6c768923b3ddcb15fd4c611/default.nix#L26
         lib.replaceString "registry.terraform.io/" "" provider.provider-source-address
-      ) uedaTfProviders;
+      ) uedaTerraformProviders;
     };
   };
   gen = stdenv.mkDerivation {
     name = "cdktf-providers";
 
     nativeBuildInputs = [
-      cdktf-cli
+      final
       nodejs
       terraform
       # cdktf wants to write in homedir for cache
@@ -54,7 +57,4 @@ let
     '';
   };
 in
-package-lock2nix.mkNpmModule {
-  src = ./.;
-  passthru = { inherit gen; };
-}
+final

@@ -9,7 +9,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@oyasaiserver/cdktf-providers": "file:../oyasai-cdktf-providers",
+    "@ueda/cdktf-providers": "file:../ueda-cdktf-providers",
     "cdktf": "0.21.0",
     "constructs": "10.6.0"
   },
