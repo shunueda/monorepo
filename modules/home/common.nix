@@ -267,6 +267,7 @@
           # keep-sorted start
           docker
           homerow
+          hut
           pngpaste
           qrcode
           sops

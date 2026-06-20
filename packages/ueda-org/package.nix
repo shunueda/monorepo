@@ -14,7 +14,7 @@ let
       hut
     ];
     text = ''
-      hut pages publish -d ueda.srht.site ${final}
+      hut pages publish --domain ueda.srht.site ${final}
     '';
   };
 

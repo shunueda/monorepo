@@ -1,7 +1,66 @@
 #+TITLE: Shun's org notes
 
-My org notes!
+Welcome! I'm Shun, a novice software engineer, and this site serves as a public space where I publish my Org notes to share cool things I discover along the way.
 
-* First Thing
+I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around these two ecosystems.
 
-* Second Thing
+* histsync: sync shell history with pass
+
+[[https://github.com/atuinsh/atuin][Atuin]] is super cool: it let's you sync shell history across machine, but few issues for me:
+
+1. Requires a server. I distrust managed public servers and don't want to host my own.
+2. Heavy LLM usage for development. I have nothing against LLMs but I try to avoid them.
+
+I use [[https://www.passwordstore.org/][password-store]] (pass), so why don't I leverage this:
+
+#+begin_src nix
+  bash = {
+    enable = true;
+    # ... 
+    initExtra = ''
+      histsync() {
+        # Append currently history to HISTFILE
+        history -a
+
+        # Entry name in pass - I separate history by host
+        local passentry=ShellHistories/"$HOSTNAME"
+
+        # Merge HISTFILE and pass entries, remove duplicates, update HISTFILE
+        (cat "$HISTFILE" 2>/dev/null; pass show "$passentry" 2>/dev/null) |
+          awk '!a[$0]++' |
+          ${pkgs.moreutils}/bin/sponge "$HISTFILE"
+
+        # Update pass entry with the merged history
+        <"$HISTFILE" pass insert -mf "$passentry"
+
+        # Reload history for current session
+        history -c
+        history -r
+      }
+
+      # ...
+    '';
+  };
+#+end_src
+
+Pretty neat!
+
+* password-store: nerd snipe quagmire
+
+I've been using Apple's Passwords.app, but [[https://www.passwordstore.org/][password-store]] (pass) seemed very cool, and since I already did the heavy-lifting of setting up the YubiKey, I decided to migrate.
+
+I found this out later but [[https://www.gnu.org/software/emacs/manual/html_mono/auth.html#The-Unix-password-store][Emacs supports pass as an auth-source natively]]! Here is a sample:
+
+#+BEGIN_SRC emacs-lisp
+  (auth-source-pass-enable)
+
+  (auth-source-pass-get 'secret "foo/bar")
+#+END_SRC
+
+You can also use [[https://git.zx2c4.com/password-store/tree/contrib/emacs/password-store.el][password-store.el]] to interact with pass via Emacs.
+
+* Setting up my YubiKey
+
+To manage my GPG key, I set up my YubiKey (5C NFC). This guide was extremely helpful: https://github.com/drduh/YubiKey-Guide.
+
+One note: if you're using ed25519 for your signing key, make sure to set =KEY_TYPE=cv25519= before creating the encryption (E) subkey - GPG will complain otherwise.
