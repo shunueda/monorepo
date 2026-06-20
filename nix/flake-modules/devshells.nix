@@ -15,6 +15,7 @@
             nixd
             nodejs
             terraform
+            typescript-language-server
             # keep-sorted end
           ];
       };
