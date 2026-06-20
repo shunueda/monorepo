@@ -1,14 +1,14 @@
 {
   "name": "@ueda/cdktf-providers",
+  "bin": {
+    "cdktf": "cdktf"
+  },
   "type": "module",
   "exports": {
     "./*": {
       "import": "./dist/*/index.js",
       "types": "./dist/*/index.d.ts"
     }
-  },
-  "bin": {
-    "cdktf": "cdktf"
   },
   "scripts": {
     "build": "tsc"

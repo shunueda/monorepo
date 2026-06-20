@@ -16,32 +16,32 @@ let
     cloudflare.cloudflare
   ];
 
-        pl2nixOverlay = final: prev: {
-        mkNpmModule =
-          args:
-          let
-            orig = prev.mkNpmModule args;
-          in
-          orig.overrideAttrs (
-            self:
-            lib.optionalAttrs (builtins.pathExists (self.src + "/tsconfig.json")) {
-              nativeBuildInputs =
-                self.nativeBuildInputs or [ ]
-                ++ (with pkgs; [
-                  jq
-                  moreutils
-                ]);
-              prePatch = orig.prePatch or "" + ''
-                jq --arg tsconfig ${../tsconfig.json} '
-                  if has("extends")
-                  then .extends = $tsconfig
-                  else .
-                  end
-                ' tsconfig.json | sponge tsconfig.json
-              '';
-            }
-          );
-      };
+  pl2nixOverlay = final: prev: {
+    mkNpmModule =
+      args:
+      let
+        orig = prev.mkNpmModule args;
+      in
+      orig.overrideAttrs (
+        self:
+        lib.optionalAttrs (builtins.pathExists (self.src + "/tsconfig.json")) {
+          nativeBuildInputs =
+            self.nativeBuildInputs or [ ]
+            ++ (with pkgs; [
+              jq
+              moreutils
+            ]);
+          prePatch = orig.prePatch or "" + ''
+            jq --arg tsconfig ${../tsconfig.json} '
+              if has("extends")
+              then .extends = $tsconfig
+              else .
+              end
+            ' tsconfig.json | sponge tsconfig.json
+          '';
+        }
+      );
+  };
 
   scope = lib.makeScope pkgs.newScope (
     scopeSelf:
