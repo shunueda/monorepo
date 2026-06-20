@@ -97,7 +97,6 @@
               ocaml-eglot
               orderless
               paredit
-              password-store
               rg
               rust-mode
               smartparens

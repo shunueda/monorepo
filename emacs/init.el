@@ -42,6 +42,9 @@
 
       treesit-font-lock-level 4)
 
+;; Enable pass for auth-source
+(auth-source-pass-enable)
+
 ;; Local custom file if possible
 (when (file-exists-p custom-file)
   (load custom-file))
@@ -261,16 +264,16 @@
 (use-package gptel
   :ensure t
   :config
-  (setq gptel-backend
-        (gptel-make-openai "OpenRouter"
-          :host "openrouter.ai"
-          :endpoint "/api/v1/chat/completions"
-          :stream t
-          :key (lambda () (password-store-get "ApiKeys/Openrouter"))
-          :models '(openrouter/auto)))
   (setq
-    gptel-model 'openrouter/auto
-    gptel-system-prompt ""))
+     gptel-backend
+       (gptel-make-openai "OpenRouter"
+         :host "openrouter.ai"
+         :endpoint "/api/v1/chat/completions"
+         :stream t
+         :key (lambda ()
+                (auth-source-pass-get 'secret "ApiKeys/Openrouter"))
+         :models '(openrouter/auto))
+     gptel-model 'openrouter/auto))
 
 (use-package avy
   :ensure t
