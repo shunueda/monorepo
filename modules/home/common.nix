@@ -6,9 +6,6 @@
       lib,
       ...
     }:
-    let
-      inherit (pkgs.stdenv.hostPlatform) system;
-    in
     {
       imports = [
         inputs.nocommit.homeModules.default
@@ -34,13 +31,6 @@
                 x = 10;
                 y = 10;
               };
-            };
-            font = {
-              # normal = {
-              #  family = "JetBrains Mono";
-              #  style = "Regular";
-              # };
-              # size = 13;
             };
           };
         };
@@ -118,7 +108,6 @@
               typst-ts-mode
               undo-tree
               vertico
-              vterm
               zenburn-theme
               # keep-sorted end
             ];
@@ -222,18 +211,6 @@
           enable = true;
           enableGitIntegration = true;
         };
-        nix-search-tv = {
-          enable = true;
-          settings = {
-            indexes = [
-              "home-manager"
-              "noogle"
-              "nixpkgs"
-            ];
-            update_interval = "3h";
-            enable_waiting_message = true;
-          };
-        };
         nocommit = {
           enable = true;
           enableGitIntegration = true;
@@ -291,8 +268,6 @@
           # keep-sorted start
           docker
           homerow
-          jetbrains-mono
-          ns
           pngpaste
           qrcode
           sops
@@ -307,7 +282,7 @@
         };
         activation = {
           # Darwin-specific activation script
-          darwinActivation = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
+          darwin = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
             lib.hm.dag.entryAfter [ "writeBoundary" ] ''
               # Set the default browser
               ${lib.getExe pkgs.defaultbrowser} ${pkgs.librewolf.pname}
