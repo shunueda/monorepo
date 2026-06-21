@@ -4,6 +4,31 @@ Welcome! I'm Shun, a novice software engineer. Here I publish my Org notes to sh
 
 I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around these two ecosystems.
 
+* (macOS) Manage display resolution via CLI
+
+There seem to be no official way to change display resolution from the cli on macOS, but [[https://github.com/p00ya/displaymode][p00ya/displaymode]] worked really well for me. I've fixed few stuffs & Nixified it, so feel free to try it out:
+
+#+begin_src console
+  nix run sourcehut:~ueda/monorepo#displaymode
+#+end_src
+
+I put this in Home Manager's activation:
+
+#+begin_src Nix
+  home = {
+    activation = {
+      # Darwin-specific activation script
+      darwin = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
+        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          # Set display resolution, mine is 14-inch.
+          ${lib.getExe pkgs.displaymode} t 1800 1169
+        ''
+      );
+    };
+  };
+#+end_src
+
+=p00ya/displaymode= is licensed under the Apache-2.0 license.
 
 * Using S3 as a Nix cache
 
