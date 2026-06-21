@@ -290,3 +290,11 @@
 
 ;; Remap from help
 (define-key global-map (kbd "C-h") 'delete-backward-char)
+
+(defun ueda/irc-connect ()
+  (interactive)
+  (erc-tls
+   :server "irc.libera.chat"
+   :port 6697
+   :nick "ueda"
+   :password (auth-source-pass-get 'secret "InternetAccounts/libera")))
