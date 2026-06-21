@@ -5,6 +5,7 @@
   emacs,
   runCommand,
   writableTmpDirAsHomeHook,
+  lib,
 }:
 let
   publish = writeShellApplication {
@@ -13,9 +14,14 @@ let
       gnutar
       hut
     ];
-    text = ''
-      hut pages publish --domain ueda.srht.site ${final}
-    '';
+    text =
+      let
+        domains = [
+          "shunueda.org"
+          "ueda.srht.site"
+        ];
+      in
+      lib.concatMapStringsSep "\n" (domain: "hut pages publish --domain ${domain} ${final}") domains;
   };
 
   final =

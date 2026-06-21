@@ -52,7 +52,7 @@
             histsync() {
               history -a
 
-              local passentry=ShellHistories/"$HOSTNAME"
+              local passentry="ShellHistories/$HOSTNAME"
 
               (cat "$HISTFILE" 2>/dev/null; pass show "$passentry" 2>/dev/null) |
                 awk '!a[$0]++' |

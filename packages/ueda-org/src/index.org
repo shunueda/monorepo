@@ -1,6 +1,6 @@
 #+TITLE: Shun's org notes
 
-Welcome! I'm Shun, a novice software engineer, and this site serves as a public space where I publish my Org notes to share cool things I discover along the way.
+Welcome! I'm Shun, a novice software engineer. Here I publish my Org notes to share cool things I discover along the way.
 
 I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around these two ecosystems.
 
@@ -23,7 +23,7 @@ I use [[https://www.passwordstore.org/][password-store]] (pass), so why don't I 
         history -a
 
         # Entry name in pass - I separate history by host
-        local passentry=ShellHistories/"$HOSTNAME"
+        local passentry="ShellHistories/$HOSTNAME"
 
         # Merge HISTFILE and pass entries, remove duplicates, update HISTFILE
         (cat "$HISTFILE" 2>/dev/null; pass show "$passentry" 2>/dev/null) |
@@ -43,7 +43,7 @@ I use [[https://www.passwordstore.org/][password-store]] (pass), so why don't I 
   };
 #+end_src
 
-Pretty neat!
+Note: the merge logic will not work if you use timestamps.
 
 * password-store: nerd snipe quagmire
 
