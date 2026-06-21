@@ -4,6 +4,43 @@ Welcome! I'm Shun, a novice software engineer. Here I publish my Org notes to sh
 
 I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around these two ecosystems.
 
+* Does anyone find Google's AI search usful?
+
+I've never found Google's "AI Overview" particularly helpful. It's been more distracting than useful, and worse still, there seems to be no way to turn it off.
+
+Since then, I've switched to DuckDuckGo's “No AI” search at https://noai.duckduckgo.com/, and that has worked well for me.
+
+Here's how to configure it in Home Manager. I use Librewolf, but this should work the same way in Firefox:
+
+#+begin_src nix
+  librewolf = {
+    enable = true;
+    policies = {
+      GenerativeAI.Enabled = false; # Bonus: turn off other Firefox AI features
+    };
+    profiles.<my-profile> = {
+      search = {
+        force = true;
+        default = "ddg-noai";
+        engines = {
+          "ddg-noai" = {
+            urls = [
+              {
+                template = "https://noai.duckduckgo.com/";
+                params = [ (lib.nameValuePair "q" "{searchTerms}") ];
+              }
+            ];
+            definedAliases = [ "@noai" ];
+          };
+        };
+      };
+      ...
+    };
+  ...
+  };
+#+end_src
+
+
 * histsync: sync shell history with pass
 
 [[https://github.com/atuinsh/atuin][Atuin]] is super cool: it let's you sync shell history across machine, but few issues for me:
@@ -49,7 +86,7 @@ Note: the merge logic will not work if you use timestamps.
 
 I've been using Apple's Passwords.app, but [[https://www.passwordstore.org/][password-store]] (pass) seemed very cool, and since I already did the heavy-lifting of setting up the YubiKey, I decided to migrate.
 
-I found this out later but [[https://www.gnu.org/software/emacs/manual/html_mono/auth.html#The-Unix-password-store][Emacs supports pass as an auth-source natively]]! Here is a sample:
+Another reason that convinced me: [[https://www.gnu.org/software/emacs/manual/html_mono/auth.html#The-Unix-password-store][Emacs supports pass as an auth-source natively]]! Here is a sample:
 
 #+BEGIN_SRC emacs-lisp
   (auth-source-pass-enable)
