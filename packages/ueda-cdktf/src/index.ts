@@ -8,13 +8,13 @@ import { Zone } from "@ueda/cdktf-providers/cloudflare/zone";
 function synth() {
   const app = new App();
 
-  new CloudBackend(app, {
+  const stack = new TerraformStack(app, "master");
+
+  new CloudBackend(stack, {
     hostname: "app.terraform.io",
     organization: "ueda",
     workspaces: new NamedCloudWorkspace("monorepo"),
   });
-
-  const stack = new TerraformStack(app, "master");
 
   new CloudflareProvider(stack, "cloudflare-provider");
 
@@ -47,6 +47,59 @@ function synth() {
     type: "AAAA",
     zoneId: shunuedaOrgZone.id,
     content: "2a03:6000:1813:1337::157",
+  });
+
+  new DnsRecord(stack, "shunueda-org-fastmail-mx-primary", {
+    name: "@",
+    ttl: 1,
+    type: "MX",
+    zoneId: shunuedaOrgZone.id,
+    content: "in1-smtp.messagingengine.com",
+    priority: 10,
+  });
+
+  new DnsRecord(stack, "shunueda-org-fastmail-mx-secondary", {
+    name: "@",
+    ttl: 1,
+    type: "MX",
+    zoneId: shunuedaOrgZone.id,
+    content: "in2-smtp.messagingengine.com",
+    priority: 20,
+  });
+
+  new DnsRecord(stack, "shunueda-org-fastmail-dkim-1", {
+    name: "fm1._domainkey",
+    ttl: 1,
+    type: "CNAME",
+    zoneId: shunuedaOrgZone.id,
+    content: "fm1.shunueda.org.dkim.fmhosted.com",
+    proxied: false,
+  });
+
+  new DnsRecord(stack, "shunueda-org-fastmail-dkim-2", {
+    name: "fm2._domainkey",
+    ttl: 1,
+    type: "CNAME",
+    zoneId: shunuedaOrgZone.id,
+    content: "fm2.shunueda.org.dkim.fmhosted.com",
+    proxied: false,
+  });
+
+  new DnsRecord(stack, "shunueda-org-fastmail-dkim-3", {
+    name: "fm3._domainkey",
+    ttl: 1,
+    type: "CNAME",
+    zoneId: shunuedaOrgZone.id,
+    content: "fm3.shunueda.org.dkim.fmhosted.com",
+    proxied: false,
+  });
+
+  new DnsRecord(stack, "shunueda-org-fastmail-spf", {
+    name: "@",
+    ttl: 1,
+    type: "TXT",
+    zoneId: shunuedaOrgZone.id,
+    content: `"v=spf1 include:spf.messagingengine.com ?all"`,
   });
 
   app.synth();
