@@ -4,6 +4,33 @@ Welcome! I'm Shun, a novice software engineer. Here I publish my Org notes to sh
 
 I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around these two ecosystems.
 
+
+* Using S3 as a Nix cache
+
+Cachix is too expensive so I use S3 (well, technically Cloudflare R2 because it's S3-compatible and egress-free) as a Nix cache, with a following script:
+
+#+begin_src console
+  #!/usr/bin/env bash
+
+  set -euo pipefail
+
+  signkey=$(mktemp)
+
+  trap 'rm -f $signkey' EXIT
+
+  echo "$NIX_CACHE_SIGNING_KEY" >"$signkey"
+
+  nix store sign --key-file "$signkey" --all
+
+  nix path-info --all |
+    grep -v -E '\.(drv|check|drv\.chroot|lock)$' |
+    xargs -n 50 -P 8 sudo -i nix copy --to "$NIX_CACHE_SUBSTITUTER"
+#+end_src
+
+Intended for use in CI. Signs everything is the store, filters things we're interested in, and =nix copy= (in chunks to avoid command being too long) to the backend. Pretty straight forward but works well for me.
+
+Side note: if you're using S3 as a Nix store, check this out: [[https://github.com/anteriorcore/terraform-aws-s3-nix-lru-cache][anteriorcore/terraform-aws-s3-nix-lru-cache]]. It uses S3 access logs to GC. Pretty neat.
+
 * Does anyone find Google's AI search usful?
 
 I've never found Google's "AI Overview" particularly helpful. It's been more distracting than useful, and worse still, there seems to be no way to turn it off.
