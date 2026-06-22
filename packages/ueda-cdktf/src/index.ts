@@ -4,6 +4,8 @@ import { CloudflareProvider } from "@ueda/cdktf-providers/cloudflare/provider";
 import { RegistrarDomain } from "@ueda/cdktf-providers/cloudflare/registrar-domain";
 import { DnsRecord } from "@ueda/cdktf-providers/cloudflare/dns-record";
 import { Zone } from "@ueda/cdktf-providers/cloudflare/zone";
+import { NamecheapProvider } from "@ueda/cdktf-providers/namecheap/provider";
+import { DomainRecords } from "@ueda/cdktf-providers/namecheap/domain-records";
 
 function synth() {
   const app = new App();
@@ -17,6 +19,11 @@ function synth() {
   });
 
   new CloudflareProvider(stack, "cloudflare-provider");
+
+  new NamecheapProvider(stack, "namecheap-provider", {
+    userName: "shunueda",
+    apiUser: "shunueda",
+  });
 
   const cfAccountId = "ca4a67796dcce729524c78e24c66d10d";
 
@@ -49,7 +56,7 @@ function synth() {
     content: "2a03:6000:1813:1337::157",
   });
 
-  new DnsRecord(stack, "shunueda-org-fastmail-mx-primary", {
+  new DnsRecord(stack, "shunueda-org-fastmail-mx-1", {
     name: "@",
     ttl: 1,
     type: "MX",
@@ -58,7 +65,7 @@ function synth() {
     priority: 10,
   });
 
-  new DnsRecord(stack, "shunueda-org-fastmail-mx-secondary", {
+  new DnsRecord(stack, "shunueda-org-fastmail-mx-2", {
     name: "@",
     ttl: 1,
     type: "MX",
@@ -100,6 +107,46 @@ function synth() {
     type: "TXT",
     zoneId: shunuedaOrgZone.id,
     content: `"v=spf1 include:spf.messagingengine.com ?all"`,
+  });
+
+  new DomainRecords(stack, "shu-nu-namecheap-domain-records", {
+    domain: "shu.nu",
+    mode: "OVERWRITE",
+    emailType: "MX",
+    record: [
+      {
+        hostname: "@",
+        type: "MX",
+        address: "in1-smtp.messagingengine.com",
+        mxPref: 10,
+      },
+      {
+        hostname: "@",
+        type: "MX",
+        address: "in2-smtp.messagingengine.com",
+        mxPref: 20,
+      },
+      {
+        hostname: "fm1._domainkey",
+        type: "CNAME",
+        address: "fm1.shu.nu.dkim.fmhosted.com",
+      },
+      {
+        hostname: "fm2._domainkey",
+        type: "CNAME",
+        address: "fm2.shu.nu.dkim.fmhosted.com",
+      },
+      {
+        hostname: "fm3._domainkey",
+        type: "CNAME",
+        address: "fm3.shu.nu.dkim.fmhosted.com",
+      },
+      {
+        hostname: "@",
+        type: "TXT",
+        address: `"v=spf1 include:spf.messagingengine.com ?all"`,
+      },
+    ],
   });
 
   app.synth();
