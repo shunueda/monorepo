@@ -68,7 +68,7 @@ Intended for use in CI. Signs everything is the store, filters things we're inte
 
 Side note: if you're using S3 as a Nix store, check this out: [[https://github.com/anteriorcore/terraform-aws-s3-nix-lru-cache][anteriorcore/terraform-aws-s3-nix-lru-cache]]. It uses S3 access logs to GC. Pretty neat.
 
-* Does anyone find Google's AI search usful?
+* Does anyone find Google's AI search useful?
 
 I've never found Google's "AI Overview" particularly helpful. It's been more distracting than useful, and worse still, there seems to be no way to turn it off.
 
