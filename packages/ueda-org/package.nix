@@ -38,6 +38,8 @@ let
       ''
         emacs --batch --script ${./build.el} ${./src} build
 
+        cp ${./src/style.css} build/style.css
+
         tar -cvzf $out -C build .
       '';
 

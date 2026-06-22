@@ -1,0 +1,42 @@
+body {
+  font-family: serif;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+a {
+  color: inherit;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+pre {
+  background: #f5f5f5;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+}
+
+code {
+  font-size: 0.9rem;
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+h2 {
+  font-size: 1.1rem;
+}
+h3 {
+  font-size: 1rem;
+}
+
+#org-div-home-and-up {
+  margin-bottom: 0.5rem;
+}
