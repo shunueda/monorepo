@@ -120,13 +120,18 @@
         };
         git = {
           enable = true;
+          signing = {
+            key = "C879B61CBD7C81A8783AD90965A3009821043C2C";
+            signByDefault = true;
+            format = "openpgp";
+          };
           settings = {
             init = {
               defaultBranch = "master";
             };
             user = {
               name = "Shun Ueda";
-              email = "me@shu.nu";
+              email = "git@shunueda.org";
             };
             diff.algorithm = "histogram";
             rebase = {
