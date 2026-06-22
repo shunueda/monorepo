@@ -86,7 +86,6 @@
               corfu
               direnv
               exec-path-from-shell
-              fzf
               ghq
               git-gutter
               gptel
@@ -148,6 +147,7 @@
             push.autoSetupRemote = true;
           };
         };
+        fd.enable = true;
         gpg = {
           enable = true;
           publicKeys = [

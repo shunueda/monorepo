@@ -209,7 +209,12 @@
 
 (use-package consult
   :ensure t
+  :custom
+  (consult-async-min-input 1)
+  (consult-async-input-debounce 0)
+  (consult-async-input-throttle 0)
   :bind (("C-s" . consult-line)
+         ("C-c f" . consult-fd)
          ("C-c r" . consult-ripgrep)))
 
 ;; Corfu
@@ -240,31 +245,6 @@
   :config
   (setq undo-tree-auto-save-history nil)
   (global-undo-tree-mode))
-
-(use-package fzf
-  :bind
-  (("C-t" . fzf-git-files)
-   ("C-r" . fzf-git-grep-fuzzy))
-  :config
-  (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
-        fzf/git-grep-args "-i --line-number %s"
-        fzf/grep-command "grep -nrH"
-        fzf/position-bottom t
-        fzf/window-height 15)
-  (defun fzf-git-grep-fuzzy ()
-    (interactive)
-    (let* ((fzf--target-validator (fzf--use-validator
-                                   (function fzf--pass-through)))
-           (fzf--extractor-list (fzf--use-extractor
-                                 (list fzf--file-lnum-regexp 1 2)))
-           (git-root (locate-dominating-file default-directory ".git")))
-      (if git-root
-          (fzf--with-command-and-args
-           "git grep --line-number ."
-           #'fzf--action-find-file-with-line
-           "--delimiter : --nth 3.."
-           git-root)
-        (user-error "Not inside a Git repository")))))
 
 (use-package gptel
   :ensure t
