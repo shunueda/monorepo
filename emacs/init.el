@@ -40,6 +40,8 @@
 
       markdown-display-remote-images t
 
+      use-package-always-ensure nil
+
       treesit-font-lock-level 4)
 
 ;; Enable pass for auth-source
@@ -130,18 +132,15 @@
 
 ;; Super save
 (use-package super-save
-  :ensure t
   :config
   (super-save-mode +1))
 
 (use-package sops
-  :ensure t
   :init
   (global-sops-mode 1))
 
 ;; Markdown mode
 (use-package markdown-mode
-  :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown")
   :bind (:map markdown-mode-map
@@ -149,12 +148,10 @@
 
 ;; Tuareg
 (use-package tuareg
-  :ensure t
   :mode (("\\.ocamlinit\\'" . tuareg-mode)))
 
 ;; Eglot
 (use-package eglot
-  :ensure t
   :hook
   (rust-ts-mode . eglot-ensure)
   (typescript-ts-mode . eglot-ensure)
@@ -177,38 +174,32 @@
   (setq completion-category-overrides '((eglot (styles . (orderless))))))
 
 (use-package ocaml-eglot
-  :ensure t
   :after tuareg
   :hook
   (tuareg-mode . ocaml-eglot)
   (ocaml-eglot . eglot-ensure))
 
 (use-package smartparens
-  :ensure t
   :config
   (require 'smartparens-config)
   (smartparens-global-mode 1))
 
 ;; Editorconfig
 (use-package editorconfig
-  :ensure t
   :config
   (editorconfig-mode 1))
 
 ;; Vertico
 (use-package vertico
-  :ensure t
   :init
   (vertico-mode 1))
 
 (use-package orderless
-  :ensure t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package consult
-  :ensure t
   :custom
   (consult-async-min-input 1)
   (consult-async-input-debounce 0)
@@ -237,7 +228,6 @@
   (exec-path-from-shell-copy-envs '("SSH_AUTH_SOCK")))
 
 (use-package direnv
-  :ensure t
   :config
   (direnv-mode))
 
@@ -247,7 +237,6 @@
   (global-undo-tree-mode))
 
 (use-package gptel
-  :ensure t
   :config
   (setq
      gptel-backend
@@ -261,7 +250,6 @@
      gptel-model 'openrouter/auto))
 
 (use-package avy
-  :ensure t
   :config
   (global-set-key (kbd "C-'") 'avy-goto-char-2))
 
