@@ -4,7 +4,7 @@ Welcome! I'm Shun, a novice software engineer. Here I publish my Org notes to sh
 
 I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around these two ecosystems.
 
-* 
+Find me at: [[https://git.sr.ht/~ueda][SourceHut]], [[https://github.com/shunueda][GitHub]], or [[mailto:me@shunueda.org][me@shunueda.org]].
 
 * TIL: Sieve (mail filtering language)
 
