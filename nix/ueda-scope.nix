@@ -14,7 +14,6 @@ let
     wombelix.sourcehut
     integrations.github
     cloudflare.cloudflare
-    namecheap.namecheap
   ];
 
   pl2nixOverlay = final: prev: {

@@ -4,8 +4,9 @@ import { CloudflareProvider } from "@ueda/cdktf-providers/cloudflare/provider";
 import { RegistrarDomain } from "@ueda/cdktf-providers/cloudflare/registrar-domain";
 import { DnsRecord } from "@ueda/cdktf-providers/cloudflare/dns-record";
 import { Zone } from "@ueda/cdktf-providers/cloudflare/zone";
-import { NamecheapProvider } from "@ueda/cdktf-providers/namecheap/provider";
-import { DomainRecords } from "@ueda/cdktf-providers/namecheap/domain-records";
+import { DataCloudflareRegistrarDomain } from "@ueda/cdktf-providers/cloudflare/data-cloudflare-registrar-domain";
+import { fastmail } from "./fastmail.ts";
+import { Ruleset } from "@ueda/cdktf-providers/cloudflare/ruleset";
 
 function synth() {
   const app = new App();
@@ -20,16 +21,20 @@ function synth() {
 
   new CloudflareProvider(stack, "cloudflare-provider");
 
-  new NamecheapProvider(stack, "namecheap-provider", {
-    userName: "shunueda",
-    apiUser: "shunueda",
-  });
-
   const cfAccountId = "ca4a67796dcce729524c78e24c66d10d";
 
   const shunuedaOrgDomain = new RegistrarDomain(stack, "shunueda-org-registrar-domain", {
     accountId: cfAccountId,
     domainName: "shunueda.org",
+    privacy: true,
+    autoRenew: true,
+    locked: true,
+  });
+
+  // Hosted on Namecheap
+  const shuNuOrgDomain = new DataCloudflareRegistrarDomain(stack, "shu-nu-registrar-domain", {
+    accountId: cfAccountId,
+    domainName: "shu.nu",
   });
 
   const shunuedaOrgZone = new Zone(stack, "shunueda-org-zone", {
@@ -37,6 +42,14 @@ function synth() {
       id: cfAccountId,
     },
     name: shunuedaOrgDomain.domainName,
+    type: "full",
+  });
+
+  const shuNuZone = new Zone(stack, "shu-nu-zone", {
+    account: {
+      id: cfAccountId,
+    },
+    name: shuNuOrgDomain.domainName,
     type: "full",
   });
 
@@ -56,95 +69,36 @@ function synth() {
     content: "2a03:6000:1813:1337::157",
   });
 
-  new DnsRecord(stack, "shunueda-org-fastmail-mx-1", {
+  fastmail(stack, "shunueda-org", shunuedaOrgZone, shunuedaOrgDomain);
+  fastmail(stack, "shu-nu", shuNuZone, shuNuOrgDomain);
+
+  new DnsRecord(stack, "shu-nu-a", {
+    zoneId: shuNuZone.id,
     name: "@",
+    type: "A",
     ttl: 1,
-    type: "MX",
-    zoneId: shunuedaOrgZone.id,
-    content: "in1-smtp.messagingengine.com",
-    priority: 10,
+    content: "192.0.2.1", // dummy IP, traffic never reaches it since it's proxied
+    proxied: true,
   });
 
-  new DnsRecord(stack, "shunueda-org-fastmail-mx-2", {
-    name: "@",
-    ttl: 1,
-    type: "MX",
-    zoneId: shunuedaOrgZone.id,
-    content: "in2-smtp.messagingengine.com",
-    priority: 20,
-  });
-
-  new DnsRecord(stack, "shunueda-org-fastmail-dkim-1", {
-    name: "fm1._domainkey",
-    ttl: 1,
-    type: "CNAME",
-    zoneId: shunuedaOrgZone.id,
-    content: "fm1.shunueda.org.dkim.fmhosted.com",
-    proxied: false,
-  });
-
-  new DnsRecord(stack, "shunueda-org-fastmail-dkim-2", {
-    name: "fm2._domainkey",
-    ttl: 1,
-    type: "CNAME",
-    zoneId: shunuedaOrgZone.id,
-    content: "fm2.shunueda.org.dkim.fmhosted.com",
-    proxied: false,
-  });
-
-  new DnsRecord(stack, "shunueda-org-fastmail-dkim-3", {
-    name: "fm3._domainkey",
-    ttl: 1,
-    type: "CNAME",
-    zoneId: shunuedaOrgZone.id,
-    content: "fm3.shunueda.org.dkim.fmhosted.com",
-    proxied: false,
-  });
-
-  new DnsRecord(stack, "shunueda-org-fastmail-spf", {
-    name: "@",
-    ttl: 1,
-    type: "TXT",
-    zoneId: shunuedaOrgZone.id,
-    content: `"v=spf1 include:spf.messagingengine.com ?all"`,
-  });
-
-  new DomainRecords(stack, "shu-nu-namecheap-domain-records", {
-    domain: "shu.nu",
-    mode: "OVERWRITE",
-    emailType: "MX",
-    record: [
+  new Ruleset(stack, "shu-nu-redirect", {
+    zoneId: shuNuZone.id,
+    name: "redirects",
+    kind: "zone",
+    phase: "http_request_dynamic_redirect",
+    rules: [
       {
-        hostname: "@",
-        type: "MX",
-        address: "in1-smtp.messagingengine.com",
-        mxPref: 10,
-      },
-      {
-        hostname: "@",
-        type: "MX",
-        address: "in2-smtp.messagingengine.com",
-        mxPref: 20,
-      },
-      {
-        hostname: "fm1._domainkey",
-        type: "CNAME",
-        address: "fm1.shu.nu.dkim.fmhosted.com",
-      },
-      {
-        hostname: "fm2._domainkey",
-        type: "CNAME",
-        address: "fm2.shu.nu.dkim.fmhosted.com",
-      },
-      {
-        hostname: "fm3._domainkey",
-        type: "CNAME",
-        address: "fm3.shu.nu.dkim.fmhosted.com",
-      },
-      {
-        hostname: "@",
-        type: "TXT",
-        address: `"v=spf1 include:spf.messagingengine.com ?all"`,
+        description: `Redirect ${shuNuOrgDomain.domainName} to ${shunuedaOrgDomain.domainName}`,
+        expression: "true",
+        action: "redirect",
+        actionParameters: {
+          fromValue: {
+            statusCode: 301,
+            targetUrl: {
+              value: `https://${shunuedaOrgDomain.domainName}`,
+            },
+          },
+        },
       },
     ],
   });
