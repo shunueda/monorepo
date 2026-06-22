@@ -42,6 +42,8 @@
 
       use-package-always-ensure nil
 
+      confirm-kill-emacs 'yes-or-no-p
+
       treesit-font-lock-level 4)
 
 ;; Enable pass for auth-source
@@ -56,9 +58,6 @@
   (let ((paths (split-string (shell-command-to-string "ghq list --full-path") "\n" t)))
     (dolist (path paths)
       (project-remember-projects-under path))))
-
-;; Font
-;; (set-frame-font "JetBrains Mono 13")
 
 ;; Core modes
 (repeat-mode 1)                ;; Enable repeating key maps
@@ -130,7 +129,6 @@
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-ts-mode))
 
-;; Super save
 (use-package super-save
   :config
   (super-save-mode +1))
@@ -139,18 +137,15 @@
   :init
   (global-sops-mode 1))
 
-;; Markdown mode
 (use-package markdown-mode
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown")
   :bind (:map markdown-mode-map
          ("C-c C-e" . markdown-do)))
 
-;; Tuareg
 (use-package tuareg
   :mode (("\\.ocamlinit\\'" . tuareg-mode)))
 
-;; Eglot
 (use-package eglot
   :hook
   (rust-ts-mode . eglot-ensure)
@@ -184,12 +179,10 @@
   (require 'smartparens-config)
   (smartparens-global-mode 1))
 
-;; Editorconfig
 (use-package editorconfig
   :config
   (editorconfig-mode 1))
 
-;; Vertico
 (use-package vertico
   :init
   (vertico-mode 1))
@@ -205,10 +198,25 @@
   (consult-async-input-debounce 0)
   (consult-async-input-throttle 0)
   :bind (("C-s" . consult-line)
+         ("C-x b" . consult-buffer)
          ("C-c f" . consult-fd)
          ("C-c r" . consult-ripgrep)))
 
-;; Corfu
+(use-package embark
+  :bind
+  ("C-," . embark-act)
+  ("C-;" . embark-dwim)
+  :config
+  (setq prefix-help-command #'embark-prefix-help-command))
+
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package wgrep
+  :custom
+  (wgrep-auto-save-buffer t))
+
 (use-package corfu
   :custom
   (corfu-auto t)
@@ -217,12 +225,10 @@
   :init
   (global-corfu-mode))
 
-;; Git gutter
 (use-package git-gutter
   :init
   (global-git-gutter-mode t))
 
-;; exec-path-from-shell
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-envs '("SSH_AUTH_SOCK")))
@@ -235,6 +241,11 @@
   :config
   (setq undo-tree-auto-save-history nil)
   (global-undo-tree-mode))
+
+(use-package multiple-cursors
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C-<" . mc/mark-all-like-this)))
 
 (use-package gptel
   :config
@@ -253,16 +264,11 @@
   :config
   (global-set-key (kbd "C-'") 'avy-goto-char-2))
 
-;; Prevent accidentally quitting Emacs
-(global-set-key (kbd "s-q") nil)
-(global-set-key (kbd "C-x C-c") nil)
-
 ;; Causes Emacs to freeze
 (global-unset-key [C-wheel-up])
 (global-unset-key [C-wheel-down])
 
-;; Remap from help
-(define-key global-map (kbd "C-h") 'delete-backward-char)
+(keyboard-translate ?\C-h ?\C-?)
 
 (defun ueda/irc-connect ()
   (interactive)

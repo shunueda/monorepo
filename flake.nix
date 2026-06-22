@@ -78,7 +78,7 @@
       systems = import inputs.systems;
       imports = [
         # keep-sorted start
-        ./hosts/anterior/darwin-configuration.nix
+        ./hosts/gray/darwin-configuration.nix
         ./hosts/silver/darwin-configuration.nix
         ./modules/darwin/common.nix
         ./modules/darwin/linux-builder.nix

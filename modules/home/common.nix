@@ -95,6 +95,9 @@
               multiple-cursors
               nix-ts-mode
               ocaml-eglot
+              embark
+              embark-consult
+              wgrep
               orderless
               paredit
               rust-mode
