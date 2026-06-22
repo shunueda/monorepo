@@ -207,6 +207,11 @@
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
+(use-package consult
+  :ensure t
+  :bind (("C-s" . consult-line)
+         ("C-c r" . consult-ripgrep)))
+
 ;; Corfu
 (use-package corfu
   :custom

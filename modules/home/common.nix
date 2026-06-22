@@ -82,6 +82,7 @@
             epkgs: with epkgs; [
               # keep-sorted start
               avy
+              consult
               corfu
               direnv
               exec-path-from-shell
@@ -97,7 +98,6 @@
               ocaml-eglot
               orderless
               paredit
-              rg
               rust-mode
               smartparens
               sops
