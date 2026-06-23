@@ -84,10 +84,12 @@
               avy
               consult
               corfu
+              diff-hl
               direnv
+              embark
+              embark-consult
               exec-path-from-shell
               ghq
-              git-gutter
               gptel
               kotlin-ts-mode
               magit
@@ -95,24 +97,24 @@
               multiple-cursors
               nix-ts-mode
               ocaml-eglot
-              embark
-              embark-consult
-              wgrep
               orderless
               paredit
               rust-mode
               smartparens
               sops
               super-save
+              treesit-auto
               treesit-grammars.with-all-grammars
               tuareg
               typst-ts-mode
               undo-tree
               vertico
+              wgrep
               zenburn-theme
               # keep-sorted end
             ];
         };
+        fd.enable = true;
         fzf.enable = true;
         ghq = {
           enable = true;
@@ -149,7 +151,6 @@
             push.autoSetupRemote = true;
           };
         };
-        fd.enable = true;
         gpg = {
           enable = true;
           publicKeys = [

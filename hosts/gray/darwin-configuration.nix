@@ -3,10 +3,9 @@ let
   user = "me";
   specialArgs = { inherit self inputs; };
   system = "aarch64-darwin";
-  name = "gray";
 in
 {
-  flake.darwinConfigurations.${name} = inputs.nix-darwin.lib.darwinSystem {
+  flake.darwinConfigurations.gray = inputs.nix-darwin.lib.darwinSystem {
     inherit specialArgs;
     modules = [
       self.darwinModules.common
@@ -36,11 +35,6 @@ in
             imports = [ ./users/me.nix ];
             home.stateVersion = "26.05";
           };
-        };
-        networking = {
-          computerName = name;
-          localHostName = name;
-          hostName = name;
         };
       })
     ];

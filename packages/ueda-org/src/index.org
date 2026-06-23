@@ -12,7 +12,7 @@ I use Fastmail for my emails, and today I found that you can set a custom mail f
 
 Apparently there is also a [[https://datatracker.ietf.org/doc/html/rfc5804][protocol to manage Sieve script]], but Fastmail [[https://www.fastmail.help/hc/en-us/articles/360058753814-Sieve-frequently-asked-questions#using][doesn't support it]] :( I thought of writing a Just script or a Terraform provider, but too bad.
 
-However: Fastmail supports [[https://www.fastmail.com/dev/][JMAP API]] (!) so if I really wanted to, I /can/ use =SieveScript/set=. But I'm too lazy. JMAP is crazytown.
+However: Fastmail supports [[https://www.fastmail.com/dev/][JMAP API]] (!) so if I /really/ wanted to, I can use =SieveScript/set= - but I'm too lazy. JMAP is crazytown.
 
 Side note, Fastmail is awesome. Highly recommend.
 
