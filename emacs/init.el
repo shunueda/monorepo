@@ -59,6 +59,23 @@
     (dolist (path paths)
       (project-remember-projects-under path))))
 
+(defun ueda/irc-connect ()
+  (interactive)
+  (erc-tls
+   :server "irc.libera.chat"
+   :port 6697
+   :nick "ueda"
+   :password (auth-source-pass-get 'secret "InternetAccounts/libera")))
+
+
+;; Causes Emacs to freeze
+(global-unset-key [C-wheel-up])
+(global-unset-key [C-wheel-down])
+
+;; Swap the Backspace and DEL
+;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Backspace-invokes-help.html
+(keyboard-translate ?\C-h ?\C-?)
+
 ;; Core modes
 (repeat-mode 1)                ;; Enable repeating key maps
 (menu-bar-mode 0)              ;; Hide the menu bar
@@ -73,7 +90,6 @@
 (global-auto-revert-mode 1)    ;; Refresh buffers with changed local files
 (global-display-line-numbers-mode t) ;; Display line numbers
 (auto-save-visited-mode 1) ;; Save to original file
-
 
 ;; Tabs to spaces
 (setq-default indent-tabs-mode nil
@@ -197,9 +213,14 @@
   :init
   (global-git-gutter-mode t))
 
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize)
-  (exec-path-from-shell-copy-envs '("SSH_AUTH_SOCK")))
+(use-package exec-path-from-shell
+  :when (memq window-system '(mac ns x))
+  :init
+  ;; https://github.com/purcell/exec-path-from-shell#usage
+  (dolist (var '("SSH_AUTH_SOCK" "SSH_AGENT_PID" "GPG_AGENT_INFO" "LANG" "LC_CTYPE" "NIX_SSL_CERT_FILE" "NIX_PATH"))
+    (add-to-list 'exec-path-from-shell-variables var))
+  :config
+  (exec-path-from-shell-initialize))
 
 (use-package direnv
   :config
@@ -231,17 +252,3 @@
 (use-package avy
   :config
   (global-set-key (kbd "C-'") 'avy-goto-char-2))
-
-;; Causes Emacs to freeze
-(global-unset-key [C-wheel-up])
-(global-unset-key [C-wheel-down])
-
-(keyboard-translate ?\C-h ?\C-?)
-
-(defun ueda/irc-connect ()
-  (interactive)
-  (erc-tls
-   :server "irc.libera.chat"
-   :port 6697
-   :nick "ueda"
-   :password (auth-source-pass-get 'secret "InternetAccounts/libera")))
