@@ -82,39 +82,7 @@
 (setopt tab-always-indent 'complete
         read-buffer-completion-ignore-case t
         read-file-name-completion-ignore-case t
-
-        ;; This *may* need to be set to 'always just so that you don't
-        ;; miss other possible good completions that match the input
-        ;; string.
-        completion-auto-help t
-
-        ;; Include more information with completion listings
-        completions-detailed t
-
-        ;; Move focus to the completions window after hitting tab
-        ;; twice.
-        completion-auto-select 'second-tab
-
-        ;; If there are 3 or less completion candidates, don't pop up
-        ;; a window, just cycle through them.
-        completion-cycle-threshold 3
-
-        ;; Cycle through completion options vertically, not
-        ;; horizontally.
-        completions-format 'vertical
-
-        ;; Sort recently used completions first.
-        completions-sort 'historical
-
-        ;; Only show up to 10 lines in the completions window.
-        completions-max-height 10
-
-        ;; Don't show the unneeded help string at the top of the
-        ;; completions buffer.
-        completion-show-help nil
-
-        ;; Add more `completion-styles' to improve candidate selection.
-        completion-styles '(basic partial-completion substring initials))
+        completion-cycle-threshold t)
 
 ;; auto-mode-alist entries
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))

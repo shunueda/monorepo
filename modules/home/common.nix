@@ -124,7 +124,6 @@
           enable = true;
           signing = {
             key = "C879B61CBD7C81A8783AD90965A3009821043C2C";
-            signByDefault = true;
             format = "openpgp";
           };
           settings = {
