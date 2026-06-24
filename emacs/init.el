@@ -101,6 +101,29 @@
    :nick "ueda"
    :password (auth-source-pass-get 'secret "InternetAccounts/libera")))
 
+(defun ueda/tilde-user-dir-p (dir)
+  (and (stringp dir)
+       (string-prefix-p "~" dir)
+       (not (string-prefix-p "~/" dir))
+       (not (string= dir "~"))))
+
+(defun ueda/literalize-tilde-dir-arg (dir)
+  (let* ((current (expand-file-name default-directory))
+         (tilde (car (split-string dir "/" t)))
+         (marker (concat "/" tilde "/"))
+         (cut (string-search marker current))
+         (parent (if cut (substring current 0 (1+ cut)) current)))
+    (concat "/:" parent dir)))
+
+(defun ueda/neutralize-tilde-completion (args)
+  (let ((dir (nth 1 args)))
+    (if (ueda/tilde-user-dir-p dir)
+        (cons (nth 0 args)
+              (cons (ueda/literalize-tilde-dir-arg dir) (nthcdr 2 args)))
+      args)))
+
+(advice-add 'file-name-all-completions :filter-args #'ueda/neutralize-tilde-completion)
+(advice-add 'file-name-completion :filter-args #'ueda/neutralize-tilde-completion)
 
 ;; keep-sorted start block=yes
 (use-package corfu
@@ -233,7 +256,8 @@
   (add-to-list 'eglot-server-programs
              '((rust-ts-mode rust-mode) .
                ("rust-analyzer" :initializationOptions (:check (:command "clippy")))))
-  (setq completion-category-overrides '((eglot (styles . (orderless))))))
+  (add-to-list 'completion-category-overrides
+             '(eglot (styles orderless))))
 (use-package wgrep
   :custom
   (wgrep-auto-save-buffer t))
