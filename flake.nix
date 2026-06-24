@@ -86,10 +86,8 @@
       systems = import inputs.systems;
       imports = [
         # keep-sorted start
-        ./hosts/gray/darwin-configuration.nix
         ./hosts/silver/darwin-configuration.nix
         ./modules/darwin/common.nix
-        ./modules/darwin/linux-builder.nix
         ./modules/home/common.nix
         ./nix/flake-modules/codegen.nix
         ./nix/flake-modules/devshells.nix

@@ -76,7 +76,6 @@
         };
         emacs = {
           enable = true;
-          package = self.packages.${system}.ueda-emacs;
           overrides = self: super: {
             direnv = super.direnv.overrideAttrs (_: {
               src = inputs.emacs-direnv-async;
