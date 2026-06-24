@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, self, ... }: {
   flake.homeModules.common =
     {
       pkgs,
@@ -6,6 +6,9 @@
       lib,
       ...
     }:
+    let
+      inherit (pkgs.stdenv.hostPlatform) system;
+    in
     {
       imports = [
         inputs.nocommit.homeModules.default
@@ -73,6 +76,7 @@
         };
         emacs = {
           enable = true;
+          package = self.packages.${system}.ueda-emacs;
           overrides = self: super: {
             direnv = super.direnv.overrideAttrs (_: {
               src = inputs.emacs-direnv-async;
