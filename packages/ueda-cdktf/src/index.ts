@@ -9,12 +9,25 @@ import { fastmail } from "./dns.ts";
 import { Ruleset } from "@ueda/cdktf-providers/cloudflare/ruleset";
 import { DataSourcehutRepository } from "@ueda/cdktf-providers/sourcehut/data-sourcehut-repository";
 import { dataGithubOrganizationRepositoryRolesRolesToTerraform } from "@ueda/cdktf-providers/github/data-github-organization-repository-roles";
-import { Repository } from "@ueda/cdktf-providers/github/repository";
+import {
+  Repository,
+  RepositorySecurityAndAnalysisAdvancedSecurityOutputReference,
+} from "@ueda/cdktf-providers/github/repository";
 import { SourcehutProvider } from "@ueda/cdktf-providers/sourcehut/provider";
 import { GithubProvider } from "@ueda/cdktf-providers/github/provider";
 import { RepositoryDeployKey } from "@ueda/cdktf-providers/github/repository-deploy-key";
 import { R2Bucket } from "@ueda/cdktf-providers/cloudflare/r2-bucket";
 import { R2CustomDomain } from "@ueda/cdktf-providers/cloudflare/r2-custom-domain";
+import { env } from "node:process";
+import { ok } from "node:assert";
+import { ActionsSecret } from "@ueda/cdktf-providers/github/actions-secret";
+import { ActionsVariable } from "@ueda/cdktf-providers/github/actions-variable";
+
+function mustEnv(name: string) {
+  const val = env[name];
+  ok(val, `Missing envvar: ${name}`);
+  return val;
+}
 
 function synth() {
   const app = new App();
@@ -115,6 +128,20 @@ function synth() {
     ],
   });
 
+  const nixCacheBucket = new R2Bucket(stack, "nix-cache-r2-bucket", {
+    accountId: cfAccountId,
+    name: "nix-cache",
+    location: "enam",
+  });
+
+  new R2CustomDomain(stack, "nix-cache-r2-custom-domain", {
+    accountId: cfAccountId,
+    bucketName: nixCacheBucket.name,
+    domain: `nix-cache.${shunuedaOrgDomain.domainName}`,
+    enabled: true,
+    zoneId: shunuedaOrgZone.id,
+  });
+
   const names = ["monorepo"] as const;
 
   for (const name of names) {
@@ -136,21 +163,41 @@ function synth() {
       key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFa0siFX3QZMoyGCX4b3NJn73/AGncQfC58cf4da33PB",
       readOnly: false,
     });
+
+    // TODO: think about how I want to do this
+    if (name === "monorepo") {
+      const secrets = [
+        "NIX_CACHE_SIGNING_KEY",
+        "CLOUDFLARE_ACCESS_KEY_ID",
+        "CLOUDFLARE_SECRET_ACCESS_KEY",
+      ] as const;
+
+      for (const secret of secrets) {
+        new ActionsSecret(
+          stack,
+          `${name}-${secret.toLowerCase().replaceAll("_", "-")}-action-secret`,
+          {
+            repository: githubRepo.name,
+            secretName: secret,
+            value: mustEnv(secret),
+          },
+        );
+      }
+
+      new ActionsVariable(stack, `${name}-nix-cache-public-key`, {
+        repository: githubRepo.name,
+        variableName: "NIX_CACHE_PUBLIC_KEY",
+        // TODO: sync with machine config
+        value: "ueda-1:xcYAg6UiIbY9K4HF7rHiPeukhgfxW4dOdNHn/1Jd6p0=",
+      });
+
+      new ActionsVariable(stack, `${name}-nix-cache-substituter`, {
+        repository: githubRepo.name,
+        variableName: "NIX_CACHE_SUBSTITUTER",
+        value: `s3://${nixCacheBucket.name}?endpoint=${cfAccountId}.r2.cloudflarestorage.com&compression=zstd`,
+      });
+    }
   }
-
-  const nixCacheBucket = new R2Bucket(stack, "nix-cache-r2-bucket", {
-    accountId: cfAccountId,
-    name: "nix-cache",
-    location: "enam",
-  });
-
-  new R2CustomDomain(stack, "nix-cache-r2-custom-domain", {
-    accountId: cfAccountId,
-    bucketName: nixCacheBucket.name,
-    domain: `nix-cache.${shunuedaOrgDomain.domainName}`,
-    enabled: true,
-    zoneId: shunuedaOrgZone.id,
-  });
 
   app.synth();
 }

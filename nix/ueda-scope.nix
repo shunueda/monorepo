@@ -6,6 +6,7 @@
   ...
 }:
 let
+  inherit inputs;
   inherit (stdenv.hostPlatform) system;
 
   tfProviders = inputs.nixpkgs-terraform-providers-bin.legacyPackages.${system}.providers;

@@ -66,6 +66,43 @@
         "type": "github"
       }
     },
+    "emacs-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": "nixpkgs-stable"
+      },
+      "locked": {
+        "lastModified": 1782271925,
+        "narHash": "sha256-TGYoYGlcOc+GMKfJObD6DxbF4NL0aDlhYm+86+nqaj0=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "b86ff410d1997c41caf1deb79066ed52b7d5603f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
+    "emacs-plus": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782118658,
+        "narHash": "sha256-fbjz/1QtGQMNUslwjDii2edhH5JAm4n5vGOeuHXtLmM=",
+        "owner": "d12frosted",
+        "repo": "homebrew-emacs-plus",
+        "rev": "dbc974ef02d76f19ce0aadea8ea6416fe41eef2b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "d12frosted",
+        "repo": "homebrew-emacs-plus",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -218,6 +255,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1782116945,
+        "narHash": "sha256-G3tw/IXmaH6IQ2upZvhuN9sG8CkuX+BLuJDpE8hz0Ds=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "34268251cf5547d39063f2c5ea9a196246f7f3a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-terraform-providers-bin": {
       "inputs": {
         "nixpkgs": [
@@ -342,6 +395,8 @@
         "codegen": "codegen",
         "devshell": "devshell",
         "emacs-direnv-async": "emacs-direnv-async",
+        "emacs-overlay": "emacs-overlay",
+        "emacs-plus": "emacs-plus",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",

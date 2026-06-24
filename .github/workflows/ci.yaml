@@ -1,0 +1,38 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  nix-flake-check:
+    runs-on: ${{ matrix.os }}
+    permissions:
+      id-token: write
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
+        with:
+          key: "nix-eval-cache-${{ runner.os }}-${{ runner.arch }}"
+          path: "~/.cache/nix"
+      - uses: cachix/install-nix-action@8aa03977d8d733052d78f4e008a241fd1dbf36b3
+        with:
+          extra_nix_config: |
+            extra-substituters = ${{ vars.NIX_CACHE_SUBSTITUTER }}
+            extra-trusted-public-keys = ${{ vars.NIX_CACHE_PUBLIC_KEY }}
+      - name: Configure Cloudflare R2 credentials
+        run: |
+          sudo -i aws configure set aws_access_key_id "${{ secrets.CLOUDFLARE_ACCESS_KEY_ID }}"
+          sudo -i aws configure set aws_secret_access_key "${{ secrets.CLOUDFLARE_SECRET_ACCESS_KEY }}"
+      - run: nix run .#nix-flake-check-changed
+      - run: nix run .#nix-copy-to-s3
+        if: always()
+        env:
+          NIX_CACHE_SUBSTITUTER: ${{ vars.NIX_CACHE_SUBSTITUTER }}
+          NIX_CACHE_SIGNING_KEY: ${{ secrets.NIX_CACHE_SIGNING_KEY  }}
