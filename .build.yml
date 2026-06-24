@@ -5,7 +5,15 @@ oauth: pages.sr.ht/PAGES:RW
 environment:
   NIX_CONFIG: "experimental-features = nix-command flakes"
 
+secrets:
+  - eb02b611-ff31-4495-88c3-3c61847122d7
 tasks:
   - publish-org: |
       cd monorepo
       nix run .#ueda-org.publish
+  - mirror-github: |
+      cd monorepo
+      ssh-keyscan github.com >> ~/.ssh/known_hosts
+      git remote add github git@github.com:shunueda/monorepo.git
+      GIT_SSH_COMMAND="ssh -i ~/.ssh/eb02b611-ff31-4495-88c3-3c61847122d7" \
+        git push --mirror github

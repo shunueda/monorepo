@@ -5,8 +5,14 @@ import { RegistrarDomain } from "@ueda/cdktf-providers/cloudflare/registrar-doma
 import { DnsRecord } from "@ueda/cdktf-providers/cloudflare/dns-record";
 import { Zone } from "@ueda/cdktf-providers/cloudflare/zone";
 import { DataCloudflareRegistrarDomain } from "@ueda/cdktf-providers/cloudflare/data-cloudflare-registrar-domain";
-import { fastmail } from "./fastmail.ts";
+import { fastmail } from "./dns.ts";
 import { Ruleset } from "@ueda/cdktf-providers/cloudflare/ruleset";
+import { DataSourcehutRepository } from "@ueda/cdktf-providers/sourcehut/data-sourcehut-repository";
+import { dataGithubOrganizationRepositoryRolesRolesToTerraform } from "@ueda/cdktf-providers/github/data-github-organization-repository-roles";
+import { Repository } from "@ueda/cdktf-providers/github/repository";
+import { SourcehutProvider } from "@ueda/cdktf-providers/sourcehut/provider";
+import { GithubProvider } from "@ueda/cdktf-providers/github/provider";
+import { RepositoryDeployKey } from "@ueda/cdktf-providers/github/repository-deploy-key";
 
 function synth() {
   const app = new App();
@@ -20,6 +26,10 @@ function synth() {
   });
 
   new CloudflareProvider(stack, "cloudflare-provider");
+
+  new SourcehutProvider(stack, "sourcehut-provider");
+
+  new GithubProvider(stack, "github-provider");
 
   const cfAccountId = "ca4a67796dcce729524c78e24c66d10d";
 
@@ -102,6 +112,29 @@ function synth() {
       },
     ],
   });
+
+  const names = ["monorepo"] as const;
+
+  for (const name of names) {
+    // TODO: Doesn't work - bug in provider?
+    // const srhtRepo = new DataSourcehutRepository(stack, `${name}-sourcehut-repo`, {
+    //   name: `~ueda/${name}`,
+    // });
+
+    const githubRepo = new Repository(stack, `${name}-github-repo`, {
+      name,
+      description: `Read-only mirror of: https://git.sr.ht/~ueda/${name}`,
+    });
+
+    new RepositoryDeployKey(stack, `${name}-github-deploy-key`, {
+      repository: githubRepo.name,
+      title: "sourcehut-mirror",
+      // TODO: generate keys via Terraform TLS provider once SourceHut provider
+      // supports key managements for builds.sr.ht
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFa0siFX3QZMoyGCX4b3NJn73/AGncQfC58cf4da33PB",
+      readOnly: false,
+    });
+  }
 
   app.synth();
 }
