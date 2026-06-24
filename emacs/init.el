@@ -52,19 +52,32 @@
 (keyboard-translate ?\C-h ?\C-?)
 
 ;; Core modes keep-sorted start
-(auto-save-visited-mode 1) ;; Save to original file
-(column-number-mode 1) ;; Show column number on mode line
-(display-time-mode 1) ;; Display time in mode line / tab bar
-(global-auto-revert-mode 1) ;; Refresh buffers with changed local files
-(global-display-line-numbers-mode t) ;; Display line numbers
-(global-visual-line-mode 1) ;; Visually wrap long lines in all buffers
-(menu-bar-mode 0) ;; Hide the menu bar
-(repeat-mode 1) ;; Enable repeating key maps
-(savehist-mode 1)  ;; Save minibuffer history
-(scroll-bar-mode 0) ;; Hide the scroll bar
-(tab-bar-history-mode 1) ;; Remember previous tab window configurations
-(tool-bar-mode 0) ;; Hide the tool bar
-(xterm-mouse-mode 1) ;; Enable mouse events in terminal Emacs
+;; Save to original file
+(auto-save-visited-mode 1)
+;; Show column number on mode line
+(column-number-mode 1)
+;; Display time in mode line / tab bar
+(display-time-mode 1)
+;; Refresh buffers with changed local files
+(global-auto-revert-mode 1)
+;; Display line numbers
+(global-display-line-numbers-mode t)
+;; Visually wrap long lines in all buffers
+(global-visual-line-mode 1)
+;; Hide the menu bar
+(menu-bar-mode 0)
+;; Enable repeating key maps
+(repeat-mode 1)
+;; Save minibuffer history
+(savehist-mode 1)
+;; Hide the scroll bar
+(scroll-bar-mode 0)
+;; Remember previous tab window configurations
+(tab-bar-history-mode 1)
+;; Hide the tool bar
+(tool-bar-mode 0)
+;; Enable mouse events in terminal Emacs
+(xterm-mouse-mode 1)
 ;; keep-sorted end
 
 
