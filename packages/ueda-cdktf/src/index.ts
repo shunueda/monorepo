@@ -13,6 +13,8 @@ import { Repository } from "@ueda/cdktf-providers/github/repository";
 import { SourcehutProvider } from "@ueda/cdktf-providers/sourcehut/provider";
 import { GithubProvider } from "@ueda/cdktf-providers/github/provider";
 import { RepositoryDeployKey } from "@ueda/cdktf-providers/github/repository-deploy-key";
+import { R2Bucket } from "@ueda/cdktf-providers/cloudflare/r2-bucket";
+import { R2CustomDomain } from "@ueda/cdktf-providers/cloudflare/r2-custom-domain";
 
 function synth() {
   const app = new App();
@@ -135,6 +137,20 @@ function synth() {
       readOnly: false,
     });
   }
+
+  const nixCacheBucket = new R2Bucket(stack, "nix-cache-r2-bucket", {
+    accountId: cfAccountId,
+    name: "nix-cache",
+    location: "enam",
+  });
+
+  new R2CustomDomain(stack, "nix-cache-r2-custom-domain", {
+    accountId: cfAccountId,
+    bucketName: nixCacheBucket.name,
+    domain: `nix-cache.${shunuedaOrgDomain.domainName}`,
+    enabled: true,
+    zoneId: shunuedaOrgZone.id,
+  });
 
   app.synth();
 }
