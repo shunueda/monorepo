@@ -16,14 +16,6 @@
       url = "github:wbolster/emacs-direnv/pull/82/head";
       flake = false;
     };
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    emacs-plus = {
-      url = "github:d12frosted/homebrew-emacs-plus";
-      flake = false;
-    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -66,7 +58,7 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.systems.follows = "systems";
     };
-    systems.url = "github:nix-systems/default";
+    systems.url = "github:nix-systems/triplet";
     tools = {
       url = "github:anteriorcore/tools";
       inputs.nixpkgs.follows = "nixpkgs";
