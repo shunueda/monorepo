@@ -1,5 +1,5 @@
 keys:
-  - &yubikey 6E370FA33F7CDE7B5C9018910CCE2D6849A8D4EF
+  - &yubikey C879B61CBD7C81A8783AD90965A3009821043C2C
 creation_rules:
   - path_regex: secrets/.*\.yaml$
     key_groups:
