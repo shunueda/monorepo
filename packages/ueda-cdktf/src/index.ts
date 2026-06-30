@@ -48,19 +48,27 @@ function synth() {
 
   const cfAccountId = "ca4a67796dcce729524c78e24c66d10d";
 
-  const shunuedaOrgDomain = new RegistrarDomain(stack, "shunueda-org-registrar-domain", {
-    accountId: cfAccountId,
-    domainName: "shunueda.org",
-    privacy: true,
-    autoRenew: true,
-    locked: true,
-  });
+  const shunuedaOrgDomain = new RegistrarDomain(
+    stack,
+    "shunueda-org-registrar-domain",
+    {
+      accountId: cfAccountId,
+      domainName: "shunueda.org",
+      privacy: true,
+      autoRenew: true,
+      locked: true,
+    },
+  );
 
   // Hosted on Namecheap
-  const shuNuOrgDomain = new DataCloudflareRegistrarDomain(stack, "shu-nu-registrar-domain", {
-    accountId: cfAccountId,
-    domainName: "shu.nu",
-  });
+  const shuNuOrgDomain = new DataCloudflareRegistrarDomain(
+    stack,
+    "shu-nu-registrar-domain",
+    {
+      accountId: cfAccountId,
+      domainName: "shu.nu",
+    },
+  );
 
   const shunuedaOrgZone = new Zone(stack, "shunueda-org-zone", {
     account: {
@@ -142,62 +150,44 @@ function synth() {
     zoneId: shunuedaOrgZone.id,
   });
 
-  const names = ["monorepo"] as const;
+  const name = "monorepo";
 
-  for (const name of names) {
-    // TODO: Doesn't work - bug in provider?
-    // const srhtRepo = new DataSourcehutRepository(stack, `${name}-sourcehut-repo`, {
-    //   name: `~ueda/${name}`,
-    // });
+  const githubRepo = new Repository(stack, `${name}-github-repo`, {
+    name,
+    description: `Read-only mirror of: https://git.sr.ht/~ueda/${name}`,
+  });
 
-    const githubRepo = new Repository(stack, `${name}-github-repo`, {
-      name,
-      description: `Read-only mirror of: https://git.sr.ht/~ueda/${name}`,
-    });
+  const secrets = [
+    "NIX_CACHE_SIGNING_KEY",
+    "CLOUDFLARE_ACCESS_KEY_ID",
+    "CLOUDFLARE_SECRET_ACCESS_KEY",
+    "SRHT_TOKEN",
+  ] as const;
 
-    new RepositoryDeployKey(stack, `${name}-github-deploy-key`, {
-      repository: githubRepo.name,
-      title: "sourcehut-mirror",
-      // TODO: generate keys via Terraform TLS provider once SourceHut provider
-      // supports key managements for builds.sr.ht
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFa0siFX3QZMoyGCX4b3NJn73/AGncQfC58cf4da33PB",
-      readOnly: false,
-    });
-
-    // TODO: think about how I want to do this
-    if (name === "monorepo") {
-      const secrets = [
-        "NIX_CACHE_SIGNING_KEY",
-        "CLOUDFLARE_ACCESS_KEY_ID",
-        "CLOUDFLARE_SECRET_ACCESS_KEY",
-      ] as const;
-
-      for (const secret of secrets) {
-        new ActionsSecret(
-          stack,
-          `${name}-${secret.toLowerCase().replaceAll("_", "-")}-action-secret`,
-          {
-            repository: githubRepo.name,
-            secretName: secret,
-            value: mustEnv(secret),
-          },
-        );
-      }
-
-      new ActionsVariable(stack, `${name}-nix-cache-public-key`, {
+  for (const secret of secrets) {
+    new ActionsSecret(
+      stack,
+      `${name}-${secret.toLowerCase().replaceAll("_", "-")}-action-secret`,
+      {
         repository: githubRepo.name,
-        variableName: "NIX_CACHE_PUBLIC_KEY",
-        // TODO: sync with machine config
-        value: "ueda-1:xcYAg6UiIbY9K4HF7rHiPeukhgfxW4dOdNHn/1Jd6p0=",
-      });
-
-      new ActionsVariable(stack, `${name}-nix-cache-substituter`, {
-        repository: githubRepo.name,
-        variableName: "NIX_CACHE_SUBSTITUTER",
-        value: `s3://${nixCacheBucket.name}?endpoint=${cfAccountId}.r2.cloudflarestorage.com&compression=zstd`,
-      });
-    }
+        secretName: secret,
+        value: mustEnv(secret),
+      },
+    );
   }
+
+  new ActionsVariable(stack, `${name}-nix-cache-public-key`, {
+    repository: githubRepo.name,
+    variableName: "NIX_CACHE_PUBLIC_KEY",
+    // TODO: sync with machine config
+    value: "ueda-1:xcYAg6UiIbY9K4HF7rHiPeukhgfxW4dOdNHn/1Jd6p0=",
+  });
+
+  new ActionsVariable(stack, `${name}-nix-cache-substituter`, {
+    repository: githubRepo.name,
+    variableName: "NIX_CACHE_SUBSTITUTER",
+    value: `s3://${nixCacheBucket.name}?endpoint=${cfAccountId}.r2.cloudflarestorage.com&compression=zstd`,
+  });
 
   app.synth();
 }

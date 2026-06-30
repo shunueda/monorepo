@@ -21,7 +21,11 @@ let
           "ueda.srht.site"
         ];
       in
-      lib.concatMapStringsSep "\n" (domain: "hut pages publish --domain ${domain} ${final}") domains;
+      ''
+        echo "$SRHT_TOKEN" | hut init
+
+        ${lib.concatMapStringsSep "\n" (domain: "hut pages publish --domain ${domain} ${final}") domains}
+      '';
   };
 
   final =

@@ -1,5 +1,5 @@
 {
-  "name": "oyasai-cdktf",
+  "name": "ueda-cdktf",
   "bin": "src/index.ts",
   "type": "module",
   "exports": {

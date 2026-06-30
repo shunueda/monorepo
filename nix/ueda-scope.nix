@@ -62,6 +62,8 @@ let
         inherit (scopeSelf) nodejs;
         overrideScope = pl2nixOverlay;
       };
+
+      uedaPassWrapper = callPackage ./ueda-pass-wrapper.nix { };
     }
     // lib.packagesFromDirectoryRecursive {
       inherit callPackage;
