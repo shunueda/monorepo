@@ -117,7 +117,7 @@ I use [[https://www.passwordstore.org/][password-store]] (pass), so why don't I 
 #+begin_src nix
   bash = {
     enable = true;
-    # ... 
+    # ...
     initExtra = ''
       histsync() {
         # Append currently history to HISTFILE

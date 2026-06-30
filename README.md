@@ -7,7 +7,7 @@ Shun's kitchen-sink.
 Bootstrap:
 
 ```console
-sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake sourcehut:~ueda/monorepo#<profile>
+sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake github:shunueda/monorepo#<profile>
 ```
 
 Initialize password-store
@@ -19,5 +19,5 @@ git clone git@git.sr.ht:~ueda/password-store ~/.password-store
 Switch:
 
 ```console
-sudo darwin-rebuild switch --flake .sudo darwin-rebuild switch --flake .
+sudo darwin-rebuild switch --flake .
 ```

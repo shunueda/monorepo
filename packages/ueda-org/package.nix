@@ -22,7 +22,7 @@ let
         ];
       in
       ''
-        echo "$SRHT_TOKEN" | hut init
+        <<<"$SRHT_TOKEN" hut init
 
         ${lib.concatMapStringsSep "\n" (domain: "hut pages publish --domain ${domain} ${final}") domains}
       '';
