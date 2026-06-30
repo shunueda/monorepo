@@ -3,6 +3,7 @@
   pkgs,
   lib,
   stdenv,
+  constants,
   ...
 }:
 let
@@ -50,7 +51,7 @@ let
       inherit (scopeSelf) callPackage;
     in
     {
-      inherit inputs uedaTerraformProviders;
+      inherit inputs constants uedaTerraformProviders;
 
       inherit (inputs.tools.packages.${system}) nix-flake-check-changed nix-grep-to-build;
 

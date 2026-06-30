@@ -82,6 +82,7 @@
         ./modules/darwin/common.nix
         ./modules/home/common.nix
         ./nix/flake-modules/codegen.nix
+        ./nix/flake-modules/constants.nix
         ./nix/flake-modules/devshells.nix
         ./nix/flake-modules/misc.nix
         ./nix/flake-modules/treefmt.nix

@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, config, ... }: {
   flake.darwinModules.common = { self, pkgs, ... }: {
     imports = [ inputs.home-manager.darwinModules.home-manager ];
     nix = {
@@ -12,12 +12,12 @@
         substituters = [
           "https://nix-cache.oyasai.io"
           "https://anterior-public.cachix.org"
-          "https://nix-cache.shunueda.org"
+          config.constants.ueda.nix-cache.substituter
         ];
         trusted-public-keys = [
           "oyasaiserver:f0coAsRP8jLzDTOmVCY8hqQibMHtZcxjk60oVCQkjtU="
           "anterior-public.cachix.org-1:uLNXTMrqtMCiIJ4lYu47MGrbVPpyploI6J2y5Yre9es="
-          "ueda-1:xcYAg6UiIbY9K4HF7rHiPeukhgfxW4dOdNHn/1Jd6p0="
+          config.constants.ueda.nix-cache.publicKey
         ];
       };
       gc.automatic = true;

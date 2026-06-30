@@ -48,9 +48,7 @@ function synth() {
   createGitHubRepo(stack, "monorepo", {
     actions: {
       variables: {
-        // TODO: sync with machine config
-        NIX_CACHE_PUBLIC_KEY:
-          "ueda-1:xcYAg6UiIbY9K4HF7rHiPeukhgfxW4dOdNHn/1Jd6p0=",
+        NIX_CACHE_PUBLIC_KEY: mustEnv("NIX_CACHE_PUBLIC_KEY"),
         NIX_CACHE_SUBSTITUTER: `s3://${nixCache.bucket.name}?endpoint=${cloudflareAccountId}.r2.cloudflarestorage.com&compression=zstd`,
       },
       secrets: arrayToObject(

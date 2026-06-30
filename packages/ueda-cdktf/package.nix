@@ -1,4 +1,5 @@
 {
+  constants,
   package-lock2nix,
   terraform,
   writeShellApplication,
@@ -28,6 +29,7 @@ uedaPassWrapper {
     name = "ueda-cdktf-main";
     runtimeEnv = {
       CDKTF_APP = lib.getExe uedaCdktf;
+      NIX_CACHE_PUBLIC_KEY = constants.ueda.nix-cache.publicKey;
     };
     runtimeInputs = [
       ueda-cdktf-providers
