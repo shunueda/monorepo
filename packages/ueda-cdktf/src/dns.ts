@@ -1,15 +1,49 @@
-import type { DataCloudflareRegistrarDomain } from "@ueda/cdktf-providers/cloudflare/data-cloudflare-registrar-domain";
+import { DataCloudflareRegistrarDomain } from "@ueda/cdktf-providers/cloudflare/data-cloudflare-registrar-domain";
 import { DnsRecord } from "@ueda/cdktf-providers/cloudflare/dns-record";
-import type { RegistrarDomain } from "@ueda/cdktf-providers/cloudflare/registrar-domain";
+import { RegistrarDomain } from "@ueda/cdktf-providers/cloudflare/registrar-domain";
+import { Ruleset } from "@ueda/cdktf-providers/cloudflare/ruleset";
 import { Zone } from "@ueda/cdktf-providers/cloudflare/zone";
 import type { TerraformStack } from "cdktf";
 
-export function fastmail(
+export type Domain = Readonly<{
+  id: string;
+  domain: RegistrarDomain | DataCloudflareRegistrarDomain;
+  zone: Zone;
+}>;
+
+export function createDomain(
   stack: TerraformStack,
-  id: string,
-  zone: Zone,
-  domain: RegistrarDomain | DataCloudflareRegistrarDomain,
-) {
+  accountId: string,
+  domainName: string,
+  isData: boolean = false,
+): Domain {
+  const id = domainName.replaceAll(".", "-");
+  const domain = isData
+    ? new DataCloudflareRegistrarDomain(stack, `${id}-registrar-domain`, {
+        accountId,
+        domainName,
+      })
+    : new RegistrarDomain(stack, `${id}-registrar-domain`, {
+        accountId,
+        domainName,
+        privacy: true,
+        autoRenew: true,
+        locked: true,
+      });
+  return {
+    id,
+    domain,
+    zone: new Zone(stack, `${id}-zone`, {
+      account: {
+        id: accountId,
+      },
+      name: domain.domainName,
+      type: "full",
+    }),
+  } as const;
+}
+
+export function fastmail(stack: TerraformStack, { id, domain, zone }: Domain) {
   new DnsRecord(stack, `${id}-fastmail-mx-1`, {
     name: "@",
     ttl: 1,
@@ -61,5 +95,63 @@ export function fastmail(
     type: "TXT",
     zoneId: zone.id,
     content: `"v=spf1 include:spf.messagingengine.com ?all"`,
+  });
+}
+
+export function sourcehutPages(
+  stack: TerraformStack,
+  { id, domain, zone }: Domain,
+) {
+  new DnsRecord(stack, `${id}-srht-a`, {
+    name: domain.domainName,
+    ttl: 1, // automatic
+    type: "A",
+    zoneId: zone.id,
+    content: "46.23.81.157",
+  });
+
+  new DnsRecord(stack, `${id}-srht-aaaa`, {
+    name: domain.domainName,
+    ttl: 1, // automatic
+    type: "AAAA",
+    zoneId: zone.id,
+    content: "2a03:6000:1813:1337::157",
+  });
+}
+
+export function redirect(
+  stack: TerraformStack,
+  source: Domain,
+  destination: Domain,
+) {
+  new DnsRecord(stack, `${source.id}-a`, {
+    zoneId: source.zone.id,
+    name: "@",
+    type: "A",
+    ttl: 1,
+    content: "192.0.2.1", // dummy IP, traffic never reaches it since it's proxied
+    proxied: true,
+  });
+
+  new Ruleset(stack, `${source.id}-redirect-ruleset`, {
+    zoneId: source.zone.id,
+    name: "redirects",
+    kind: "zone",
+    phase: "http_request_dynamic_redirect",
+    rules: [
+      {
+        description: `Redirect ${source.domain.domainName} to ${destination.domain.domainName}`,
+        expression: "true",
+        action: "redirect",
+        actionParameters: {
+          fromValue: {
+            statusCode: 301,
+            targetUrl: {
+              value: `https://${destination.domain.domainName}`,
+            },
+          },
+        },
+      },
+    ],
   });
 }
