@@ -15,6 +15,7 @@ uedaPassWrapper {
   secrets = [
     # keep-sorted start
     "CLOUDFLARE_ACCESS_KEY_ID"
+    "CLOUDFLARE_API_TOKEN"
     "CLOUDFLARE_SECRET_ACCESS_KEY"
     "GITHUB_TOKEN"
     "NIX_CACHE_SIGNING_KEY"

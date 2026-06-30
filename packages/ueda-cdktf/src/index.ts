@@ -7,15 +7,9 @@ import { Zone } from "@ueda/cdktf-providers/cloudflare/zone";
 import { DataCloudflareRegistrarDomain } from "@ueda/cdktf-providers/cloudflare/data-cloudflare-registrar-domain";
 import { fastmail } from "./dns.ts";
 import { Ruleset } from "@ueda/cdktf-providers/cloudflare/ruleset";
-import { DataSourcehutRepository } from "@ueda/cdktf-providers/sourcehut/data-sourcehut-repository";
-import { dataGithubOrganizationRepositoryRolesRolesToTerraform } from "@ueda/cdktf-providers/github/data-github-organization-repository-roles";
-import {
-  Repository,
-  RepositorySecurityAndAnalysisAdvancedSecurityOutputReference,
-} from "@ueda/cdktf-providers/github/repository";
+import { Repository } from "@ueda/cdktf-providers/github/repository";
 import { SourcehutProvider } from "@ueda/cdktf-providers/sourcehut/provider";
 import { GithubProvider } from "@ueda/cdktf-providers/github/provider";
-import { RepositoryDeployKey } from "@ueda/cdktf-providers/github/repository-deploy-key";
 import { R2Bucket } from "@ueda/cdktf-providers/cloudflare/r2-bucket";
 import { R2CustomDomain } from "@ueda/cdktf-providers/cloudflare/r2-custom-domain";
 import { env } from "node:process";
@@ -40,7 +34,7 @@ function synth() {
     workspaces: new NamedCloudWorkspace("monorepo"),
   });
 
-  new CloudflareProvider(stack, "cloudflare-provider");
+  new CloudflareProvider(stack, "cloudflare-provider", {});
 
   new SourcehutProvider(stack, "sourcehut-provider");
 
@@ -154,7 +148,9 @@ function synth() {
 
   const githubRepo = new Repository(stack, `${name}-github-repo`, {
     name,
-    description: `Read-only mirror of: https://git.sr.ht/~ueda/${name}`,
+    lifecycle: {
+      preventDestroy: true,
+    },
   });
 
   const secrets = [
