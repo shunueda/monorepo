@@ -6,6 +6,37 @@ I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around
 
 Find me at: [[https://git.sr.ht/~ueda][SourceHut]], [[https://github.com/shunueda][GitHub]], or [[mailto:me@shunueda.org][me@shunueda.org]].
 
+* Stateless Zoxide
+
+I've been using [[https://github.com/ajeetdsouza/zoxide][Zoxide]] (similar to [[https://github.com/wting/autojump][Autojump]], [[https://github.com/rupa/z][Z]], etc.) but I never liked how it's stateful: it "remembers" the directories  you've visited and lets you jump back to them later, e.g.:
+
+#+begin_src console
+  $ z foo/bar/baz
+  $ cd -
+  $ z baz # takes you back to foo/bar/baz
+#+end_src
+
+Since I only use a small subset of its features anyway, I decided to write my own, stateless version:
+
+#+begin_src bash
+  # z           -> fuzzy-find a repo (via ghq)
+  # z [...args] -> fuzzy-find a directory
+  z() {
+    local dir
+    if [[ -z $1 ]]; then
+      repo=$(ghq list | fzf) || return
+      dir="$(ghq root)/$repo"
+    else
+      dir=$(fd --type d . | fzf --query "$*") || return
+      # Or, if you want non-interactive:
+      # dir=$(fd --type d . | fzf --filter "$*" | head -1) || return
+    fi
+    cd "$dir"
+  }
+#+end_src
+
+I kind of snuck it in there but I use [[https://github.com/x-motemen/ghq][ghq]] for repository management. I like it.
+
 * TIL: Sieve (mail filtering language)
 
 I use Fastmail for my emails, and today I found that you can set a custom mail filtering rule using language called [[https://en.wikipedia.org/wiki/Sieve_(mail_filtering_language)][Sieve]].
@@ -46,7 +77,7 @@ I put this in Home Manager's activation:
 
 Cachix is too expensive so I use S3 (well, technically Cloudflare R2 because it's S3-compatible and egress-free) as a Nix cache, with a following script:
 
-#+begin_src console
+#+begin_src bash
   #!/usr/bin/env bash
 
   set -euo pipefail

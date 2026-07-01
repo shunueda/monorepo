@@ -64,7 +64,7 @@ function synth() {
           mustEnv,
         ),
       },
-      createsSourcehutMirror: true
+      createsSourcehutMirror: true,
     },
   );
 
@@ -72,7 +72,7 @@ function synth() {
     stack,
     { name: "password-store", visibility: "private" },
     {
-      createsSourcehutMirror: true
+      createsSourcehutMirror: true,
     },
   );
 
