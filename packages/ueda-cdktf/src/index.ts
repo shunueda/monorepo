@@ -45,23 +45,36 @@ function synth() {
     domains.shunueda_org,
   );
 
-  createGitHubRepo(stack, "monorepo", {
-    actions: {
-      variables: {
-        NIX_CACHE_PUBLIC_KEY: mustEnv("NIX_CACHE_PUBLIC_KEY"),
-        NIX_CACHE_SUBSTITUTER: `s3://${nixCache.bucket.name}?endpoint=${cloudflareAccountId}.r2.cloudflarestorage.com&compression=zstd`,
+  createGitHubRepo(
+    stack,
+    { name: "monorepo" },
+    {
+      actions: {
+        variables: {
+          NIX_CACHE_PUBLIC_KEY: mustEnv("NIX_CACHE_PUBLIC_KEY"),
+          NIX_CACHE_SUBSTITUTER: `s3://${nixCache.bucket.name}?endpoint=${cloudflareAccountId}.r2.cloudflarestorage.com&compression=zstd`,
+        },
+        secrets: arrayToObject(
+          [
+            "NIX_CACHE_SIGNING_KEY",
+            "CLOUDFLARE_ACCESS_KEY_ID",
+            "CLOUDFLARE_SECRET_ACCESS_KEY",
+            "SRHT_TOKEN",
+          ],
+          mustEnv,
+        ),
       },
-      secrets: arrayToObject(
-        [
-          "NIX_CACHE_SIGNING_KEY",
-          "CLOUDFLARE_ACCESS_KEY_ID",
-          "CLOUDFLARE_SECRET_ACCESS_KEY",
-          "SRHT_TOKEN",
-        ],
-        mustEnv,
-      ),
+      createsSourcehutMirror: true
     },
-  });
+  );
+
+  createGitHubRepo(
+    stack,
+    { name: "password-store", visibility: "private" },
+    {
+      createsSourcehutMirror: true
+    },
+  );
 
   app.synth();
 }

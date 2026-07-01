@@ -1,20 +1,25 @@
 import { ActionsSecret } from "@ueda/cdktf-providers/github/actions-secret";
-import { Repository } from "@ueda/cdktf-providers/github/repository";
+import {
+  Repository,
+  type RepositoryConfig,
+} from "@ueda/cdktf-providers/github/repository";
 import type { TerraformStack } from "cdktf";
 import { ActionsVariable } from "@ueda/cdktf-providers/github/actions-variable";
+import { Repository as SourcehutRepository } from "@ueda/cdktf-providers/sourcehut/repository";
 
 export function createGitHubRepo(
   stack: TerraformStack,
-  repositoryName: string,
-  options: {
+  config: RepositoryConfig,
+  options?: Partial<{
     actions: {
       variables: Record<string, string>;
       secrets: Record<string, string>;
     };
-  },
+    createsSourcehutMirror: boolean;
+  }>,
 ) {
-  const repository = new Repository(stack, `${repositoryName}-github-repo`, {
-    name: repositoryName,
+  const repository = new Repository(stack, `${config.name}-github-repo`, {
+    ...config,
     lifecycle: {
       preventDestroy: true,
     },
@@ -24,10 +29,10 @@ export function createGitHubRepo(
     return envName.toLowerCase().replaceAll("_", "-");
   }
 
-  for (const [name, value] of Object.entries(options.actions.secrets)) {
+  for (const [name, value] of Object.entries(options?.actions?.secrets || {})) {
     new ActionsSecret(
       stack,
-      `${repositoryName}-${envNameToId(name)}-actions-secret`,
+      `${config.name}-${envNameToId(name)}-actions-secret`,
       {
         repository: repository.name,
         secretName: name,
@@ -36,10 +41,12 @@ export function createGitHubRepo(
     );
   }
 
-  for (const [name, value] of Object.entries(options.actions.variables)) {
+  for (const [name, value] of Object.entries(
+    options?.actions?.variables || {},
+  )) {
     new ActionsVariable(
       stack,
-      `${repositoryName}-${envNameToId(name)}-actions-variable`,
+      `${config.name}-${envNameToId(name)}-actions-variable`,
       {
         repository: repository.name,
         variableName: name,
@@ -47,4 +54,10 @@ export function createGitHubRepo(
       },
     );
   }
+
+  if (options?.createsSourcehutMirror) {
+    new SourcehutRepository(stack, `${config.name}-sourcehut-repo`, config);
+  }
+
+  return repository;
 }
