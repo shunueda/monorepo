@@ -1,7 +1,4 @@
-{
-  inputs,
-  stdenv,
-}:
+{ inputs, stdenv }:
 let
   inherit (stdenv.hostPlatform) system;
 
