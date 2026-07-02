@@ -14,5 +14,5 @@ in
     ;
 
   # Backport from unstable
-  inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) ;
+  inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) emacs31;
 }
