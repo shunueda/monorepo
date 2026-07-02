@@ -145,22 +145,6 @@
         "type": "github"
       }
     },
-    "homebrew-emacs-plus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1782882740,
-        "narHash": "sha256-QsSndeFrozpZdQWOML6A+mPrOsXjgJWpxmTt3aZsnRs=",
-        "owner": "d12frosted",
-        "repo": "homebrew-emacs-plus",
-        "rev": "4c36f7c47b8556fc1d00571dd572f77e24f7b1ad",
-        "type": "github"
-      },
-      "original": {
-        "owner": "d12frosted",
-        "repo": "homebrew-emacs-plus",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -360,7 +344,6 @@
         "emacs-direnv-async": "emacs-direnv-async",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
-        "homebrew-emacs-plus": "homebrew-emacs-plus",
         "nix-darwin": "nix-darwin",
         "nix-darwin-flake-module": "nix-darwin-flake-module",
         "nixpkgs": "nixpkgs",
