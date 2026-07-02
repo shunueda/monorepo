@@ -12,11 +12,13 @@
         substituters = [
           "https://nix-cache.oyasai.io"
           "https://anterior-public.cachix.org"
+          "https://nix-community.cachix.org"
           config.constants.ueda.nix-cache.substituter
         ];
         trusted-public-keys = [
           "oyasaiserver:f0coAsRP8jLzDTOmVCY8hqQibMHtZcxjk60oVCQkjtU="
           "anterior-public.cachix.org-1:uLNXTMrqtMCiIJ4lYu47MGrbVPpyploI6J2y5Yre9es="
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           config.constants.ueda.nix-cache.publicKey
         ];
       };
@@ -26,16 +28,7 @@
       config.allowUnfree = true;
       overlays = [
         inputs.nur.overlays.default
-        (
-          final: prev:
-          let
-            inherit (final.stdenv.hostPlatform) system;
-          in
-          {
-            # My custom packages
-            inherit (self.packages.${system}) ns homerow displaymode;
-          }
-        )
+        (import ../../nix/ueda-overlay.nix { inherit inputs self; })
       ];
     };
     home-manager = {

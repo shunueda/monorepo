@@ -16,6 +16,10 @@
       url = "github:wbolster/emacs-direnv/pull/82/head";
       flake = false;
     };
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -23,6 +27,10 @@
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    homebrew-emacs-plus = {
+      url = "github:d12frosted/homebrew-emacs-plus";
+      flake = false;
     };
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
