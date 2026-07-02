@@ -6,7 +6,7 @@ let
   emacs = inputs.emacs-overlay.packages.${system}.emacs-git;
 
   # TODO: use lib.splitVersion to make this more solid. `emacs-git` uses date.
-  version = "31";
+  version = "32";
 in
 emacs.overrideAttrs (old: {
   patches =
