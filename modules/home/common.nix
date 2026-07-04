@@ -52,6 +52,8 @@
           historyFileSize = 1000000;
           historyFile = "${config.home.homeDirectory}/.sh_history";
           initExtra = ''
+            export PS1="\[\033[1;32m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ "
+
             histsync() {
               history -a
 
@@ -252,24 +254,6 @@
         ssh = {
           enable = true;
           enableDefaultConfig = false;
-        };
-        starship = {
-          enable = true;
-          settings = {
-            add_newline = false;
-            format = "$git_branch:$directory $character ";
-            character = {
-              format = "[\\$](white)";
-            };
-            directory = {
-              format = "[$path]($style)";
-              style = "bold blue";
-            };
-            git_branch = {
-              format = "[$branch]($style)";
-              style = "bold green";
-            };
-          };
         };
         # keep-sorted end
       };

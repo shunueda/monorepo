@@ -7,11 +7,11 @@ I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around
 Find me at: [[https://git.sr.ht/~ueda][SourceHut]], [[https://github.com/shunueda][GitHub]], or [[mailto:me@shunueda.org][me@shunueda.org]].
 
 
-* Setting up my NixOS laptop
+* Setting up my NixOS machine
 
-My parents gave me a laptop for Christmas 2019 (specs below). I used it throughout high school until switching to a Mac mid-college. It had been sleeping in my closet for a while, but I decided to revive it as a NixOS laptop & remote builder.
+My parents gifted me a laptop for Christmas '19 (specs at the end) which I used it throughout high school, until switching to a Mac mid-college. It had been sleeping in my closet for a while, but I decided to revive it as a NixOS laptop / remote builder.
 
-** Disko
+** disko - Declarative disk partitioning
 
 [[https://github.com/nix-community/disko/blob/ff8702b4de27f72b4c78573dfb89ec74e36abdf1/docs/quickstart.md][Quickstart.md]] was very helpful. I used the [[https://github.com/nix-community/disko-templates/blob/6b12e5fe81fc0c06989a58bd0b01f4a2efca4906/single-disk-ext4/disko-config.nix][single-disk-ext4]] preset. One caveat: be explicit with the device path. Device nodes such as =/dev/sda= are unstable, instead use =/dev/disk/by-id/nvme-...= etc. You can find it by running: =ls -l /dev/disk/by-id/=.
 
@@ -25,11 +25,8 @@ My parents gave me a laptop for Christmas 2019 (specs below). I used it througho
 Should be very easy, follow [[https://wiki.nixos.org/wiki/NixOS_system_configuration][wiki.nixos.org]]. Setting up Wi-Fi got me tripped up - here's what worked for me:
 
 #+begin_src nix
-  # hardware-configuration.nix
   # Allow firmware installation
   hardware.enableRedistributableFirmware = true;
-
-  # configuration.nix
   # Enable NetworkManager (and nmcli, nmtui etc)
   networking.networkmanager.enable = true;
 #+end_src

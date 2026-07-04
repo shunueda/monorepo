@@ -2,7 +2,7 @@
   flake.nixosModules.common = { self, pkgs, ... }: {
     imports = [
       inputs.home-manager.nixosModules.default
-      inputs.disko.nixosModules.disko
+      inputs.disko.nixosModules.default
     ];
     nix = {
       settings = {
@@ -62,9 +62,10 @@
         };
       };
     };
-    boot.loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+    boot.loader.grub = {
+      enable = true;
+      efiSupport = true;
+      efiInstallAsRemovable = true;
     };
   };
 }

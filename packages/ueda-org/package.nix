@@ -10,10 +10,7 @@
 let
   publish = writeShellApplication {
     name = "ueda-org-publish";
-    runtimeInputs = [
-      gnutar
-      hut
-    ];
+    runtimeInputs = [ hut ];
     text =
       let
         domains = [
