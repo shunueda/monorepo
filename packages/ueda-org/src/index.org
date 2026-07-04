@@ -7,6 +7,93 @@ I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around
 Find me at: [[https://git.sr.ht/~ueda][SourceHut]], [[https://github.com/shunueda][GitHub]], or [[mailto:me@shunueda.org][me@shunueda.org]].
 
 
+* Setting up my NixOS laptop
+
+My parents gave me a laptop for Christmas 2019 (specs below). I used it throughout high school until switching to a Mac mid-college. It had been sleeping in my closet for a while, but I decided to revive it as a NixOS laptop & remote builder.
+
+** Disko
+
+[[https://github.com/nix-community/disko/blob/ff8702b4de27f72b4c78573dfb89ec74e36abdf1/docs/quickstart.md][Quickstart.md]] was very helpful. I used the [[https://github.com/nix-community/disko-templates/blob/6b12e5fe81fc0c06989a58bd0b01f4a2efca4906/single-disk-ext4/disko-config.nix][single-disk-ext4]] preset. One caveat: be explicit with the device path. Device nodes such as =/dev/sda= are unstable, instead use =/dev/disk/by-id/nvme-...= etc. You can find it by running: =ls -l /dev/disk/by-id/=.
+
+#+begin_src nix
+  disko.devices.disk.main.device = "/dev/disk/by-id/nvme-SAMSUNG_...." # etc
+#+end_src
+
+
+** nixos-install
+
+Should be very easy, follow [[https://wiki.nixos.org/wiki/NixOS_system_configuration][wiki.nixos.org]]. Setting up Wi-Fi got me tripped up - here's what worked for me:
+
+#+begin_src nix
+  # hardware-configuration.nix
+  # Allow firmware installation
+  hardware.enableRedistributableFirmware = true;
+
+  # configuration.nix
+  # Enable NetworkManager (and nmcli, nmtui etc)
+  networking.networkmanager.enable = true;
+#+end_src
+
+I also set up SSH and Avahi:
+
+#+NAME: configuration.nix
+#+begin_src nix
+  services = {
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+      };
+    };
+    avahi = {
+      enable = true;
+      ipv4 = true;
+      nssmdns4 = true;
+      publish = {
+        enable = true;
+        addresses = true;
+        workstation = true;
+      };
+    };
+  };
+  users.users.ueda = {
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
+    isNormalUser = true;
+    openssh.authorizedKeys.keyFiles = [ ../../keys/C879B61CBD7C81A8783AD90965A3009821043C2C.pub ];
+  };
+#+end_src
+
+and voila!
+
+#+begin_src
+  $ ssh ueda@black.local
+  :~ $ nix run nixpkgs#fastfetch
+            ▗▄▄▄       ▗▄▄▄▄    ▄▄▄▖             ueda@black
+            ▜███▙       ▜███▙  ▟███▛             ----------
+             ▜███▙       ▜███▙▟███▛              OS: NixOS 26.05 (Yarara) x86_64
+              ▜███▙       ▜██████▛               Host: 81XG (Lenovo IdeaPad FLEX-14IML)
+       ▟█████████████████▙ ▜████▛     ▟▙         Kernel: Linux 6.18.36
+      ▟███████████████████▙ ▜███▙    ▟██▙        Uptime: 1 hour, 9 mins
+             ▄▄▄▄▖           ▜███▙  ▟███▛        Packages: 875 (nix-system), 735 (nix-user)
+            ▟███▛             ▜██▛ ▟███▛         Shell: bash 5.3.9
+           ▟███▛               ▜▛ ▟███▛          Display (CMN14D4): 1920x1080 in 14", 60 Hz [Built-in]
+  ▟███████████▛                  ▟██████████▙    Terminal: /dev/pts/1
+  ▜██████████▛                  ▟███████████▛    CPU: Intel(R) Core(TM) i5-10210U (8) @ 4.20 GHz
+        ▟███▛ ▟▙               ▟███▛             GPU 1: NVIDIA GeForce MX230 [Discrete]
+       ▟███▛ ▟██▙             ▟███▛              GPU 2: Intel UHD Graphics @ 1.10 GHz [Integrated]
+      ▟███▛  ▜███▙           ▝▀▀▀▀               Memory: 783.89 MiB / 15.33 GiB (5%)
+      ▜██▛    ▜███▙ ▜██████████████████▛         Swap: Disabled
+       ▜▛     ▟████▙ ▜████████████████▛          Disk (/): 9.00 GiB / 467.40 GiB (2%) - ext4
+             ▟██████▙         ▜███▙              Local IP (wlp0s20f3): 192.168.0.105/24
+            ▟███▛▜███▙         ▜███▙             Battery (PABAS0241231): 100% [AC Connected]
+           ▟███▛  ▜███▙         ▜███▙            Locale: en_US.UTF-8
+           ▝▀▀▀    ▀▀▀▀▘         ▀▀▀▘
+
+#+end_src
+
 * Learning Emacs & Nix
 
 Very helpful tutorials that helped me get started:
@@ -29,7 +116,7 @@ Side note, Fastmail is awesome. Highly recommend.
 There seem to be no official way to change display resolution from the cli on macOS, but [[https://github.com/p00ya/displaymode][p00ya/displaymode]] worked really well for me. I've fixed few stuffs & Nixified it, so feel free to try it out:
 
 #+begin_src console
-  nix run sourcehut:~ueda/monorepo#displaymode
+  nix run github:shunueda/monorepo#displaymode
 #+end_src
 
 I put this in Home Manager's activation:
