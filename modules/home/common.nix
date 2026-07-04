@@ -6,6 +6,9 @@
       lib,
       ...
     }:
+    let
+      inherit (pkgs.stdenv.hostPlatform) isDarwin;
+    in
     {
       imports = [
         inputs.nocommit.homeModules.default
@@ -185,7 +188,8 @@
           };
         };
         home-manager.enable = true;
-        librewolf = {
+        # TODO: separate homeModule for desktop
+        librewolf = lib.mkIf isDarwin {
           enable = true;
           policies = {
             GenerativeAI.Enabled = false;
@@ -276,25 +280,36 @@
         gpg-agent = {
           enable = true;
           enableSshSupport = true;
-          pinentry.package = pkgs.pinentry_mac;
+          pinentry = {
+            package = lib.mkIf isDarwin pkgs.pinentry_mac;
+          };
           defaultCacheTtl = 600;
           maxCacheTtl = 7200;
         };
       };
       fonts.fontconfig.enable = true;
       home = {
-        packages = with pkgs; [
-          # keep-sorted start
-          docker
-          homerow
-          hut
-          pngpaste
-          qrcode
-          sops
-          yubikey-manager
-          zbar
-          # keep-sorted end
-        ];
+        packages =
+          with pkgs;
+          [
+            # keep-sorted start
+            docker
+            hut
+            qrcode
+            sops
+            yubikey-manager
+            zbar
+            # keep-sorted end
+          ]
+          ++ lib.optionals isDarwin (
+            with pkgs;
+            [
+              # keep-sorted start
+              homerow
+              pngpaste
+              # keep-sorted end
+            ]
+          );
         file = {
           ".hushlogin" = {
             text = "";
@@ -302,7 +317,7 @@
         };
         activation = {
           # Darwin-specific activation script
-          darwin = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
+          darwin = lib.mkIf isDarwin (
             lib.hm.dag.entryAfter [ "writeBoundary" ] ''
               # Set the default browser
               ${lib.getExe pkgs.defaultbrowser} ${pkgs.librewolf.pname}

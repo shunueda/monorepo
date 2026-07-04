@@ -12,6 +12,10 @@
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-direnv-async = {
       url = "github:wbolster/emacs-direnv/pull/82/head";
       flake = false;
@@ -78,9 +82,12 @@
       systems = import inputs.systems;
       imports = [
         # keep-sorted start
+        ./hosts/black/configuration.nix
         ./hosts/silver/darwin-configuration.nix
         ./modules/darwin/common.nix
+        ./modules/disko/single-disk-ext4.nix
         ./modules/home/common.nix
+        ./modules/nixos/common.nix
         ./nix/flake-modules/codegen.nix
         ./nix/flake-modules/constants.nix
         ./nix/flake-modules/devshells.nix
@@ -89,6 +96,7 @@
         ./nix/flake-modules/ueda-scope.nix
         inputs.codegen.flakeModules.default
         inputs.devshell.flakeModule
+        inputs.disko.flakeModule
         inputs.home-manager.flakeModules.home-manager
         inputs.nix-darwin-flake-module.flakeModules.default
         inputs.tools.flakeModules.checkBuildAll

@@ -11,20 +11,7 @@ in
     modules = [
       self.darwinModules.common
       ({ pkgs, ... }: {
-        nixpkgs.hostPlatform = system;
-        programs.bash.enable = true;
-        users = {
-          knownUsers = [ user ];
-          users.${user} = {
-            uid = 501;
-            home = "/Users/${user}";
-            shell = pkgs.bash;
-          };
-        };
-        system = {
-          primaryUser = user;
-          stateVersion = 7;
-        };
+        # keep-sorted start block=yes
         home-manager = {
           extraSpecialArgs = specialArgs;
           users.${user} = {
@@ -37,6 +24,21 @@ in
           localHostName = name;
           hostName = name;
         };
+        nixpkgs.hostPlatform = system;
+        programs.bash.enable = true;
+        system = {
+          primaryUser = user;
+          stateVersion = 7;
+        };
+        users = {
+          knownUsers = [ user ];
+          users.${user} = {
+            uid = 501;
+            home = "/Users/${user}";
+            shell = pkgs.bash;
+          };
+        };
+        # keep-sorted end
       })
     ];
   };

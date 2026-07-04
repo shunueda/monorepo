@@ -1,4 +1,8 @@
-{ stdenvNoCC, fetchzip }:
+{
+  stdenvNoCC,
+  fetchzip,
+  lib,
+}:
 
 # https://github.com/NixOS/nixpkgs/pull/470905
 stdenvNoCC.mkDerivation (finalAttrs: {
@@ -19,4 +23,13 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
     runHook postInstall
   '';
+
+  meta = {
+    description = "Keyboard shortcuts for every button in macOS";
+    homepage = "https://www.homerow.app/";
+    license = lib.licenses.unfree;
+    maintainers = with lib.maintainers; [ shunueda ];
+    platforms = lib.platforms.darwin;
+    sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
+  };
 })
