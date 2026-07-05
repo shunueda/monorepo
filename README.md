@@ -15,7 +15,7 @@ sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin -- sw
 Initialize password-store
 
 ```
-git clone git@github.com/shunueda/password-store ~/.password-store
+git clone git@github.com:shunueda/password-store.git ~/.password-store
 ```
 
 Switch:

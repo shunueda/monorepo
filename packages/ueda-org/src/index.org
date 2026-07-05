@@ -59,7 +59,7 @@ I also set up SSH and Avahi:
       "networkmanager"
     ];
     isNormalUser = true;
-    openssh.authorizedKeys.keyFiles = [ ../../keys/C879B61CBD7C81A8783AD90965A3009821043C2C.pub ];
+    openssh.authorizedKeys.keyFiles = [ ./my-key.pub ];
   };
 #+end_src
 
