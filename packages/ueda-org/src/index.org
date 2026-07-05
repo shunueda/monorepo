@@ -66,8 +66,7 @@ I also set up SSH and Avahi:
 and voila!
 
 #+begin_src
-  $ ssh ueda@black.local
-  :~ $ nix run nixpkgs#fastfetch
+  $ ssh ueda@black.local "nix run nixpkgs#fastfetch"
             ▗▄▄▄       ▗▄▄▄▄    ▄▄▄▖             ueda@black
             ▜███▙       ▜███▙  ▟███▛             ----------
              ▜███▙       ▜███▙▟███▛              OS: NixOS 26.05 (Yarara) x86_64

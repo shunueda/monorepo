@@ -254,6 +254,15 @@
         ssh = {
           enable = true;
           enableDefaultConfig = false;
+          settings = {
+            "*" = {
+              # Dangerous! Explicitly turn off for all hosts.
+              ForwardAgent = false;
+            };
+            "*.local" = {
+              ForwardAgent = true;
+            };
+          };
         };
         # keep-sorted end
       };
