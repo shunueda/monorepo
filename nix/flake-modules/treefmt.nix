@@ -5,6 +5,7 @@
       actionlint.enable = true;
       autocorrect.enable = true;
       clang-format.enable = true;
+      flake-edit.enable = true;
       keep-sorted.enable = true;
       mdformat = {
         enable = true;
