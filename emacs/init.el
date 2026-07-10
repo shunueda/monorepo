@@ -6,6 +6,7 @@
   ad-redefinition-action 'accept
   ;; Don't show the startup message
   auto-save-default nil
+  completion-cycle-threshold t
   confirm-kill-emacs 'yes-or-no-p
   custom-file (concat user-emacs-directory "custom.el")
   ;; Revert Dired and other buffers
@@ -24,8 +25,11 @@
   markdown-enable-math t
   ;; Silence compiler warnings as they can be pretty disruptive
   native-comp-async-report-warnings-errors nil
+  read-buffer-completion-ignore-case t
+  read-file-name-completion-ignore-case t
   ;; Make it easy to cycle through previous items in the mark ring
   set-mark-command-repeat-pop t
+  tab-always-indent 'complete
   tab-width 2
   treesit-font-lock-level 4
   use-dialog-box nil
@@ -80,12 +84,6 @@
 (xterm-mouse-mode 1)
 ;; keep-sorted end
 
-
-(setopt tab-always-indent 'complete
-        read-buffer-completion-ignore-case t
-        read-file-name-completion-ignore-case t
-        completion-cycle-threshold t)
-
 (defun ueda/sync-ghq-to-project-el ()
   (interactive)
   (require 'project)
@@ -133,6 +131,15 @@
   (corfu-cycle t)
   :init
   (global-corfu-mode))
+(use-package dimmer
+  :ensure t
+  :custom
+  (dimmer-fraction 0.75)
+  (dimmer-adjustment-mode :foreground)
+  :config
+  (dimmer-configure-magit)
+  (dimmer-configure-org)
+  (dimmer-mode t))
 (use-package embark-consult
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))

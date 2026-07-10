@@ -99,6 +99,9 @@
             direnv = super.direnv.overrideAttrs (_: {
               src = inputs.emacs-direnv-async;
             });
+            dimmer = super.dimmer.overrideAttrs (_: {
+              src = inputs.dimmer;
+            });
           };
           extraPackages =
             epkgs: with epkgs; [
@@ -107,6 +110,7 @@
               consult
               corfu
               diff-hl
+              dimmer
               direnv
               embark
               embark-consult
