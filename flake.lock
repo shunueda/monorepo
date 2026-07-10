@@ -49,6 +49,22 @@
         "type": "github"
       }
     },
+    "dimmer": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1781798375,
+        "narHash": "sha256-BE/5QL+Aa9yUnCIngXwXRRuj6nMBsOue4xsLfM6o96s=",
+        "owner": "gonewest818",
+        "repo": "dimmer.el",
+        "rev": "bbab62f01d45086b9098f6a0ab765282d9c7bc45",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gonewest818",
+        "repo": "dimmer.el",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -361,6 +377,7 @@
       "inputs": {
         "codegen": "codegen",
         "devshell": "devshell",
+        "dimmer": "dimmer",
         "disko": "disko",
         "emacs-direnv-async": "emacs-direnv-async",
         "flake-parts": "flake-parts",
