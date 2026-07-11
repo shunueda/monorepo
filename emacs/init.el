@@ -146,6 +146,7 @@
 (use-package exec-path-from-shell
   :when (memq window-system '(mac ns x))
   :config
+  ;; https://github.com/purcell/exec-path-from-shell/blob/6146fdc16e9882df270be7e58ae8d628032d6bc4/README.md#usage
   (dolist (var '("SSH_AUTH_SOCK" "SSH_AGENT_PID" "GPG_AGENT_INFO" "LANG" "LC_CTYPE" "NIX_SSL_CERT_FILE" "NIX_PATH"))
     (add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
