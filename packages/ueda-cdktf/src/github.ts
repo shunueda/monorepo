@@ -6,6 +6,7 @@ import {
 import type { TerraformStack } from "cdktf";
 import { ActionsVariable } from "@ueda/cdktf-providers/github/actions-variable";
 import { Repository as SourcehutRepository } from "@ueda/cdktf-providers/sourcehut/repository";
+import { RepositoryDeployKey } from "@ueda/cdktf-providers/github/repository-deploy-key";
 
 export function createGitHubRepo(
   stack: TerraformStack,
@@ -16,6 +17,13 @@ export function createGitHubRepo(
       secrets: Record<string, string>;
     };
     createsSourcehutMirror: boolean;
+    deployKeys: Record<
+      string,
+      {
+        key: string;
+        readOnly: boolean;
+      }
+    >;
   }>,
 ) {
   const repository = new Repository(stack, `${config.name}-github-repo`, {
@@ -59,5 +67,18 @@ export function createGitHubRepo(
     new SourcehutRepository(stack, `${config.name}-sourcehut-repo`, config);
   }
 
-  return repository;
+  for (const [name, { key, readOnly }] of Object.entries(
+    options?.deployKeys || {},
+  )) {
+    new RepositoryDeployKey(
+      stack,
+      `${config.name}-${envNameToId(name)}-actions-variable`,
+      {
+        key,
+        readOnly,
+        repository: repository.name,
+        title: name,
+      },
+    );
+  }
 }

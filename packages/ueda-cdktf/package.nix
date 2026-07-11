@@ -27,14 +27,19 @@ uedaPassWrapper {
 
   main = writeShellApplication {
     name = "ueda-cdktf-main";
+
     runtimeEnv = {
       CDKTF_APP = lib.getExe uedaCdktf;
       NIX_CACHE_PUBLIC_KEY = constants.ueda.nix-cache.publicKey;
+      SSH_PUBLIC_KEY = builtins.readFile ../../keys/C879B61CBD7C81A8783AD90965A3009821043C2C.pub;
+      GPG_PUBLIC_KEY = builtins.readFile ../../keys/C879B61CBD7C81A8783AD90965A3009821043C2C.asc;
     };
+
     runtimeInputs = [
       ueda-cdktf-providers
       terraform
     ];
+
     text = ''
       cdktf "$@"
     '';
