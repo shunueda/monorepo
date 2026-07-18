@@ -33,15 +33,18 @@ function synth() {
 
   const domains = {
     shunueda_org: createDomain(stack, cloudflareAccountId, "shunueda.org"),
+    shunueda_com: createDomain(stack, cloudflareAccountId, "shunueda.com"),
     shu_nu: createDomain(stack, cloudflareAccountId, "shu.nu", true),
   } as const;
 
   fastmail(stack, domains.shunueda_org);
+  fastmail(stack, domains.shunueda_com);
   fastmail(stack, domains.shu_nu);
 
   sourcehutPages(stack, domains.shunueda_org);
 
   redirect(stack, domains.shu_nu, domains.shunueda_org);
+  redirect(stack, domains.shunueda_com, domains.shunueda_org);
 
   const nixCacheBucket = new R2Bucket(stack, "nix-cache-r2-bucket", {
     accountId: cloudflareAccountId,
