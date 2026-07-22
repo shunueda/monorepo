@@ -269,4 +269,10 @@
 (use-package wgrep
   :custom
   (wgrep-auto-save-buffer t))
+(use-package forge
+  :after magit
+  :config
+  (advice-add 'ghub--token :override
+              (lambda (&rest _)
+                (auth-source-pass-get 'secret "ApiKeys/GITHUB_TOKEN"))))
 ;; keep-sorted end
