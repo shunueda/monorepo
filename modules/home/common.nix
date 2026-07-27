@@ -17,7 +17,7 @@
       xdg = {
         enable = true;
         configFile = {
-          "emacs" = {
+          emacs = {
             source = ../../emacs;
             recursive = true;
           };
@@ -296,17 +296,10 @@
             sops
             yubikey-manager
             zbar
+            homerow
+            pngpaste
             # keep-sorted end
-          ]
-          ++ lib.optionals isDarwin (
-            with pkgs;
-            [
-              # keep-sorted start
-              homerow
-              pngpaste
-              # keep-sorted end
-            ]
-          );
+          ];
         file = {
           ".hushlogin" = {
             text = "";
