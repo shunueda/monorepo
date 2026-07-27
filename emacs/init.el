@@ -52,8 +52,16 @@
 (global-unset-key [C-wheel-down])
 
 ;; Swap the Backspace and DEL
-;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Backspace-invokes-help.html
-(keyboard-translate ?\C-h ?\C-?)
+(define-key key-translation-map (kbd "C-h") (kbd "DEL"))
+
+(use-package kkp
+  :ensure t
+  :hook (tty-setup . global-kkp-mode))
+
+(use-package xclip
+  :ensure t
+  :config
+  (xclip-mode 1))
 
 ;; Core modes keep-sorted start
 ;; Save to original file

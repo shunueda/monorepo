@@ -30,6 +30,7 @@
           theme = "alabaster";
           settings = {
             window = {
+              option_as_alt = "Both";
               padding = {
                 x = 10;
                 y = 10;
@@ -112,6 +113,7 @@
               exec-path-from-shell
               ghq
               gptel
+              kkp
               kotlin-ts-mode
               magit
               markdown-mode
@@ -131,6 +133,7 @@
               undo-tree
               vertico
               wgrep
+              xclip
               zenburn-theme
               # keep-sorted end
             ];
@@ -286,20 +289,18 @@
       };
       fonts.fontconfig.enable = true;
       home = {
-        packages =
-          with pkgs;
-          [
-            # keep-sorted start
-            docker
-            hut
-            qrcode
-            sops
-            yubikey-manager
-            zbar
-            homerow
-            pngpaste
-            # keep-sorted end
-          ];
+        packages = with pkgs; [
+          # keep-sorted start
+          docker
+          homerow
+          hut
+          pngpaste
+          qrcode
+          sops
+          yubikey-manager
+          zbar
+          # keep-sorted end
+        ];
         file = {
           ".hushlogin" = {
             text = "";
