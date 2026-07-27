@@ -99,38 +99,18 @@
    :nick "ueda"
    :password (auth-source-pass-get 'secret "InternetAccounts/libera")))
 
-(defun ueda/tilde-user-dir-p (dir)
-  (and (stringp dir)
-       (string-prefix-p "~" dir)
-       (not (string-prefix-p "~/" dir))
-       (not (string= dir "~"))))
-
-(defun ueda/literalize-tilde-dir-arg (dir)
-  (let* ((current (expand-file-name default-directory))
-         (tilde (car (split-string dir "/" t)))
-         (marker (concat "/" tilde "/"))
-         (cut (string-search marker current))
-         (parent (if cut (substring current 0 (1+ cut)) current)))
-    (concat "/:" parent dir)))
-
-(defun ueda/neutralize-tilde-completion (args)
-  (let ((dir (nth 1 args)))
-    (if (ueda/tilde-user-dir-p dir)
-        (cons (nth 0 args)
-              (cons (ueda/literalize-tilde-dir-arg dir) (nthcdr 2 args)))
-      args)))
-
-(advice-add 'file-name-all-completions :filter-args #'ueda/neutralize-tilde-completion)
-(advice-add 'file-name-completion :filter-args #'ueda/neutralize-tilde-completion)
-
 ;; keep-sorted start block=yes
 (use-package corfu
   :custom
   (corfu-auto t)
   (corfu-auto-prefix 1)
   (corfu-cycle t)
+  (corfu-popupinfo-delay '(0.1 . 0.05))
+  (corfu-popupinfo-max-height 20)
+  (corfu-popupinfo-max-width 80)
   :init
-  (global-corfu-mode))
+  (global-corfu-mode)
+  (corfu-popupinfo-mode 1))
 (use-package dimmer
   :ensure t
   :custom
@@ -231,13 +211,15 @@
 
 (use-package consult
   :custom
+  ;; Immediately show results
   (consult-async-min-input 1)
   (consult-async-input-debounce 0)
   (consult-async-input-throttle 0)
+  ;; Overlay default keybinds
   :bind (("C-s" . consult-line)
          ("C-x b" . consult-buffer)
-         ("C-c f" . consult-fd)
-         ("C-c r" . consult-ripgrep)))
+         ("C-x p f" . consult-fd)
+         ("C-x p g" . consult-ripgrep)))
 (use-package direnv
   :config
   (direnv-mode))
