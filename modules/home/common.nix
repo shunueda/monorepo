@@ -7,7 +7,8 @@
       ...
     }:
     let
-      inherit (pkgs.stdenv.hostPlatform) isDarwin;
+      inherit (pkgs.stdenv.hostPlatform) system isDarwin;
+      availableOnSystem = lib.meta.availableOn { inherit system; };
     in
     {
       imports = [
@@ -279,7 +280,6 @@
         };
         tmux = {
           enable = true;
-          disableConfirmationPrompt = true;
           mouse = true;
           newSession = true;
           shortcut = "t";
@@ -311,7 +311,7 @@
       };
       fonts.fontconfig.enable = true;
       home = {
-        packages = with pkgs; [
+        packages = lib.filter availableOnSystem (with pkgs; [
           # keep-sorted start
           docker
           homerow
@@ -322,7 +322,7 @@
           yubikey-manager
           zbar
           # keep-sorted end
-        ];
+        ]);
         file = {
           ".hushlogin" = {
             text = "";
