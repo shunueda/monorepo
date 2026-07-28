@@ -31,15 +31,15 @@
           enable = true;
           theme = "alabaster";
           settings = {
-            terminal.shell = lib.getExe pkgs.tmux;
             window = {
               option_as_alt = "Both";
               padding = {
                 x = 10;
                 y = 10;
               };
-              decorations = "Buttonless";
-              startup_mode = "Maximized";
+              # TODO: tmux migration
+              # decorations = "Buttonless";
+              # startup_mode = "Maximized";
             };
           };
         };

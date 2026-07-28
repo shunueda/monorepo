@@ -19,7 +19,7 @@ in
   # Band-ade until https://github.com/tmux/tmux/pull/5405
   tmux = prev.tmux.overrideAttrs {
     src = inputs.tmux-kitty;
-    patches = [];
+    patches = [ ];
     version = "next-3.7";
   };
 }

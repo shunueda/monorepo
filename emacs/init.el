@@ -25,6 +25,7 @@
  markdown-enable-math t
  ;; Silence compiler warnings as they can be pretty disruptive
  native-comp-async-report-warnings-errors nil
+ org-startup-with-inline-images t
  read-buffer-completion-ignore-case t
  read-file-name-completion-ignore-case t
  ;; Make it easy to cycle through previous items in the mark ring
@@ -37,7 +38,6 @@
  ;; Follow symlinks to VC-controlled files without warning
  vc-follow-symlinks t
  visible-bell t
- org-startup-with-inline-images t
  ;; keep-sorted end
  )
 
@@ -59,8 +59,9 @@
 (define-key key-translation-map (kbd "C-h") (kbd "DEL"))
 
 (use-package kkp
-  :ensure t
-  :hook (tty-setup . global-kkp-mode))
+  :unless (display-graphic-p)
+  :config
+  (global-kkp-mode +1))
 
 (use-package xclip
   :ensure t

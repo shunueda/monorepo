@@ -6,10 +6,6 @@ I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around
 
 Find me at: [[https://git.sr.ht/~ueda][SourceHut]], [[https://github.com/shunueda][GitHub]], or [[mailto:me@shunueda.org][me@shunueda.org]].
 
-* Declearive & Reproducible Dev environment (Rust Ed.)
-
-
-
 * Learning Emacs & Nix
 
 Very helpful tutorials that helped me get started:

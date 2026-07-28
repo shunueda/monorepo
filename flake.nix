@@ -73,6 +73,10 @@
       inputs.systems.follows = "systems";
     };
     systems.url = "github:nix-systems/triplet";
+    tmux-kitty = {
+      url = "github:tmux/tmux/pull/4912/head";
+      flake = false;
+    };
     tools = {
       url = "github:anteriorcore/tools";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,10 +87,6 @@
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    tmux-kitty = {
-      url = "github:tmux/tmux/pull/4912/head";
-      flake = false;
     };
     # keep-sorted end
   };
