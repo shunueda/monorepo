@@ -297,7 +297,7 @@
             set -g status off
 
             # Prevent (Darwin) `path_helper` from destroying PATH
-            set -g default-command "''${SHELL}"
+            set -g default-command "''${SHELL} -l"
           '';
         };
         # keep-sorted end
