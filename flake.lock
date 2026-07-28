@@ -418,6 +418,7 @@
         "nur": "nur",
         "package-lock2nix": "package-lock2nix",
         "systems": "systems",
+        "tmux-kitty": "tmux-kitty",
         "tools": "tools",
         "treefmt-nix": "treefmt-nix"
       }
@@ -434,6 +435,23 @@
       "original": {
         "owner": "nix-systems",
         "repo": "triplet",
+        "type": "github"
+      }
+    },
+    "tmux-kitty": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776431766,
+        "narHash": "sha256-r5YSXPX38zXuimPgV3n56/rU0DyRJyCab+f7FwmuYJw=",
+        "owner": "tmux",
+        "repo": "tmux",
+        "rev": "a8894401569812d43aa1105b03f5533db4a7a4fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tmux",
+        "ref": "pull/4912/head",
+        "repo": "tmux",
         "type": "github"
       }
     },

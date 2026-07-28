@@ -84,6 +84,10 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tmux-kitty = {
+      url = "github:tmux/tmux/pull/4912/head";
+      flake = false;
+    };
     # keep-sorted end
   };
   outputs =

@@ -37,6 +37,7 @@
  ;; Follow symlinks to VC-controlled files without warning
  vc-follow-symlinks t
  visible-bell t
+ org-startup-with-inline-images t
  ;; keep-sorted end
  )
 
@@ -288,10 +289,4 @@
 (use-package wgrep
   :custom
   (wgrep-auto-save-buffer t))
-(use-package forge
-  :after magit
-  :config
-  (advice-add 'ghub--token :override
-              (lambda (&rest _)
-                (auth-source-pass-get 'secret "ApiKeys/GITHUB_TOKEN"))))
 ;; keep-sorted end
