@@ -13,6 +13,7 @@
     {
       imports = [
         inputs.nocommit.homeModules.default
+        inputs.direnv-instant.homeModules.default
         ./ghq.nix
       ];
       xdg = {
@@ -94,6 +95,10 @@
         direnv = {
           enable = true;
           nix-direnv.enable = true;
+        };
+        direnv-instant = {
+          enable = true;
+          settings.mux_delay = 0;
         };
         emacs = {
           enable = true;
@@ -313,18 +318,21 @@
       };
       fonts.fontconfig.enable = true;
       home = {
-        packages = lib.filter availableOnSystem (with pkgs; [
-          # keep-sorted start
-          docker
-          homerow
-          hut
-          pngpaste
-          qrcode
-          sops
-          yubikey-manager
-          zbar
-          # keep-sorted end
-        ]);
+        packages = lib.filter availableOnSystem (
+          with pkgs;
+          [
+            # keep-sorted start
+            docker
+            homerow
+            hut
+            pngpaste
+            qrcode
+            sops
+            yubikey-manager
+            zbar
+            # keep-sorted end
+          ]
+        );
         file = {
           ".hushlogin" = {
             text = "";

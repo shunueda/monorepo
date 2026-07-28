@@ -6,89 +6,9 @@ I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around
 
 Find me at: [[https://git.sr.ht/~ueda][SourceHut]], [[https://github.com/shunueda][GitHub]], or [[mailto:me@shunueda.org][me@shunueda.org]].
 
-
-* Setting up my NixOS machine
-
-My parents gifted me a laptop for Christmas '19 (specs at the end) which I used it throughout high school, until switching to a Mac mid-college. It had been sleeping in my closet for a while, but I decided to revive it as a NixOS laptop / remote builder.
-
-** disko - Declarative disk partitioning
-
-[[https://github.com/nix-community/disko/blob/ff8702b4de27f72b4c78573dfb89ec74e36abdf1/docs/quickstart.md][Quickstart.md]] was very helpful. I used the [[https://github.com/nix-community/disko-templates/blob/6b12e5fe81fc0c06989a58bd0b01f4a2efca4906/single-disk-ext4/disko-config.nix][single-disk-ext4]] preset. One caveat: be explicit with the device path. Device nodes such as =/dev/sda= are unstable, instead use =/dev/disk/by-id/nvme-...= etc. You can find it by running: =ls -l /dev/disk/by-id/=.
-
-#+begin_src nix
-  disko.devices.disk.main.device = "/dev/disk/by-id/nvme-SAMSUNG_...." # etc
-#+end_src
+* Declearive & Reproducible Dev environment (Rust Ed.)
 
 
-** nixos-install
-
-Should be very easy, follow [[https://wiki.nixos.org/wiki/NixOS_system_configuration][wiki.nixos.org]]. Setting up Wi-Fi got me tripped up - here's what worked for me:
-
-#+begin_src nix
-  # Allow firmware installation
-  hardware.enableRedistributableFirmware = true;
-  # Enable NetworkManager (and nmcli, nmtui etc)
-  networking.networkmanager.enable = true;
-#+end_src
-
-I also set up SSH and Avahi:
-
-#+NAME: configuration.nix
-#+begin_src nix
-  services = {
-    openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = false;
-      };
-    };
-    avahi = {
-      enable = true;
-      ipv4 = true;
-      nssmdns4 = true;
-      publish = {
-        enable = true;
-        addresses = true;
-        workstation = true;
-      };
-    };
-  };
-  users.users.ueda = {
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
-    isNormalUser = true;
-    openssh.authorizedKeys.keyFiles = [ ./my-key.pub ];
-  };
-#+end_src
-
-and voila!
-
-#+begin_src
-  $ ssh ueda@black.local "nix run nixpkgs#fastfetch"
-            ▗▄▄▄       ▗▄▄▄▄    ▄▄▄▖             ueda@black
-            ▜███▙       ▜███▙  ▟███▛             ----------
-             ▜███▙       ▜███▙▟███▛              OS: NixOS 26.05 (Yarara) x86_64
-              ▜███▙       ▜██████▛               Host: 81XG (Lenovo IdeaPad FLEX-14IML)
-       ▟█████████████████▙ ▜████▛     ▟▙         Kernel: Linux 6.18.36
-      ▟███████████████████▙ ▜███▙    ▟██▙        Uptime: 1 hour, 9 mins
-             ▄▄▄▄▖           ▜███▙  ▟███▛        Packages: 875 (nix-system), 735 (nix-user)
-            ▟███▛             ▜██▛ ▟███▛         Shell: bash 5.3.9
-           ▟███▛               ▜▛ ▟███▛          Display (CMN14D4): 1920x1080 in 14", 60 Hz [Built-in]
-  ▟███████████▛                  ▟██████████▙    Terminal: /dev/pts/1
-  ▜██████████▛                  ▟███████████▛    CPU: Intel(R) Core(TM) i5-10210U (8) @ 4.20 GHz
-        ▟███▛ ▟▙               ▟███▛             GPU 1: NVIDIA GeForce MX230 [Discrete]
-       ▟███▛ ▟██▙             ▟███▛              GPU 2: Intel UHD Graphics @ 1.10 GHz [Integrated]
-      ▟███▛  ▜███▙           ▝▀▀▀▀               Memory: 783.89 MiB / 15.33 GiB (5%)
-      ▜██▛    ▜███▙ ▜██████████████████▛         Swap: Disabled
-       ▜▛     ▟████▙ ▜████████████████▛          Disk (/): 9.00 GiB / 467.40 GiB (2%) - ext4
-             ▟██████▙         ▜███▙              Local IP (wlp0s20f3): 192.168.0.105/24
-            ▟███▛▜███▙         ▜███▙             Battery (PABAS0241231): 100% [AC Connected]
-           ▟███▛  ▜███▙         ▜███▙            Locale: en_US.UTF-8
-           ▝▀▀▀    ▀▀▀▀▘         ▀▀▀▘
-
-#+end_src
 
 * Learning Emacs & Nix
 
