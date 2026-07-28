@@ -118,6 +118,7 @@
               embark
               embark-consult
               exec-path-from-shell
+              forge
               ghq
               gptel
               kkp
@@ -180,6 +181,7 @@
             };
             pull.rebase = true;
             push.autoSetupRemote = true;
+            github.user = "shunueda";
           };
         };
         gpg = {
