@@ -51,9 +51,20 @@
 (global-unset-key [C-wheel-up])
 (global-unset-key [C-wheel-down])
 
+;; Reserved for Tmux
+(global-unset-key [C-t])
+
 ;; Swap the Backspace and DEL
-;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Backspace-invokes-help.html
-(keyboard-translate ?\C-h ?\C-?)
+(define-key key-translation-map (kbd "C-h") (kbd "DEL"))
+
+(use-package kkp
+  :ensure t
+  :hook (tty-setup . global-kkp-mode))
+
+(use-package xclip
+  :ensure t
+  :config
+  (xclip-mode 1))
 
 ;; Core modes keep-sorted start
 ;; Save to original file
@@ -217,9 +228,23 @@
   (consult-async-input-throttle 0)
   ;; Overlay default keybinds
   :bind (("C-s" . consult-line)
-         ("C-x b" . consult-buffer)
-         ("C-x p f" . consult-fd)
-         ("C-x p g" . consult-ripgrep)))
+         ("C-x b" . consult-buffer))
+  :config
+  (require 'keymap)
+  (require 'cl-seq)
+  (require 'project)
+  ;; https://github.com/minad/consult/wiki#use-consult-ripgrep-instead-of-project-find-regexp-in-projectel
+  (keymap-substitute project-prefix-map #'project-find-regexp #'consult-ripgrep)
+  (cl-nsubstitute-if
+   '(consult-ripgrep "Find regexp")
+   (pcase-lambda (`(,cmd _)) (eq cmd #'project-find-regexp))
+    project-switch-commands)
+  (keymap-substitute project-prefix-map #'project-find-file #'consult-fd)
+  (cl-nsubstitute-if
+   '(consult-fd "Find file")
+   (pcase-lambda (`(,cmd _)) (eq cmd #'project-find-file))
+   project-switch-commands))
+
 (use-package direnv
   :config
   (direnv-mode))

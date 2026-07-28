@@ -29,11 +29,15 @@
           enable = true;
           theme = "alabaster";
           settings = {
+            terminal.shell = lib.getExe pkgs.tmux;
             window = {
+              option_as_alt = "Both";
               padding = {
                 x = 10;
                 y = 10;
               };
+              decorations = "Buttonless";
+              startup_mode = "Maximized";
             };
           };
         };
@@ -53,6 +57,9 @@
           historyFile = "${config.home.homeDirectory}/.sh_history";
           initExtra = ''
             export PS1="\[\033[1;32m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ "
+
+            # Doesn't get propagaed to nw Emacs - something to do with Tmux?
+            export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
             histsync() {
               history -a
@@ -112,6 +119,7 @@
               exec-path-from-shell
               ghq
               gptel
+              kkp
               kotlin-ts-mode
               magit
               markdown-mode
@@ -131,6 +139,7 @@
               undo-tree
               vertico
               wgrep
+              xclip
               zenburn-theme
               # keep-sorted end
             ];
@@ -268,6 +277,22 @@
             };
           };
         };
+        tmux = {
+          enable = true;
+          disableConfirmationPrompt = true;
+          mouse = true;
+          newSession = true;
+          shortcut = "t";
+          terminal = "xterm-256color";
+          extraConfig = ''
+            set -g status-position top
+
+            set -g status off
+
+            # Prevent (Darwin) `path_helper` from destroying PATH
+            set -g default-command "''${SHELL}"
+          '';
+        };
         # keep-sorted end
       };
       services = {
@@ -286,20 +311,18 @@
       };
       fonts.fontconfig.enable = true;
       home = {
-        packages =
-          with pkgs;
-          [
-            # keep-sorted start
-            docker
-            hut
-            qrcode
-            sops
-            yubikey-manager
-            zbar
-            homerow
-            pngpaste
-            # keep-sorted end
-          ];
+        packages = with pkgs; [
+          # keep-sorted start
+          docker
+          homerow
+          hut
+          pngpaste
+          qrcode
+          sops
+          yubikey-manager
+          zbar
+          # keep-sorted end
+        ];
         file = {
           ".hushlogin" = {
             text = "";
