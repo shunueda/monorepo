@@ -51,6 +51,9 @@
 (global-unset-key [C-wheel-up])
 (global-unset-key [C-wheel-down])
 
+;; Reserved for Tmux
+(global-unset-key [C-t])
+
 ;; Swap the Backspace and DEL
 (define-key key-translation-map (kbd "C-h") (kbd "DEL"))
 

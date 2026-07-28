@@ -29,12 +29,15 @@
           enable = true;
           theme = "alabaster";
           settings = {
+            terminal.shell = lib.getExe pkgs.tmux;
             window = {
               option_as_alt = "Both";
               padding = {
                 x = 10;
                 y = 10;
               };
+              decorations = "Buttonless";
+              startup_mode = "Maximized";
             };
           };
         };
@@ -270,6 +273,22 @@
               ForwardAgent = true;
             };
           };
+        };
+        tmux = {
+          enable = true;
+          disableConfirmationPrompt = true;
+          mouse = true;
+          newSession = true;
+          shortcut = "t";
+          terminal = "xterm-256color";
+          extraConfig = ''
+            set -g status-position top
+
+            set -g status off
+
+            # Prevent (Darwin) `path_helper` from destroying PATH
+            set -g default-command "''${SHELL}"
+          '';
         };
         # keep-sorted end
       };
