@@ -323,6 +323,7 @@
           [
             # keep-sorted start
             docker
+            git-absorb
             homerow
             hut
             pngpaste

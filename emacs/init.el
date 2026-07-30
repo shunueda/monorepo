@@ -232,6 +232,12 @@
   :bind (("C-s" . consult-line)
          ("C-x b" . consult-buffer)))
 
+(use-package magit
+  :config
+  ;; https://github.com/magit/magit/issues/3723#issuecomment-634967479
+  (transient-replace-suffix 'magit-commit 'magit-commit-autofixup
+    '("x" "Absorb changes" magit-commit-absorb)))
+
 (use-package project
   :config
   (require 'keymap)
