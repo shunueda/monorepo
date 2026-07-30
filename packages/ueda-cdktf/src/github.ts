@@ -12,10 +12,10 @@ export function createGitHubRepo(
   stack: TerraformStack,
   config: RepositoryConfig,
   options?: Partial<{
-    actions: {
+    actions: Partial<{
       variables: Record<string, string>;
       secrets: Record<string, string>;
-    };
+    }>;
     createsSourcehutMirror: boolean;
     deployKeys: Record<
       string,

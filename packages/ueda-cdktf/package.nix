@@ -20,6 +20,7 @@ uedaPassWrapper {
     "CLOUDFLARE_SECRET_ACCESS_KEY"
     "GITHUB_TOKEN"
     "NIX_CACHE_SIGNING_KEY"
+    "OPENROUTER_MANAGEMENT_KEY"
     "SRHT_TOKEN"
     "TF_TOKEN_app_terraform_io"
     # keep-sorted end

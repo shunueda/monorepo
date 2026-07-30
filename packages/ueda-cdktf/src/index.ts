@@ -9,8 +9,10 @@ import { arrayToObject, mustEnv } from "./helpers.ts";
 import { R2Bucket } from "@ueda/cdktf-providers/cloudflare/r2-bucket";
 import { R2CustomDomain } from "@ueda/cdktf-providers/cloudflare/r2-custom-domain";
 import { UserSshKey } from "@ueda/cdktf-providers/github/user-ssh-key";
-import { UserPgpKey } from "@ueda/cdktf-providers/sourcehut/user-pgp-key";
 import { UserGpgKey } from "@ueda/cdktf-providers/github/user-gpg-key";
+import { OpenrouterProvider } from "@ueda/cdktf-providers/openrouter/provider";
+import { ApiKey } from "@ueda/cdktf-providers/openrouter/api-key";
+import { Workspace } from "@ueda/cdktf-providers/openrouter/workspace";
 
 function synth() {
   const app = new App();
@@ -28,6 +30,10 @@ function synth() {
   new SourcehutProvider(stack, "sourcehut-provider");
 
   new GithubProvider(stack, "github-provider");
+
+  new OpenrouterProvider(stack, "openrouter-provider", {
+    apiKey: mustEnv("OPENROUTER_MANAGEMENT_KEY"),
+  });
 
   const cloudflareAccountId = "ca4a67796dcce729524c78e24c66d10d" as const;
 
@@ -92,6 +98,24 @@ function synth() {
         passforios: {
           key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGOl+7p0ZoMIw59bvaB7t11afM5epaUpbU10X5MMLc7",
           readOnly: false,
+        },
+      },
+    },
+  );
+
+  const openrouterApiKey = new ApiKey(stack, "openrouter-ci-api-key", {
+    name: "ci",
+    limit: 1,
+    limitReset: "weekly",
+  });
+
+  createGitHubRepo(
+    stack,
+    { name: "private", visibility: "private" },
+    {
+      actions: {
+        secrets: {
+          OPENROUTER_API_KEY: openrouterApiKey.key,
         },
       },
     },
