@@ -16,6 +16,7 @@ let
     wombelix.sourcehut
     integrations.github
     cloudflare.cloudflare
+    OpenRouterTeam.openrouter
   ];
 
   pl2nixOverlay = final: prev: {
