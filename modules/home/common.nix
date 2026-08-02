@@ -300,6 +300,234 @@
             set -g default-command "''${SHELL} -l"
           '';
         };
+        wezterm = {
+          enable = true;
+
+          settings =
+            let
+              luaAction = expr: lib.generators.mkLuaInline expr;
+            in
+            {
+              color_scheme = "Alabaster";
+              font_rasterizer = "CoreText";
+              hide_tab_bar_if_only_one_tab = true;
+              disable_default_key_bindings = true;
+              line_height = 0.9;
+              font_size = 11;
+              enable_kitty_keyboard = true;
+              max_fps = 120;
+              window_decorations = "RESIZE";
+              front_end = "WebGpu";
+
+              show_new_tab_button_in_tab_bar = false;
+              show_close_tab_button_in_tabs = false;
+              colors = {
+                tab_bar = {
+                  inactive_tab_edge = "none";
+                };
+              };
+
+              # Prefix key: C-t (tmux-style)
+              leader = {
+                key = "t";
+                mods = "CTRL";
+                timeout_milliseconds = 1000;
+              };
+
+              keys = [
+                # Press C-t twice to send a literal C-t to the shell/app
+                {
+                  key = "t";
+                  mods = "LEADER|CTRL";
+                  action = luaAction "wezterm.action.SendKey{key='t',mods='CTRL'}";
+                }
+
+                # Split vertically (stacked) — Emacs: C-x 2 (split-window-below)
+                {
+                  key = "2";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.SplitVertical{domain='CurrentPaneDomain'}";
+                }
+
+                # Split horizontally (side-by-side) — Emacs: C-x 3 (split-window-right)
+                {
+                  key = "3";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.SplitHorizontal{domain='CurrentPaneDomain'}";
+                }
+
+                # Close current pane — Emacs: C-x 0 (delete-window)
+                {
+                  key = "0";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.CloseCurrentPane{confirm=true}";
+                }
+
+                # Switch between panes — windmove-style (S-<arrow>), adapted under LEADER
+                {
+                  key = "LeftArrow";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.ActivatePaneDirection 'Left'";
+                }
+                {
+                  key = "DownArrow";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.ActivatePaneDirection 'Down'";
+                }
+                {
+                  key = "UpArrow";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.ActivatePaneDirection 'Up'";
+                }
+                {
+                  key = "RightArrow";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.ActivatePaneDirection 'Right'";
+                }
+
+                # Cycle panes — Emacs: C-x o (other-window)
+                {
+                  key = "o";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.ActivatePaneDirection 'Next'";
+                }
+                {
+                  key = "O";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.ActivatePaneDirection 'Prev'";
+                }
+
+                # Enter select (copy) mode
+                {
+                  key = "[";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.ActivateCopyMode";
+                }
+
+                # Yank — Emacs: C-y
+                {
+                  key = "y";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.PasteFrom 'Clipboard'";
+                }
+
+                # Tab (window) management — Emacs: C-x t 2 / C-x t 0 / C-x t o (tab-bar-mode)
+                {
+                  key = "t";
+                  mods = "LEADER";
+                  action = luaAction "wezterm.action.ActivateKeyTable{name='tab_prefix',one_shot=true}";
+                }
+
+                # Non-tmux essentials restored (needed since defaults are disabled)
+                {
+                  key = "c";
+                  mods = "CTRL|SHIFT";
+                  action = luaAction "wezterm.action.CopyTo 'Clipboard'";
+                }
+                {
+                  key = "v";
+                  mods = "CTRL|SHIFT";
+                  action = luaAction "wezterm.action.PasteFrom 'Clipboard'";
+                }
+                {
+                  key = "=";
+                  mods = "CTRL";
+                  action = luaAction "wezterm.action.IncreaseFontSize";
+                }
+                {
+                  key = "-";
+                  mods = "CTRL";
+                  action = luaAction "wezterm.action.DecreaseFontSize";
+                }
+                {
+                  key = "0";
+                  mods = "CTRL|SHIFT";
+                  action = luaAction "wezterm.action.ResetFontSize";
+                }
+              ];
+
+              key_tables = {
+                # LEADER t <key> — mirrors Emacs tab-bar-mode's C-x t <key>
+                tab_prefix = [
+                  {
+                    key = "2";
+                    action = luaAction "wezterm.action.SpawnTab 'CurrentPaneDomain'";
+                  }
+                  {
+                    key = "0";
+                    action = luaAction "wezterm.action.CloseCurrentTab{confirm=true}";
+                  }
+                  {
+                    key = "o";
+                    action = luaAction "wezterm.action.ActivateTabRelative(1)";
+                  }
+                  {
+                    key = "O";
+                    action = luaAction "wezterm.action.ActivateTabRelative(-1)";
+                  }
+                ];
+
+                copy_mode = [
+                  {
+                    key = "Escape";
+                    action = luaAction "wezterm.action.CopyMode 'Close'";
+                  }
+                  {
+                    key = "g";
+                    mods = "CTRL";
+                    action = luaAction "wezterm.action.CopyMode 'Close'";
+                  }
+
+                  {
+                    key = "f";
+                    mods = "CTRL";
+                    action = luaAction "wezterm.action.CopyMode 'MoveRight'";
+                  }
+                  {
+                    key = "b";
+                    mods = "CTRL";
+                    action = luaAction "wezterm.action.CopyMode 'MoveLeft'";
+                  }
+                  {
+                    key = "n";
+                    mods = "CTRL";
+                    action = luaAction "wezterm.action.CopyMode 'MoveDown'";
+                  }
+                  {
+                    key = "p";
+                    mods = "CTRL";
+                    action = luaAction "wezterm.action.CopyMode 'MoveUp'";
+                  }
+                  {
+                    key = "a";
+                    mods = "CTRL";
+                    action = luaAction "wezterm.action.CopyMode 'MoveToStartOfLine'";
+                  }
+                  {
+                    key = "e";
+                    mods = "CTRL";
+                    action = luaAction "wezterm.action.CopyMode 'MoveToEndOfLineContent'";
+                  }
+
+                  {
+                    key = "Space";
+                    mods = "CTRL";
+                    action = luaAction "wezterm.action.CopyMode{SetSelectionMode='Cell'}";
+                  }
+                  {
+                    key = "w";
+                    mods = "CTRL";
+                    action = luaAction ''
+                      wezterm.action.Multiple{
+                        wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
+                        wezterm.action.CopyMode 'Close',
+                      }
+                    '';
+                  }
+                ];
+              };
+            };
+        };
         # keep-sorted end
       };
       services = {

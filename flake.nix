@@ -88,6 +88,10 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    wezterm-coretext = {
+      url = "git+https://github.com/wezterm/wezterm.git?ref=refs/pull/7979/merge&submodules=1";
+      flake = false;
+    };
     # keep-sorted end
   };
   outputs =

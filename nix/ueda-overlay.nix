@@ -22,4 +22,13 @@ in
     patches = [ ];
     version = "next-3.7";
   };
+
+  wezterm = pkgs-unstable.wezterm.overrideAttrs (old: {
+    src = inputs.wezterm-coretext;
+    cargoDeps = pkgs-unstable.rustPlatform.fetchCargoVendor {
+      src = inputs.wezterm-coretext;
+      name = "${old.pname}-${old.version}";
+      hash = "sha256-xXIKWAQ0fEWnz8HWzQQvAK+R68x8ZdIi5HXU11SWbhM=";
+    };
+  });
 }

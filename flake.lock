@@ -420,7 +420,8 @@
         "systems": "systems",
         "tmux-kitty": "tmux-kitty",
         "tools": "tools",
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": "treefmt-nix",
+        "wezterm-coretext": "wezterm-coretext"
       }
     },
     "systems": {
@@ -502,6 +503,25 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
+      }
+    },
+    "wezterm-coretext": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1785479852,
+        "narHash": "sha256-H8ZFdBkCTzQAC8eX0zFRU5SzW6msZcDn3NXyrSpvwgI=",
+        "ref": "refs/pull/7979/merge",
+        "rev": "fe315e6f00bfb1b8a87da4213c0fa85fb34d2c56",
+        "revCount": 8639,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/wezterm/wezterm.git"
+      },
+      "original": {
+        "ref": "refs/pull/7979/merge",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/wezterm/wezterm.git"
       }
     }
   },
