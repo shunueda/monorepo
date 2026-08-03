@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/guardrail_member_assignments
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/guardrail_member_assignments
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -110,7 +110,7 @@ export class DataOpenrouterGuardrailMemberAssignmentsDataList extends cdktf.Comp
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/guardrail_member_assignments openrouter_guardrail_member_assignments}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/guardrail_member_assignments openrouter_guardrail_member_assignments}
 */
 export class DataOpenrouterGuardrailMemberAssignments extends cdktf.TerraformDataSource {
 
@@ -126,7 +126,7 @@ export class DataOpenrouterGuardrailMemberAssignments extends cdktf.TerraformDat
   * Generates CDKTF code for importing a DataOpenrouterGuardrailMemberAssignments resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterGuardrailMemberAssignments to import
-  * @param importFromId The id of the existing DataOpenrouterGuardrailMemberAssignments that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/guardrail_member_assignments#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterGuardrailMemberAssignments that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/guardrail_member_assignments#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterGuardrailMemberAssignments to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -138,7 +138,7 @@ export class DataOpenrouterGuardrailMemberAssignments extends cdktf.TerraformDat
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/guardrail_member_assignments openrouter_guardrail_member_assignments} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/guardrail_member_assignments openrouter_guardrail_member_assignments} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -149,7 +149,7 @@ export class DataOpenrouterGuardrailMemberAssignments extends cdktf.TerraformDat
       terraformResourceType: 'openrouter_guardrail_member_assignments',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.1.22'
+        providerVersion: '0.1.32'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

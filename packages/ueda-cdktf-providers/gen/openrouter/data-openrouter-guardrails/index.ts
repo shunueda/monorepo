@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/guardrails
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/guardrails
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,7 +10,7 @@ export interface DataOpenrouterGuardrailsConfig extends cdktf.TerraformMetaArgum
   /**
   * Filter guardrails by workspace ID. By default, guardrails in the default workspace are returned.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/guardrails#workspace_id DataOpenrouterGuardrails#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/guardrails#workspace_id DataOpenrouterGuardrails#workspace_id}
   */
   readonly workspaceId?: string;
 }
@@ -383,7 +383,7 @@ export class DataOpenrouterGuardrailsDataList extends cdktf.ComplexList {
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/guardrails openrouter_guardrails}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/guardrails openrouter_guardrails}
 */
 export class DataOpenrouterGuardrails extends cdktf.TerraformDataSource {
 
@@ -399,7 +399,7 @@ export class DataOpenrouterGuardrails extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterGuardrails resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterGuardrails to import
-  * @param importFromId The id of the existing DataOpenrouterGuardrails that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/guardrails#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterGuardrails that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/guardrails#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterGuardrails to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -411,7 +411,7 @@ export class DataOpenrouterGuardrails extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/guardrails openrouter_guardrails} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/guardrails openrouter_guardrails} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -422,7 +422,7 @@ export class DataOpenrouterGuardrails extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_guardrails',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.1.22'
+        providerVersion: '0.1.32'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

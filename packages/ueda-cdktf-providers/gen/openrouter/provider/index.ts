@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,25 +10,25 @@ export interface OpenrouterProviderConfig {
   /**
   * API key as bearer token in Authorization header.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs#api_key OpenrouterProvider#api_key}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs#api_key OpenrouterProvider#api_key}
   */
   readonly apiKey?: string;
   /**
   * Server URL (defaults to https://openrouter.ai/api/v1)
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs#server_url OpenrouterProvider#server_url}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs#server_url OpenrouterProvider#server_url}
   */
   readonly serverUrl?: string;
   /**
   * Alias name
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs#alias OpenrouterProvider#alias}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs#alias OpenrouterProvider#alias}
   */
   readonly alias?: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs openrouter}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs openrouter}
 */
 export class OpenrouterProvider extends cdktf.TerraformProvider {
 
@@ -44,7 +44,7 @@ export class OpenrouterProvider extends cdktf.TerraformProvider {
   * Generates CDKTF code for importing a OpenrouterProvider resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the OpenrouterProvider to import
-  * @param importFromId The id of the existing OpenrouterProvider that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing OpenrouterProvider that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the OpenrouterProvider to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -56,7 +56,7 @@ export class OpenrouterProvider extends cdktf.TerraformProvider {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs openrouter} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs openrouter} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -67,7 +67,7 @@ export class OpenrouterProvider extends cdktf.TerraformProvider {
       terraformResourceType: 'openrouter',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.1.22'
+        providerVersion: '0.1.32'
       },
       terraformProviderSource: 'OpenRouterTeam/openrouter'
     });

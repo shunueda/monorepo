@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,55 +10,55 @@ export interface ObservabilityDestinationConfig extends cdktf.TerraformMetaArgum
   /**
   * Optional allowlist of OpenRouter API key hashes whose traffic is forwarded. `null` or omitted means all keys. Must contain at least one hash if provided.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#api_key_hashes ObservabilityDestination#api_key_hashes}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#api_key_hashes ObservabilityDestination#api_key_hashes}
   */
   readonly apiKeyHashes?: string[];
   /**
   * Provider-specific configuration. The shape depends on `type` and is validated server-side.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#config ObservabilityDestination#config}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#config ObservabilityDestination#config}
   */
   readonly config: { [key: string]: string };
   /**
   * Whether this destination should be enabled immediately.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#enabled ObservabilityDestination#enabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#enabled ObservabilityDestination#enabled}
   */
   readonly enabled?: boolean | cdktf.IResolvable;
   /**
   * Optional structured filter rules controlling which events are forwarded.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#filter_rules ObservabilityDestination#filter_rules}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#filter_rules ObservabilityDestination#filter_rules}
   */
   readonly filterRules?: ObservabilityDestinationFilterRules;
   /**
   * Human-readable name for the destination.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#name ObservabilityDestination#name}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#name ObservabilityDestination#name}
   */
   readonly name: string;
   /**
   * When true, request/response bodies are not forwarded — only metadata.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#privacy_mode ObservabilityDestination#privacy_mode}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#privacy_mode ObservabilityDestination#privacy_mode}
   */
   readonly privacyMode?: boolean | cdktf.IResolvable;
   /**
   * Sampling rate between 0.0001 and 1 (1 = 100%).
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#sampling_rate ObservabilityDestination#sampling_rate}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#sampling_rate ObservabilityDestination#sampling_rate}
   */
   readonly samplingRate?: number;
   /**
   * The destination type. Only stable destination types are accepted. must be one of ["arize", "braintrust", "clickhouse", "datadog", "grafana", "langfuse", "langsmith", "newrelic", "opik", "otel-collector", "posthog", "ramp", "s3", "sentry", "snowflake", "weave", "webhook"]; Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#type ObservabilityDestination#type}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#type ObservabilityDestination#type}
   */
   readonly type: string;
   /**
   * Optional workspace ID. Defaults to the authenticated entity's default workspace. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#workspace_id ObservabilityDestination#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#workspace_id ObservabilityDestination#workspace_id}
   */
   readonly workspaceId?: string;
 }
@@ -1927,11 +1927,11 @@ export class ObservabilityDestinationDatadogOutputReference extends cdktf.Comple
 }
 export interface ObservabilityDestinationFilterRulesGroupsRulesValue {
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#number ObservabilityDestination#number}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#number ObservabilityDestination#number}
   */
   readonly number?: number;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#str ObservabilityDestination#str}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#str ObservabilityDestination#str}
   */
   readonly str?: string;
 }
@@ -2056,17 +2056,17 @@ export interface ObservabilityDestinationFilterRulesGroupsRules {
   /**
   * must be one of ["model", "provider", "session_id", "user_id", "api_key_name", "finish_reason", "input", "output", "total_cost", "total_tokens", "prompt_tokens", "completion_tokens"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#field ObservabilityDestination#field}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#field ObservabilityDestination#field}
   */
   readonly field: string;
   /**
   * must be one of ["equals", "not_equals", "contains", "not_contains", "regex", "starts_with", "ends_with", "gt", "lt", "gte", "lte", "exists", "not_exists"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#operator ObservabilityDestination#operator}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#operator ObservabilityDestination#operator}
   */
   readonly operator: string;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#value ObservabilityDestination#value}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#value ObservabilityDestination#value}
   */
   readonly value?: ObservabilityDestinationFilterRulesGroupsRulesValue;
 }
@@ -2236,11 +2236,11 @@ export interface ObservabilityDestinationFilterRulesGroups {
   /**
   * Default: "and"; must be one of ["and", "or"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#logic ObservabilityDestination#logic}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#logic ObservabilityDestination#logic}
   */
   readonly logic?: string;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#rules ObservabilityDestination#rules}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#rules ObservabilityDestination#rules}
   */
   readonly rules: ObservabilityDestinationFilterRulesGroupsRules[] | cdktf.IResolvable;
 }
@@ -2384,11 +2384,11 @@ export interface ObservabilityDestinationFilterRules {
   /**
   * Default: true
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#enabled ObservabilityDestination#enabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#enabled ObservabilityDestination#enabled}
   */
   readonly enabled?: boolean | cdktf.IResolvable;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#groups ObservabilityDestination#groups}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#groups ObservabilityDestination#groups}
   */
   readonly groups: ObservabilityDestinationFilterRulesGroups[] | cdktf.IResolvable;
 }
@@ -8529,7 +8529,7 @@ export class ObservabilityDestinationWebhookOutputReference extends cdktf.Comple
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination openrouter_observability_destination}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination openrouter_observability_destination}
 */
 export class ObservabilityDestination extends cdktf.TerraformResource {
 
@@ -8545,7 +8545,7 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a ObservabilityDestination resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the ObservabilityDestination to import
-  * @param importFromId The id of the existing ObservabilityDestination that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing ObservabilityDestination that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the ObservabilityDestination to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -8557,7 +8557,7 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/resources/observability_destination openrouter_observability_destination} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/observability_destination openrouter_observability_destination} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -8568,7 +8568,7 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_observability_destination',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.1.22'
+        providerVersion: '0.1.32'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

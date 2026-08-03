@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/credits
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/credits
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -69,7 +69,7 @@ export class DataOpenrouterCreditsDataOutputReference extends cdktf.ComplexObjec
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/credits openrouter_credits}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/credits openrouter_credits}
 */
 export class DataOpenrouterCredits extends cdktf.TerraformDataSource {
 
@@ -85,7 +85,7 @@ export class DataOpenrouterCredits extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterCredits resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterCredits to import
-  * @param importFromId The id of the existing DataOpenrouterCredits that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/credits#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterCredits that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/credits#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterCredits to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -97,7 +97,7 @@ export class DataOpenrouterCredits extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/credits openrouter_credits} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/credits openrouter_credits} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -108,7 +108,7 @@ export class DataOpenrouterCredits extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_credits',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.1.22'
+        providerVersion: '0.1.32'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

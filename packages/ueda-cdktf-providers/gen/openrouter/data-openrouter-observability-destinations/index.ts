@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/observability_destinations
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/observability_destinations
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,7 +10,7 @@ export interface DataOpenrouterObservabilityDestinationsConfig extends cdktf.Ter
   /**
   * Optional workspace ID to filter by. Defaults to the authenticated entity's default workspace.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/observability_destinations#workspace_id DataOpenrouterObservabilityDestinations#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/observability_destinations#workspace_id DataOpenrouterObservabilityDestinations#workspace_id}
   */
   readonly workspaceId?: string;
 }
@@ -8072,7 +8072,7 @@ export class DataOpenrouterObservabilityDestinationsDataList extends cdktf.Compl
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/observability_destinations openrouter_observability_destinations}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/observability_destinations openrouter_observability_destinations}
 */
 export class DataOpenrouterObservabilityDestinations extends cdktf.TerraformDataSource {
 
@@ -8088,7 +8088,7 @@ export class DataOpenrouterObservabilityDestinations extends cdktf.TerraformData
   * Generates CDKTF code for importing a DataOpenrouterObservabilityDestinations resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterObservabilityDestinations to import
-  * @param importFromId The id of the existing DataOpenrouterObservabilityDestinations that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/observability_destinations#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterObservabilityDestinations that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/observability_destinations#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterObservabilityDestinations to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -8100,7 +8100,7 @@ export class DataOpenrouterObservabilityDestinations extends cdktf.TerraformData
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.22/docs/data-sources/observability_destinations openrouter_observability_destinations} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/observability_destinations openrouter_observability_destinations} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -8111,7 +8111,7 @@ export class DataOpenrouterObservabilityDestinations extends cdktf.TerraformData
       terraformResourceType: 'openrouter_observability_destinations',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.1.22'
+        providerVersion: '0.1.32'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
