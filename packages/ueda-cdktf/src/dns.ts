@@ -4,6 +4,7 @@ import { RegistrarDomain } from "@ueda/cdktf-providers/cloudflare/registrar-doma
 import { Ruleset } from "@ueda/cdktf-providers/cloudflare/ruleset";
 import { Zone } from "@ueda/cdktf-providers/cloudflare/zone";
 import type { TerraformStack } from "cdktf";
+import { mustEnv } from "./helpers.ts";
 
 export type Domain = Readonly<{
   id: string;
@@ -18,6 +19,7 @@ export function createDomain(
   isData: boolean = false,
 ): Domain {
   const id = domainName.replaceAll(".", "-");
+
   const domain = isData
     ? new DataCloudflareRegistrarDomain(stack, `${id}-registrar-domain`, {
         accountId,
@@ -30,17 +32,24 @@ export function createDomain(
         autoRenew: true,
         locked: true,
       });
-  return {
-    id,
-    domain,
-    zone: new Zone(stack, `${id}-zone`, {
-      account: {
-        id: accountId,
-      },
-      name: domain.domainName,
-      type: "full",
-    }),
-  } as const;
+
+  const zone = new Zone(stack, `${id}-zone`, {
+    account: {
+      id: accountId,
+    },
+    name: domain.domainName,
+    type: "full",
+  });
+
+  new DnsRecord(stack, `${id}-keyoxide-txt`, {
+    name: "@",
+    ttl: 1,
+    type: "TXT",
+    zoneId: zone.id,
+    content: `openpgp4fpr:${mustEnv("GPG_FINGERPRINT")}`,
+  });
+
+  return { id, domain, zone } as const;
 }
 
 export function fastmail(stack: TerraformStack, { id, domain, zone }: Domain) {

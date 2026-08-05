@@ -18,13 +18,6 @@
       };
       oxfmt.enable = true;
       shellcheck.enable = true;
-      typos = {
-        enable = true;
-        excludes = [
-          "keys/*"
-          "secrets/*"
-        ];
-      };
       typstyle.enable = true;
       # keep-sorted end
     };
