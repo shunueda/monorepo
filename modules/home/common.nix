@@ -102,7 +102,6 @@
         };
         emacs = {
           enable = true;
-          package = pkgs.emacs31;
           overrides = self: super: {
             direnv = super.direnv.overrideAttrs (_: {
               src = inputs.emacs-direnv-async;
@@ -120,12 +119,14 @@
               diff-hl
               dimmer
               direnv
+              elisp-autofmt
               embark
               embark-consult
               exec-path-from-shell
               forge
               ghq
               gptel
+              hl-todo
               kkp
               kotlin-ts-mode
               magit
