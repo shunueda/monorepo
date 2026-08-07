@@ -17,6 +17,7 @@
           [
             # keep-sorted start
             awscli2
+            gcc
             nixd
             nodejs
             python3

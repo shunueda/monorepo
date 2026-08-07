@@ -37,9 +37,6 @@
                 x = 10;
                 y = 10;
               };
-              # TODO: tmux migration
-              # decorations = "Buttonless";
-              # startup_mode = "Maximized";
             };
           };
         };
@@ -59,9 +56,6 @@
           historyFile = "${config.home.homeDirectory}/.sh_history";
           initExtra = ''
             export PS1="\[\033[1;32m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ "
-
-            # Doesn't get propagaed to nw Emacs - something to do with Tmux?
-            export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
             histsync() {
               history -a
@@ -285,21 +279,6 @@
               ForwardAgent = true;
             };
           };
-        };
-        tmux = {
-          enable = true;
-          mouse = true;
-          newSession = true;
-          shortcut = "t";
-          terminal = "xterm-256color";
-          extraConfig = ''
-            set -g status-position top
-
-            set -g status off
-
-            # Prevent (Darwin) `path_helper` from destroying PATH
-            set -g default-command "''${SHELL} -l"
-          '';
         };
         # keep-sorted end
       };
