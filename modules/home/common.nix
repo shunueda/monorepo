@@ -1,4 +1,8 @@
-{ inputs, ... }: {
+{ inputs, config, ... }:
+let
+  inherit (config) constants;
+in
+{
   flake.homeModules.common =
     {
       pkgs,
@@ -157,7 +161,7 @@
         git = {
           enable = true;
           signing = {
-            key = "C879B61CBD7C81A8783AD90965A3009821043C2C";
+            key = constants.ueda.keys.fingerprint;
             format = "openpgp";
           };
           settings = {
@@ -188,7 +192,7 @@
           enable = true;
           publicKeys = [
             {
-              source = ../../keys/C879B61CBD7C81A8783AD90965A3009821043C2C.asc;
+              source = constants.ueda.keys.gpg;
               trust = "ultimate";
             }
           ];

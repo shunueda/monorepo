@@ -15,8 +15,8 @@
       in
       {
         inherit fingerprint;
-        gpg = builtins.readFile ../../keys/${fingerprint}.asc;
-        ssh = builtins.readFile ../../keys/${fingerprint}.pub;
+        gpg = ../../keys/${fingerprint}.asc;
+        ssh = ../../keys/${fingerprint}.pub;
       };
   };
 }

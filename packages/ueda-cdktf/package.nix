@@ -33,8 +33,8 @@ uedaPassWrapper {
       CDKTF_APP = lib.getExe uedaCdktf;
       NIX_CACHE_PUBLIC_KEY = constants.ueda.nix-cache.publicKey;
       GPG_FINGERPRINT = constants.ueda.keys.fingerprint;
-      SSH_PUBLIC_KEY = constants.ueda.keys.ssh;
-      GPG_PUBLIC_KEY = constants.ueda.keys.gpg;
+      SSH_PUBLIC_KEY = builtins.readFile constants.ueda.keys.ssh;
+      GPG_PUBLIC_KEY = builtins.readFile constants.ueda.keys.gpg;
     };
 
     runtimeInputs = [
