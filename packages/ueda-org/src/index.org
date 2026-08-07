@@ -6,15 +6,55 @@ I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around
 
 Find me at: [[https://git.sr.ht/~ueda][SourceHut]], [[https://github.com/shunueda][GitHub]], or [[mailto:me@shunueda.org][me@shunueda.org]].
 
+* (macOS) Suppress annoying `xcrun` popup
+
+macOS puts a stub at =/usr/bin/python3= (and friends) that shells out to =xcrun= to find the real binary. If Xcode Command Line Tools aren't installed, this triggers an annoying GUI popup - which I really don't want since I manage everything through Nix devShells and avoid impure global installs.
+
+[[./assets/xcrun.png]]
+
+I looked at the [[https://linuxcommandlibrary.com/man/xcrun][manpage]], and found that =xcrun= respects the envvar =DEVELOPER_DIR=, and wondered if pointing this envvar to a stub =xcrun= could suppress the popup.
+
+#+begin_src nix
+    let
+    # Suppress annoying `xcrun` popups
+    stubDeveloperDir = "${pkgs.linkFarm "stub-developer-dir" [
+        {
+          name = "usr/bin/xcrun";
+          path = pkgs.writeShellScript "stub-xcrun" ''
+            >&2 echo "$1: command not found"
+            exit 127
+          '';
+        }
+      ]}";
+    in
+    ...
+    environment = {
+      shells = [ pkgs.bash ];
+      variables = {
+        DEVELOPER_DIR = stubDeveloperDir;
+      };
+    };
+    launchd.user.envVariables = {
+      DEVELOPER_DIR = stubDeveloperDir;
+    };
+#+end_src
+
+And voila!
+
+#+begin_src console
+  $ python3
+  python3: command not found
+#+end_src
+
 * =ghq= 🤝 =project.el=
 
-I use [[https://github.com/x-motemen/ghq][ghq]] for remote repository management. I make it integrate it with =project.el= project switcher like this:
+I use [[https://github.com/x-motemen/ghq][ghq]] for remote repository management, and I make it integrate with =project.el='s project switcher (=C-x p p=) like this:
 
 #+begin_src emacs-lisp
   (use-package
     project
     :config
-    ;; Populate the project switcher list fr `ghq`
+    ;; Populate the project switcher list from `ghq`
     (dolist
       (project
         (split-string (shell-command-to-string "ghq list --full-path")
