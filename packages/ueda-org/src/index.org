@@ -6,6 +6,23 @@ I'm a daily driver of Nix & Emacs; consequently, most of my notes revolve around
 
 Find me at: [[https://git.sr.ht/~ueda][SourceHut]], [[https://github.com/shunueda][GitHub]], or [[mailto:me@shunueda.org][me@shunueda.org]].
 
+* =ghq= 🤝 =project.el=
+
+I use [[https://github.com/x-motemen/ghq][ghq]] for remote repository management. I make it integrate it with =project.el= project switcher like this:
+
+#+begin_src emacs-lisp
+  (use-package
+    project
+    :config
+    ;; Populate the project switcher list fr `ghq`
+    (dolist
+      (project
+        (split-string (shell-command-to-string "ghq list --full-path")
+          "\n"
+          t))
+      (project--remember-dir (file-name-as-directory project)))
+#+end_src
+
 * Learning Emacs & Nix
 
 Very helpful tutorials that helped me get started:
