@@ -53,6 +53,10 @@
           static-only = true;
         };
         CustomUserPreferences = {
+          "com.apple.loginwindow" = {
+            # https://github.com/nix-darwin/nix-darwin/pull/1848
+            HideUserAvatarAndName = true;
+          };
           "com.apple.HIToolbox" = {
             AppleFnUsageType = 1;
             AppleEnabledInputSources = [

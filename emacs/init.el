@@ -87,18 +87,6 @@
 (xterm-mouse-mode 1)
 ;; keep-sorted end
 
-(defun ueda/sync-ghq-to-project-el ()
-  (interactive)
-  (require 'project)
-  (let
-    (
-      (paths
-        (split-string (shell-command-to-string "ghq list --full-path")
-          "\n"
-          t)))
-    (dolist (path paths)
-      (project-remember-projects-under path))))
-
 (defun ueda/irc-connect ()
   (interactive)
   (erc-tls
@@ -260,6 +248,14 @@
   (require 'keymap)
   (require 'cl-seq)
 
+  ;; Populate the project switcher list from `ghq`
+  (dolist
+    (project
+      (split-string (shell-command-to-string "ghq list --full-path")
+        "\n"
+        t))
+    (project--remember-dir (file-name-as-directory project)))
+
   ;; https://github.com/minad/consult/wiki#use-consult-ripgrep-instead-of-project-find-regexp-in-projectel
   (keymap-substitute
     project-prefix-map
@@ -311,25 +307,28 @@
     'completion-category-overrides
     '(eglot (styles orderless))))
 (use-package wgrep :custom (wgrep-auto-save-buffer t))
-(use-package hl-todo
+(use-package
+  hl-todo
   :custom
   (hl-todo-keyword-faces
-   `(("TODO" . (:background "#B8860B" :foreground "white" :weight bold))
-     ("FIXME" . (:background "#D32F2F" :foreground "white" :weight bold))
-     (,(concat "NO" "COMMIT") . (:background "#9C27B0" :foreground "white" :weight bold))
-     (,(concat "NO" "MERGE")  . (:background "#C2185B" :foreground "white" :weight bold))))
-  :config
-  (global-hl-todo-mode))
+    `
+    (
+      ("TODO"
+        .
+        (:background "#B8860B" :foreground "white" :weight bold))
+      ("FIXME"
+        .
+        (:background "#D32F2F" :foreground "white" :weight bold))
+      (,(concat "NO" "COMMIT")
+        .
+        (:background "#9C27B0" :foreground "white" :weight bold))
+      (,(concat "NO" "MERGE")
+        .
+        (:background "#C2185B" :foreground "white" :weight bold))))
+  :config (global-hl-todo-mode))
 (use-package
   elisp-autofmt
   :commands (elisp-autofmt-mode elisp-autofmt-buffer)
   :hook (emacs-lisp-mode . elisp-autofmt-mode)
-  :custom (elisp-autofmt-style 'fixed)
-  :config
-  (add-hook
-    'emacs-lisp-mode-hook
-    (lambda ()
-      (setq-local indent-tabs-mode nil)
-      (setq-local lisp-indent-function nil)
-      (setq-local lisp-indent-offset 2))))
+  :custom (elisp-autofmt-style 'fixed))
 ;; keep-sorted end
