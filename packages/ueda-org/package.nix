@@ -29,7 +29,7 @@ let
     runCommand "ueda-org"
       {
         nativeBuildInputs = [
-          emacs
+          (emacs.pkgs.withPackages (epkgs: with epkgs; [ htmlize ]))
           gnutar
           writableTmpDirAsHomeHook
         ];
