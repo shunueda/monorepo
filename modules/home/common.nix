@@ -44,6 +44,10 @@ in
             };
           };
         };
+        difftastic = {
+          enable = true;
+          git.enable = true;
+        };
         bash = {
           enable = true;
           shellOptions = [
@@ -119,6 +123,7 @@ in
               direnv
               elisp-autofmt
               embark
+              difftastic
               embark-consult
               exec-path-from-shell
               forge

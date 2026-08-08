@@ -45,6 +45,13 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
+(use-package magit-difftastic
+  :after magit
+  :config
+  (magit-difftastic-mode +1))
+
 ;; Enable pass for auth-source
 (auth-source-pass-enable)
 
