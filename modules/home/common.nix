@@ -152,6 +152,25 @@ in
         };
         fd.enable = true;
         fzf.enable = true;
+        ghostty = {
+          enable = true;
+          package = pkgs.ghostty-bin;
+          settings = {
+            # keep-sorted start
+            adjust-cell-height = "-10%";
+            auto-update = "off";
+            font-size = 11;
+            font-thicken = true;
+            theme = "Alabaster";
+            window-padding-x = 10;
+            window-padding-y = 10;
+            cursor-style = "block";
+            cursor-style-blink = false;
+            shell-integration-features = "no-cursor";
+            cursor-color = "#000000";
+            # keep-sorted end
+          };
+        };
         ghq = {
           enable = true;
           settings = {
@@ -313,6 +332,7 @@ in
             pngpaste
             qrcode
             sops
+            tree
             yubikey-manager
             zbar
             # keep-sorted end

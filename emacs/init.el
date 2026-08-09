@@ -108,11 +108,11 @@
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode 1))
-(use-package
-  kkp
+(use-package kkp
   :unless (display-graphic-p)
-  :config (global-kkp-mode +1))
-(use-package xclip :ensure t :config (xclip-mode 1))
+  :custom
+  (kkp-active-enhancements '(disambiguate-escape-codes report-alternate-keys))
+  :hook (tty-setup . global-kkp-mode))
 (use-package
   dimmer
   :ensure t
