@@ -96,6 +96,7 @@
     :password (auth-source-pass-get 'secret "InternetAccounts/libera")))
 
 ;; keep-sorted start block=yes
+
 (use-package
   corfu
   :custom
@@ -108,10 +109,12 @@
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode 1))
-(use-package kkp
+(use-package
+  kkp
   :unless (display-graphic-p)
   :custom
-  (kkp-active-enhancements '(disambiguate-escape-codes report-alternate-keys))
+  (kkp-active-enhancements
+    '(disambiguate-escape-codes report-alternate-keys))
   :hook (tty-setup . global-kkp-mode))
 (use-package
   dimmer
@@ -170,9 +173,8 @@
 (use-package
   multiple-cursors
   :bind
-  (("C->" . mc/mark-next-like-this)
-    ("C-<" . mc/mark-previous-like-this)
-    ("C-c C-<" . mc/mark-all-like-this)))
+  (("C-S-." . mc/mark-next-like-this)
+    ("C-S-," . mc/mark-previous-like-this)))
 
 (use-package
   orderless
@@ -331,4 +333,5 @@
   :commands (elisp-autofmt-mode elisp-autofmt-buffer)
   :hook (emacs-lisp-mode . elisp-autofmt-mode)
   :custom (elisp-autofmt-style 'fixed))
+(use-package xclip :config (xclip-mode))
 ;; keep-sorted end

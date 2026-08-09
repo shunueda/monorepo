@@ -4,19 +4,23 @@
     default = { };
   };
 
-  config.constants.ueda = {
-    nix-cache = {
-      substituter = "https://nix-cache.shunueda.org";
-      publicKey = "ueda-1:xcYAg6UiIbY9K4HF7rHiPeukhgfxW4dOdNHn/1Jd6p0=";
-    };
-    keys =
-      let
-        fingerprint = "C879B61CBD7C81A8783AD90965A3009821043C2C";
-      in
-      {
-        inherit fingerprint;
-        gpg = ../../keys/${fingerprint}.asc;
-        ssh = ../../keys/${fingerprint}.pub;
+  config.constants = {
+    alphabet = lib.stringToCharacters "abcdefghijklmnopqrstuvwxyz";
+
+    ueda = {
+      nix-cache = {
+        substituter = "https://nix-cache.shunueda.org";
+        publicKey = "ueda-1:xcYAg6UiIbY9K4HF7rHiPeukhgfxW4dOdNHn/1Jd6p0=";
       };
+      keys =
+        let
+          fingerprint = "C879B61CBD7C81A8783AD90965A3009821043C2C";
+        in
+        {
+          inherit fingerprint;
+          gpg = ../../keys/${fingerprint}.asc;
+          ssh = ../../keys/${fingerprint}.pub;
+        };
+    };
   };
 }

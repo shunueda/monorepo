@@ -155,19 +155,42 @@ in
         ghostty = {
           enable = true;
           package = pkgs.ghostty-bin;
+          clearDefaultKeybinds = true;
           settings = {
             # keep-sorted start
             adjust-cell-height = "-10%";
             auto-update = "off";
+            cursor-color = "#000000";
+            cursor-style = "block";
+            cursor-style-blink = false;
             font-size = 11;
             font-thicken = true;
+            keybind =
+              let
+                leader = "t";
+              in
+              (map (c: "ctrl+${leader}>${c}=ignore") constants.alphabet)
+              ++ [
+                # keep-sorted start
+                "ctrl+${leader}>0=close_surface"
+                "ctrl+${leader}>3=new_split:right"
+                "ctrl+${leader}>c=new_tab"
+                "ctrl+${leader}>n=next_tab"
+                "ctrl+${leader}>o=goto_split:next"
+                "ctrl+${leader}>p=previous_tab"
+                "ctrl+${leader}>s=write_scrollback_file:open"
+                "ctrl+${leader}>w=copy_to_clipboard"
+                "ctrl+${leader}>x=close_tab"
+                "ctrl+${leader}>y=paste_from_clipboard"
+                "ctrl+${leader}>z=toggle_split_zoom"
+                "ctrl+-=decrease_font_size:1"
+                "ctrl+==increase_font_size:1"
+                # keep-sorted end
+              ];
+            shell-integration-features = "no-cursor";
             theme = "Alabaster";
             window-padding-x = 10;
             window-padding-y = 10;
-            cursor-style = "block";
-            cursor-style-blink = false;
-            shell-integration-features = "no-cursor";
-            cursor-color = "#000000";
             # keep-sorted end
           };
         };
