@@ -42,6 +42,41 @@ in
                 y = 10;
               };
             };
+            keyboard = {
+              bindings =
+                lib.mapAttrsToList
+                  (key: action: {
+                    inherit key action;
+                    mods = "Control";
+                    mode = "Vi";
+                  })
+                  {
+                    # keep-sorted start
+                    A = "First";
+                    B = "Left";
+                    E = "Last";
+                    F = "Right";
+                    N = "Down";
+                    P = "Up";
+                    S = "SearchForward";
+                    Space = "ToggleNormalSelection";
+                    W = "Copy";
+                    Y = "Paste";
+                    # keep-sorted end
+                  }
+                ++ (lib.mapAttrsToList
+                  (key: action: {
+                    inherit key action;
+                    mods = "Control";
+                  })
+                  {
+                    # keep-sorted start
+                    S = "SearchForward";
+                    Y = "Paste";
+                    # keep-sorted end
+                  }
+                );
+            };
           };
         };
         bash = {
@@ -100,12 +135,10 @@ in
         };
         emacs = {
           enable = true;
+          package = pkgs.emacs31;
           overrides = self: super: {
-            direnv = super.direnv.overrideAttrs (_: {
-              src = inputs.emacs-direnv-async;
-            });
-            dimmer = super.dimmer.overrideAttrs (_: {
-              src = inputs.dimmer;
+            direnv = super.direnv.overrideAttrs (prev: {
+              patches = prev.patches or [ ] ++ [ inputs.emacs-direnv-async-patch ];
             });
           };
           extraPackages =
@@ -144,9 +177,9 @@ in
               typst-ts-mode
               undo-tree
               vertico
+              vterm
               wgrep
               xclip
-              zenburn-theme
               # keep-sorted end
             ];
         };
@@ -154,7 +187,7 @@ in
         fzf.enable = true;
         ghostty = {
           enable = true;
-          package = pkgs.ghostty-bin;
+          package = lib.mkIf isDarwin pkgs.ghostty-bin;
           clearDefaultKeybinds = true;
           settings = {
             # keep-sorted start

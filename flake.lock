@@ -128,20 +128,34 @@
         "type": "github"
       }
     },
-    "emacs-direnv-async": {
+    "emacs-direnv-async-patch": {
       "flake": false,
       "locked": {
-        "lastModified": 1711563026,
-        "narHash": "sha256-DhhXJ/hxlKeFx3xgRlIClMTu+iyGz++sr9HDj+72VKs=",
-        "owner": "wbolster",
-        "repo": "emacs-direnv",
-        "rev": "3d695c59cad7a0f5ac22075c08aef4f0480a94c9",
+        "narHash": "sha256-5T6vIq/jYEyfI8KS4VI4YN2UG2KcedhQfXh35S+gESw=",
+        "type": "file",
+        "url": "https://github.com/wbolster/emacs-direnv/pull/82.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/wbolster/emacs-direnv/pull/82.patch"
+      }
+    },
+    "emacs-overlay": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-stable": "nixpkgs-stable"
+      },
+      "locked": {
+        "lastModified": 1786415256,
+        "narHash": "sha256-3GTx7nUbf+sIlmZb+ZjZLSFcTKKtFQm8jNPUhgHMFXg=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "db30732178e1e91f2240386bbd44b2fd529e567a",
         "type": "github"
       },
       "original": {
-        "owner": "wbolster",
-        "ref": "pull/82/head",
-        "repo": "emacs-direnv",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
         "type": "github"
       }
     },
@@ -268,16 +282,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1785599192,
-        "narHash": "sha256-dg4RTtDxnXY13UkJNdhmgTUTl0n/IJBlCigfO7nutZw=",
-        "owner": "nixos",
+        "lastModified": 1786106723,
+        "narHash": "sha256-zDSUbpoeo/9ZmD2+wXnzxoo1+uhL8vxc0b8yuYMKYq0=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6d65bfc1bcef2ef39a239d38e577e92a89fb0f07",
+        "rev": "f13ff45afd1bb73e640eaa08a7066dbed07e3238",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-26.05",
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -294,6 +308,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1786313170,
+        "narHash": "sha256-9BG7OgUWdu0ONDO5X2q6+K4bsuBITkX/3W4nNJu1Ito=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "fcb8fcd6bf2d0adecae5bd491afaaaf8311b758d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -329,6 +359,22 @@
       "original": {
         "owner": "nixos",
         "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1785599192,
+        "narHash": "sha256-dg4RTtDxnXY13UkJNdhmgTUTl0n/IJBlCigfO7nutZw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "6d65bfc1bcef2ef39a239d38e577e92a89fb0f07",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-26.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -423,19 +469,19 @@
         "dimmer": "dimmer",
         "direnv-instant": "direnv-instant",
         "disko": "disko",
-        "emacs-direnv-async": "emacs-direnv-async",
+        "emacs-direnv-async-patch": "emacs-direnv-async-patch",
+        "emacs-overlay": "emacs-overlay",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nix-darwin-flake-module": "nix-darwin-flake-module",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-terraform-providers-bin": "nixpkgs-terraform-providers-bin",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nocommit": "nocommit",
         "nur": "nur",
         "package-lock2nix": "package-lock2nix",
         "systems": "systems",
-        "tmux-kitty": "tmux-kitty",
         "tools": "tools",
         "treefmt-nix": "treefmt-nix"
       }
@@ -452,23 +498,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "triplet",
-        "type": "github"
-      }
-    },
-    "tmux-kitty": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1776431766,
-        "narHash": "sha256-r5YSXPX38zXuimPgV3n56/rU0DyRJyCab+f7FwmuYJw=",
-        "owner": "tmux",
-        "repo": "tmux",
-        "rev": "a8894401569812d43aa1105b03f5533db4a7a4fa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tmux",
-        "ref": "pull/4912/head",
-        "repo": "tmux",
         "type": "github"
       }
     },

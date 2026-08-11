@@ -26,9 +26,12 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-direnv-async = {
-      url = "github:wbolster/emacs-direnv/pull/82/head";
+    emacs-direnv-async-patch = {
+      url = "https://github.com/wbolster/emacs-direnv/pull/82.patch";
       flake = false;
+    };
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -73,10 +76,6 @@
       inputs.systems.follows = "systems";
     };
     systems.url = "github:nix-systems/triplet";
-    tmux-kitty = {
-      url = "github:tmux/tmux/pull/4912/head";
-      flake = false;
-    };
     tools = {
       url = "github:anteriorcore/tools";
       inputs.nixpkgs.follows = "nixpkgs";
