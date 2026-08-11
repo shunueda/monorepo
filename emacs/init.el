@@ -156,8 +156,7 @@
       :host "openrouter.ai"
       :endpoint "/api/v1/chat/completions"
       :stream t
-      :key (lambda () (auth-source-pass-get 'secret "ApiKeys/Openrouter"))
-      :models '(openrouter/auto))
+      :key (lambda () (auth-source-pass-get 'secret "ApiKeys/OPENROUTER_API_KEY")))
     gptel-model 'openrouter/auto))
 
 (use-package
