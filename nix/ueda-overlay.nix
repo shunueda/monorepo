@@ -13,8 +13,12 @@ in
   # Custom packages
   inherit (self.packages.${system}) displaymode;
 
-  # Backport from unstable
-  inherit (pkgs-unstable) emacs31 homerow;
+  inherit (pkgs-unstable)
+    # Backport from unstable
+    emacs31
+    homerow
+    # Broken on 26.05
+    mailutils;
 
   # Band-ade until https://github.com/tmux/tmux/pull/5405
   tmux = prev.tmux.overrideAttrs {
