@@ -15,9 +15,12 @@ in
 
   inherit (pkgs-unstable)
     # Backport from unstable
-    emacs31
     homerow
     # Broken on 26.05
     mailutils
     ;
+
+  emacs = pkgs-unstable.emacs31.overrideAttrs (prev: {
+    patches = prev.patches or [ ] ++ [ ../patches/emacs-31/round-undecorated-frame.patch ];
+  });
 }

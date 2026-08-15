@@ -135,7 +135,6 @@ in
         };
         emacs = {
           enable = true;
-          package = pkgs.emacs31;
           overrides = self: super: {
             direnv = super.direnv.overrideAttrs (prev: {
               patches = prev.patches or [ ] ++ [ inputs.emacs-direnv-async-patch ];
