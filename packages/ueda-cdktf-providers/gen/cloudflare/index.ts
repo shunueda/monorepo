@@ -508,6 +508,7 @@ export * as dataCloudflareShareResources from './data-cloudflare-share-resources
 export * as dataCloudflareShares from './data-cloudflare-shares';
 export * as dataCloudflareSnippet from './data-cloudflare-snippet';
 export * as dataCloudflareSnippetList from './data-cloudflare-snippet-list';
+export * as dataCloudflareSnippetRules from './data-cloudflare-snippet-rules';
 export * as dataCloudflareSnippetRulesList from './data-cloudflare-snippet-rules-list';
 export * as dataCloudflareSnippets from './data-cloudflare-snippets';
 export * as dataCloudflareSnippetsList from './data-cloudflare-snippets-list';
@@ -628,6 +629,8 @@ export * as dataCloudflareZeroTrustDexTests from './data-cloudflare-zero-trust-d
 export * as dataCloudflareZeroTrustDlpCustomEntries from './data-cloudflare-zero-trust-dlp-custom-entries';
 export * as dataCloudflareZeroTrustDlpCustomEntry from './data-cloudflare-zero-trust-dlp-custom-entry';
 export * as dataCloudflareZeroTrustDlpCustomProfile from './data-cloudflare-zero-trust-dlp-custom-profile';
+export * as dataCloudflareZeroTrustDlpCustomPromptTopic from './data-cloudflare-zero-trust-dlp-custom-prompt-topic';
+export * as dataCloudflareZeroTrustDlpCustomPromptTopics from './data-cloudflare-zero-trust-dlp-custom-prompt-topics';
 export * as dataCloudflareZeroTrustDlpDataClass from './data-cloudflare-zero-trust-dlp-data-class';
 export * as dataCloudflareZeroTrustDlpDataClasses from './data-cloudflare-zero-trust-dlp-data-classes';
 export * as dataCloudflareZeroTrustDlpDataTag from './data-cloudflare-zero-trust-dlp-data-tag';

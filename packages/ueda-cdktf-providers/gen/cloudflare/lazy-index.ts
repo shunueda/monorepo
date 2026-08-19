@@ -508,6 +508,7 @@ Object.defineProperty(exports, 'dataCloudflareShareResources', { get: function (
 Object.defineProperty(exports, 'dataCloudflareShares', { get: function () { return require('./data-cloudflare-shares'); } });
 Object.defineProperty(exports, 'dataCloudflareSnippet', { get: function () { return require('./data-cloudflare-snippet'); } });
 Object.defineProperty(exports, 'dataCloudflareSnippetList', { get: function () { return require('./data-cloudflare-snippet-list'); } });
+Object.defineProperty(exports, 'dataCloudflareSnippetRules', { get: function () { return require('./data-cloudflare-snippet-rules'); } });
 Object.defineProperty(exports, 'dataCloudflareSnippetRulesList', { get: function () { return require('./data-cloudflare-snippet-rules-list'); } });
 Object.defineProperty(exports, 'dataCloudflareSnippets', { get: function () { return require('./data-cloudflare-snippets'); } });
 Object.defineProperty(exports, 'dataCloudflareSnippetsList', { get: function () { return require('./data-cloudflare-snippets-list'); } });
@@ -628,6 +629,8 @@ Object.defineProperty(exports, 'dataCloudflareZeroTrustDexTests', { get: functio
 Object.defineProperty(exports, 'dataCloudflareZeroTrustDlpCustomEntries', { get: function () { return require('./data-cloudflare-zero-trust-dlp-custom-entries'); } });
 Object.defineProperty(exports, 'dataCloudflareZeroTrustDlpCustomEntry', { get: function () { return require('./data-cloudflare-zero-trust-dlp-custom-entry'); } });
 Object.defineProperty(exports, 'dataCloudflareZeroTrustDlpCustomProfile', { get: function () { return require('./data-cloudflare-zero-trust-dlp-custom-profile'); } });
+Object.defineProperty(exports, 'dataCloudflareZeroTrustDlpCustomPromptTopic', { get: function () { return require('./data-cloudflare-zero-trust-dlp-custom-prompt-topic'); } });
+Object.defineProperty(exports, 'dataCloudflareZeroTrustDlpCustomPromptTopics', { get: function () { return require('./data-cloudflare-zero-trust-dlp-custom-prompt-topics'); } });
 Object.defineProperty(exports, 'dataCloudflareZeroTrustDlpDataClass', { get: function () { return require('./data-cloudflare-zero-trust-dlp-data-class'); } });
 Object.defineProperty(exports, 'dataCloudflareZeroTrustDlpDataClasses', { get: function () { return require('./data-cloudflare-zero-trust-dlp-data-classes'); } });
 Object.defineProperty(exports, 'dataCloudflareZeroTrustDlpDataTag', { get: function () { return require('./data-cloudflare-zero-trust-dlp-data-tag'); } });

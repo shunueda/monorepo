@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -8,75 +8,81 @@ import * as cdktf from 'cdktf';
 
 export interface WorkspaceConfig extends cdktf.TerraformMetaArguments {
   /**
+  * Required to delete the default workspace (not yet generally available; callers not enabled for it receive a 403 while the capability rolls out). Deleting it permanently disables the account’s unscoped inference API keys (management/provisioning keys are retained) and its budgets, guardrails, classifiers, and broadcast destinations. Ignored for non-default workspaces. must be one of ["true", "false"]
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#confirm_default_settings_deletion Workspace#confirm_default_settings_deletion}
+  */
+  readonly confirmDefaultSettingsDeletion?: string;
+  /**
   * Default image model for this workspace
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#default_image_model Workspace#default_image_model}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#default_image_model Workspace#default_image_model}
   */
   readonly defaultImageModel?: string;
   /**
   * Default provider sort preference (price, throughput, latency, exacto)
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#default_provider_sort Workspace#default_provider_sort}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#default_provider_sort Workspace#default_provider_sort}
   */
   readonly defaultProviderSort?: string;
   /**
   * Default text model for this workspace
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#default_text_model Workspace#default_text_model}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#default_text_model Workspace#default_text_model}
   */
   readonly defaultTextModel?: string;
   /**
   * Description of the workspace
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#description Workspace#description}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#description Workspace#description}
   */
   readonly description?: string;
   /**
   * Optional array of API key IDs to filter I/O logging
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#io_logging_api_key_ids Workspace#io_logging_api_key_ids}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#io_logging_api_key_ids Workspace#io_logging_api_key_ids}
   */
   readonly ioLoggingApiKeyIds?: number[];
   /**
   * Sampling rate for I/O logging (0.0001-1)
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#io_logging_sampling_rate Workspace#io_logging_sampling_rate}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#io_logging_sampling_rate Workspace#io_logging_sampling_rate}
   */
   readonly ioLoggingSamplingRate?: number;
   /**
   * Whether data discount logging is enabled
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#is_data_discount_logging_enabled Workspace#is_data_discount_logging_enabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#is_data_discount_logging_enabled Workspace#is_data_discount_logging_enabled}
   */
   readonly isDataDiscountLoggingEnabled?: boolean | cdktf.IResolvable;
   /**
   * Whether broadcast is enabled
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#is_observability_broadcast_enabled Workspace#is_observability_broadcast_enabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#is_observability_broadcast_enabled Workspace#is_observability_broadcast_enabled}
   */
   readonly isObservabilityBroadcastEnabled?: boolean | cdktf.IResolvable;
   /**
   * Whether private logging is enabled
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#is_observability_io_logging_enabled Workspace#is_observability_io_logging_enabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#is_observability_io_logging_enabled Workspace#is_observability_io_logging_enabled}
   */
   readonly isObservabilityIoLoggingEnabled?: boolean | cdktf.IResolvable;
   /**
   * Name for the new workspace
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#name Workspace#name}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#name Workspace#name}
   */
   readonly name: string;
   /**
   * URL-friendly slug (lowercase alphanumeric segments separated by single hyphens, no leading/trailing hyphens)
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#slug Workspace#slug}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#slug Workspace#slug}
   */
   readonly slug: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace openrouter_workspace}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace openrouter_workspace}
 */
 export class Workspace extends cdktf.TerraformResource {
 
@@ -92,7 +98,7 @@ export class Workspace extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a Workspace resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the Workspace to import
-  * @param importFromId The id of the existing Workspace that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing Workspace that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the Workspace to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -104,7 +110,7 @@ export class Workspace extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/workspace openrouter_workspace} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/workspace openrouter_workspace} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -115,7 +121,7 @@ export class Workspace extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_workspace',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.1.32'
+        providerVersion: '0.2.30'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
@@ -125,6 +131,7 @@ export class Workspace extends cdktf.TerraformResource {
       connection: config.connection,
       forEach: config.forEach
     });
+    this._confirmDefaultSettingsDeletion = config.confirmDefaultSettingsDeletion;
     this._defaultImageModel = config.defaultImageModel;
     this._defaultProviderSort = config.defaultProviderSort;
     this._defaultTextModel = config.defaultTextModel;
@@ -141,6 +148,22 @@ export class Workspace extends cdktf.TerraformResource {
   // ==========
   // ATTRIBUTES
   // ==========
+
+  // confirm_default_settings_deletion - computed: false, optional: true, required: false
+  private _confirmDefaultSettingsDeletion?: string; 
+  public get confirmDefaultSettingsDeletion() {
+    return this.getStringAttribute('confirm_default_settings_deletion');
+  }
+  public set confirmDefaultSettingsDeletion(value: string) {
+    this._confirmDefaultSettingsDeletion = value;
+  }
+  public resetConfirmDefaultSettingsDeletion() {
+    this._confirmDefaultSettingsDeletion = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get confirmDefaultSettingsDeletionInput() {
+    return this._confirmDefaultSettingsDeletion;
+  }
 
   // created_at - computed: true, optional: false, required: false
   public get createdAt() {
@@ -348,6 +371,7 @@ export class Workspace extends cdktf.TerraformResource {
 
   protected synthesizeAttributes(): { [name: string]: any } {
     return {
+      confirm_default_settings_deletion: cdktf.stringToTerraform(this._confirmDefaultSettingsDeletion),
       default_image_model: cdktf.stringToTerraform(this._defaultImageModel),
       default_provider_sort: cdktf.stringToTerraform(this._defaultProviderSort),
       default_text_model: cdktf.stringToTerraform(this._defaultTextModel),
@@ -364,6 +388,12 @@ export class Workspace extends cdktf.TerraformResource {
 
   protected synthesizeHclAttributes(): { [name: string]: any } {
     const attrs = {
+      confirm_default_settings_deletion: {
+        value: cdktf.stringToHclTerraform(this._confirmDefaultSettingsDeletion),
+        isBlock: false,
+        type: "simple",
+        storageClassType: "string",
+      },
       default_image_model: {
         value: cdktf.stringToHclTerraform(this._defaultImageModel),
         isBlock: false,

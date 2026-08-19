@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,55 +10,55 @@ export interface ApiKeyConfig extends cdktf.TerraformMetaArguments {
   /**
   * Optional user ID of the key creator. Only meaningful for organization-owned keys where a specific member is creating the key. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key#creator_user_id ApiKey#creator_user_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key#creator_user_id ApiKey#creator_user_id}
   */
   readonly creatorUserId?: string;
   /**
   * Whether to disable the API key
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key#disabled ApiKey#disabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key#disabled ApiKey#disabled}
   */
   readonly disabled?: boolean | cdktf.IResolvable;
   /**
   * Optional ISO 8601 UTC timestamp when the API key should expire. Must be UTC, other timezones will be rejected. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key#expires_at ApiKey#expires_at}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key#expires_at ApiKey#expires_at}
   */
   readonly expiresAt?: string;
   /**
   * Whether to include BYOK usage in the limit
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key#include_byok_in_limit ApiKey#include_byok_in_limit}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key#include_byok_in_limit ApiKey#include_byok_in_limit}
   */
   readonly includeByokInLimit?: boolean | cdktf.IResolvable;
   /**
   * New spending limit for the API key in USD
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key#limit ApiKey#limit}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key#limit ApiKey#limit}
   */
   readonly limit?: number;
   /**
   * New limit reset type for the API key (daily, weekly, monthly, or null for no reset). Resets happen automatically at midnight UTC, and weeks are Monday through Sunday. must be one of ["daily", "weekly", "monthly"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key#limit_reset ApiKey#limit_reset}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key#limit_reset ApiKey#limit_reset}
   */
   readonly limitReset?: string;
   /**
   * New name for the API key
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key#name ApiKey#name}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key#name ApiKey#name}
   */
   readonly name: string;
   /**
   * The workspace to create the API key in. Defaults to the default workspace if not provided. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key#workspace_id ApiKey#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key#workspace_id ApiKey#workspace_id}
   */
   readonly workspaceId?: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key openrouter_api_key}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key openrouter_api_key}
 */
 export class ApiKey extends cdktf.TerraformResource {
 
@@ -74,7 +74,7 @@ export class ApiKey extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a ApiKey resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the ApiKey to import
-  * @param importFromId The id of the existing ApiKey that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing ApiKey that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the ApiKey to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -86,7 +86,7 @@ export class ApiKey extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/resources/api_key openrouter_api_key} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/api_key openrouter_api_key} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -97,7 +97,7 @@ export class ApiKey extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_api_key',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.1.32'
+        providerVersion: '0.2.30'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

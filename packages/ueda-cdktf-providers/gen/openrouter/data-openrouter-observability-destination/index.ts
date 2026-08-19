@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/observability_destination
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/observability_destination
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,7 +10,7 @@ export interface DataOpenrouterObservabilityDestinationConfig extends cdktf.Terr
   /**
   * Stable public identifier for this destination.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/observability_destination#id DataOpenrouterObservabilityDestination#id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/observability_destination#id DataOpenrouterObservabilityDestination#id}
   *
   * Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2.
   * If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable.
@@ -430,6 +430,21 @@ export class DataOpenrouterObservabilityDestinationArizeOutputReference extends 
   // api_key_hashes - computed: true, optional: false, required: false
   public get apiKeyHashes() {
     return this.getListAttribute('api_key_hashes');
+  }
+
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
   }
 
   // config - computed: true, optional: false, required: false
@@ -892,6 +907,21 @@ export class DataOpenrouterObservabilityDestinationBraintrustOutputReference ext
   // api_key_hashes - computed: true, optional: false, required: false
   public get apiKeyHashes() {
     return this.getListAttribute('api_key_hashes');
+  }
+
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
   }
 
   // config - computed: true, optional: false, required: false
@@ -1366,6 +1396,21 @@ export class DataOpenrouterObservabilityDestinationClickhouseOutputReference ext
     return this.getListAttribute('api_key_hashes');
   }
 
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
+  }
+
   // config - computed: true, optional: false, required: false
   private _config = new DataOpenrouterObservabilityDestinationClickhouseConfigOutputReference(this, "config");
   public get config() {
@@ -1826,6 +1871,21 @@ export class DataOpenrouterObservabilityDestinationDatadogOutputReference extend
   // api_key_hashes - computed: true, optional: false, required: false
   public get apiKeyHashes() {
     return this.getListAttribute('api_key_hashes');
+  }
+
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
   }
 
   // config - computed: true, optional: false, required: false
@@ -2290,6 +2350,21 @@ export class DataOpenrouterObservabilityDestinationGrafanaOutputReference extend
     return this.getListAttribute('api_key_hashes');
   }
 
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
+  }
+
   // config - computed: true, optional: false, required: false
   private _config = new DataOpenrouterObservabilityDestinationGrafanaConfigOutputReference(this, "config");
   public get config() {
@@ -2750,6 +2825,21 @@ export class DataOpenrouterObservabilityDestinationLangfuseOutputReference exten
   // api_key_hashes - computed: true, optional: false, required: false
   public get apiKeyHashes() {
     return this.getListAttribute('api_key_hashes');
+  }
+
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
   }
 
   // config - computed: true, optional: false, required: false
@@ -3219,6 +3309,21 @@ export class DataOpenrouterObservabilityDestinationLangsmithOutputReference exte
     return this.getListAttribute('api_key_hashes');
   }
 
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
+  }
+
   // config - computed: true, optional: false, required: false
   private _config = new DataOpenrouterObservabilityDestinationLangsmithConfigOutputReference(this, "config");
   public get config() {
@@ -3674,6 +3779,21 @@ export class DataOpenrouterObservabilityDestinationNewrelicOutputReference exten
   // api_key_hashes - computed: true, optional: false, required: false
   public get apiKeyHashes() {
     return this.getListAttribute('api_key_hashes');
+  }
+
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
   }
 
   // config - computed: true, optional: false, required: false
@@ -4138,6 +4258,21 @@ export class DataOpenrouterObservabilityDestinationOpikOutputReference extends c
     return this.getListAttribute('api_key_hashes');
   }
 
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
+  }
+
   // config - computed: true, optional: false, required: false
   private _config = new DataOpenrouterObservabilityDestinationOpikConfigOutputReference(this, "config");
   public get config() {
@@ -4588,6 +4723,21 @@ export class DataOpenrouterObservabilityDestinationOtelCollectorOutputReference 
   // api_key_hashes - computed: true, optional: false, required: false
   public get apiKeyHashes() {
     return this.getListAttribute('api_key_hashes');
+  }
+
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
   }
 
   // config - computed: true, optional: false, required: false
@@ -5047,6 +5197,21 @@ export class DataOpenrouterObservabilityDestinationPosthogOutputReference extend
     return this.getListAttribute('api_key_hashes');
   }
 
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
+  }
+
   // config - computed: true, optional: false, required: false
   private _config = new DataOpenrouterObservabilityDestinationPosthogConfigOutputReference(this, "config");
   public get config() {
@@ -5502,6 +5667,21 @@ export class DataOpenrouterObservabilityDestinationRampOutputReference extends c
   // api_key_hashes - computed: true, optional: false, required: false
   public get apiKeyHashes() {
     return this.getListAttribute('api_key_hashes');
+  }
+
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
   }
 
   // config - computed: true, optional: false, required: false
@@ -5991,6 +6171,21 @@ export class DataOpenrouterObservabilityDestinationS3OutputReference extends cdk
     return this.getListAttribute('api_key_hashes');
   }
 
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
+  }
+
   // config - computed: true, optional: false, required: false
   private _config = new DataOpenrouterObservabilityDestinationS3ConfigOutputReference(this, "config");
   public get config() {
@@ -6446,6 +6641,21 @@ export class DataOpenrouterObservabilityDestinationSentryOutputReference extends
   // api_key_hashes - computed: true, optional: false, required: false
   public get apiKeyHashes() {
     return this.getListAttribute('api_key_hashes');
+  }
+
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
   }
 
   // config - computed: true, optional: false, required: false
@@ -6925,6 +7135,21 @@ export class DataOpenrouterObservabilityDestinationSnowflakeOutputReference exte
     return this.getListAttribute('api_key_hashes');
   }
 
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
+  }
+
   // config - computed: true, optional: false, required: false
   private _config = new DataOpenrouterObservabilityDestinationSnowflakeConfigOutputReference(this, "config");
   public get config() {
@@ -7392,6 +7617,21 @@ export class DataOpenrouterObservabilityDestinationWeaveOutputReference extends 
     return this.getListAttribute('api_key_hashes');
   }
 
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
+  }
+
   // config - computed: true, optional: false, required: false
   private _config = new DataOpenrouterObservabilityDestinationWeaveConfigOutputReference(this, "config");
   public get config() {
@@ -7849,6 +8089,21 @@ export class DataOpenrouterObservabilityDestinationWebhookOutputReference extend
     return this.getListAttribute('api_key_hashes');
   }
 
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
+  }
+
   // config - computed: true, optional: false, required: false
   private _config = new DataOpenrouterObservabilityDestinationWebhookConfigOutputReference(this, "config");
   public get config() {
@@ -7903,7 +8158,7 @@ export class DataOpenrouterObservabilityDestinationWebhookOutputReference extend
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/observability_destination openrouter_observability_destination}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/observability_destination openrouter_observability_destination}
 */
 export class DataOpenrouterObservabilityDestination extends cdktf.TerraformDataSource {
 
@@ -7919,7 +8174,7 @@ export class DataOpenrouterObservabilityDestination extends cdktf.TerraformDataS
   * Generates CDKTF code for importing a DataOpenrouterObservabilityDestination resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterObservabilityDestination to import
-  * @param importFromId The id of the existing DataOpenrouterObservabilityDestination that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/observability_destination#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterObservabilityDestination that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/observability_destination#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterObservabilityDestination to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -7931,7 +8186,7 @@ export class DataOpenrouterObservabilityDestination extends cdktf.TerraformDataS
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/observability_destination openrouter_observability_destination} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/observability_destination openrouter_observability_destination} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -7942,7 +8197,7 @@ export class DataOpenrouterObservabilityDestination extends cdktf.TerraformDataS
       terraformResourceType: 'openrouter_observability_destination',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.1.32'
+        providerVersion: '0.2.30'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
@@ -7969,6 +8224,21 @@ export class DataOpenrouterObservabilityDestination extends cdktf.TerraformDataS
   private _braintrust = new DataOpenrouterObservabilityDestinationBraintrustOutputReference(this, "braintrust");
   public get braintrust() {
     return this._braintrust;
+  }
+
+  // broadcast_generation_cost - computed: true, optional: false, required: false
+  public get broadcastGenerationCost() {
+    return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_identity - computed: true, optional: false, required: false
+  public get broadcastGenerationIdentity() {
+    return this.getBooleanAttribute('broadcast_generation_identity');
+  }
+
+  // broadcast_generation_request_context - computed: true, optional: false, required: false
+  public get broadcastGenerationRequestContext() {
+    return this.getBooleanAttribute('broadcast_generation_request_context');
   }
 
   // clickhouse - computed: true, optional: false, required: false

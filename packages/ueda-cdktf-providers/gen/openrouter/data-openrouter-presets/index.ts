@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/presets
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/presets
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -135,7 +135,7 @@ export class DataOpenrouterPresetsDataList extends cdktf.ComplexList {
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/presets openrouter_presets}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/presets openrouter_presets}
 */
 export class DataOpenrouterPresets extends cdktf.TerraformDataSource {
 
@@ -151,7 +151,7 @@ export class DataOpenrouterPresets extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterPresets resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterPresets to import
-  * @param importFromId The id of the existing DataOpenrouterPresets that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/presets#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterPresets that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/presets#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterPresets to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -163,7 +163,7 @@ export class DataOpenrouterPresets extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.1.32/docs/data-sources/presets openrouter_presets} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/presets openrouter_presets} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -174,7 +174,7 @@ export class DataOpenrouterPresets extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_presets',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.1.32'
+        providerVersion: '0.2.30'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

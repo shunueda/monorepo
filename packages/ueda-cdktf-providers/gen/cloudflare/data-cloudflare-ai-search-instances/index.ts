@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/cloudflare/cloudflare/5.22.0/docs/data-sources/ai_search_instances
+// https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/ai_search_instances
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -8,39 +8,39 @@ import * as cdktf from 'cdktf';
 
 export interface DataCloudflareAiSearchInstancesConfig extends cdktf.TerraformMetaArguments {
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.22.0/docs/data-sources/ai_search_instances#account_id DataCloudflareAiSearchInstances#account_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/ai_search_instances#account_id DataCloudflareAiSearchInstances#account_id}
   */
   readonly accountId?: string;
   /**
   * Max items to fetch, default: 1000
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.22.0/docs/data-sources/ai_search_instances#max_items DataCloudflareAiSearchInstances#max_items}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/ai_search_instances#max_items DataCloudflareAiSearchInstances#max_items}
   */
   readonly maxItems?: number;
   /**
   * Filter by namespace.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.22.0/docs/data-sources/ai_search_instances#namespace DataCloudflareAiSearchInstances#namespace}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/ai_search_instances#namespace DataCloudflareAiSearchInstances#namespace}
   */
   readonly namespace?: string;
   /**
   * Field to order results by.
   * Available values: "created_at".
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.22.0/docs/data-sources/ai_search_instances#order_by DataCloudflareAiSearchInstances#order_by}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/ai_search_instances#order_by DataCloudflareAiSearchInstances#order_by}
   */
   readonly orderBy?: string;
   /**
   * Order direction.
   * Available values: "asc", "desc".
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.22.0/docs/data-sources/ai_search_instances#order_by_direction DataCloudflareAiSearchInstances#order_by_direction}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/ai_search_instances#order_by_direction DataCloudflareAiSearchInstances#order_by_direction}
   */
   readonly orderByDirection?: string;
   /**
   * Filter instances whose id contains this string (case-insensitive).
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.22.0/docs/data-sources/ai_search_instances#search DataCloudflareAiSearchInstances#search}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/ai_search_instances#search DataCloudflareAiSearchInstances#search}
   */
   readonly search?: string;
 }
@@ -590,6 +590,11 @@ export class DataCloudflareAiSearchInstancesResultPublicEndpointParamsOutputRefe
   // custom_domains - computed: true, optional: false, required: false
   public get customDomains() {
     return this.getListAttribute('custom_domains');
+  }
+
+  // default_domain_enabled - computed: true, optional: false, required: false
+  public get defaultDomainEnabled() {
+    return this.getBooleanAttribute('default_domain_enabled');
   }
 
   // enabled - computed: true, optional: false, required: false
@@ -1390,7 +1395,7 @@ export class DataCloudflareAiSearchInstancesResultList extends cdktf.ComplexList
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.22.0/docs/data-sources/ai_search_instances cloudflare_ai_search_instances}
+* Represents a {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/ai_search_instances cloudflare_ai_search_instances}
 */
 export class DataCloudflareAiSearchInstances extends cdktf.TerraformDataSource {
 
@@ -1406,7 +1411,7 @@ export class DataCloudflareAiSearchInstances extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataCloudflareAiSearchInstances resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataCloudflareAiSearchInstances to import
-  * @param importFromId The id of the existing DataCloudflareAiSearchInstances that should be imported. Refer to the {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.22.0/docs/data-sources/ai_search_instances#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataCloudflareAiSearchInstances that should be imported. Refer to the {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/ai_search_instances#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataCloudflareAiSearchInstances to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -1418,7 +1423,7 @@ export class DataCloudflareAiSearchInstances extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.22.0/docs/data-sources/ai_search_instances cloudflare_ai_search_instances} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/ai_search_instances cloudflare_ai_search_instances} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -1429,7 +1434,7 @@ export class DataCloudflareAiSearchInstances extends cdktf.TerraformDataSource {
       terraformResourceType: 'cloudflare_ai_search_instances',
       terraformGeneratorMetadata: {
         providerName: 'cloudflare',
-        providerVersion: '5.22.0'
+        providerVersion: '5.23.0'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
