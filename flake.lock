@@ -66,48 +66,6 @@
         "type": "github"
       }
     },
-    "dimmer": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1781798375,
-        "narHash": "sha256-BE/5QL+Aa9yUnCIngXwXRRuj6nMBsOue4xsLfM6o96s=",
-        "owner": "gonewest818",
-        "repo": "dimmer.el",
-        "rev": "bbab62f01d45086b9098f6a0ab765282d9c7bc45",
-        "type": "github"
-      },
-      "original": {
-        "owner": "gonewest818",
-        "repo": "dimmer.el",
-        "type": "github"
-      }
-    },
-    "direnv-instant": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "treefmt-nix": [
-          "treefmt-nix"
-        ]
-      },
-      "locked": {
-        "lastModified": 1787194461,
-        "narHash": "sha256-5VJhBIniqXRV6a8CWht4nlVFc9VX+iQFOhgS0oN+N0Y=",
-        "owner": "shunueda",
-        "repo": "direnv-instant",
-        "rev": "46eb2a8bb8eaa9f52ce9183bdb7f7ffbc8d9cf23",
-        "type": "github"
-      },
-      "original": {
-        "owner": "shunueda",
-        "repo": "direnv-instant",
-        "type": "github"
-      }
-    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -466,8 +424,6 @@
       "inputs": {
         "codegen": "codegen",
         "devshell": "devshell",
-        "dimmer": "dimmer",
-        "direnv-instant": "direnv-instant",
         "disko": "disko",
         "emacs-direnv-async-patch": "emacs-direnv-async-patch",
         "emacs-overlay": "emacs-overlay",

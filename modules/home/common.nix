@@ -17,7 +17,6 @@ in
     {
       imports = [
         inputs.nocommit.homeModules.default
-        inputs.direnv-instant.homeModules.default
         ./ghq.nix
       ];
       xdg = {
@@ -128,10 +127,6 @@ in
         direnv = {
           enable = true;
           nix-direnv.enable = true;
-        };
-        direnv-instant = {
-          enable = true;
-          settings.mux_delay = 0;
         };
         emacs = {
           enable = true;

@@ -12,16 +12,6 @@
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dimmer = {
-      url = "github:gonewest818/dimmer.el";
-      flake = false;
-    };
-    direnv-instant = {
-      url = "github:shunueda/direnv-instant";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
