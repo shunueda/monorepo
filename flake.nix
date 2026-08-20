@@ -17,7 +17,7 @@
       flake = false;
     };
     direnv-instant = {
-      url = "github:mic92/direnv-instant";
+      url = "github:shunueda/direnv-instant";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.treefmt-nix.follows = "treefmt-nix";
