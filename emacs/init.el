@@ -9,11 +9,15 @@
   completion-cycle-threshold t
   confirm-kill-emacs 'yes-or-no-p
   custom-file (concat user-emacs-directory "custom.el")
+  eglot-code-action-indications nil
+  eglot-documentation-renderer 'markdown-ts-view-mode
+  eldoc-help-at-pt t
   ;; Revert Dired and other buffers
   global-auto-revert-non-file-buffers t
   indent-tabs-mode nil
   ;; Don't show the startup message
   inhibit-startup-message t
+  kill-region-dwim 'emacs-word
   ;; Don't warn on large files
   large-file-warning-threshold nil
   ;; Make super-save work nicely with Magit
@@ -35,6 +39,9 @@
   treesit-font-lock-level 4
   use-dialog-box nil
   use-package-always-ensure nil
+  vc-allow-rewriting-published-history t
+  vc-auto-revert-mode t
+  vc-dir-auto-hide-up-to-date 'revert
   ;; Follow symlinks to VC-controlled files without warning
   vc-follow-symlinks t
   visible-bell t
@@ -118,7 +125,6 @@
   :hook (tty-setup . global-kkp-mode))
 (use-package
   dimmer
-  :ensure t
   :custom
   (dimmer-fraction 0.75)
   (dimmer-adjustment-mode :foreground)

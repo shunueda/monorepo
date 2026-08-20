@@ -153,7 +153,6 @@ in
               embark
               embark-consult
               exec-path-from-shell
-              forge
               ghq
               gptel
               hl-todo
