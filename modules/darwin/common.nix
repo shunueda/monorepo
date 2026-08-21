@@ -42,7 +42,6 @@
         config.allowUnfree = true;
         overlays = [
           inputs.nur.overlays.default
-          inputs.emacs-overlay.overlays.default
           (import ../../nix/ueda-overlay.nix { inherit inputs self; })
         ];
       };

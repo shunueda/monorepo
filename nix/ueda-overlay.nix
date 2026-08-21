@@ -16,6 +16,7 @@ in
   inherit (pkgs-unstable)
     # Backport from unstable
     homerow
+    emacsPackages
     ;
 
   emacs = pkgs-unstable.emacs31.overrideAttrs (prev: {

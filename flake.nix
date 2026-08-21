@@ -20,9 +20,6 @@
       url = "https://github.com/wbolster/emacs-direnv/pull/82.patch";
       flake = false;
     };
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
