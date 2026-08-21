@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,55 +10,55 @@ export interface ByokKeyConfig extends cdktf.TerraformMetaArguments {
   /**
   * Optional allowlist of model slugs this credential may be used for. `null` means no restriction.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key#allowed_models ByokKey#allowed_models}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key#allowed_models ByokKey#allowed_models}
   */
   readonly allowedModels?: string[];
   /**
   * Optional allowlist of user IDs that may use this credential. `null` means no restriction.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key#allowed_user_ids ByokKey#allowed_user_ids}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key#allowed_user_ids ByokKey#allowed_user_ids}
   */
   readonly allowedUserIds?: string[];
   /**
   * Whether this credential should be created in a disabled state.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key#disabled ByokKey#disabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key#disabled ByokKey#disabled}
   */
   readonly disabled?: boolean | cdktf.IResolvable;
   /**
   * Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key#is_fallback ByokKey#is_fallback}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key#is_fallback ByokKey#is_fallback}
   */
   readonly isFallback?: boolean | cdktf.IResolvable;
   /**
   * The raw provider API key or credential. This value is encrypted at rest and never returned in API responses.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key#key ByokKey#key}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key#key ByokKey#key}
   */
   readonly key: string;
   /**
   * Optional human-readable name for the credential.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key#name ByokKey#name}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key#name ByokKey#name}
   */
   readonly name?: string;
   /**
   * The upstream provider this credential authenticates against, as a lowercase slug (e.g. `openai`, `anthropic`, `amazon-bedrock`). must be one of ["ai21", "aion-labs", "akashml", "alibaba", "amazon-bedrock", "amazon-nova", "ambient", "anthropic", "arcee-ai", "atlas-cloud", "avian", "azure", "baidu", "baseten", "black-forest-labs", "byteplus", "cerebras", "chutes", "cirrascale", "clarifai", "cloudflare", "cohere", "coreweave", "crusoe", "darkbloom", "databricks", "decart", "deepgram", "deepinfra", "deepseek", "dekallm", "digitalocean", "featherless", "fireworks", "fish-audio", "friendli", "gmicloud", "google-ai-studio", "google-vertex", "groq", "heygen", "inception", "inceptron", "inferact-vllm", "inference-net", "infermatic", "inflection", "io-net", "ionstream", "krea", "liquid", "mancer", "mara", "meta", "minimax", "mistral", "modal", "modelrun", "modular", "moonshotai", "morph", "ncompass", "nebius", "nex-agi", "nextbit", "novita", "nvidia", "open-inference", "openai", "parasail", "perceptron", "perplexity", "phala", "poolside", "quiver", "recraft", "reka", "relace", "runway", "sail-research", "sakana", "sakana-ai", "sambanova", "seed", "siliconflow", "sourceful", "stepfun", "streamlake", "switchpoint", "tencent", "tenstorrent", "thinkingmachines", "together", "upstage", "venice", "wafer", "wandb", "wandb-legacy", "xai", "xiaomi", "z-ai"]; Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key#provider_slug ByokKey#provider_slug}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key#provider_slug ByokKey#provider_slug}
   */
   readonly providerSlug: string;
   /**
   * Optional workspace ID to scope the credential to. When omitted, the credential is created in the account's default workspace; if that default has been deleted, the request returns a 400 and you must pass `workspace_id` explicitly. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key#workspace_id ByokKey#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key#workspace_id ByokKey#workspace_id}
   */
   readonly workspaceId?: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key openrouter_byok_key}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key openrouter_byok_key}
 */
 export class ByokKey extends cdktf.TerraformResource {
 
@@ -74,7 +74,7 @@ export class ByokKey extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a ByokKey resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the ByokKey to import
-  * @param importFromId The id of the existing ByokKey that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing ByokKey that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the ByokKey to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -86,7 +86,7 @@ export class ByokKey extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/resources/byok_key openrouter_byok_key} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/resources/byok_key openrouter_byok_key} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -97,7 +97,7 @@ export class ByokKey extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_byok_key',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.30'
+        providerVersion: '0.2.43'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

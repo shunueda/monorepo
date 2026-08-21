@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/api_key
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/api_key
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,13 +10,13 @@ export interface DataOpenrouterApiKeyConfig extends cdktf.TerraformMetaArguments
   /**
   * Unique hash identifier for the API key
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/api_key#hash DataOpenrouterApiKey#hash}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/api_key#hash DataOpenrouterApiKey#hash}
   */
   readonly hash: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/api_key openrouter_api_key}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/api_key openrouter_api_key}
 */
 export class DataOpenrouterApiKey extends cdktf.TerraformDataSource {
 
@@ -32,7 +32,7 @@ export class DataOpenrouterApiKey extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterApiKey resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterApiKey to import
-  * @param importFromId The id of the existing DataOpenrouterApiKey that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/api_key#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterApiKey that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/api_key#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterApiKey to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -44,7 +44,7 @@ export class DataOpenrouterApiKey extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/api_key openrouter_api_key} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/api_key openrouter_api_key} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -55,7 +55,7 @@ export class DataOpenrouterApiKey extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_api_key',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.30'
+        providerVersion: '0.2.43'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

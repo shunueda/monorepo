@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,175 +10,175 @@ export interface DataOpenrouterModelsConfig extends cdktf.TerraformMetaArguments
   /**
   * Filter models by architecture/model family (e.g. GPT, Claude, Gemini, Llama).
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#arch DataOpenrouterModels#arch}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#arch DataOpenrouterModels#arch}
   */
   readonly arch?: string;
   /**
   * Filter models by use case category. must be one of ["programming", "roleplay", "marketing", "marketing/seo", "technology", "science", "translation", "legal", "finance", "health", "trivia", "academia"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#category DataOpenrouterModels#category}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#category DataOpenrouterModels#category}
   */
   readonly category?: string;
   /**
   * Minimum context length (tokens). Models with smaller context are excluded.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#context DataOpenrouterModels#context}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#context DataOpenrouterModels#context}
   */
   readonly context?: number;
   /**
   * Filter by distillation capability. "true" returns only distillable models, "false" excludes them. must be one of ["true", "false"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#distillable DataOpenrouterModels#distillable}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#distillable DataOpenrouterModels#distillable}
   */
   readonly distillable?: string;
   /**
   * Filter models by input modality. Comma-separated list of: text, image, audio, file.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#input_modalities DataOpenrouterModels#input_modalities}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#input_modalities DataOpenrouterModels#input_modalities}
   */
   readonly inputModalities?: string;
   /**
   * Maximum model age in days since its creation date.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#max_age_days DataOpenrouterModels#max_age_days}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#max_age_days DataOpenrouterModels#max_age_days}
   */
   readonly maxAgeDays?: number;
   /**
   * Maximum Artificial Analysis agentic index.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#max_agentic_index DataOpenrouterModels#max_agentic_index}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#max_agentic_index DataOpenrouterModels#max_agentic_index}
   */
   readonly maxAgenticIndex?: number;
   /**
   * Maximum Artificial Analysis coding index.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#max_coding_index DataOpenrouterModels#max_coding_index}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#max_coding_index DataOpenrouterModels#max_coding_index}
   */
   readonly maxCodingIndex?: number;
   /**
   * Maximum Artificial Analysis intelligence index.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#max_intelligence_index DataOpenrouterModels#max_intelligence_index}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#max_intelligence_index DataOpenrouterModels#max_intelligence_index}
   */
   readonly maxIntelligenceIndex?: number;
   /**
   * Maximum completion (output) price in $/M tokens.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#max_output_price DataOpenrouterModels#max_output_price}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#max_output_price DataOpenrouterModels#max_output_price}
   */
   readonly maxOutputPrice?: number;
   /**
   * Maximum prompt price in $/M tokens.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#max_price DataOpenrouterModels#max_price}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#max_price DataOpenrouterModels#max_price}
   */
   readonly maxPrice?: number;
   /**
   * Maximum tool-calling success rate, as a fraction in [0, 1].
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#max_tool_success_rate DataOpenrouterModels#max_tool_success_rate}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#max_tool_success_rate DataOpenrouterModels#max_tool_success_rate}
   */
   readonly maxToolSuccessRate?: number;
   /**
   * Minimum model age in days since its creation date.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#min_age_days DataOpenrouterModels#min_age_days}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#min_age_days DataOpenrouterModels#min_age_days}
   */
   readonly minAgeDays?: number;
   /**
   * Minimum Artificial Analysis agentic index.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#min_agentic_index DataOpenrouterModels#min_agentic_index}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#min_agentic_index DataOpenrouterModels#min_agentic_index}
   */
   readonly minAgenticIndex?: number;
   /**
   * Minimum Artificial Analysis coding index.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#min_coding_index DataOpenrouterModels#min_coding_index}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#min_coding_index DataOpenrouterModels#min_coding_index}
   */
   readonly minCodingIndex?: number;
   /**
   * Minimum Artificial Analysis intelligence index.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#min_intelligence_index DataOpenrouterModels#min_intelligence_index}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#min_intelligence_index DataOpenrouterModels#min_intelligence_index}
   */
   readonly minIntelligenceIndex?: number;
   /**
   * Minimum completion (output) price in $/M tokens.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#min_output_price DataOpenrouterModels#min_output_price}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#min_output_price DataOpenrouterModels#min_output_price}
   */
   readonly minOutputPrice?: number;
   /**
   * Minimum prompt price in $/M tokens.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#min_price DataOpenrouterModels#min_price}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#min_price DataOpenrouterModels#min_price}
   */
   readonly minPrice?: number;
   /**
   * Minimum tool-calling success rate, as a fraction in [0, 1] (e.g. 0.9 = 90% of requests finishing with a tool_calls finish reason).
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#min_tool_success_rate DataOpenrouterModels#min_tool_success_rate}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#min_tool_success_rate DataOpenrouterModels#min_tool_success_rate}
   */
   readonly minToolSuccessRate?: number;
   /**
   * Filter models by the organization that created the model. Comma-separated list of author slugs.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#model_authors DataOpenrouterModels#model_authors}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#model_authors DataOpenrouterModels#model_authors}
   */
   readonly modelAuthors?: string;
   /**
   * Filter models by output modality. Accepts a comma-separated list of modalities (text, image, audio, embeddings) or "all" to include all models. Defaults to "text".
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#output_modalities DataOpenrouterModels#output_modalities}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#output_modalities DataOpenrouterModels#output_modalities}
   */
   readonly outputModalities?: string;
   /**
   * Filter models by hosting provider. Comma-separated list of provider names.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#providers DataOpenrouterModels#providers}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#providers DataOpenrouterModels#providers}
   */
   readonly providers?: string;
   /**
   * Free-text search by model name or slug.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#q DataOpenrouterModels#q}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#q DataOpenrouterModels#q}
   */
   readonly q?: string;
   /**
   * Filter to models with endpoints in the given data region ("eu" or "us"). must be one of ["eu", "us"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#region DataOpenrouterModels#region}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#region DataOpenrouterModels#region}
   */
   readonly region?: string;
   /**
   * Sort the returned models server-side. Prefer this over fetching the full list and sorting client-side. Options: pricing-low-to-high, pricing-high-to-low (average prompt/completion price), context-high-to-low (context length), throughput-high-to-low, latency-low-to-high (recent median performance), most-popular, top-weekly (tokens processed in the last week), newest (creation date), intelligence-high-to-low, coding-high-to-low, agentic-high-to-low (Artificial Analysis indices), design-arena-elo-high-to-low (best Design Arena ELO across arenas). Models without a score for the chosen benchmark are placed last. When omitted, the existing default ordering is preserved. must be one of ["most-popular", "newest", "top-weekly", "pricing-low-to-high", "pricing-high-to-low", "context-high-to-low", "throughput-high-to-low", "latency-low-to-high", "intelligence-high-to-low", "coding-high-to-low", "agentic-high-to-low", "design-arena-elo-high-to-low"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#sort DataOpenrouterModels#sort}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#sort DataOpenrouterModels#sort}
   */
   readonly sort?: string;
   /**
   * Filter models by supported parameter (comma-separated)
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#supported_parameters DataOpenrouterModels#supported_parameters}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#supported_parameters DataOpenrouterModels#supported_parameters}
   */
   readonly supportedParameters?: string;
   /**
   * Return results as RSS feed
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#use_rss DataOpenrouterModels#use_rss}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#use_rss DataOpenrouterModels#use_rss}
   */
   readonly useRss?: string;
   /**
   * Use chat links in RSS feed items
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#use_rss_chat_links DataOpenrouterModels#use_rss_chat_links}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#use_rss_chat_links DataOpenrouterModels#use_rss_chat_links}
   */
   readonly useRssChatLinks?: string;
   /**
   * When set to "true", return only models with zero data retention endpoints. must be "true"
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#zdr DataOpenrouterModels#zdr}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#zdr DataOpenrouterModels#zdr}
   */
   readonly zdr?: string;
 }
@@ -1350,7 +1350,7 @@ export class DataOpenrouterModelsLinksOutputReference extends cdktf.ComplexObjec
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models openrouter_models}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models openrouter_models}
 */
 export class DataOpenrouterModels extends cdktf.TerraformDataSource {
 
@@ -1366,7 +1366,7 @@ export class DataOpenrouterModels extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterModels resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterModels to import
-  * @param importFromId The id of the existing DataOpenrouterModels that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterModels that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterModels to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -1378,7 +1378,7 @@ export class DataOpenrouterModels extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.30/docs/data-sources/models openrouter_models} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.43/docs/data-sources/models openrouter_models} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -1389,7 +1389,7 @@ export class DataOpenrouterModels extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_models',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.30'
+        providerVersion: '0.2.43'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
