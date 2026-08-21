@@ -342,6 +342,7 @@ in
             tree
             yubikey-manager
             zbar
+            steam-darwin
             # keep-sorted end
           ]
         );
