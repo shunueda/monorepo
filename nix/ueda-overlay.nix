@@ -21,6 +21,10 @@ in
     ;
 
   emacs = pkgs-unstable.emacs31.overrideAttrs (prev: {
-    patches = prev.patches or [ ] ++ [ ../patches/emacs-31/round-undecorated-frame.patch ];
+    patches = prev.patches or [ ] ++ [
+      ../patches/emacs-31/round-undecorated-frame.patch
+      ../patches/emacs-31/frame-transparency.patch
+      ../patches/emacs-31/fix-ns-x-colors.patch
+    ];
   });
 }
