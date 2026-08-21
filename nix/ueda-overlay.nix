@@ -16,8 +16,6 @@ in
   inherit (pkgs-unstable)
     # Backport from unstable
     homerow
-    # Broken on 26.05
-    mailutils
     ;
 
   emacs = pkgs-unstable.emacs31.overrideAttrs (prev: {
