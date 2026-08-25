@@ -291,8 +291,11 @@
 (use-package editorconfig :config (editorconfig-mode 1))
 (use-package
   eglot
+  :custom
+  (eglot-extend-to-xref t)
   :hook
   (rust-ts-mode . eglot-ensure)
+  (rust-mode . eglot-ensure)
   (typescript-ts-mode . eglot-ensure)
   (tsx-ts-mode . eglot-ensure)
   (nix-ts-mode . eglot-ensure)
@@ -305,13 +308,28 @@
   (add-to-list
     'eglot-server-programs
     '(kotlin-ts-mode . ("kotlin-language-server")))
+
+  (defun ueda/rust-analyzer-contact (_interactive)
+    (let*
+      ((root (project-root (project-current t)))
+        (default-directory root)
+        (manifests
+          (split-string
+            (shell-command-to-string
+              "git ls-files --cached --others --exclude-standard -- '*Cargo.toml'")
+            "\n"
+            t)))
+      (list
+        "rust-analyzer"
+        :initializationOptions
+        (list
+          :linkedProjects (vconcat manifests)
+          :cargo '(:allFeatures t)
+          :check '(:command "clippy")))))
+
   (add-to-list
     'eglot-server-programs
-    '
-    ((rust-ts-mode rust-mode)
-      .
-      ("rust-analyzer"
-        :initializationOptions (:check (:command "clippy")))))
+    '((rust-ts-mode rust-mode) . ueda/rust-analyzer-contact))
   (add-to-list
     'completion-category-overrides
     '(eglot (styles orderless))))
