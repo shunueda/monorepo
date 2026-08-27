@@ -1,0 +1,7 @@
+#+TITLE: Setting up my YubiKey
+#+DATE: <2026-06-20>
+#+FILETAGS: :security:
+
+To manage my GPG key, I set up my YubiKey (5C NFC). This guide was extremely helpful: https://github.com/drduh/YubiKey-Guide.
+
+One note: if you're using ed25519 for your signing key, make sure to set =KEY_TYPE=cv25519= before creating the encryption (E) subkey - GPG will complain otherwise.

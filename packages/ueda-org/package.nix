@@ -8,16 +8,15 @@
   lib,
 }:
 let
+  domains = [
+    "shunueda.org"
+    "ueda.srht.site"
+  ];
+
   publish = writeShellApplication {
     name = "ueda-org-publish";
     runtimeInputs = [ hut ];
     text =
-      let
-        domains = [
-          "shunueda.org"
-          "ueda.srht.site"
-        ];
-      in
       ''
         <<<"$SRHT_TOKEN" hut init
 
@@ -29,7 +28,7 @@ let
     runCommand "ueda-org"
       {
         nativeBuildInputs = [
-          (emacs.pkgs.withPackages (epkgs: with epkgs; [ htmlize ]))
+          (emacs.pkgs.withPackages (epkgs: with epkgs; [ htmlize org-static-blog ]))
           gnutar
           writableTmpDirAsHomeHook
         ];
@@ -37,9 +36,11 @@ let
         passthru = { inherit publish; };
       }
       ''
-        emacs --batch --script ${./build.el} ${./src} build
+        mkdir -p build/drafts
 
-        cp -r ${./src}/* build
+        emacs --batch --script ${./build.el} ${./src} build ${builtins.head domains}
+
+        cp -r ${./src}/style.css ${./src}/assets build
 
         tar -cvzf $out -C build .
       '';

@@ -1,0 +1,37 @@
+#+TITLE: Does anyone find Google's AI search useful?
+#+DATE: <2026-06-20>
+#+FILETAGS: :nix:
+
+I've never found Google's "AI Overview" particularly helpful. It's been more distracting than useful, and worse still, there seems to be no way to turn it off.
+
+Since then, I've switched to DuckDuckGo's “No AI” search at https://noai.duckduckgo.com/, and that has worked well for me.
+
+Here's how to configure it in Home Manager. I use Librewolf, but this should work the same way in Firefox:
+
+#+begin_src nix
+  librewolf = {
+    enable = true;
+    policies = {
+      GenerativeAI.Enabled = false; # Bonus: turn off other Firefox AI features
+    };
+    profiles.<my-profile> = {
+      search = {
+        force = true;
+        default = "ddg-noai";
+        engines = {
+          "ddg-noai" = {
+            urls = [
+              {
+                template = "https://noai.duckduckgo.com/";
+                params = [ (lib.nameValuePair "q" "{searchTerms}") ];
+              }
+            ];
+            definedAliases = [ "@noai" ];
+          };
+        };
+      };
+      ...
+    };
+  ...
+  };
+#+end_src

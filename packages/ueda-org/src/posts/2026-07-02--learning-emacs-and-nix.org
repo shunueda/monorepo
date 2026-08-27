@@ -1,0 +1,8 @@
+#+TITLE: Learning Emacs & Nix
+#+DATE: <2026-07-02>
+#+FILETAGS: :emacs:nix:
+
+Very helpful tutorials that helped me get started:
+
+- [[http://xahlee.info/emacs/index.html][Xah Emacs Tutorial]]
+- [[https://code.tvl.fyi/about/nix/nix-1p][Nix - A One Pager]]

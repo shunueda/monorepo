@@ -1,0 +1,42 @@
+#+TITLE: histsync: sync shell history with pass
+#+DATE: <2026-06-20>
+#+FILETAGS: :nix:
+
+[[https://github.com/atuinsh/atuin][Atuin]] is super cool: it let's you sync shell history across machine, but few issues for me:
+
+1. Requires a server. I distrust managed public servers and don't want to host my own.
+2. Heavy LLM usage for development. I have nothing against LLMs but I try to avoid them.
+
+I use [[https://www.passwordstore.org/][password-store]] (pass), so why don't I leverage this:
+
+#+begin_src nix
+  bash = {
+    enable = true;
+    # ...
+    initExtra = ''
+      histsync() {
+        # Append currently history to HISTFILE
+        history -a
+
+        # Entry name in pass - I separate history by host
+        local passentry="ShellHistories/$HOSTNAME"
+
+        # Merge HISTFILE and pass entries, remove duplicates, update HISTFILE
+        (cat "$HISTFILE" 2>/dev/null; pass show "$passentry" 2>/dev/null) |
+          awk '!a[$0]++' |
+          ${pkgs.moreutils}/bin/sponge "$HISTFILE"
+
+        # Update pass entry with the merged history
+        <"$HISTFILE" pass insert -mf "$passentry"
+
+        # Reload history for current session
+        history -c
+        history -r
+      }
+
+      # ...
+    '';
+  };
+#+end_src
+
+Note: the merge logic will not work if you use timestamps.

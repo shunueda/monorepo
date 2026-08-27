@@ -1,0 +1,41 @@
+#+TITLE: (macOS) Suppress annoying `xcrun` popup
+#+DATE: <2026-08-07>
+#+FILETAGS: :macOS:nix:
+
+macOS puts a stub at =/usr/bin/python3= (and friends) that shells out to =xcrun= to find the real binary. If Xcode Command Line Tools aren't installed, this triggers an annoying GUI popup - which I really don't want since I manage everything through Nix devShells and avoid impure global installs.
+
+[[./assets/xcrun.png]]
+
+I looked at the [[https://linuxcommandlibrary.com/man/xcrun][manpage]], and found that =xcrun= respects the envvar =DEVELOPER_DIR=, and wondered if pointing this envvar to a stub =xcrun= could suppress the popup.
+
+#+begin_src nix
+    let
+    # Suppress annoying `xcrun` popups
+    stubDeveloperDir = "${pkgs.linkFarm "stub-developer-dir" [
+        {
+          name = "usr/bin/xcrun";
+          path = pkgs.writeShellScript "stub-xcrun" ''
+            >&2 echo "$1: command not found"
+            exit 127
+          '';
+        }
+      ]}";
+    in
+    ...
+    environment = {
+      shells = [ pkgs.bash ];
+      variables = {
+        DEVELOPER_DIR = stubDeveloperDir;
+      };
+    };
+    launchd.user.envVariables = {
+      DEVELOPER_DIR = stubDeveloperDir;
+    };
+#+end_src
+
+And voila!
+
+#+begin_src console
+  $ python3
+  python3: command not found
+#+end_src

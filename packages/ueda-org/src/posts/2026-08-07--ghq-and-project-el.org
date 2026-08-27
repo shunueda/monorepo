@@ -1,0 +1,18 @@
+#+TITLE: ghq 🤝 project.el
+#+DATE: <2026-08-07>
+#+FILETAGS: :emacs:
+
+I use [[https://github.com/x-motemen/ghq][ghq]] for remote repository management, and I make it integrate with =project.el='s project switcher (=C-x p p=) like this:
+
+#+begin_src emacs-lisp
+  (use-package
+    project
+    :config
+    ;; Populate the project switcher list from `ghq`
+    (dolist
+      (project
+        (split-string (shell-command-to-string "ghq list --full-path")
+          "\n"
+          t))
+      (project--remember-dir (file-name-as-directory project)))
+#+end_src

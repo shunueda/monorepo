@@ -1,0 +1,11 @@
+#+TITLE: TIL: Sieve (mail filtering language)
+#+DATE: <2026-06-21>
+#+FILETAGS: :mail:
+
+I use Fastmail for my emails, and today I found that you can set a custom mail filtering rule using language called [[https://en.wikipedia.org/wiki/Sieve_(mail_filtering_language)][Sieve]].
+
+Apparently there is also a [[https://datatracker.ietf.org/doc/html/rfc5804][protocol to manage Sieve script]], but Fastmail [[https://www.fastmail.help/hc/en-us/articles/360058753814-Sieve-frequently-asked-questions#using][doesn't support it]] :( I thought of writing a Just script or a Terraform provider, but too bad.
+
+However: Fastmail supports [[https://www.fastmail.com/dev/][JMAP API]] (!) so if I /really/ wanted to, I can use =SieveScript/set= - but I'm too lazy. JMAP is crazytown.
+
+Side note, Fastmail is awesome. Highly recommend.
