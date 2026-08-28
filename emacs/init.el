@@ -275,6 +275,14 @@
 (use-package
   forge
   :after magit
+  :bind (:map forge-pullreq-section-map ("M-RET" . my/pr-review-at-point))
+  :config
+  (defun my/pr-review-at-point ()
+    (interactive)
+    (require 'pr-review)
+    (if-let* ((url (pr-review--find-url-in-buffer)))
+      (pr-review url current-prefix-arg))
+    (message "No PR URL found at point"))
   :custom-face
   ;; Tone forge's colors down to match magit's palette
   (forge-topic-open ((t (:inherit magit-branch-remote))))
@@ -296,6 +304,14 @@
     (lambda (&rest _)
       (string-trim
         (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
+
+(use-package pr-review
+  :config
+  (define-advice pr-review--find-url-in-buffer
+      (:after-until () magit-buffer)
+    (and-let* ((_ (featurep 'forge))
+               (target (forge--browse-target)))
+      (if (stringp target) target (forge-get-url target)))))
 
 (use-package
   project
