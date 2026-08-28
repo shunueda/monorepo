@@ -273,6 +273,31 @@
                 (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
 
 (use-package
+  forge
+  :after magit
+  :custom-face
+  ;; Tone forge's colors down to match magit's palette
+  (forge-topic-open ((t (:inherit magit-branch-remote))))
+  (forge-topic-closed ((t (:inherit magit-dimmed))))
+  (forge-topic-merged ((t (:inherit magit-branch-local))))
+  (forge-topic-unmerged ((t (:inherit magit-dimmed))))
+  (forge-pullreq-open ((t (:inherit magit-branch-remote))))
+  (forge-pullreq-merged ((t (:inherit magit-branch-local))))
+  (forge-pullreq-rejected ((t (:inherit magit-dimmed))))
+  (forge-pullreq-draft ((t (:inherit magit-dimmed))))
+  (forge-topic-unread ((t (:inherit bold))))
+  (forge-dimmed ((t (:inherit magit-dimmed))))
+  ;; Labels: drop the bright colored boxes
+  (forge-topic-label ((t (:inherit magit-dimmed :box nil))))
+  :config
+  (advice-add
+    'ghub--token
+    :override
+    (lambda (&rest _)
+      (string-trim
+        (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
+
+(use-package
   project
   :config
   (require 'keymap)
@@ -312,8 +337,7 @@
 (use-package editorconfig :config (editorconfig-mode 1))
 (use-package
   eglot
-  :custom
-  (eglot-extend-to-xref t)
+  :custom (eglot-extend-to-xref t)
   :hook
   (rust-ts-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
@@ -332,7 +356,8 @@
 
   (defun ueda/rust-analyzer-contact (_interactive)
     (let*
-      ((root (project-root (project-current t)))
+      (
+        (root (project-root (project-current t)))
         (default-directory root)
         (manifests
           (split-string
