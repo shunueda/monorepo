@@ -110,17 +110,6 @@ in
               history -r
             }
 
-            z() {
-              local dir
-              if [[ -z $1 ]]; then
-                repo=$(ghq list | fzf) || return
-                dir="$(ghq root)/$repo"
-              else
-                dir=$(fd --type d . | fzf --query "$*") || return
-              fi
-              cd "$dir"
-            }
-
             . "${pkgs.passExtensions.pass-otp}/share/bash-completion/completions/pass-otp"
           '';
         };
@@ -148,6 +137,7 @@ in
               embark
               embark-consult
               exec-path-from-shell
+              forge
               ghq
               gptel
               hl-todo

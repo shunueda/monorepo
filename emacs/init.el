@@ -55,6 +55,13 @@
 ;; Enable pass for auth-source
 (auth-source-pass-enable)
 
+(use-package forge
+  :after magit
+  :config
+  (advice-add 'ghub--token :override
+              (lambda (&rest _)
+                (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
+
 ;; Causes Emacs to freeze
 (global-unset-key [C-wheel-up])
 (global-unset-key [C-wheel-down])

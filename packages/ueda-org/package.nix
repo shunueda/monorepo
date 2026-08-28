@@ -16,19 +16,23 @@ let
   publish = writeShellApplication {
     name = "ueda-org-publish";
     runtimeInputs = [ hut ];
-    text =
-      ''
-        <<<"$SRHT_TOKEN" hut init
+    text = ''
+      <<<"$SRHT_TOKEN" hut init
 
-        ${lib.concatMapStringsSep "\n" (domain: "hut pages publish --domain ${domain} ${final}") domains}
-      '';
+      ${lib.concatMapStringsSep "\n" (domain: "hut pages publish --domain ${domain} ${final}") domains}
+    '';
   };
 
   final =
     runCommand "ueda-org"
       {
         nativeBuildInputs = [
-          (emacs.pkgs.withPackages (epkgs: with epkgs; [ htmlize org-static-blog ]))
+          (emacs.pkgs.withPackages (
+            epkgs: with epkgs; [
+              htmlize
+              org-static-blog
+            ]
+          ))
           gnutar
           writableTmpDirAsHomeHook
         ];
