@@ -95,19 +95,13 @@ in
           initExtra = ''
             export PS1="\[\033[1;32m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ "
 
-            histsync() {
-              history -a
+            z() {
+              local repo=$(ghq list | fzf) && cd "$(ghq root)/$repo"
+            }
 
-              local passentry="ShellHistories/$HOSTNAME"
-
-              (cat "$HISTFILE" 2>/dev/null; pass show "$passentry" 2>/dev/null) |
-                awk '!a[$0]++' |
-                ${pkgs.moreutils}/bin/sponge "$HISTFILE"
-
-              <"$HISTFILE" pass insert -mf "$passentry"
-
-              history -c
-              history -r
+            zi() {
+              local root=$(git rev-parse --show-toplevel)
+              local dir=$(fd --type d . "$root" | fzf) && cd "$dir"
             }
 
             . "${pkgs.passExtensions.pass-otp}/share/bash-completion/completions/pass-otp"
@@ -322,14 +316,17 @@ in
           with pkgs;
           [
             # keep-sorted start
+            coreutils
             docker
             git-absorb
             homerow
             hut
+            moreutils
             pngpaste
             qrcode
             sops
             tree
+            ueda-tools
             yubikey-manager
             zbar
             # keep-sorted end
