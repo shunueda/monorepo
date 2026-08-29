@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
+(require 'xdg)
+
 (setq
   ;; keep-sorted start
   ;; Don't warn on advice
@@ -253,6 +255,9 @@
 
 (use-package forge
   :after magit
+  :custom
+  (forge-database-file
+    (expand-file-name "emacs/forge-database.sqlite" (xdg-data-home)))
   :custom-face
   ;; Tone forge's colors down to match magit's palette
   (forge-topic-open     ((t (:inherit magit-branch-remote))))

@@ -129,6 +129,7 @@ in
               direnv
               elisp-autofmt
               embark
+              pkgs.remoto
               embark-consult
               exec-path-from-shell
               forge
@@ -145,6 +146,7 @@ in
               orderless
               paredit
               rust-mode
+              pr-review
               smartparens
               sops
               super-save
