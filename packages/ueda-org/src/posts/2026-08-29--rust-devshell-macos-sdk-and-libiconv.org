@@ -1,0 +1,31 @@
+#+TITLE: Rust devshell on macOS
+#+DATE: <2026-08-29>
+#+FILETAGS: :nix:rust:
+
+When I develop something, I want a devshell that needs nothing but Nix: no Xcode Command Line Tools, no homebrew, no impure global state. Here's my setup for Rust with [[https://github.com/nix-community/fenix][fenix]]:
+
+#+begin_src nix
+  devshells.default = {
+    packages =
+      with pkgs;
+      [
+        # ...
+        clang
+        inputs'.fenix.packages.stable.toolchain
+        # ...
+      ];
+
+    env = lib.optionals pkgs.stdenv.isDarwin [
+      # Without Xcode, clang can't find the macOS SDK, so get it from nixpkgs
+      {
+        name = "SDKROOT";
+        value = pkgs.apple-sdk_26;
+      }
+      # Some crates (e.g. aws-lc-sys) need -liconv at link time
+      {
+        name = "LIBRARY_PATH";
+        value = "${pkgs.libiconv}/lib";
+      }
+    ];
+  };
+#+end_src
