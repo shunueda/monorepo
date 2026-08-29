@@ -1,5 +1,5 @@
 #+TITLE: Does anyone find Google's AI search useful?
-#+DATE: <2026-06-20>
+#+DATE: <2026-07-06>
 #+FILETAGS: :nix:
 
 I've never found Google's "AI Overview" particularly helpful. It's been more distracting than useful, and worse still, there seems to be no way to turn it off.

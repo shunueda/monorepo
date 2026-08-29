@@ -1,5 +1,5 @@
 #+TITLE: Learning Emacs & Nix
-#+DATE: <2026-07-02>
+#+DATE: <2026-08-05>
 #+FILETAGS: :emacs:nix:
 
 Very helpful tutorials that helped me get started:

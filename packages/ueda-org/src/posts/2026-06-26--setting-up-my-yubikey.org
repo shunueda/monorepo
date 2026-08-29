@@ -1,5 +1,5 @@
 #+TITLE: Setting up my YubiKey
-#+DATE: <2026-06-20>
+#+DATE: <2026-06-26>
 #+FILETAGS: :security:
 
 To manage my GPG key, I set up my YubiKey (5C NFC). This guide was extremely helpful: https://github.com/drduh/YubiKey-Guide.

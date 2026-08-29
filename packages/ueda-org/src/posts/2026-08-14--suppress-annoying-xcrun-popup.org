@@ -1,5 +1,5 @@
 #+TITLE: (macOS) Suppress annoying `xcrun` popup
-#+DATE: <2026-08-07>
+#+DATE: <2026-08-14>
 #+FILETAGS: :macOS:nix:
 
 macOS puts a stub at =/usr/bin/python3= (and friends) that shells out to =xcrun= to find the real binary. If Xcode Command Line Tools aren't installed, this triggers an annoying GUI popup - which I really don't want since I manage everything through Nix devShells and avoid impure global installs.

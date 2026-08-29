@@ -1,5 +1,5 @@
 #+TITLE: ghq 🤝 project.el
-#+DATE: <2026-08-07>
+#+DATE: <2026-08-18>
 #+FILETAGS: :emacs:
 
 I use [[https://github.com/x-motemen/ghq][ghq]] for remote repository management, and I make it integrate with =project.el='s project switcher (=C-x p p=) like this:

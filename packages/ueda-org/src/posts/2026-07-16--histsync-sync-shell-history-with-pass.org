@@ -1,5 +1,5 @@
 #+TITLE: histsync: sync shell history with pass
-#+DATE: <2026-06-20>
+#+DATE: <2026-07-16>
 #+FILETAGS: :nix:
 
 [[https://github.com/atuinsh/atuin][Atuin]] is super cool: it let's you sync shell history across machine, but few issues for me:
