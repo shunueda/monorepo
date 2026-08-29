@@ -129,7 +129,6 @@ in
               direnv
               elisp-autofmt
               embark
-              pkgs.remoto
               embark-consult
               exec-path-from-shell
               forge
@@ -145,8 +144,9 @@ in
               ocaml-eglot
               orderless
               paredit
-              rust-mode
+              pkgs.remoto
               pr-review
+              rust-mode
               smartparens
               sops
               super-save

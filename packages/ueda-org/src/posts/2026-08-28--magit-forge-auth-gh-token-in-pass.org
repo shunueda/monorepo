@@ -1,0 +1,43 @@
+#+TITLE: magit forge auth: gh token in pass
+#+DATE: <2026-08-28>
+#+FILETAGS: :emacs:security:
+
+[[https://docs.magit.vc/forge/][Forge]] gives you PRs, issues, and code reviews inside Magit, but it needs a GitHub token to hit the API. I don't like either of the stock options:
+
+1. (Recommended by Forge) Classic tokens are repo-wide at best and account-wide at worst, and a lot of orgs ban them outright.
+2. Fine-grained tokens are scoped per-owner, so I'd need separate tokens for each org, plus a way to switch between them in Forge.
+
+The [[https://cli.github.com/][gh CLI]] already solved the hard part of auth: browser-based OAuth with device flow, SSO included. I don't want to reinvent that, so my (slightly cursed) approach is: let gh do the heavy-lifting, then capture the token, and stash it in [[https://www.passwordstore.org/][password-store]] (pass):
+
+#+begin_src bash
+  #!/usr/bin/env bash
+
+  tmp=$(mktemp -d)
+
+  trap 'rm -rf $tmp' EXIT
+
+  export GH_CONFIG_DIR=$tmp
+
+  # --insecure-storage stores the token as plaintext in GH_CONFIG_DIR instead
+  # of the native keychain. I don't want to pollute the global state, and the
+  # token is persisted in pass.
+  gh auth login --web --insecure-storage --git-protocol ssh --skip-ssh-key --clipboard
+
+  token=$(gh auth token)
+
+  <<<"$token" pass insert -mf "ApiKeys/GH_TOKEN"
+#+end_src
+
+Now Emacs reads it back out, using [[https://www.gnu.org/software/emacs/manual/html_mono/auth.html#The-Unix-password-store][auth-source's native pass support]]. Forge's API client, [[https://github.com/magit/ghub][ghub]], asks for a token, and I override =ghub--token= to pull it from pass:
+
+#+begin_src emacs-lisp
+  ;; Enable pass for auth-source
+  (auth-source-pass-enable)
+
+  (use-package forge
+    :after magit
+    :config
+    (advice-add 'ghub--token :override
+                (lambda (&rest _)
+                  (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
+#+end_src
