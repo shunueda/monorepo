@@ -40,6 +40,7 @@ Object.defineProperty(exports, 'cloudforceOneRequestPriority', { get: function (
 Object.defineProperty(exports, 'connectivityDirectoryService', { get: function () { return require('./connectivity-directory-service'); } });
 Object.defineProperty(exports, 'contentScanning', { get: function () { return require('./content-scanning'); } });
 Object.defineProperty(exports, 'contentScanningExpression', { get: function () { return require('./content-scanning-expression'); } });
+Object.defineProperty(exports, 'ctAlerting', { get: function () { return require('./ct-alerting'); } });
 Object.defineProperty(exports, 'customCsr', { get: function () { return require('./custom-csr'); } });
 Object.defineProperty(exports, 'customHostname', { get: function () { return require('./custom-hostname'); } });
 Object.defineProperty(exports, 'customHostnameFallbackOrigin', { get: function () { return require('./custom-hostname-fallback-origin'); } });
@@ -116,6 +117,7 @@ Object.defineProperty(exports, 'pagesProject', { get: function () { return requi
 Object.defineProperty(exports, 'pipeline', { get: function () { return require('./pipeline'); } });
 Object.defineProperty(exports, 'pipelineSink', { get: function () { return require('./pipeline-sink'); } });
 Object.defineProperty(exports, 'pipelineStream', { get: function () { return require('./pipeline-stream'); } });
+Object.defineProperty(exports, 'precursor', { get: function () { return require('./precursor'); } });
 Object.defineProperty(exports, 'queue', { get: function () { return require('./queue'); } });
 Object.defineProperty(exports, 'queueConsumer', { get: function () { return require('./queue-consumer'); } });
 Object.defineProperty(exports, 'r2Bucket', { get: function () { return require('./r2-bucket'); } });
@@ -327,6 +329,7 @@ Object.defineProperty(exports, 'dataCloudflareConnectivityDirectoryService', { g
 Object.defineProperty(exports, 'dataCloudflareConnectivityDirectoryServices', { get: function () { return require('./data-cloudflare-connectivity-directory-services'); } });
 Object.defineProperty(exports, 'dataCloudflareContentScanning', { get: function () { return require('./data-cloudflare-content-scanning'); } });
 Object.defineProperty(exports, 'dataCloudflareContentScanningExpressions', { get: function () { return require('./data-cloudflare-content-scanning-expressions'); } });
+Object.defineProperty(exports, 'dataCloudflareCtAlerting', { get: function () { return require('./data-cloudflare-ct-alerting'); } });
 Object.defineProperty(exports, 'dataCloudflareCustomCsr', { get: function () { return require('./data-cloudflare-custom-csr'); } });
 Object.defineProperty(exports, 'dataCloudflareCustomCsrs', { get: function () { return require('./data-cloudflare-custom-csrs'); } });
 Object.defineProperty(exports, 'dataCloudflareCustomHostname', { get: function () { return require('./data-cloudflare-custom-hostname'); } });
@@ -382,6 +385,7 @@ Object.defineProperty(exports, 'dataCloudflareGoogleTagGateway', { get: function
 Object.defineProperty(exports, 'dataCloudflareHealthcheck', { get: function () { return require('./data-cloudflare-healthcheck'); } });
 Object.defineProperty(exports, 'dataCloudflareHealthchecks', { get: function () { return require('./data-cloudflare-healthchecks'); } });
 Object.defineProperty(exports, 'dataCloudflareHostnameTlsSetting', { get: function () { return require('./data-cloudflare-hostname-tls-setting'); } });
+Object.defineProperty(exports, 'dataCloudflareHostnameTlsSettings', { get: function () { return require('./data-cloudflare-hostname-tls-settings'); } });
 Object.defineProperty(exports, 'dataCloudflareHyperdriveConfig', { get: function () { return require('./data-cloudflare-hyperdrive-config'); } });
 Object.defineProperty(exports, 'dataCloudflareHyperdriveConfigs', { get: function () { return require('./data-cloudflare-hyperdrive-configs'); } });
 Object.defineProperty(exports, 'dataCloudflareImage', { get: function () { return require('./data-cloudflare-image'); } });
@@ -468,6 +472,7 @@ Object.defineProperty(exports, 'dataCloudflarePipelineSink', { get: function () 
 Object.defineProperty(exports, 'dataCloudflarePipelineSinks', { get: function () { return require('./data-cloudflare-pipeline-sinks'); } });
 Object.defineProperty(exports, 'dataCloudflarePipelineStream', { get: function () { return require('./data-cloudflare-pipeline-stream'); } });
 Object.defineProperty(exports, 'dataCloudflarePipelineStreams', { get: function () { return require('./data-cloudflare-pipeline-streams'); } });
+Object.defineProperty(exports, 'dataCloudflarePrecursor', { get: function () { return require('./data-cloudflare-precursor'); } });
 Object.defineProperty(exports, 'dataCloudflareQueue', { get: function () { return require('./data-cloudflare-queue'); } });
 Object.defineProperty(exports, 'dataCloudflareQueueConsumer', { get: function () { return require('./data-cloudflare-queue-consumer'); } });
 Object.defineProperty(exports, 'dataCloudflareQueueConsumers', { get: function () { return require('./data-cloudflare-queue-consumers'); } });

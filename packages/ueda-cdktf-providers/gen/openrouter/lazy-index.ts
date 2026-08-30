@@ -3,7 +3,9 @@ Object.defineProperty(exports, 'apiKey', { get: function () { return require('./
 Object.defineProperty(exports, 'byokKey', { get: function () { return require('./byok-key'); } });
 Object.defineProperty(exports, 'guardrail', { get: function () { return require('./guardrail'); } });
 Object.defineProperty(exports, 'observabilityDestination', { get: function () { return require('./observability-destination'); } });
+Object.defineProperty(exports, 'scimGroupMapping', { get: function () { return require('./scim-group-mapping'); } });
 Object.defineProperty(exports, 'workspace', { get: function () { return require('./workspace'); } });
+Object.defineProperty(exports, 'workspaceBudget', { get: function () { return require('./workspace-budget'); } });
 Object.defineProperty(exports, 'dataOpenrouterApiKey', { get: function () { return require('./data-openrouter-api-key'); } });
 Object.defineProperty(exports, 'dataOpenrouterApiKeys', { get: function () { return require('./data-openrouter-api-keys'); } });
 Object.defineProperty(exports, 'dataOpenrouterByokKey', { get: function () { return require('./data-openrouter-byok-key'); } });
@@ -17,10 +19,13 @@ Object.defineProperty(exports, 'dataOpenrouterModel', { get: function () { retur
 Object.defineProperty(exports, 'dataOpenrouterModels', { get: function () { return require('./data-openrouter-models'); } });
 Object.defineProperty(exports, 'dataOpenrouterObservabilityDestination', { get: function () { return require('./data-openrouter-observability-destination'); } });
 Object.defineProperty(exports, 'dataOpenrouterObservabilityDestinations', { get: function () { return require('./data-openrouter-observability-destinations'); } });
+Object.defineProperty(exports, 'dataOpenrouterOrganizationMembers', { get: function () { return require('./data-openrouter-organization-members'); } });
 Object.defineProperty(exports, 'dataOpenrouterPreset', { get: function () { return require('./data-openrouter-preset'); } });
 Object.defineProperty(exports, 'dataOpenrouterPresets', { get: function () { return require('./data-openrouter-presets'); } });
 Object.defineProperty(exports, 'dataOpenrouterProviders', { get: function () { return require('./data-openrouter-providers'); } });
+Object.defineProperty(exports, 'dataOpenrouterScimGroupMapping', { get: function () { return require('./data-openrouter-scim-group-mapping'); } });
 Object.defineProperty(exports, 'dataOpenrouterWorkspace', { get: function () { return require('./data-openrouter-workspace'); } });
+Object.defineProperty(exports, 'dataOpenrouterWorkspaceBudget', { get: function () { return require('./data-openrouter-workspace-budget'); } });
 Object.defineProperty(exports, 'dataOpenrouterWorkspaceBudgets', { get: function () { return require('./data-openrouter-workspace-budgets'); } });
 Object.defineProperty(exports, 'dataOpenrouterWorkspaceMembers', { get: function () { return require('./data-openrouter-workspace-members'); } });
 Object.defineProperty(exports, 'dataOpenrouterWorkspaces', { get: function () { return require('./data-openrouter-workspaces'); } });

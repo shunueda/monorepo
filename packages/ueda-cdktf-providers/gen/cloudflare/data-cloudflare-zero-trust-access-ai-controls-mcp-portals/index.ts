@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals
+// https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -8,19 +8,19 @@ import * as cdktf from 'cdktf';
 
 export interface DataCloudflareZeroTrustAccessAiControlsMcpPortalsConfig extends cdktf.TerraformMetaArguments {
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals#account_id DataCloudflareZeroTrustAccessAiControlsMcpPortals#account_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals#account_id DataCloudflareZeroTrustAccessAiControlsMcpPortals#account_id}
   */
   readonly accountId?: string;
   /**
   * Max items to fetch, default: 1000
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals#max_items DataCloudflareZeroTrustAccessAiControlsMcpPortals#max_items}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals#max_items DataCloudflareZeroTrustAccessAiControlsMcpPortals#max_items}
   */
   readonly maxItems?: number;
   /**
   * Search by id, name, hostname
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals#search DataCloudflareZeroTrustAccessAiControlsMcpPortals#search}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals#search DataCloudflareZeroTrustAccessAiControlsMcpPortals#search}
   */
   readonly search?: string;
 }
@@ -579,6 +579,11 @@ export class DataCloudflareZeroTrustAccessAiControlsMcpPortalsResultServersOutpu
     return this.getStringAttribute('auth_type');
   }
 
+  // authentication_status - computed: true, optional: false, required: false
+  public get authenticationStatus() {
+    return this.getStringAttribute('authentication_status');
+  }
+
   // created_at - computed: true, optional: false, required: false
   public get createdAt() {
     return this.getStringAttribute('created_at');
@@ -769,6 +774,11 @@ export class DataCloudflareZeroTrustAccessAiControlsMcpPortalsResultOutputRefere
     return this.getBooleanAttribute('allow_code_mode');
   }
 
+  // code_mode - computed: true, optional: false, required: false
+  public get codeMode() {
+    return this.getStringAttribute('code_mode');
+  }
+
   // created_at - computed: true, optional: false, required: false
   public get createdAt() {
     return this.getStringAttribute('created_at');
@@ -841,7 +851,7 @@ export class DataCloudflareZeroTrustAccessAiControlsMcpPortalsResultList extends
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals cloudflare_zero_trust_access_ai_controls_mcp_portals}
+* Represents a {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals cloudflare_zero_trust_access_ai_controls_mcp_portals}
 */
 export class DataCloudflareZeroTrustAccessAiControlsMcpPortals extends cdktf.TerraformDataSource {
 
@@ -857,7 +867,7 @@ export class DataCloudflareZeroTrustAccessAiControlsMcpPortals extends cdktf.Ter
   * Generates CDKTF code for importing a DataCloudflareZeroTrustAccessAiControlsMcpPortals resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataCloudflareZeroTrustAccessAiControlsMcpPortals to import
-  * @param importFromId The id of the existing DataCloudflareZeroTrustAccessAiControlsMcpPortals that should be imported. Refer to the {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataCloudflareZeroTrustAccessAiControlsMcpPortals that should be imported. Refer to the {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataCloudflareZeroTrustAccessAiControlsMcpPortals to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -869,7 +879,7 @@ export class DataCloudflareZeroTrustAccessAiControlsMcpPortals extends cdktf.Ter
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals cloudflare_zero_trust_access_ai_controls_mcp_portals} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/data-sources/zero_trust_access_ai_controls_mcp_portals cloudflare_zero_trust_access_ai_controls_mcp_portals} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -880,7 +890,7 @@ export class DataCloudflareZeroTrustAccessAiControlsMcpPortals extends cdktf.Ter
       terraformResourceType: 'cloudflare_zero_trust_access_ai_controls_mcp_portals',
       terraformGeneratorMetadata: {
         providerName: 'cloudflare',
-        providerVersion: '5.23.0'
+        providerVersion: '5.24.0'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

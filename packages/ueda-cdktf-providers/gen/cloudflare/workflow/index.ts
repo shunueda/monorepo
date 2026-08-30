@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow
+// https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -8,33 +8,33 @@ import * as cdktf from 'cdktf';
 
 export interface WorkflowConfig extends cdktf.TerraformMetaArguments {
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#account_id Workflow#account_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#account_id Workflow#account_id}
   */
   readonly accountId: string;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#class_name Workflow#class_name}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#class_name Workflow#class_name}
   */
   readonly className: string;
   /**
   * Default retention applied to instances of this version when they do not set their own retention.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#default_retention Workflow#default_retention}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#default_retention Workflow#default_retention}
   */
   readonly defaultRetention?: WorkflowDefaultRetention;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#limits Workflow#limits}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#limits Workflow#limits}
   */
   readonly limits?: WorkflowLimits;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#schedules Workflow#schedules}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#schedules Workflow#schedules}
   */
   readonly schedules?: WorkflowSchedules[] | cdktf.IResolvable;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#script_name Workflow#script_name}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#script_name Workflow#script_name}
   */
   readonly scriptName: string;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#workflow_name Workflow#workflow_name}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#workflow_name Workflow#workflow_name}
   */
   readonly workflowName: string;
 }
@@ -42,13 +42,13 @@ export interface WorkflowDefaultRetention {
   /**
   * Specifies the duration in milliseconds or as a string like '5 minutes'.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#error_retention Workflow#error_retention}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#error_retention Workflow#error_retention}
   */
   readonly errorRetention?: { [key: string]: any };
   /**
   * Specifies the duration in milliseconds or as a string like '5 minutes'.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#success_retention Workflow#success_retention}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#success_retention Workflow#success_retention}
   */
   readonly successRetention?: { [key: string]: any };
 }
@@ -265,7 +265,7 @@ export class WorkflowInstancesOutputReference extends cdktf.ComplexObject {
 }
 export interface WorkflowLimits {
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#steps Workflow#steps}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#steps Workflow#steps}
   */
   readonly steps?: number;
 }
@@ -359,7 +359,7 @@ export class WorkflowLimitsOutputReference extends cdktf.ComplexObject {
 }
 export interface WorkflowSchedules {
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#cron Workflow#cron}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#cron Workflow#cron}
   */
   readonly cron: string;
 }
@@ -472,7 +472,7 @@ export class WorkflowSchedulesList extends cdktf.ComplexList {
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow cloudflare_workflow}
+* Represents a {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow cloudflare_workflow}
 */
 export class Workflow extends cdktf.TerraformResource {
 
@@ -488,7 +488,7 @@ export class Workflow extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a Workflow resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the Workflow to import
-  * @param importFromId The id of the existing Workflow that should be imported. Refer to the {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing Workflow that should be imported. Refer to the {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the Workflow to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -500,7 +500,7 @@ export class Workflow extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.23.0/docs/resources/workflow cloudflare_workflow} Resource
+  * Create a new {@link https://registry.terraform.io/providers/cloudflare/cloudflare/5.24.0/docs/resources/workflow cloudflare_workflow} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -511,7 +511,7 @@ export class Workflow extends cdktf.TerraformResource {
       terraformResourceType: 'cloudflare_workflow',
       terraformGeneratorMetadata: {
         providerName: 'cloudflare',
-        providerVersion: '5.23.0'
+        providerVersion: '5.24.0'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
