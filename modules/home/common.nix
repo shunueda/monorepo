@@ -144,7 +144,6 @@ in
               ocaml-eglot
               orderless
               paredit
-              pkgs.remoto
               pr-review
               rust-mode
               smartparens

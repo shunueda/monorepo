@@ -51,8 +51,7 @@
   )
 
 ;; Local custom file if possible
-(when (file-exists-p custom-file)
-  (load custom-file))
+(when (file-exists-p custom-file) (load custom-file))
 
 ;; Enable pass for auth-source
 (auth-source-pass-enable)
@@ -121,9 +120,7 @@
 (use-package
   kkp
   :unless (display-graphic-p)
-  :custom
-  (kkp-active-enhancements
-    '(disambiguate-escape-codes report-alternate-keys))
+  :custom (kkp-active-enhancements '(disambiguate-escape-codes report-alternate-keys))
   :hook (tty-setup . global-kkp-mode))
 (use-package
   dimmer
@@ -134,9 +131,7 @@
   (dimmer-configure-magit)
   (dimmer-configure-org)
   (dimmer-mode t))
-(use-package
-  embark-consult
-  :hook (embark-collect-mode . consult-preview-at-point-mode))
+(use-package embark-consult :hook (embark-collect-mode . consult-preview-at-point-mode))
 (use-package
   exec-path-from-shell
   :when (memq window-system '(mac ns x))
@@ -164,14 +159,10 @@
       :host "openrouter.ai"
       :endpoint "/api/v1/chat/completions"
       :stream t
-      :key
-      (lambda ()
-        (auth-source-pass-get 'secret "ApiKeys/OPENROUTER_API_KEY")))
+      :key (lambda () (auth-source-pass-get 'secret "ApiKeys/OPENROUTER_API_KEY")))
     gptel-model 'openrouter/auto))
 
-(use-package
-  avy
-  :config (global-set-key (kbd "C-'") 'avy-goto-char-2))
+(use-package avy :config (global-set-key (kbd "C-'") 'avy-goto-char-2))
 
 (use-package
   markdown-mode
@@ -181,15 +172,13 @@
 
 (use-package
   multiple-cursors
-  :bind
-  (("C->" . mc/mark-next-like-this)
-    ("C-<" . mc/mark-previous-like-this)))
+  :bind (("C->" . mc/mark-next-like-this) ("C-<" . mc/mark-previous-like-this)))
 
 (use-package
   orderless
-  :custom (completion-styles '(orderless basic))
-  (completion-category-overrides
-    '((file (styles basic partial-completion)))))
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package sops :init (global-sops-mode 1))
 
@@ -197,11 +186,7 @@
 
 (use-package tuareg :mode (("\\.ocamlinit\\'" . tuareg-mode)))
 
-(use-package
-  undo-tree
-  :config
-  (setq undo-tree-auto-save-history nil)
-  (global-undo-tree-mode))
+(use-package undo-tree :config (setq undo-tree-auto-save-history nil) (global-undo-tree-mode))
 
 (use-package vertico :init (vertico-mode 1))
 (use-package
@@ -217,11 +202,7 @@
   :hook
   (tuareg-mode . ocaml-eglot)
   (ocaml-eglot . eglot-ensure))
-(use-package
-  smartparens
-  :config
-  (require 'smartparens-config)
-  (smartparens-global-mode 1))
+(use-package smartparens :config (require 'smartparens-config) (smartparens-global-mode 1))
 (use-package
   embark
   :bind
@@ -238,9 +219,7 @@
   consult
   :custom
   ;; Immediately show results
-  (consult-async-min-input 1)
-  (consult-async-input-debounce 0)
-  (consult-async-input-throttle 0)
+  (consult-async-min-input 1) (consult-async-input-debounce 0) (consult-async-input-throttle 0)
   ;; Overlay default keybinds
   :bind (("C-s" . consult-line) ("C-x b" . consult-buffer)))
 
@@ -253,29 +232,28 @@
     'magit-commit-autofixup
     '("x" "Absorb changes" magit-commit-absorb)))
 
-(use-package forge
+(use-package
+  forge
   :after magit
-  :custom
-  (forge-database-file
-    (expand-file-name "emacs/forge-database.sqlite" (xdg-data-home)))
+  :custom (forge-database-file (expand-file-name "emacs/forge-database.sqlite" (xdg-data-home)))
   :custom-face
   ;; Tone forge's colors down to match magit's palette
-  (forge-topic-open     ((t (:inherit magit-branch-remote))))
-  (forge-topic-closed   ((t (:inherit magit-dimmed))))
-  (forge-topic-merged   ((t (:inherit magit-branch-local))))
+  (forge-topic-open ((t (:inherit magit-branch-remote))))
+  (forge-topic-closed ((t (:inherit magit-dimmed))))
+  (forge-topic-merged ((t (:inherit magit-branch-local))))
   (forge-topic-unmerged ((t (:inherit magit-dimmed))))
-  (forge-pullreq-open   ((t (:inherit magit-branch-remote))))
+  (forge-pullreq-open ((t (:inherit magit-branch-remote))))
   (forge-pullreq-merged ((t (:inherit magit-branch-local))))
   (forge-pullreq-rejected ((t (:inherit magit-dimmed))))
-  (forge-pullreq-draft  ((t (:inherit magit-dimmed))))
-  (forge-topic-unread   ((t (:inherit bold))))
-  (forge-dimmed         ((t (:inherit magit-dimmed))))
+  (forge-pullreq-draft ((t (:inherit magit-dimmed))))
+  (forge-topic-unread ((t (:inherit bold))))
+  (forge-dimmed ((t (:inherit magit-dimmed))))
   ;; Labels: drop the bright colored boxes
-  (forge-topic-label    ((t (:inherit magit-dimmed :box nil))))
+  (forge-topic-label ((t (:inherit magit-dimmed :box nil))))
   :config
-  (advice-add 'ghub--token :override
-              (lambda (&rest _)
-                (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
+  (advice-add
+    'ghub--token
+    :override (lambda (&rest _) (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
 
 (use-package
   forge
@@ -305,18 +283,20 @@
   :config
   (advice-add
     'ghub--token
-    :override
-    (lambda (&rest _)
-      (string-trim
-        (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
+    :override (lambda (&rest _) (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
 
-(use-package pr-review
+(use-package
+  pr-review
   :config
-  (define-advice pr-review--find-url-in-buffer
-      (:after-until () magit-buffer)
-    (and-let* ((_ (featurep 'forge))
-               (target (forge--browse-target)))
-      (if (stringp target) target (forge-get-url target)))))
+  (define-advice
+    pr-review--find-url-in-buffer (:after-until () magit-buffer)
+    (and-let*
+      (
+        (_ (featurep 'forge))
+        (target (forge--browse-target)))
+      (if (stringp target)
+        target
+        (forge-get-url target)))))
 
 (use-package
   project
@@ -326,32 +306,21 @@
 
   ;; Populate the project switcher list from `ghq`
   (dolist
-    (project
-      (split-string (shell-command-to-string "ghq list --full-path")
-        "\n"
-        t))
+    (project (split-string (shell-command-to-string "ghq list --full-path") "\n" t))
     (project--remember-dir (file-name-as-directory project)))
 
   ;; https://github.com/minad/consult/wiki#use-consult-ripgrep-instead-of-project-find-regexp-in-projectel
-  (keymap-substitute
-    project-prefix-map
-    #'project-find-regexp
-    #'consult-ripgrep)
+  (keymap-substitute project-prefix-map #'project-find-regexp #'consult-ripgrep)
   (cl-nsubstitute-if
     '(consult-ripgrep "Find regexp")
-    (pcase-lambda (`(,cmd _))
-      (eq cmd #'project-find-regexp))
+    (pcase-lambda (`(,cmd _)) (eq cmd #'project-find-regexp))
     project-switch-commands)
 
   ;; consult-fd version of above
-  (keymap-substitute
-    project-prefix-map
-    #'project-find-file
-    #'consult-fd)
+  (keymap-substitute project-prefix-map #'project-find-file #'consult-fd)
   (cl-nsubstitute-if
     '(consult-fd "Find file")
-    (pcase-lambda (`(,cmd _))
-      (eq cmd #'project-find-file))
+    (pcase-lambda (`(,cmd _)) (eq cmd #'project-find-file))
     project-switch-commands))
 
 (use-package direnv :config (direnv-mode))
@@ -371,9 +340,7 @@
   (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nixd")))
   (add-to-list 'eglot-server-programs '(python-ts-mode . ("pylsp")))
   (add-to-list 'eglot-server-programs '(go-ts-mode . ("gopls")))
-  (add-to-list
-    'eglot-server-programs
-    '(kotlin-ts-mode . ("kotlin-language-server")))
+  (add-to-list 'eglot-server-programs '(kotlin-ts-mode . ("kotlin-language-server")))
 
   (defun ueda/rust-analyzer-contact (_interactive)
     (let*
@@ -384,8 +351,7 @@
           (split-string
             (shell-command-to-string
               "git ls-files --cached --others --exclude-standard -- '*Cargo.toml'")
-            "\n"
-            t)))
+            "\n" t)))
       (list
         "rust-analyzer"
         :initializationOptions
@@ -394,31 +360,18 @@
           :cargo '(:allFeatures t)
           :check '(:command "clippy")))))
 
-  (add-to-list
-    'eglot-server-programs
-    '((rust-ts-mode rust-mode) . ueda/rust-analyzer-contact))
-  (add-to-list
-    'completion-category-overrides
-    '(eglot (styles orderless))))
+  (add-to-list 'eglot-server-programs '((rust-ts-mode rust-mode) . ueda/rust-analyzer-contact))
+  (add-to-list 'completion-category-overrides '(eglot (styles orderless))))
 (use-package wgrep :custom (wgrep-auto-save-buffer t))
 (use-package
   hl-todo
   :custom
   (hl-todo-keyword-faces
     `
-    (
-      ("TODO"
-        .
-        (:background "#B8860B" :foreground "white" :weight bold))
-      ("FIXME"
-        .
-        (:background "#D32F2F" :foreground "white" :weight bold))
-      (,(concat "NO" "COMMIT")
-        .
-        (:background "#9C27B0" :foreground "white" :weight bold))
-      (,(concat "NO" "MERGE")
-        .
-        (:background "#C2185B" :foreground "white" :weight bold))))
+    (("TODO" . (:background "#B8860B" :foreground "white" :weight bold))
+      ("FIXME" . (:background "#D32F2F" :foreground "white" :weight bold))
+      (,(concat "NO" "COMMIT") . (:background "#9C27B0" :foreground "white" :weight bold))
+      (,(concat "NO" "MERGE") . (:background "#C2185B" :foreground "white" :weight bold))))
   :config (global-hl-todo-mode))
 (use-package
   elisp-autofmt
