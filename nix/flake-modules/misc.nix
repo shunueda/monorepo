@@ -4,7 +4,7 @@
       pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ (import ../ueda-overlay.nix { inherit inputs self; }) ];
+        overlays = [ (import ../ueda-overlay.nix { inherit inputs self lib; }) ];
       };
     };
 

@@ -113,11 +113,6 @@ in
         };
         emacs = {
           enable = true;
-          overrides = self: super: {
-            direnv = super.direnv.overrideAttrs (prev: {
-              patches = prev.patches or [ ] ++ [ inputs.emacs-direnv-async-patch ];
-            });
-          };
           extraPackages =
             epkgs: with epkgs; [
               # keep-sorted start
@@ -126,10 +121,10 @@ in
               corfu
               diff-hl
               dimmer
-              direnv
               elisp-autofmt
               embark
               embark-consult
+              envrc
               exec-path-from-shell
               forge
               ghq
@@ -155,8 +150,6 @@ in
               typst-ts-mode
               undo-tree
               vertico
-              vterm
-              wgrep
               xclip
               # keep-sorted end
             ];

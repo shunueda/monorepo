@@ -324,7 +324,9 @@
     project-switch-commands))
 
 (use-package direnv :config (direnv-mode))
+
 (use-package editorconfig :config (editorconfig-mode 1))
+
 (use-package
   eglot
   :custom (eglot-extend-to-xref t)
@@ -362,7 +364,7 @@
 
   (add-to-list 'eglot-server-programs '((rust-ts-mode rust-mode) . ueda/rust-analyzer-contact))
   (add-to-list 'completion-category-overrides '(eglot (styles orderless))))
-(use-package wgrep :custom (wgrep-auto-save-buffer t))
+
 (use-package
   hl-todo
   :custom

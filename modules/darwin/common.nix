@@ -1,6 +1,11 @@
 { inputs, config, ... }: {
   flake.darwinModules.common =
-    { self, pkgs, ... }:
+    {
+      self,
+      pkgs,
+      lib,
+      ...
+    }:
     let
       # Suppress annoying `xcrun` popups
       stubDeveloperDir = "${pkgs.linkFarm "stub-developer-dir" [
@@ -42,10 +47,7 @@
       };
       nixpkgs = {
         config.allowUnfree = true;
-        overlays = [
-          inputs.nur.overlays.default
-          (import ../../nix/ueda-overlay.nix { inherit inputs self; })
-        ];
+        overlays = [ (import ../../nix/ueda-overlay.nix { inherit inputs self lib; }) ];
       };
       home-manager = {
         useGlobalPkgs = true;

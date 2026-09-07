@@ -16,9 +16,9 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-direnv-async-patch = {
-      url = "https://github.com/wbolster/emacs-direnv/pull/82.patch";
-      flake = false;
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";

@@ -1,5 +1,5 @@
 { inputs, config, ... }: {
-  flake.nixosModules.common = { self, pkgs, ... }: {
+  flake.nixosModules.common = { self, lib, ... }: {
     imports = [
       inputs.home-manager.nixosModules.default
       inputs.disko.nixosModules.default
@@ -30,10 +30,7 @@
     };
     nixpkgs = {
       config.allowUnfree = true;
-      overlays = [
-        inputs.nur.overlays.default
-        (import ../../nix/ueda-overlay.nix { inherit inputs self; })
-      ];
+      overlays = [ (import ../../nix/ueda-overlay.nix { inherit inputs self lib; }) ];
     };
     home-manager = {
       useGlobalPkgs = true;
