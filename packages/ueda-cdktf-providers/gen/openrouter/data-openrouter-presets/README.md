@@ -1,3 +1,3 @@
 # `data_openrouter_presets`
 
-Refer to the Terraform Registry for docs: [`data_openrouter_presets`](https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/presets).
+Refer to the Terraform Registry for docs: [`data_openrouter_presets`](https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/presets).

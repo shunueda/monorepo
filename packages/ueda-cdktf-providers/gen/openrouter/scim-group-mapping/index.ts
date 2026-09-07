@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/scim_group_mapping
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/scim_group_mapping
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -8,37 +8,37 @@ import * as cdktf from 'cdktf';
 
 export interface ScimGroupMappingConfig extends cdktf.TerraformMetaArguments {
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/scim_group_mapping#boolean ScimGroupMapping#boolean}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/scim_group_mapping#boolean ScimGroupMapping#boolean}
   */
   readonly boolean?: boolean | cdktf.IResolvable;
   /**
   * must be one of ["true", "false"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/scim_group_mapping#keep_members_enum ScimGroupMapping#keep_members_enum}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/scim_group_mapping#keep_members_enum ScimGroupMapping#keep_members_enum}
   */
   readonly keepMembersEnum?: string;
   /**
   * must be one of ["admin", "member"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/scim_group_mapping#role ScimGroupMapping#role}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/scim_group_mapping#role ScimGroupMapping#role}
   */
   readonly role: string;
   /**
   * Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/scim_group_mapping#scim_group_id ScimGroupMapping#scim_group_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/scim_group_mapping#scim_group_id ScimGroupMapping#scim_group_id}
   */
   readonly scimGroupId: string;
   /**
   * Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/scim_group_mapping#workspace_id ScimGroupMapping#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/scim_group_mapping#workspace_id ScimGroupMapping#workspace_id}
   */
   readonly workspaceId: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/scim_group_mapping openrouter_scim_group_mapping}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/scim_group_mapping openrouter_scim_group_mapping}
 */
 export class ScimGroupMapping extends cdktf.TerraformResource {
 
@@ -54,7 +54,7 @@ export class ScimGroupMapping extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a ScimGroupMapping resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the ScimGroupMapping to import
-  * @param importFromId The id of the existing ScimGroupMapping that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/scim_group_mapping#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing ScimGroupMapping that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/scim_group_mapping#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the ScimGroupMapping to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -66,7 +66,7 @@ export class ScimGroupMapping extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/scim_group_mapping openrouter_scim_group_mapping} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/scim_group_mapping openrouter_scim_group_mapping} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -77,7 +77,7 @@ export class ScimGroupMapping extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_scim_group_mapping',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.79'
+        providerVersion: '0.2.103'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

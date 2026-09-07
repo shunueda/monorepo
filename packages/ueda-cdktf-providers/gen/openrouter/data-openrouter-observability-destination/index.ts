@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/observability_destination
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/observability_destination
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,7 +10,7 @@ export interface DataOpenrouterObservabilityDestinationConfig extends cdktf.Terr
   /**
   * Stable public identifier for this destination.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/observability_destination#id DataOpenrouterObservabilityDestination#id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/observability_destination#id DataOpenrouterObservabilityDestination#id}
   *
   * Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2.
   * If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable.
@@ -482,6 +482,11 @@ export class DataOpenrouterObservabilityDestinationArizeOutputReference extends 
   // privacy_mode - computed: true, optional: false, required: false
   public get privacyMode() {
     return this.getBooleanAttribute('privacy_mode');
+  }
+
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
   }
 
   // sampling_rate - computed: true, optional: false, required: false
@@ -959,6 +964,11 @@ export class DataOpenrouterObservabilityDestinationBraintrustOutputReference ext
   // privacy_mode - computed: true, optional: false, required: false
   public get privacyMode() {
     return this.getBooleanAttribute('privacy_mode');
+  }
+
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
   }
 
   // sampling_rate - computed: true, optional: false, required: false
@@ -1448,6 +1458,11 @@ export class DataOpenrouterObservabilityDestinationClickhouseOutputReference ext
     return this.getBooleanAttribute('privacy_mode');
   }
 
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
+  }
+
   // sampling_rate - computed: true, optional: false, required: false
   public get samplingRate() {
     return this.getNumberAttribute('sampling_rate');
@@ -1923,6 +1938,11 @@ export class DataOpenrouterObservabilityDestinationDatadogOutputReference extend
   // privacy_mode - computed: true, optional: false, required: false
   public get privacyMode() {
     return this.getBooleanAttribute('privacy_mode');
+  }
+
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
   }
 
   // sampling_rate - computed: true, optional: false, required: false
@@ -2402,6 +2422,11 @@ export class DataOpenrouterObservabilityDestinationGrafanaOutputReference extend
     return this.getBooleanAttribute('privacy_mode');
   }
 
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
+  }
+
   // sampling_rate - computed: true, optional: false, required: false
   public get samplingRate() {
     return this.getNumberAttribute('sampling_rate');
@@ -2877,6 +2902,11 @@ export class DataOpenrouterObservabilityDestinationLangfuseOutputReference exten
   // privacy_mode - computed: true, optional: false, required: false
   public get privacyMode() {
     return this.getBooleanAttribute('privacy_mode');
+  }
+
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
   }
 
   // sampling_rate - computed: true, optional: false, required: false
@@ -3361,6 +3391,11 @@ export class DataOpenrouterObservabilityDestinationLangsmithOutputReference exte
     return this.getBooleanAttribute('privacy_mode');
   }
 
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
+  }
+
   // sampling_rate - computed: true, optional: false, required: false
   public get samplingRate() {
     return this.getNumberAttribute('sampling_rate');
@@ -3831,6 +3866,11 @@ export class DataOpenrouterObservabilityDestinationNewrelicOutputReference exten
   // privacy_mode - computed: true, optional: false, required: false
   public get privacyMode() {
     return this.getBooleanAttribute('privacy_mode');
+  }
+
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
   }
 
   // sampling_rate - computed: true, optional: false, required: false
@@ -4310,6 +4350,11 @@ export class DataOpenrouterObservabilityDestinationOpikOutputReference extends c
     return this.getBooleanAttribute('privacy_mode');
   }
 
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
+  }
+
   // sampling_rate - computed: true, optional: false, required: false
   public get samplingRate() {
     return this.getNumberAttribute('sampling_rate');
@@ -4775,6 +4820,11 @@ export class DataOpenrouterObservabilityDestinationOtelCollectorOutputReference 
   // privacy_mode - computed: true, optional: false, required: false
   public get privacyMode() {
     return this.getBooleanAttribute('privacy_mode');
+  }
+
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
   }
 
   // sampling_rate - computed: true, optional: false, required: false
@@ -5249,6 +5299,11 @@ export class DataOpenrouterObservabilityDestinationPosthogOutputReference extend
     return this.getBooleanAttribute('privacy_mode');
   }
 
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
+  }
+
   // sampling_rate - computed: true, optional: false, required: false
   public get samplingRate() {
     return this.getNumberAttribute('sampling_rate');
@@ -5719,6 +5774,11 @@ export class DataOpenrouterObservabilityDestinationRampOutputReference extends c
   // privacy_mode - computed: true, optional: false, required: false
   public get privacyMode() {
     return this.getBooleanAttribute('privacy_mode');
+  }
+
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
   }
 
   // sampling_rate - computed: true, optional: false, required: false
@@ -6223,6 +6283,11 @@ export class DataOpenrouterObservabilityDestinationS3OutputReference extends cdk
     return this.getBooleanAttribute('privacy_mode');
   }
 
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
+  }
+
   // sampling_rate - computed: true, optional: false, required: false
   public get samplingRate() {
     return this.getNumberAttribute('sampling_rate');
@@ -6693,6 +6758,11 @@ export class DataOpenrouterObservabilityDestinationSentryOutputReference extends
   // privacy_mode - computed: true, optional: false, required: false
   public get privacyMode() {
     return this.getBooleanAttribute('privacy_mode');
+  }
+
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
   }
 
   // sampling_rate - computed: true, optional: false, required: false
@@ -7187,6 +7257,11 @@ export class DataOpenrouterObservabilityDestinationSnowflakeOutputReference exte
     return this.getBooleanAttribute('privacy_mode');
   }
 
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
+  }
+
   // sampling_rate - computed: true, optional: false, required: false
   public get samplingRate() {
     return this.getNumberAttribute('sampling_rate');
@@ -7669,6 +7744,11 @@ export class DataOpenrouterObservabilityDestinationWeaveOutputReference extends 
     return this.getBooleanAttribute('privacy_mode');
   }
 
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
+  }
+
   // sampling_rate - computed: true, optional: false, required: false
   public get samplingRate() {
     return this.getNumberAttribute('sampling_rate');
@@ -8141,6 +8221,11 @@ export class DataOpenrouterObservabilityDestinationWebhookOutputReference extend
     return this.getBooleanAttribute('privacy_mode');
   }
 
+  // regions - computed: true, optional: false, required: false
+  public get regions() {
+    return this.getListAttribute('regions');
+  }
+
   // sampling_rate - computed: true, optional: false, required: false
   public get samplingRate() {
     return this.getNumberAttribute('sampling_rate');
@@ -8158,7 +8243,7 @@ export class DataOpenrouterObservabilityDestinationWebhookOutputReference extend
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/observability_destination openrouter_observability_destination}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/observability_destination openrouter_observability_destination}
 */
 export class DataOpenrouterObservabilityDestination extends cdktf.TerraformDataSource {
 
@@ -8174,7 +8259,7 @@ export class DataOpenrouterObservabilityDestination extends cdktf.TerraformDataS
   * Generates CDKTF code for importing a DataOpenrouterObservabilityDestination resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterObservabilityDestination to import
-  * @param importFromId The id of the existing DataOpenrouterObservabilityDestination that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/observability_destination#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterObservabilityDestination that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/observability_destination#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterObservabilityDestination to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -8186,7 +8271,7 @@ export class DataOpenrouterObservabilityDestination extends cdktf.TerraformDataS
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/observability_destination openrouter_observability_destination} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/observability_destination openrouter_observability_destination} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -8197,7 +8282,7 @@ export class DataOpenrouterObservabilityDestination extends cdktf.TerraformDataS
       terraformResourceType: 'openrouter_observability_destination',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.79'
+        providerVersion: '0.2.103'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

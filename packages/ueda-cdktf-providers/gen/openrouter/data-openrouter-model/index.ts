@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/model
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/model
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,13 +10,13 @@ export interface DataOpenrouterModelConfig extends cdktf.TerraformMetaArguments 
   /**
   * The author/organization of the model
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/model#author DataOpenrouterModel#author}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/model#author DataOpenrouterModel#author}
   */
   readonly author: string;
   /**
   * The model slug, optionally including a variant suffix (e.g. gpt-4 or gpt-4:free)
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/model#slug DataOpenrouterModel#slug}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/model#slug DataOpenrouterModel#slug}
   */
   readonly slug: string;
 }
@@ -1118,7 +1118,7 @@ export class DataOpenrouterModelDataOutputReference extends cdktf.ComplexObject 
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/model openrouter_model}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/model openrouter_model}
 */
 export class DataOpenrouterModel extends cdktf.TerraformDataSource {
 
@@ -1134,7 +1134,7 @@ export class DataOpenrouterModel extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterModel resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterModel to import
-  * @param importFromId The id of the existing DataOpenrouterModel that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/model#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterModel that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/model#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterModel to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -1146,7 +1146,7 @@ export class DataOpenrouterModel extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/data-sources/model openrouter_model} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/model openrouter_model} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -1157,7 +1157,7 @@ export class DataOpenrouterModel extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_model',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.79'
+        providerVersion: '0.2.103'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

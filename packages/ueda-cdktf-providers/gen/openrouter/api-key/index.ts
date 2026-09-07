@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,67 +10,189 @@ export interface ApiKeyConfig extends cdktf.TerraformMetaArguments {
   /**
   * Optional user ID of the key creator. Only meaningful for organization-owned keys where a specific member is creating the key. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key#creator_user_id ApiKey#creator_user_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#creator_user_id ApiKey#creator_user_id}
   */
   readonly creatorUserId?: string;
   /**
   * Whether to disable the API key
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key#disabled ApiKey#disabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#disabled ApiKey#disabled}
   */
   readonly disabled?: boolean | cdktf.IResolvable;
   /**
-  * Optional ISO 8601 UTC timestamp when the API key should expire. Must be UTC, other timezones will be rejected. Requires replacement if changed.
+  * Optional ISO 8601 UTC expiration timestamp. Must include seconds (YYYY-MM-DDTHH:MM:SSZ; fractional seconds allowed); minute-precision timestamps are rejected. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key#expires_at ApiKey#expires_at}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#expires_at ApiKey#expires_at}
   */
   readonly expiresAt?: string;
   /**
-  * Optional partner-supplied API key. Stored as a SHA-256 hash and never returned. Accepted only when authenticating with a Connect client secret; supplying it with a management key is rejected with 403. Requires replacement if changed.
+  * Optional partner-defined identity associated with the created API key. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key#external_api_key ApiKey#external_api_key}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#external ApiKey#external}
   */
-  readonly externalApiKey?: string;
-  /**
-  * Partner's end-user identifier for attribution, between 1 and 512 characters. Accepted only when authenticating with a Connect client secret, where it is required; supplying it with a management key is rejected with 403. Requires replacement if changed.
-  *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key#external_user ApiKey#external_user}
-  */
-  readonly externalUser?: string;
+  readonly external?: ApiKeyExternal;
   /**
   * Whether to include BYOK usage in the limit
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key#include_byok_in_limit ApiKey#include_byok_in_limit}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#include_byok_in_limit ApiKey#include_byok_in_limit}
   */
   readonly includeByokInLimit?: boolean | cdktf.IResolvable;
   /**
   * New spending limit for the API key in USD
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key#limit ApiKey#limit}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#limit ApiKey#limit}
   */
   readonly limit?: number;
   /**
   * New limit reset type for the API key (daily, weekly, monthly, or null for no reset). Resets happen automatically at midnight UTC, and weeks are Monday through Sunday. must be one of ["daily", "weekly", "monthly"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key#limit_reset ApiKey#limit_reset}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#limit_reset ApiKey#limit_reset}
   */
   readonly limitReset?: string;
   /**
   * New name for the API key
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key#name ApiKey#name}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#name ApiKey#name}
   */
   readonly name: string;
   /**
   * The workspace to create the API key in. Defaults to the default workspace if not provided. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key#workspace_id ApiKey#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#workspace_id ApiKey#workspace_id}
   */
   readonly workspaceId?: string;
 }
+export interface ApiKeyExternal {
+  /**
+  * Optional partner-supplied API key with a minimum length of 32 characters and sufficient entropy. Stored as a SHA-256 hash and never returned. Requires replacement if changed.
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#api_key ApiKey#api_key}
+  */
+  readonly apiKey?: string;
+  /**
+  * Partner's end-user identifier for attribution. Requires replacement if changed.
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#user ApiKey#user}
+  */
+  readonly user: string;
+}
+
+export function apiKeyExternalToTerraform(struct?: ApiKeyExternal | cdktf.IResolvable): any {
+  if (!cdktf.canInspect(struct) || cdktf.Tokenization.isResolvable(struct)) { return struct; }
+  if (cdktf.isComplexElement(struct)) {
+    throw new Error("A complex element was used as configuration, this is not supported: https://cdk.tf/complex-object-as-configuration");
+  }
+  return {
+    api_key: cdktf.stringToTerraform(struct!.apiKey),
+    user: cdktf.stringToTerraform(struct!.user),
+  }
+}
+
+
+export function apiKeyExternalToHclTerraform(struct?: ApiKeyExternal | cdktf.IResolvable): any {
+  if (!cdktf.canInspect(struct) || cdktf.Tokenization.isResolvable(struct)) { return struct; }
+  if (cdktf.isComplexElement(struct)) {
+    throw new Error("A complex element was used as configuration, this is not supported: https://cdk.tf/complex-object-as-configuration");
+  }
+  const attrs = {
+    api_key: {
+      value: cdktf.stringToHclTerraform(struct!.apiKey),
+      isBlock: false,
+      type: "simple",
+      storageClassType: "string",
+    },
+    user: {
+      value: cdktf.stringToHclTerraform(struct!.user),
+      isBlock: false,
+      type: "simple",
+      storageClassType: "string",
+    },
+  };
+
+  // remove undefined attributes
+  return Object.fromEntries(Object.entries(attrs).filter(([_, value]) => value !== undefined && value.value !== undefined));
+}
+
+export class ApiKeyExternalOutputReference extends cdktf.ComplexObject {
+  private isEmptyObject = false;
+  private resolvableValue?: cdktf.IResolvable;
+
+  /**
+  * @param terraformResource The parent resource
+  * @param terraformAttribute The attribute on the parent resource this class is referencing
+  */
+  public constructor(terraformResource: cdktf.IInterpolatingParent, terraformAttribute: string) {
+    super(terraformResource, terraformAttribute, false);
+  }
+
+  public get internalValue(): ApiKeyExternal | cdktf.IResolvable | undefined {
+    if (this.resolvableValue) {
+      return this.resolvableValue;
+    }
+    let hasAnyValues = this.isEmptyObject;
+    const internalValueResult: any = {};
+    if (this._apiKey !== undefined) {
+      hasAnyValues = true;
+      internalValueResult.apiKey = this._apiKey;
+    }
+    if (this._user !== undefined) {
+      hasAnyValues = true;
+      internalValueResult.user = this._user;
+    }
+    return hasAnyValues ? internalValueResult : undefined;
+  }
+
+  public set internalValue(value: ApiKeyExternal | cdktf.IResolvable | undefined) {
+    if (value === undefined) {
+      this.isEmptyObject = false;
+      this.resolvableValue = undefined;
+      this._apiKey = undefined;
+      this._user = undefined;
+    }
+    else if (cdktf.Tokenization.isResolvable(value)) {
+      this.isEmptyObject = false;
+      this.resolvableValue = value;
+    }
+    else {
+      this.isEmptyObject = Object.keys(value).length === 0;
+      this.resolvableValue = undefined;
+      this._apiKey = value.apiKey;
+      this._user = value.user;
+    }
+  }
+
+  // api_key - computed: false, optional: true, required: false
+  private _apiKey?: string; 
+  public get apiKey() {
+    return this.getStringAttribute('api_key');
+  }
+  public set apiKey(value: string) {
+    this._apiKey = value;
+  }
+  public resetApiKey() {
+    this._apiKey = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get apiKeyInput() {
+    return this._apiKey;
+  }
+
+  // user - computed: false, optional: false, required: true
+  private _user?: string; 
+  public get user() {
+    return this.getStringAttribute('user');
+  }
+  public set user(value: string) {
+    this._user = value;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get userInput() {
+    return this._user;
+  }
+}
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key openrouter_api_key}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key openrouter_api_key}
 */
 export class ApiKey extends cdktf.TerraformResource {
 
@@ -86,7 +208,7 @@ export class ApiKey extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a ApiKey resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the ApiKey to import
-  * @param importFromId The id of the existing ApiKey that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing ApiKey that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the ApiKey to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -98,7 +220,7 @@ export class ApiKey extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.79/docs/resources/api_key openrouter_api_key} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/api_key openrouter_api_key} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -109,7 +231,7 @@ export class ApiKey extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_api_key',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.79'
+        providerVersion: '0.2.103'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
@@ -122,8 +244,7 @@ export class ApiKey extends cdktf.TerraformResource {
     this._creatorUserId = config.creatorUserId;
     this._disabled = config.disabled;
     this._expiresAt = config.expiresAt;
-    this._externalApiKey = config.externalApiKey;
-    this._externalUser = config.externalUser;
+    this._external.internalValue = config.external;
     this._includeByokInLimit = config.includeByokInLimit;
     this._limit = config.limit;
     this._limitReset = config.limitReset;
@@ -208,36 +329,25 @@ export class ApiKey extends cdktf.TerraformResource {
     return this._expiresAt;
   }
 
-  // external_api_key - computed: false, optional: true, required: false
-  private _externalApiKey?: string; 
-  public get externalApiKey() {
-    return this.getStringAttribute('external_api_key');
+  // external - computed: false, optional: true, required: false
+  private _external = new ApiKeyExternalOutputReference(this, "external");
+  public get external() {
+    return this._external;
   }
-  public set externalApiKey(value: string) {
-    this._externalApiKey = value;
+  public putExternal(value: ApiKeyExternal) {
+    this._external.internalValue = value;
   }
-  public resetExternalApiKey() {
-    this._externalApiKey = undefined;
+  public resetExternal() {
+    this._external.internalValue = undefined;
   }
   // Temporarily expose input value. Use with caution.
-  public get externalApiKeyInput() {
-    return this._externalApiKey;
+  public get externalInput() {
+    return this._external.internalValue;
   }
 
-  // external_user - computed: true, optional: true, required: false
-  private _externalUser?: string; 
+  // external_user - computed: true, optional: false, required: false
   public get externalUser() {
     return this.getStringAttribute('external_user');
-  }
-  public set externalUser(value: string) {
-    this._externalUser = value;
-  }
-  public resetExternalUser() {
-    this._externalUser = undefined;
-  }
-  // Temporarily expose input value. Use with caution.
-  public get externalUserInput() {
-    return this._externalUser;
   }
 
   // hash - computed: true, optional: false, required: false
@@ -371,8 +481,7 @@ export class ApiKey extends cdktf.TerraformResource {
       creator_user_id: cdktf.stringToTerraform(this._creatorUserId),
       disabled: cdktf.booleanToTerraform(this._disabled),
       expires_at: cdktf.stringToTerraform(this._expiresAt),
-      external_api_key: cdktf.stringToTerraform(this._externalApiKey),
-      external_user: cdktf.stringToTerraform(this._externalUser),
+      external: apiKeyExternalToTerraform(this._external.internalValue),
       include_byok_in_limit: cdktf.booleanToTerraform(this._includeByokInLimit),
       limit: cdktf.numberToTerraform(this._limit),
       limit_reset: cdktf.stringToTerraform(this._limitReset),
@@ -401,17 +510,11 @@ export class ApiKey extends cdktf.TerraformResource {
         type: "simple",
         storageClassType: "string",
       },
-      external_api_key: {
-        value: cdktf.stringToHclTerraform(this._externalApiKey),
-        isBlock: false,
-        type: "simple",
-        storageClassType: "string",
-      },
-      external_user: {
-        value: cdktf.stringToHclTerraform(this._externalUser),
-        isBlock: false,
-        type: "simple",
-        storageClassType: "string",
+      external: {
+        value: apiKeyExternalToHclTerraform(this._external.internalValue),
+        isBlock: true,
+        type: "struct",
+        storageClassType: "ApiKeyExternal",
       },
       include_byok_in_limit: {
         value: cdktf.booleanToHclTerraform(this._includeByokInLimit),
