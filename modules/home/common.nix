@@ -159,11 +159,27 @@ in
               vterm
               wgrep
               xclip
+              majutsu
               # keep-sorted end
             ];
         };
         fd.enable = true;
         fzf.enable = true;
+        jujutsu = {
+          enable = true;
+          settings = {
+            user = {
+              name = "Shun Ueda";
+              email = "git@shunueda.org";
+            };
+            remotes.origin.auto-track-bookmarks = "*";
+            colors = {
+              "diff token" = {
+                underline = false;
+              };
+            };
+          };
+        };
         ghq = {
           enable = true;
           settings = {

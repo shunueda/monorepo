@@ -17,6 +17,7 @@ in
     # Backport from unstable
     homerow
     emacsPackagesFor
+    jujutsu
     ;
 
   emacs = pkgs-unstable.emacs31;
