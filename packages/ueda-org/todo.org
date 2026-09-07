@@ -1,0 +1,6 @@
+* TODOs
+
+- wgrep -> grep-change-to-grep-edit-mode
+- elisp-autofmt
+- envrc async support
+- picking terminal
