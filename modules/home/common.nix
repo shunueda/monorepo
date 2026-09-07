@@ -126,7 +126,6 @@ in
               envrc
               exec-path-from-shell
               forge
-              ghq
               gptel
               hl-todo
               kkp
@@ -139,14 +138,10 @@ in
               orderless
               paredit
               pr-review
-              rust-mode
-              smartparens
-              sops
               super-save
               treesit-auto
               treesit-grammars.with-all-grammars
               tuareg
-              typst-ts-mode
               undo-tree
               vertico
               xclip

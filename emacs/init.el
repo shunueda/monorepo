@@ -50,6 +50,9 @@
   ;; keep-sorted end
   )
 
+;; yes/no to y/n
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; Local custom file if possible
 (when (file-exists-p custom-file) (load custom-file))
 
@@ -60,8 +63,11 @@
 (global-unset-key [C-wheel-up])
 (global-unset-key [C-wheel-down])
 
-;; Reserved for Tmux
-(global-unset-key [C-t])
+;; Disable minimize
+(global-unset-key [C-z])
+
+;; Don't go all the way to the front of line
+(keymap-global-set "C-a" #'back-to-indentation)
 
 ;; Swap the Backspace and DEL
 (define-key key-translation-map (kbd "C-h") (kbd "DEL"))
@@ -73,6 +79,8 @@
 (column-number-mode 1)
 ;; Display time in mode line / tab bar
 (display-time-mode 1)
+;; Auto-close parens
+(electric-pair-mode 1)
 ;; Refresh buffers with changed local files
 (global-auto-revert-mode 1)
 ;; Display line numbers
@@ -180,8 +188,6 @@
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-(use-package sops :init (global-sops-mode 1))
-
 (use-package super-save :config (super-save-mode +1))
 
 (use-package tuareg :mode (("\\.ocamlinit\\'" . tuareg-mode)))
@@ -202,7 +208,7 @@
   :hook
   (tuareg-mode . ocaml-eglot)
   (ocaml-eglot . eglot-ensure))
-(use-package smartparens :config (require 'smartparens-config) (smartparens-global-mode 1))
+
 (use-package
   embark
   :bind
@@ -332,7 +338,6 @@
   :custom (eglot-extend-to-xref t)
   :hook
   (rust-ts-mode . eglot-ensure)
-  (rust-mode . eglot-ensure)
   (typescript-ts-mode . eglot-ensure)
   (tsx-ts-mode . eglot-ensure)
   (nix-ts-mode . eglot-ensure)
@@ -362,7 +367,7 @@
           :cargo '(:allFeatures t)
           :check '(:command "clippy")))))
 
-  (add-to-list 'eglot-server-programs '((rust-ts-mode rust-mode) . ueda/rust-analyzer-contact))
+  (add-to-list 'eglot-server-programs '(rust-ts-mode . ueda/rust-analyzer-contact))
   (add-to-list 'completion-category-overrides '(eglot (styles orderless))))
 
 (use-package
