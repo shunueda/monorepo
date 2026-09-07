@@ -323,10 +323,7 @@
     (pcase-lambda (`(,cmd _)) (eq cmd #'project-find-file))
     project-switch-commands))
 
-(use-package envrc
-  :hook (after-init . envrc-global-mode)
-  :custom
-  (envrc-async t))
+(use-package envrc :hook (after-init . envrc-global-mode) :custom (envrc-async t))
 
 (use-package editorconfig :config (editorconfig-mode 1))
 
@@ -378,10 +375,4 @@
       (,(concat "NO" "COMMIT") . (:background "#9C27B0" :foreground "white" :weight bold))
       (,(concat "NO" "MERGE") . (:background "#C2185B" :foreground "white" :weight bold))))
   :config (global-hl-todo-mode))
-(use-package
-  elisp-autofmt
-  :commands (elisp-autofmt-mode elisp-autofmt-buffer)
-  :hook (emacs-lisp-mode . elisp-autofmt-mode)
-  :custom (elisp-autofmt-style 'fixed))
-(use-package xclip :config (xclip-mode))
 ;; keep-sorted end

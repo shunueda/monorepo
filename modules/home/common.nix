@@ -121,7 +121,6 @@ in
               corfu
               diff-hl
               dimmer
-              elisp-autofmt
               embark
               embark-consult
               envrc
