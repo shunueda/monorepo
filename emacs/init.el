@@ -323,7 +323,10 @@
     (pcase-lambda (`(,cmd _)) (eq cmd #'project-find-file))
     project-switch-commands))
 
-(use-package direnv :config (direnv-mode))
+(use-package envrc
+  :hook (after-init . envrc-global-mode)
+  :custom
+  (envrc-async t))
 
 (use-package editorconfig :config (editorconfig-mode 1))
 
