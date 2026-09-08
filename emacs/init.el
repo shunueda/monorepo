@@ -201,10 +201,10 @@
 (use-package vertico :init (vertico-mode 1))
 (use-package
   diff-hl
-  :ensure t
   :init
   (add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
   (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
   :config (diff-hl-flydiff-mode 1))
 (use-package
   ocaml-eglot
