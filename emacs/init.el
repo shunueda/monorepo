@@ -50,6 +50,10 @@
   ;; keep-sorted end
   )
 
+;; Alabaster-inspired, lighter font-face
+;; (set-face-attribute 'default nil :background "#F7F7F7" :foreground "#434343")
+;; (set-face-attribute 'cursor nil :background "#434343" :foreground "#F7F7F7")
+
 ;; yes/no to y/n
 (fset 'yes-or-no-p 'y-or-n-p)
 
