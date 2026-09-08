@@ -216,7 +216,7 @@
 (use-package
   embark
   :bind
-  ("C-," . embark-act)
+  ("C-." . embark-act)
   ("C-;" . embark-dwim)
   :config (setq prefix-help-command #'embark-prefix-help-command))
 (use-package
