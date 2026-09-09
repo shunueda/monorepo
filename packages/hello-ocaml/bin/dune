@@ -1,0 +1,4 @@
+(executable
+ (public_name hello-ocaml)
+ (name main)
+ (libraries hello_ocaml))

@@ -4,6 +4,7 @@
     actionlint.enable = true;
     autocorrect.enable = true;
     clang-format.enable = true;
+    flake-edit.enable = true;
     keep-sorted.enable = true;
     mdformat = {
       enable = true;
@@ -15,7 +16,9 @@
       enable = true;
       strict = true;
     };
+    ocamlformat.enable = true;
     oxfmt.enable = true;
+    rustfmt.enable = true;
     shellcheck.enable = true;
     typstyle.enable = true;
     # keep-sorted end

@@ -16,9 +16,23 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dune2nix = {
+      url = "github:anteriorcore/dune2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.systems.follows = "systems";
+      inputs.tools.follows = "tools";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    fenix = {
+      url = "github:nix-community/fenix?rev=ecd6d4ff22cfdb1339b2915455a2ff4dc85bf52e";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -69,6 +83,7 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.systems.follows = "systems";
+      inputs.package-lock2nix.follows = "package-lock2nix";
     };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";

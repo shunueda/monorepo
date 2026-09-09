@@ -1,0 +1,15 @@
+(lang dune 3.24)
+
+(name hello-ocaml)
+
+(package
+ (name hello-ocaml)
+ (depends
+  ocaml
+  core
+  core_unix
+  eio_main
+  logs
+  yojson
+  (ocaml-lsp-server :with-dev-setup)
+  (utop :with-dev-setup)))

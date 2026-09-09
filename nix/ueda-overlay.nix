@@ -31,4 +31,5 @@ lib.composeManyExtensions [
   my
   inputs.nur.overlays.default
   inputs.emacs-overlay.overlays.package
+  inputs.dune2nix.overlays.dune
 ]
