@@ -1,3 +1,3 @@
 # `data_openrouter_byok_keys`
 
-Refer to the Terraform Registry for docs: [`data_openrouter_byok_keys`](https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/byok_keys).
+Refer to the Terraform Registry for docs: [`data_openrouter_byok_keys`](https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/byok_keys).

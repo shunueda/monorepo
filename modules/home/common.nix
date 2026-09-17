@@ -101,7 +101,8 @@ in
 
             zi() {
               local root=$(git rev-parse --show-toplevel)
-              local dir=$(fd --type d . "$root" | fzf) && cd "$dir"
+              local dir
+              dir=$(cd "$root" && fd --type d . | fzf) && cd "$root/$dir"
             }
 
             . "${pkgs.passExtensions.pass-otp}/share/bash-completion/completions/pass-otp"

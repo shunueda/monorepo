@@ -163,18 +163,26 @@
         "NIX_PATH"))
     (add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
+
 (use-package
   gptel
   :config
   (setq
+    gptel-include-reasoning nil
+    gptel-model 'deepseek/deepseek-v4-flash
     gptel-backend
     (gptel-make-openai
       "OpenRouter"
       :host "openrouter.ai"
       :endpoint "/api/v1/chat/completions"
       :stream t
-      :key (lambda () (auth-source-pass-get 'secret "ApiKeys/OPENROUTER_API_KEY")))
-    gptel-model 'openrouter/auto))
+      :key (lambda () (auth-source-pass-get 'secret "ApiKeys/OPENROUTER_API_KEY"))
+      :request-params
+      '
+      (:tools
+        [(:type "openrouter:web_search" :parameters (:max_results 5))
+          (:type "openrouter:web_fetch" :parameters (:max_content_tokens 20000))])
+      :models '(deepseek/deepseek-v4-flash moonshotai/kimi-k2.5))))
 
 (use-package avy :config (global-set-key (kbd "C-'") 'avy-goto-char-2))
 

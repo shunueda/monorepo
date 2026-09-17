@@ -1,3 +1,3 @@
 # `data_openrouter_providers`
 
-Refer to the Terraform Registry for docs: [`data_openrouter_providers`](https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/providers).
+Refer to the Terraform Registry for docs: [`data_openrouter_providers`](https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/providers).

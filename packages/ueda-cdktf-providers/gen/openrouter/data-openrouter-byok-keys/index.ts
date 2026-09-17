@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/byok_keys
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/byok_keys
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,13 +10,13 @@ export interface DataOpenrouterByokKeysConfig extends cdktf.TerraformMetaArgumen
   /**
   * Optional provider slug to filter by (e.g. `openai`, `anthropic`, `amazon-bedrock`). must be one of ["ai21", "aion-labs", "akashml", "alibaba", "amazon-bedrock", "amazon-bedrock/claude-on-aws", "amazon-nova", "ambient", "anthropic", "anthropic/2", "arcee-ai", "assemblyai", "atlas-cloud", "avian", "azure", "baidu", "baseten", "black-forest-labs", "byteplus", "cerebras", "chutes", "cirrascale", "clarifai", "claude-on-aws", "cloudflare", "cohere", "coreweave", "cosine", "crusoe", "darkbloom", "databricks", "decart", "deepgram", "deepinfra", "deepseek", "dekallm", "digitalocean", "featherless", "fireworks", "fish-audio", "friendli", "gmicloud", "google-ai-studio", "google-vertex", "groq", "heygen", "inception", "inceptron", "inferact-vllm", "inference-net", "infermatic", "inflection", "io-net", "ionstream", "krea", "liquid", "makora", "mancer", "mara", "meta", "minimax", "mistral", "modal", "modelrun", "modular", "moonshotai", "morph", "near-ai", "nebius", "nex-agi", "nextbit", "novita", "nvidia", "ollama", "open-inference", "openai", "parasail", "perceptron", "perplexity", "phala", "poolside", "primeintellect", "quiver", "recraft", "reka", "relace", "runway", "sail-research", "sakana", "sakana-ai", "sambanova", "seed", "siliconflow", "sourceful", "stepfun", "streamlake", "switchpoint", "tencent", "tenstorrent", "thinkingmachines", "together", "upstage", "venice", "voyageai", "wafer", "wandb", "wandb-legacy", "xai", "xiaomi", "z-ai"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/byok_keys#provider_slug DataOpenrouterByokKeys#provider_slug}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/byok_keys#provider_slug DataOpenrouterByokKeys#provider_slug}
   */
   readonly providerSlug?: string;
   /**
   * Optional workspace ID to filter by. When omitted, resolves to the account’s default workspace; if that default has been deleted, the request returns a 400 and you must pass `workspace_id` explicitly.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/byok_keys#workspace_id DataOpenrouterByokKeys#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/byok_keys#workspace_id DataOpenrouterByokKeys#workspace_id}
   */
   readonly workspaceId?: string;
 }
@@ -162,7 +162,7 @@ export class DataOpenrouterByokKeysDataList extends cdktf.ComplexList {
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/byok_keys openrouter_byok_keys}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/byok_keys openrouter_byok_keys}
 */
 export class DataOpenrouterByokKeys extends cdktf.TerraformDataSource {
 
@@ -178,7 +178,7 @@ export class DataOpenrouterByokKeys extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterByokKeys resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterByokKeys to import
-  * @param importFromId The id of the existing DataOpenrouterByokKeys that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/byok_keys#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterByokKeys that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/byok_keys#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterByokKeys to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -190,7 +190,7 @@ export class DataOpenrouterByokKeys extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/byok_keys openrouter_byok_keys} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/byok_keys openrouter_byok_keys} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -201,7 +201,7 @@ export class DataOpenrouterByokKeys extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_byok_keys',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.123'
+        providerVersion: '0.2.126'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
