@@ -4,8 +4,8 @@
   lib,
 }:
 
-let
-  my =
+lib.composeManyExtensions [
+  (
     final: prev:
     let
       inherit (final.stdenv.hostPlatform) system;
@@ -26,10 +26,8 @@ let
         ;
 
       emacs = pkgs-unstable.emacs31;
-    };
-in
-lib.composeManyExtensions [
-  my
+    }
+  )
   inputs.nur.overlays.default
   inputs.emacs-overlay.overlays.package
   inputs.dune2nix.overlays.dune
