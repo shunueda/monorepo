@@ -196,8 +196,6 @@
 
 (use-package super-save :config (super-save-mode +1))
 
-(use-package tuareg :mode (("\\.ocamlinit\\'" . tuareg-mode)))
-
 (use-package undo-tree :config (setq undo-tree-auto-save-history nil) (global-undo-tree-mode))
 
 (use-package vertico :init (vertico-mode 1))
@@ -208,12 +206,6 @@
   (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
   :config (diff-hl-flydiff-mode 1))
-(use-package
-  ocaml-eglot
-  :after tuareg
-  :hook
-  (tuareg-mode . ocaml-eglot)
-  (ocaml-eglot . eglot-ensure))
 
 (use-package
   embark
@@ -349,11 +341,13 @@
   (nix-ts-mode . eglot-ensure)
   (python-ts-mode . eglot-ensure)
   (go-ts-mode . eglot-ensure)
+  (neocaml-mode . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nixd")))
   (add-to-list 'eglot-server-programs '(python-ts-mode . ("pylsp")))
   (add-to-list 'eglot-server-programs '(go-ts-mode . ("gopls")))
   (add-to-list 'eglot-server-programs '(kotlin-ts-mode . ("kotlin-language-server")))
+  (add-to-list 'eglot-server-programs '(neocaml-mode . ("ocamllsp")))
 
   (defun ueda/rust-analyzer-contact (_interactive)
     (let*

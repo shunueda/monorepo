@@ -133,15 +133,14 @@ in
               magit
               markdown-mode
               multiple-cursors
+              neocaml
               nix-ts-mode
-              ocaml-eglot
               orderless
               paredit
               pr-review
               super-save
               treesit-auto
               treesit-grammars.with-all-grammars
-              tuareg
               undo-tree
               vertico
               xclip
