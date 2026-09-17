@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/workspace_budget
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -8,24 +8,21 @@ import * as cdktf from 'cdktf';
 
 export interface DataOpenrouterWorkspaceBudgetConfig extends cdktf.TerraformMetaArguments {
   /**
-  * Unique identifier for the budget
-  *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/workspace_budget#id DataOpenrouterWorkspaceBudget#id}
-  *
-  * Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2.
-  * If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable.
-  */
-  readonly id: string;
-  /**
   * Budget reset interval. Use "lifetime" for a one-time budget that never resets. must be one of ["daily", "weekly", "monthly", "lifetime"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/workspace_budget#interval DataOpenrouterWorkspaceBudget#interval}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget#interval DataOpenrouterWorkspaceBudget#interval}
   */
   readonly interval: string;
+  /**
+  * The workspace ID (UUID) or slug
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget#workspace_ref DataOpenrouterWorkspaceBudget#workspace_ref}
+  */
+  readonly workspaceRef: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/workspace_budget openrouter_workspace_budget}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget openrouter_workspace_budget}
 */
 export class DataOpenrouterWorkspaceBudget extends cdktf.TerraformDataSource {
 
@@ -41,7 +38,7 @@ export class DataOpenrouterWorkspaceBudget extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterWorkspaceBudget resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterWorkspaceBudget to import
-  * @param importFromId The id of the existing DataOpenrouterWorkspaceBudget that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/workspace_budget#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterWorkspaceBudget that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterWorkspaceBudget to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -53,7 +50,7 @@ export class DataOpenrouterWorkspaceBudget extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/data-sources/workspace_budget openrouter_workspace_budget} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget openrouter_workspace_budget} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -64,7 +61,7 @@ export class DataOpenrouterWorkspaceBudget extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_workspace_budget',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.103'
+        providerVersion: '0.2.123'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
@@ -74,8 +71,8 @@ export class DataOpenrouterWorkspaceBudget extends cdktf.TerraformDataSource {
       connection: config.connection,
       forEach: config.forEach
     });
-    this._id = config.id;
     this._interval = config.interval;
+    this._workspaceRef = config.workspaceRef;
   }
 
   // ==========
@@ -87,17 +84,9 @@ export class DataOpenrouterWorkspaceBudget extends cdktf.TerraformDataSource {
     return this.getStringAttribute('created_at');
   }
 
-  // id - computed: false, optional: false, required: true
-  private _id?: string; 
+  // id - computed: true, optional: false, required: false
   public get id() {
     return this.getStringAttribute('id');
-  }
-  public set id(value: string) {
-    this._id = value;
-  }
-  // Temporarily expose input value. Use with caution.
-  public get idInput() {
-    return this._id;
   }
 
   // include_byok_in_budgets - computed: true, optional: false, required: false
@@ -138,27 +127,40 @@ export class DataOpenrouterWorkspaceBudget extends cdktf.TerraformDataSource {
     return this.getStringAttribute('workspace_id');
   }
 
+  // workspace_ref - computed: false, optional: false, required: true
+  private _workspaceRef?: string; 
+  public get workspaceRef() {
+    return this.getStringAttribute('workspace_ref');
+  }
+  public set workspaceRef(value: string) {
+    this._workspaceRef = value;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get workspaceRefInput() {
+    return this._workspaceRef;
+  }
+
   // =========
   // SYNTHESIS
   // =========
 
   protected synthesizeAttributes(): { [name: string]: any } {
     return {
-      id: cdktf.stringToTerraform(this._id),
       interval: cdktf.stringToTerraform(this._interval),
+      workspace_ref: cdktf.stringToTerraform(this._workspaceRef),
     };
   }
 
   protected synthesizeHclAttributes(): { [name: string]: any } {
     const attrs = {
-      id: {
-        value: cdktf.stringToHclTerraform(this._id),
+      interval: {
+        value: cdktf.stringToHclTerraform(this._interval),
         isBlock: false,
         type: "simple",
         storageClassType: "string",
       },
-      interval: {
-        value: cdktf.stringToHclTerraform(this._interval),
+      workspace_ref: {
+        value: cdktf.stringToHclTerraform(this._workspaceRef),
         isBlock: false,
         type: "simple",
         storageClassType: "string",

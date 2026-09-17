@@ -1,4 +1,4 @@
 (executable
  (public_name hello-ocaml)
  (name main)
- (libraries hello_ocaml))
+ (libraries hello_ocaml core core_unix core_unix.sys_unix))

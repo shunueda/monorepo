@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/workspace_budget
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/resources/workspace_budget
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -8,36 +8,33 @@ import * as cdktf from 'cdktf';
 
 export interface WorkspaceBudgetConfig extends cdktf.TerraformMetaArguments {
   /**
-  * The workspace ID (UUID) or slug
-  *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/workspace_budget#id WorkspaceBudget#id}
-  *
-  * Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2.
-  * If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable.
-  */
-  readonly id: string;
-  /**
   * Whether to include BYOK (bring-your-own-key) spend when enforcing the workspace's budgets. This is a workspace-wide setting: it applies to every budget interval (daily, weekly, monthly, and lifetime), not just the interval being upserted in this request. Omit to leave the current setting unchanged.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/workspace_budget#include_byok_in_budgets WorkspaceBudget#include_byok_in_budgets}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/resources/workspace_budget#include_byok_in_budgets WorkspaceBudget#include_byok_in_budgets}
   */
   readonly includeByokInBudgets?: boolean | cdktf.IResolvable;
   /**
   * Budget reset interval. Use "lifetime" for a one-time budget that never resets. must be one of ["daily", "weekly", "monthly", "lifetime"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/workspace_budget#interval WorkspaceBudget#interval}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/resources/workspace_budget#interval WorkspaceBudget#interval}
   */
   readonly interval: string;
   /**
   * Spending limit in USD. Must be greater than 0.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/workspace_budget#limit_usd WorkspaceBudget#limit_usd}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/resources/workspace_budget#limit_usd WorkspaceBudget#limit_usd}
   */
   readonly limitUsd: number;
+  /**
+  * The workspace ID (UUID) or slug
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/resources/workspace_budget#workspace_ref WorkspaceBudget#workspace_ref}
+  */
+  readonly workspaceRef: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/workspace_budget openrouter_workspace_budget}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/resources/workspace_budget openrouter_workspace_budget}
 */
 export class WorkspaceBudget extends cdktf.TerraformResource {
 
@@ -53,7 +50,7 @@ export class WorkspaceBudget extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a WorkspaceBudget resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the WorkspaceBudget to import
-  * @param importFromId The id of the existing WorkspaceBudget that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/workspace_budget#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing WorkspaceBudget that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/resources/workspace_budget#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the WorkspaceBudget to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -65,7 +62,7 @@ export class WorkspaceBudget extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.103/docs/resources/workspace_budget openrouter_workspace_budget} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/resources/workspace_budget openrouter_workspace_budget} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -76,7 +73,7 @@ export class WorkspaceBudget extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_workspace_budget',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.103'
+        providerVersion: '0.2.123'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
@@ -86,10 +83,10 @@ export class WorkspaceBudget extends cdktf.TerraformResource {
       connection: config.connection,
       forEach: config.forEach
     });
-    this._id = config.id;
     this._includeByokInBudgets = config.includeByokInBudgets;
     this._interval = config.interval;
     this._limitUsd = config.limitUsd;
+    this._workspaceRef = config.workspaceRef;
   }
 
   // ==========
@@ -101,17 +98,9 @@ export class WorkspaceBudget extends cdktf.TerraformResource {
     return this.getStringAttribute('created_at');
   }
 
-  // id - computed: false, optional: false, required: true
-  private _id?: string; 
+  // id - computed: true, optional: false, required: false
   public get id() {
     return this.getStringAttribute('id');
-  }
-  public set id(value: string) {
-    this._id = value;
-  }
-  // Temporarily expose input value. Use with caution.
-  public get idInput() {
-    return this._id;
   }
 
   // include_byok_in_budgets - computed: true, optional: true, required: false
@@ -171,27 +160,34 @@ export class WorkspaceBudget extends cdktf.TerraformResource {
     return this.getStringAttribute('workspace_id');
   }
 
+  // workspace_ref - computed: false, optional: false, required: true
+  private _workspaceRef?: string; 
+  public get workspaceRef() {
+    return this.getStringAttribute('workspace_ref');
+  }
+  public set workspaceRef(value: string) {
+    this._workspaceRef = value;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get workspaceRefInput() {
+    return this._workspaceRef;
+  }
+
   // =========
   // SYNTHESIS
   // =========
 
   protected synthesizeAttributes(): { [name: string]: any } {
     return {
-      id: cdktf.stringToTerraform(this._id),
       include_byok_in_budgets: cdktf.booleanToTerraform(this._includeByokInBudgets),
       interval: cdktf.stringToTerraform(this._interval),
       limit_usd: cdktf.numberToTerraform(this._limitUsd),
+      workspace_ref: cdktf.stringToTerraform(this._workspaceRef),
     };
   }
 
   protected synthesizeHclAttributes(): { [name: string]: any } {
     const attrs = {
-      id: {
-        value: cdktf.stringToHclTerraform(this._id),
-        isBlock: false,
-        type: "simple",
-        storageClassType: "string",
-      },
       include_byok_in_budgets: {
         value: cdktf.booleanToHclTerraform(this._includeByokInBudgets),
         isBlock: false,
@@ -209,6 +205,12 @@ export class WorkspaceBudget extends cdktf.TerraformResource {
         isBlock: false,
         type: "simple",
         storageClassType: "number",
+      },
+      workspace_ref: {
+        value: cdktf.stringToHclTerraform(this._workspaceRef),
+        isBlock: false,
+        type: "simple",
+        storageClassType: "string",
       },
     };
 

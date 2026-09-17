@@ -22,6 +22,7 @@ let
       inherit (pkgs-unstable)
         # Backport from unstable
         homerow
+        emacsPackagesFor
         ;
 
       emacs = pkgs-unstable.emacs31;

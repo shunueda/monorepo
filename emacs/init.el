@@ -50,6 +50,8 @@
   ;; keep-sorted end
   )
 
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
 ;; Alabaster-inspired, lighter font-face
 ;; (set-face-attribute 'default nil :background "#F7F7F7" :foreground "#434343")
 ;; (set-face-attribute 'cursor nil :background "#434343" :foreground "#F7F7F7")
