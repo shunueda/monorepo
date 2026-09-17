@@ -13,6 +13,7 @@ import { UserGpgKey } from "@ueda/cdktf-providers/github/user-gpg-key";
 import { OpenrouterProvider } from "@ueda/cdktf-providers/openrouter/provider";
 import { ApiKey } from "@ueda/cdktf-providers/openrouter/api-key";
 import { Workspace } from "@ueda/cdktf-providers/openrouter/workspace";
+import { WorkspaceBudget } from "@ueda/cdktf-providers/openrouter/workspace-budget";
 
 function synth() {
   const app = new App();
@@ -31,9 +32,7 @@ function synth() {
 
   new GithubProvider(stack, "github-provider");
 
-  new OpenrouterProvider(stack, "openrouter-provider", {
-    apiKey: mustEnv("OPENROUTER_MANAGEMENT_KEY"),
-  });
+  new OpenrouterProvider(stack, "openrouter-provider");
 
   const cloudflareAccountId = "ca4a67796dcce729524c78e24c66d10d" as const;
 
@@ -103,10 +102,26 @@ function synth() {
     },
   );
 
-  const openrouterApiKey = new ApiKey(stack, "openrouter-ci-api-key", {
+  const openrouterWorkspace = new Workspace(
+    stack,
+    "openrouter-main-workspace",
+    {
+      name: "Main workspace",
+      slug: "main",
+    },
+  );
+
+  new WorkspaceBudget(stack, "openrouter-main-workspace-budget", {
+    workspaceRef: openrouterWorkspace.id,
+    interval: "daily",
+    limitUsd: 1, // usd
+  });
+
+  const openrouterCiApiKey = new ApiKey(stack, "openrouter-ci-api-key", {
     name: "ci",
-    limit: 1,
+    limit: 1, // usd
     limitReset: "weekly",
+    workspaceId: openrouterWorkspace.id,
   });
 
   createGitHubRepo(
@@ -115,7 +130,7 @@ function synth() {
     {
       actions: {
         secrets: {
-          OPENROUTER_API_KEY: openrouterApiKey.key,
+          OPENROUTER_API_KEY: openrouterCiApiKey.key,
         },
       },
     },

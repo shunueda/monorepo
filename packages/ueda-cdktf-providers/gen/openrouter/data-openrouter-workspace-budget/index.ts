@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/workspace_budget
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,19 +10,19 @@ export interface DataOpenrouterWorkspaceBudgetConfig extends cdktf.TerraformMeta
   /**
   * Budget reset interval. Use "lifetime" for a one-time budget that never resets. must be one of ["daily", "weekly", "monthly", "lifetime"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget#interval DataOpenrouterWorkspaceBudget#interval}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/workspace_budget#interval DataOpenrouterWorkspaceBudget#interval}
   */
   readonly interval: string;
   /**
   * The workspace ID (UUID) or slug
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget#workspace_ref DataOpenrouterWorkspaceBudget#workspace_ref}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/workspace_budget#workspace_ref DataOpenrouterWorkspaceBudget#workspace_ref}
   */
   readonly workspaceRef: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget openrouter_workspace_budget}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/workspace_budget openrouter_workspace_budget}
 */
 export class DataOpenrouterWorkspaceBudget extends cdktf.TerraformDataSource {
 
@@ -38,7 +38,7 @@ export class DataOpenrouterWorkspaceBudget extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterWorkspaceBudget resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterWorkspaceBudget to import
-  * @param importFromId The id of the existing DataOpenrouterWorkspaceBudget that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterWorkspaceBudget that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/workspace_budget#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterWorkspaceBudget to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -50,7 +50,7 @@ export class DataOpenrouterWorkspaceBudget extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.123/docs/data-sources/workspace_budget openrouter_workspace_budget} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.126/docs/data-sources/workspace_budget openrouter_workspace_budget} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -61,7 +61,7 @@ export class DataOpenrouterWorkspaceBudget extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_workspace_budget',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.123'
+        providerVersion: '0.2.126'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
