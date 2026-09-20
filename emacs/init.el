@@ -52,10 +52,6 @@
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-;; Alabaster-inspired, lighter font-face
-;; (set-face-attribute 'default nil :background "#F7F7F7" :foreground "#434343")
-;; (set-face-attribute 'cursor nil :background "#434343" :foreground "#F7F7F7")
-
 ;; yes/no to y/n
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -117,6 +113,61 @@
 
 ;; keep-sorted start block=yes
 
+(use-package avy :config (global-set-key (kbd "C-'") 'avy-goto-char-2))
+
+(use-package
+  markdown-mode
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown")
+  :bind (:map markdown-mode-map ("C-c C-e" . markdown-do)))
+
+(use-package
+  multiple-cursors
+  :bind (("C->" . mc/mark-next-like-this) ("C-<" . mc/mark-previous-like-this)))
+
+(use-package
+  orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package super-save :config (super-save-mode +1))
+
+(use-package undo-tree :config (setq undo-tree-auto-save-history nil) (global-undo-tree-mode))
+
+(use-package vertico :init (vertico-mode 1))
+
+(use-package
+  vertico-directory
+  :after vertico
+  :bind (:map vertico-map ("RET" . vertico-directory-enter) ("DEL" . vertico-directory-delete-char)))
+
+(use-package
+  diff-hl
+  :init
+  (add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
+  (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  :config (diff-hl-flydiff-mode 1))
+
+(use-package embark :bind ("C-." . embark-act) ("C-;" . embark-dwim))
+
+(use-package
+  treesit-auto
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+(use-package
+  consult
+  :custom
+  ;; Immediately show results
+  (consult-async-min-input 1) (consult-async-input-debounce 0) (consult-async-input-throttle 0)
+  ;; Overlay default keybinds
+  :bind
+  (("C-s" . consult-line)
+    ("C-x b" . consult-buffer)
+    ("M-g g" . consult-goto-line)
+    ("M-g o" . consult-outline)))
 (use-package
   corfu
   :custom
@@ -168,6 +219,8 @@
   (setq
     gptel-include-reasoning nil
     gptel-model 'deepseek/deepseek-v4-flash
+    gptel-default-mode 'org-mode
+    gptel-system-prompt (lambda () (auth-source-pass-get 'secret "Misc/system-prompt"))
     gptel-backend
     (gptel-make-openai
       "OpenRouter"
@@ -180,74 +233,17 @@
       (:tools
         [(:type "openrouter:web_search" :parameters (:max_results 5))
           (:type "openrouter:web_fetch" :parameters (:max_content_tokens 20000))])
-      :models '(deepseek/deepseek-v4-flash moonshotai/kimi-k2.5))))
+      :models '(deepseek/deepseek-v4-flash moonshotai/kimi-k2.5)))
 
-(use-package avy :config (global-set-key (kbd "C-'") 'avy-goto-char-2))
-
-(use-package
-  markdown-mode
-  :mode ("README\\.md\\'" . gfm-mode)
-  :init (setq markdown-command "multimarkdown")
-  :bind (:map markdown-mode-map ("C-c C-e" . markdown-do)))
-
-(use-package
-  multiple-cursors
-  :bind (("C->" . mc/mark-next-like-this) ("C-<" . mc/mark-previous-like-this)))
-
-(use-package
-  orderless
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
-
-(use-package super-save :config (super-save-mode +1))
-
-(use-package undo-tree :config (setq undo-tree-auto-save-history nil) (global-undo-tree-mode))
-
-(use-package vertico :init (vertico-mode 1))
-
-(use-package
-  vertico-directory
-  :after vertico
-  :bind (:map vertico-map ("RET" . vertico-directory-enter) ("DEL" . vertico-directory-delete-char)))
-
-(use-package
-  diff-hl
-  :init
-  (add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
-  (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode)
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
-  :config (diff-hl-flydiff-mode 1))
-
-(use-package
-  embark
-  :bind
-  ("C-." . embark-act)
-  ("C-;" . embark-dwim))
-
-(use-package
-  treesit-auto
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
-
-(use-package
-  consult
-  :custom
-  ;; Immediately show results
-  (consult-async-min-input 1) (consult-async-input-debounce 0) (consult-async-input-throttle 0)
-  ;; Overlay default keybinds
-  :bind (("C-s" . consult-line) ("C-x b" . consult-buffer)))
-
-(use-package
-  magit
-  :config
-  ;; https://github.com/magit/magit/issues/3723#issuecomment-634967479
-  (transient-replace-suffix
-    'magit-commit
-    'magit-commit-autofixup
-    '("x" "Absorb changes" magit-commit-absorb)))
-
+  ;; https://gist.github.com/alexispurslane/ec563d79c08c4f49c840ee82be495beb
+  (add-hook
+    'gptel-post-response-functions
+    (lambda (beg end)
+      (when
+        (derived-mode-p 'org-mode)
+        (save-restriction
+          (narrow-to-region beg end)
+          (org-table-map-tables #'org-table-align))))))
 (use-package
   forge
   :after magit
@@ -270,6 +266,12 @@
   (advice-add
     'ghub--token
     :override (lambda (&rest _) (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
+
+(use-package
+  org
+  :config
+  ;; OCaml uses Tuareg by default, but I use neocaml.
+  (add-to-list 'org-src-lang-modes (cons "ocaml" 'neocaml)))
 
 (use-package
   project
@@ -349,4 +351,19 @@
       (,(concat "NO" "COMMIT") . (:background "#9C27B0" :foreground "white" :weight bold))
       (,(concat "NO" "MERGE") . (:background "#C2185B" :foreground "white" :weight bold))))
   :config (global-hl-todo-mode))
+
+(use-package
+  org-modern
+  :config (global-org-modern-mode)
+  :custom
+  ;; https://github.com/minad/org-modern/issues/272
+  (org-modern-fold-stars '(("▶" . "▼") ("▷" . "▽") ("⏵" . "⏷") ("▹" . "▿") ("▸" . "▾"))))
+(use-package
+  magit
+  :config
+  ;; https://github.com/magit/magit/issues/3723#issuecomment-634967479
+  (transient-replace-suffix
+    'magit-commit
+    'magit-commit-autofixup
+    '("x" "Absorb changes" magit-commit-absorb)))
 ;; keep-sorted end

@@ -137,8 +137,9 @@ in
               neocaml
               nix-ts-mode
               orderless
+              org-modern
               paredit
-              pr-review
+              password-store
               super-save
               treesit-auto
               treesit-grammars.with-all-grammars
