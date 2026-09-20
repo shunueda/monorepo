@@ -79,8 +79,6 @@
 (define-key key-translation-map (kbd "C-h") (kbd "DEL"))
 
 ;; Core modes keep-sorted start
-;; Save to original file
-(auto-save-visited-mode 1)
 ;; Show column number on mode line
 (column-number-mode 1)
 ;; Display time in mode line / tab bar
@@ -207,6 +205,12 @@
 (use-package undo-tree :config (setq undo-tree-auto-save-history nil) (global-undo-tree-mode))
 
 (use-package vertico :init (vertico-mode 1))
+
+(use-package
+  vertico-directory
+  :after vertico
+  :bind (:map vertico-map ("RET" . vertico-directory-enter) ("DEL" . vertico-directory-delete-char)))
+
 (use-package
   diff-hl
   :init
@@ -219,8 +223,8 @@
   embark
   :bind
   ("C-." . embark-act)
-  ("C-;" . embark-dwim)
-  :config (setq prefix-help-command #'embark-prefix-help-command))
+  ("C-;" . embark-dwim))
+
 (use-package
   treesit-auto
   :config
@@ -266,49 +270,6 @@
   (advice-add
     'ghub--token
     :override (lambda (&rest _) (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
-
-(use-package
-  forge
-  :after magit
-  :bind (:map forge-pullreq-section-map ("M-RET" . my/pr-review-at-point))
-  :config
-  (defun my/pr-review-at-point ()
-    (interactive)
-    (require 'pr-review)
-    (if-let* ((url (pr-review--find-url-in-buffer)))
-      (pr-review url current-prefix-arg))
-    (message "No PR URL found at point"))
-  :custom-face
-  ;; Tone forge's colors down to match magit's palette
-  (forge-topic-open ((t (:inherit magit-branch-remote))))
-  (forge-topic-closed ((t (:inherit magit-dimmed))))
-  (forge-topic-merged ((t (:inherit magit-branch-local))))
-  (forge-topic-unmerged ((t (:inherit magit-dimmed))))
-  (forge-pullreq-open ((t (:inherit magit-branch-remote))))
-  (forge-pullreq-merged ((t (:inherit magit-branch-local))))
-  (forge-pullreq-rejected ((t (:inherit magit-dimmed))))
-  (forge-pullreq-draft ((t (:inherit magit-dimmed))))
-  (forge-topic-unread ((t (:inherit bold))))
-  (forge-dimmed ((t (:inherit magit-dimmed))))
-  ;; Labels: drop the bright colored boxes
-  (forge-topic-label ((t (:inherit magit-dimmed :box nil))))
-  :config
-  (advice-add
-    'ghub--token
-    :override (lambda (&rest _) (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
-
-(use-package
-  pr-review
-  :config
-  (define-advice
-    pr-review--find-url-in-buffer (:after-until () magit-buffer)
-    (and-let*
-      (
-        (_ (featurep 'forge))
-        (target (forge--browse-target)))
-      (if (stringp target)
-        target
-        (forge-get-url target)))))
 
 (use-package
   project
