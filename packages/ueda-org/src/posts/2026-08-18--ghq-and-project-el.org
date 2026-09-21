@@ -8,11 +8,11 @@ I use [[https://github.com/x-motemen/ghq][ghq]] for remote repository management
   (use-package
     project
     :config
-    ;; Populate the project switcher list from `ghq`
-    (dolist
-      (project
-        (split-string (shell-command-to-string "ghq list --full-path")
-          "\n"
-          t))
-      (project--remember-dir (file-name-as-directory project)))
+    (defun ueda/project-remember-ghq-dirs (&rest _)
+     "Populate the project switcher list from `ghq`"
+     (dolist
+      (project (split-string (shell-command-to-string "ghq list --full-path") "\n" t))
+      (project--remember-dir (file-name-as-directory project))))
+
+      (advice-add 'project-prompt-project-dir :before #'ueda/project-remember-ghq-dirs))
 #+end_src

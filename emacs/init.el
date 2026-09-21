@@ -111,8 +111,6 @@
     :nick "ueda"
     :password (auth-source-pass-get 'secret "InternetAccounts/libera")))
 
-;; keep-sorted start block=yes
-
 (use-package avy :config (global-set-key (kbd "C-'") 'avy-goto-char-2))
 
 (use-package
@@ -214,37 +212,6 @@
   (exec-path-from-shell-initialize))
 
 (use-package
-  gptel
-  :config
-  (setq
-    gptel-include-reasoning nil
-    gptel-model 'deepseek/deepseek-v4-flash
-    gptel-default-mode 'org-mode
-    gptel-system-prompt (lambda () (auth-source-pass-get 'secret "Misc/system-prompt"))
-    gptel-backend
-    (gptel-make-openai
-      "OpenRouter"
-      :host "openrouter.ai"
-      :endpoint "/api/v1/chat/completions"
-      :stream t
-      :key (lambda () (auth-source-pass-get 'secret "ApiKeys/OPENROUTER_API_KEY"))
-      :request-params
-      '
-      (:tools
-        [(:type "openrouter:web_search" :parameters (:max_results 5))
-          (:type "openrouter:web_fetch" :parameters (:max_content_tokens 20000))])
-      :models '(deepseek/deepseek-v4-flash moonshotai/kimi-k2.5)))
-
-  ;; https://gist.github.com/alexispurslane/ec563d79c08c4f49c840ee82be495beb
-  (add-hook
-    'gptel-post-response-functions
-    (lambda (beg end)
-      (when
-        (derived-mode-p 'org-mode)
-        (save-restriction
-          (narrow-to-region beg end)
-          (org-table-map-tables #'org-table-align))))))
-(use-package
   forge
   :after magit
   :custom (forge-database-file (expand-file-name "emacs/forge-database.sqlite" (xdg-data-home)))
@@ -279,10 +246,15 @@
   (require 'keymap)
   (require 'cl-seq)
 
-  ;; Populate the project switcher list from `ghq`
-  (dolist
-    (project (split-string (shell-command-to-string "ghq list --full-path") "\n" t))
-    (project--remember-dir (file-name-as-directory project)))
+  (defun ueda/project-remember-ghq-dirs (&rest _)
+    "Populate the project switcher list from `ghq`"
+    (dolist
+      (project (split-string (shell-command-to-string "ghq list --full-path") "\n" t))
+      (project--remember-dir (file-name-as-directory project))))
+
+  (advice-add 'project-prompt-project-dir :before #'ueda/project-remember-ghq-dirs)
+
+  (ueda/project-remember-ghq-dirs)
 
   ;; https://github.com/minad/consult/wiki#use-consult-ripgrep-instead-of-project-find-regexp-in-projectel
   (keymap-substitute project-prefix-map #'project-find-regexp #'consult-ripgrep)
@@ -366,4 +338,127 @@
     'magit-commit
     'magit-commit-autofixup
     '("x" "Absorb changes" magit-commit-absorb)))
-;; keep-sorted end
+
+(use-package
+  gptel
+  :bind
+  (("C-c g c" . ueda/consult-chat)
+    ("C-c g g" . ueda/consult-gptel)
+    ("C-c g m" . gptel-menu)
+    ("C-c g r" . gptel-rewrite))
+  :config
+  (setq
+    gptel-include-reasoning nil
+    gptel-model 'deepseek/deepseek-v4-flash
+    gptel-default-mode 'org-mode
+    gptel-system-prompt (lambda () (auth-source-pass-get 'secret "Misc/system-prompt"))
+    gptel-backend
+    (gptel-make-openai
+      "OpenRouter"
+      :host "openrouter.ai"
+      :endpoint "/api/v1/chat/completions"
+      :stream t
+      :key (lambda () (auth-source-pass-get 'secret "ApiKeys/OPENROUTER_API_KEY"))
+      :request-params
+      '
+      (:tools
+        [(:type "openrouter:web_search" :parameters (:max_results 5))
+          (:type "openrouter:web_fetch" :parameters (:max_content_tokens 20000))])
+      :models '(deepseek/deepseek-v4-flash moonshotai/kimi-k2.5)))
+
+  ;; https://gptel.org/manual.html#org8e1735f
+  (defvar gptel-mode-chat-directory (file-name-concat (xdg-data-home) "gptel-chat")
+    "Directory in which to store gptel chats.")
+
+  (defun gptel-mode-assign-filename ()
+    "If this is a dissociated chat buffer, save it to a predetermined location.
+
+Intended to be added to `before-save-hook' in gptel chat buffers.  Use a
+prefix-arg to save manually."
+    (unless
+      (or (buffer-file-name) current-prefix-arg) (make-directory gptel-mode-chat-directory t)
+      (setq buffer-file-name
+        (file-name-concat
+          gptel-mode-chat-directory
+          (concat
+            (format-time-string "%Y%m%d%H%M%S-")
+            (file-name-sans-extension (replace-regexp-in-string " " "-" (buffer-name)))
+            (pcase major-mode
+              ('org-mode ".org")
+              ('markdown-mode ".md")
+              (_ ".txt")))))
+      (rename-buffer (file-name-nondirectory buffer-file-name) t)))
+
+  (defun gptel-mode-auto-save-chat ()
+    "Enable saving chat buffers to predetermined location."
+    (add-hook 'before-save-hook #'gptel-mode-assign-filename nil 'local))
+  (add-hook 'gptel-mode-hook #'gptel-mode-auto-save-chat)
+
+  ;; https://gptel.org/manual.html#org95179ad
+  (defun my/gptel-mode-auto ()
+    "Ensure that this file opens with `gptel-mode' enabled."
+    (save-excursion
+      (let ((enable-local-variables t)) ; Ensure we can modify local variables
+        (if
+          (and
+            (save-excursion
+              (goto-char (point-min))
+              (looking-at ".*-\\*-"))) ; If there's a -*- line
+          ;; First remove any existing eval, then add the new one
+          (modify-file-local-variable-prop-line 'eval nil 'delete))
+        ;; Always add our eval
+        (add-file-local-variable-prop-line 'eval '(and (fboundp 'gptel-mode) (gptel-mode 1))))))
+
+  (add-hook 'gptel-save-state-hook #'my/gptel-mode-auto)
+
+  (require 'consult)
+
+  (defun ueda/consult-chat ()
+    "Pick a saved gptel chat, `consult-theme'-style."
+    (interactive)
+    (let
+      (
+        (default-directory (file-name-as-directory gptel-mode-chat-directory))
+        (new "+ New chat"))
+      (let
+        (
+          (sel
+            (consult--read
+              (cons new (nreverse (directory-files default-directory nil "\\.org\\'")))
+              :prompt "Chat: "
+              :category 'file
+              :require-match t
+              :sort nil
+              :group
+              (lambda (cand transform)
+                (if transform
+                  cand
+                  (and (not (string= cand new)) "Chats")))
+              :lookup
+              (lambda (selected &rest _)
+                (and selected
+                  (if (string= selected new)
+                    :new selected)))
+              :state
+              (let ((preview (consult--file-preview)))
+                (lambda (action cand)
+                  (when (and cand (not (eq cand :new))) (funcall preview action cand)))))))
+        (cond
+          ((eq sel :new)
+            (call-interactively #'gptel))
+          (sel
+            (find-file sel))))))
+
+  (defun ueda/consult-gptel ()
+    (interactive)
+    (consult-ripgrep gptel-mode-chat-directory))
+
+  ;; https://gist.github.com/alexispurslane/ec563d79c08c4f49c840ee82be495beb
+  (add-hook
+    'gptel-post-response-functions
+    (lambda (beg end)
+      (when
+        (derived-mode-p 'org-mode)
+        (save-restriction
+          (narrow-to-region beg end)
+          (org-table-map-tables #'org-table-align))))))
