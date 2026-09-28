@@ -33,7 +33,7 @@ in
         users = {
           knownUsers = [ user ];
           users.${user} = {
-            uid = 501;
+            uid = 502;
             home = "/Users/${user}";
             shell = pkgs.bash;
           };
