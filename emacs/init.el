@@ -41,6 +41,8 @@
   treesit-font-lock-level 4
   use-dialog-box nil
   use-package-always-ensure nil
+  ;; yes/no to y/n
+  use-short-answers t
   vc-allow-rewriting-published-history t
   vc-auto-revert-mode t
   vc-dir-auto-hide-up-to-date 'revert
@@ -51,9 +53,6 @@
   )
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
-;; yes/no to y/n
-(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Local custom file if possible
 (when (file-exists-p custom-file) (load custom-file))

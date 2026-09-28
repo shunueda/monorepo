@@ -348,7 +348,7 @@ in
               ${lib.getExe pkgs.defaultbrowser} ${pkgs.librewolf.pname}
 
               # Set display resolution, assumes 14-inch.
-              ${lib.getExe pkgs.displaymode} t 1800 1169
+              ${lib.getExe pkgs.displaymode} t 1800 1169 || true
             ''
           );
         };
