@@ -105,6 +105,8 @@ in
               dir=$(cd "$root" && fd --type d . | fzf) && cd "$root/$dir"
             }
 
+            alias ns="nix-search-tv print | fzf --preview 'nix-search-tv preview {}' --scheme history"
+
             . "${pkgs.passExtensions.pass-otp}/share/bash-completion/completions/pass-otp"
           '';
         };
@@ -254,6 +256,18 @@ in
         mergiraf = {
           enable = true;
           enableGitIntegration = true;
+        };
+        nix-search-tv = {
+          enable = true;
+          settings = {
+            update_interval = "24h";
+            indexes = [
+              "nixpkgs"
+              "home-manager"
+              "darwin"
+              "noogle"
+            ];
+          };
         };
         nocommit = {
           enable = true;

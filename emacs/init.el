@@ -285,12 +285,14 @@
   (python-ts-mode . eglot-ensure)
   (go-ts-mode . eglot-ensure)
   (neocaml-mode . eglot-ensure)
+  (terraform-mode . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nixd")))
   (add-to-list 'eglot-server-programs '(python-ts-mode . ("pylsp")))
   (add-to-list 'eglot-server-programs '(go-ts-mode . ("gopls")))
   (add-to-list 'eglot-server-programs '(kotlin-ts-mode . ("kotlin-language-server")))
   (add-to-list 'eglot-server-programs '(neocaml-mode . ("ocamllsp")))
+  (add-to-list 'eglot-server-programs '(terraform-mode . ("tofu-ls" "serve")))
 
   (defun ueda/rust-analyzer-contact (_interactive)
     (let*
