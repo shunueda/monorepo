@@ -22,6 +22,7 @@ lib.composeManyExtensions [
       inherit (pkgs-unstable)
         # Backport from unstable
         homerow
+        prismlauncher
         emacsPackagesFor
         ;
 

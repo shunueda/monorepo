@@ -236,7 +236,10 @@ in
             };
             extensions = {
               force = true;
-              packages = with pkgs.nur.repos.rycee.firefox-addons; [ passff ];
+              packages = with pkgs.nur.repos.rycee.firefox-addons; [
+                passff
+                vimium
+              ];
             };
             settings = {
               force = true;
