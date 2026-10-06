@@ -368,13 +368,31 @@ in
         activation = {
           # Darwin-specific activation script
           darwin = lib.mkIf isDarwin (
-            lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-              # Set the default browser
-              ${lib.getExe pkgs.defaultbrowser} ${pkgs.librewolf.pname}
+            lib.hm.dag.entryAfter [ "writeBoundary" ] (
+              let
+                activation = pkgs.writeShellApplication {
+                  name = "ueda-darwin-activation";
+                  runtimeInputs = with pkgs; [
+                    defaultbrowser
+                    displaymode
+                    gawk
+                  ];
+                  text = ''
+                    # Set the default browser
+                    defaultbrowser ${pkgs.librewolf.pname}
 
-              # Set display resolution, assumes 14-inch.
-              ${lib.getExe pkgs.displaymode} t 1800 1169 || true
-            ''
+                    # A little hacy way to get the display size
+                    width=$(/usr/sbin/system_profiler SPDisplaysDataType | awk '/Resolution/ {print $2; exit}')
+                    if [[ "$width" = 3456 ]]; then # 16-inch
+                      displaymode t 2056 1329 || true
+                    else # 14-inch
+                      displaymode t 1800 1169 || true
+                    fi
+                  '';
+                };
+              in
+              lib.getExe activation
+            )
           );
         };
       };
