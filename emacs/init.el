@@ -52,8 +52,7 @@
   ;; keep-sorted end
   )
 
-(add-to-list 'package-archives
-  '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 ;; Local custom file if possible
 (when (file-exists-p custom-file) (load custom-file))
@@ -111,43 +110,34 @@
     :nick "ueda"
     :password (auth-source-pass-get 'secret "InternetAccounts/libera")))
 
-(use-package avy :config
-  (global-set-key (kbd "C-'") 'avy-goto-char-2))
+(use-package avy :config (global-set-key (kbd "C-'") 'avy-goto-char-2))
 
 (use-package
   markdown-mode
-  :mode
-  ("README\\.md\\'" . gfm-mode)
+  :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown")
   :bind (:map markdown-mode-map ("C-c C-e" . markdown-do)))
 
 (use-package
   multiple-cursors
-  :bind
-  (("C->" . mc/mark-next-like-this)
-    ("C-<" . mc/mark-previous-like-this)))
+  :bind (("C->" . mc/mark-next-like-this) ("C-<" . mc/mark-previous-like-this)))
 
 (use-package
   orderless
   :custom
   (completion-styles '(orderless basic))
-  (completion-category-overrides
-    '((file (styles basic partial-completion)))))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package super-save :config (super-save-mode +1))
 
-(use-package undo-tree :config
-  (setq undo-tree-auto-save-history nil) (global-undo-tree-mode))
+(use-package undo-tree :config (setq undo-tree-auto-save-history nil) (global-undo-tree-mode))
 
 (use-package vertico :init (vertico-mode 1))
 
 (use-package
   vertico-directory
-  :after
-  vertico
-  :bind
-  (:map vertico-map ("RET" . vertico-directory-enter)
-    ("DEL" . vertico-directory-delete-char)))
+  :after vertico
+  :bind (:map vertico-map ("RET" . vertico-directory-enter) ("DEL" . vertico-directory-delete-char)))
 
 (use-package
   diff-hl
@@ -168,8 +158,7 @@
   consult
   :custom
   ;; Immediately show results
-  (consult-async-min-input 1) (consult-async-input-debounce 0)
-  (consult-async-input-throttle 0)
+  (consult-async-min-input 1) (consult-async-input-debounce 0) (consult-async-input-throttle 0)
   ;; Overlay default keybinds
   :bind
   (("C-s" . consult-line)
@@ -190,11 +179,8 @@
   (corfu-popupinfo-mode 1))
 (use-package
   kkp
-  :unless
-  (display-graphic-p)
-  :custom
-  (kkp-active-enhancements
-    '(disambiguate-escape-codes report-alternate-keys))
+  :unless (display-graphic-p)
+  :custom (kkp-active-enhancements '(disambiguate-escape-codes report-alternate-keys))
   :hook (tty-setup . global-kkp-mode))
 (use-package
   dimmer
@@ -205,12 +191,10 @@
   (dimmer-configure-magit)
   (dimmer-configure-org)
   (dimmer-mode t))
-(use-package embark-consult :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
+(use-package embark-consult :hook (embark-collect-mode . consult-preview-at-point-mode))
 (use-package
   exec-path-from-shell
-  :when
-  (memq window-system '(mac ns x))
+  :when (memq window-system '(mac ns x))
   :config
   ;; https://github.com/purcell/exec-path-from-shell/blob/6146fdc16e9882df270be7e58ae8d628032d6bc4/README.md#usage
   (dolist
@@ -228,11 +212,8 @@
 
 (use-package
   forge
-  :after
-  magit
-  :custom
-  (forge-database-file
-    (expand-file-name "emacs/forge-database.sqlite" (xdg-data-home)))
+  :after magit
+  :custom (forge-database-file (expand-file-name "emacs/forge-database.sqlite" (xdg-data-home)))
   :custom-face
   ;; Tone forge's colors down to match magit's palette
   (forge-topic-open ((t (:inherit magit-branch-remote))))
@@ -250,9 +231,7 @@
   :config
   (advice-add
     'ghub--token
-    :override
-    (lambda (&rest _)
-      (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
+    :override (lambda (&rest _) (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
 
 (use-package
   org
@@ -269,41 +248,34 @@
   (defun ueda/project-remember-ghq-dirs (&rest _)
     "Populate the project switcher list from `ghq`"
     (dolist
-      (project
-        (split-string (shell-command-to-string "ghq list --full-path")
-          "\n" t))
+      (project (split-string (shell-command-to-string "ghq list --full-path") "\n" t))
       (project--remember-dir (file-name-as-directory project))))
 
-  (advice-add 'project-prompt-project-dir :before
-    #'ueda/project-remember-ghq-dirs)
+  (advice-add 'project-prompt-project-dir :before #'ueda/project-remember-ghq-dirs)
 
   (ueda/project-remember-ghq-dirs)
 
   ;; https://github.com/minad/consult/wiki#use-consult-ripgrep-instead-of-project-find-regexp-in-projectel
-  (keymap-substitute project-prefix-map #'project-find-regexp
-    #'consult-ripgrep)
+  (keymap-substitute project-prefix-map #'project-find-regexp #'consult-ripgrep)
   (cl-nsubstitute-if
     '(consult-ripgrep "Find regexp")
     (pcase-lambda (`(,cmd _)) (eq cmd #'project-find-regexp))
     project-switch-commands)
 
   ;; consult-fd version of above
-  (keymap-substitute project-prefix-map #'project-find-file
-    #'consult-fd)
+  (keymap-substitute project-prefix-map #'project-find-file #'consult-fd)
   (cl-nsubstitute-if
     '(consult-fd "Find file")
     (pcase-lambda (`(,cmd _)) (eq cmd #'project-find-file))
     project-switch-commands))
 
-(use-package envrc :hook
-  (after-init . envrc-global-mode) :custom (envrc-async t))
+(use-package envrc :hook (after-init . envrc-global-mode) :custom (envrc-async t))
 
 (use-package editorconfig :config (editorconfig-mode 1))
 
 (use-package
   eglot
-  :custom
-  (eglot-extend-to-xref t)
+  :custom (eglot-extend-to-xref t)
   :hook
   (rust-ts-mode . eglot-ensure)
   (typescript-ts-mode . eglot-ensure)
@@ -317,11 +289,9 @@
   (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nixd")))
   (add-to-list 'eglot-server-programs '(python-ts-mode . ("pylsp")))
   (add-to-list 'eglot-server-programs '(go-ts-mode . ("gopls")))
-  (add-to-list 'eglot-server-programs
-    '(kotlin-ts-mode . ("kotlin-language-server")))
+  (add-to-list 'eglot-server-programs '(kotlin-ts-mode . ("kotlin-language-server")))
   (add-to-list 'eglot-server-programs '(neocaml-mode . ("ocamllsp")))
-  (add-to-list 'eglot-server-programs
-    '(terraform-mode . ("tofu-ls" "serve")))
+  (add-to-list 'eglot-server-programs '(terraform-mode . ("tofu-ls" "serve")))
 
   (defun ueda/rust-analyzer-contact (_interactive)
     (let*
@@ -341,10 +311,8 @@
           :cargo '(:allFeatures t)
           :check '(:command "clippy")))))
 
-  (add-to-list 'eglot-server-programs
-    '(rust-ts-mode . ueda/rust-analyzer-contact))
-  (add-to-list 'completion-category-overrides
-    '(eglot (styles orderless))))
+  (add-to-list 'eglot-server-programs '(rust-ts-mode . ueda/rust-analyzer-contact))
+  (add-to-list 'completion-category-overrides '(eglot (styles orderless))))
 
 (use-package
   hl-todo
@@ -359,12 +327,10 @@
 
 (use-package
   org-modern
-  :config
-  (global-org-modern-mode)
+  :config (global-org-modern-mode)
   :custom
   ;; https://github.com/minad/org-modern/issues/272
-  (org-modern-fold-stars
-    '(("▶" . "▼") ("▷" . "▽") ("⏵" . "⏷") ("▹" . "▿") ("▸" . "▾"))))
+  (org-modern-fold-stars '(("▶" . "▼") ("▷" . "▽") ("⏵" . "⏷") ("▹" . "▿") ("▸" . "▾"))))
 (use-package
   magit
   :config
@@ -386,17 +352,14 @@
     gptel-include-reasoning nil
     gptel-model 'deepseek/deepseek-v4-flash
     gptel-default-mode 'org-mode
-    gptel-system-prompt
-    (lambda () (auth-source-pass-get 'secret "Misc/system-prompt"))
+    gptel-system-prompt (lambda () (auth-source-pass-get 'secret "Misc/system-prompt"))
     gptel-backend
     (gptel-make-openai
       "OpenRouter"
       :host "openrouter.ai"
       :endpoint "/api/v1/chat/completions"
       :stream t
-      :key
-      (lambda ()
-        (auth-source-pass-get 'secret "ApiKeys/OPENROUTER_API_KEY"))
+      :key (lambda () (auth-source-pass-get 'secret "ApiKeys/OPENROUTER_API_KEY"))
       :request-params
       '
       (:tools
@@ -405,8 +368,7 @@
       :models '(deepseek/deepseek-v4-flash moonshotai/kimi-k2.5)))
 
   ;; https://gptel.org/manual.html#org8e1735f
-  (defvar gptel-mode-chat-directory
-    (file-name-concat (xdg-data-home) "gptel-chat")
+  (defvar gptel-mode-chat-directory (file-name-concat (xdg-data-home) "gptel-chat")
     "Directory in which to store gptel chats.")
 
   (defun gptel-mode-assign-filename ()
@@ -415,15 +377,13 @@
 Intended to be added to `before-save-hook' in gptel chat buffers.  Use a
 prefix-arg to save manually."
     (unless
-      (or (buffer-file-name) current-prefix-arg)
-      (make-directory gptel-mode-chat-directory t)
+      (or (buffer-file-name) current-prefix-arg) (make-directory gptel-mode-chat-directory t)
       (setq buffer-file-name
         (file-name-concat
           gptel-mode-chat-directory
           (concat
             (format-time-string "%Y%m%d%H%M%S-")
-            (file-name-sans-extension
-              (replace-regexp-in-string " " "-" (buffer-name)))
+            (file-name-sans-extension (replace-regexp-in-string " " "-" (buffer-name)))
             (pcase major-mode
               ('org-mode ".org")
               ('markdown-mode ".md")
@@ -432,8 +392,7 @@ prefix-arg to save manually."
 
   (defun gptel-mode-auto-save-chat ()
     "Enable saving chat buffers to predetermined location."
-    (add-hook 'before-save-hook #'gptel-mode-assign-filename nil
-      'local))
+    (add-hook 'before-save-hook #'gptel-mode-assign-filename nil 'local))
   (add-hook 'gptel-mode-hook #'gptel-mode-auto-save-chat)
 
   ;; https://gptel.org/manual.html#org95179ad
@@ -441,18 +400,17 @@ prefix-arg to save manually."
     "Ensure that this file opens with `gptel-mode' enabled."
     (save-excursion
       (let ((enable-local-variables t))
-                                        ; Ensure we can modify local variables
+        ; Ensure we can modify local variables
         (if
           (and
             (save-excursion
               (goto-char (point-min))
               (looking-at ".*-\\*-")))
-                                        ; If there's a -*- line
+          ; If there's a -*- line
           ;; First remove any existing eval, then add the new one
           (modify-file-local-variable-prop-line 'eval nil 'delete))
         ;; Always add our eval
-        (add-file-local-variable-prop-line 'eval
-          '(and (fboundp 'gptel-mode) (gptel-mode 1))))))
+        (add-file-local-variable-prop-line 'eval '(and (fboundp 'gptel-mode) (gptel-mode 1))))))
 
   (add-hook 'gptel-save-state-hook #'my/gptel-mode-auto)
 
@@ -463,16 +421,13 @@ prefix-arg to save manually."
     (interactive)
     (let
       (
-        (default-directory
-          (file-name-as-directory gptel-mode-chat-directory))
+        (default-directory (file-name-as-directory gptel-mode-chat-directory))
         (new "+ New chat"))
       (let
         (
           (sel
             (consult--read
-              (cons new
-                (nreverse
-                  (directory-files default-directory nil "\\.org\\'")))
+              (cons new (nreverse (directory-files default-directory nil "\\.org\\'")))
               :prompt "Chat: "
               :category 'file
               :require-match t
@@ -486,13 +441,11 @@ prefix-arg to save manually."
               (lambda (selected &rest _)
                 (and selected
                   (if (string= selected new)
-                    :new
-                    selected)))
+                    :new selected)))
               :state
               (let ((preview (consult--file-preview)))
                 (lambda (action cand)
-                  (when (and cand (not (eq cand :new)))
-                    (funcall preview action cand)))))))
+                  (when (and cand (not (eq cand :new))) (funcall preview action cand)))))))
         (cond
           ((eq sel :new)
             (call-interactively #'gptel))

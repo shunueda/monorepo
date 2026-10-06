@@ -26,11 +26,7 @@ lib.composeManyExtensions [
         emacsPackagesFor
         ;
 
-      emacs = pkgs-unstable.emacs31.overrideAttrs (prev: {
-        patches = prev.patchs or [ ] ++ [
-          ../patches/emacs-31/round-undecorated-frame.patch
-        ];
-      });
+      emacs = pkgs-unstable.emacs31;
     }
   )
   inputs.emacs-overlay.overlays.package
