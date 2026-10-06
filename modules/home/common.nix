@@ -388,6 +388,9 @@ in
                     else # 14-inch
                       displaymode t 1800 1169 || true
                     fi
+
+                    # Flush macOS preference caches
+                    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
                   '';
                 };
               in
