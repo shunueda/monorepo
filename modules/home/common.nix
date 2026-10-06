@@ -13,6 +13,8 @@ in
     let
       inherit (pkgs.stdenv.hostPlatform) system isDarwin;
       availableOnSystem = lib.meta.availableOn { inherit system; };
+
+      inherit (inputs.nur.legacyPackages.${system}.repos.rycee) firefox-addons;
     in
     {
       imports = [
@@ -236,7 +238,7 @@ in
             };
             extensions = {
               force = true;
-              packages = with pkgs.nur.repos.rycee.firefox-addons; [
+              packages = with firefox-addons; [
                 passff
                 vimium
               ];
@@ -341,6 +343,26 @@ in
         file = {
           ".hushlogin" = {
             text = "";
+          };
+          # Hack to manage LibreWolf extension configs
+          "${config.programs.librewolf.configPath}/default/extension-settings.json" = {
+            text = lib.toJSON {
+              version = 3;
+              commands = {
+                _execute_browser_action = {
+                  precedenceList = [
+                    {
+                      id = firefox-addons.passff.addonId;
+                      enabled = true;
+                      installDate = 1000;
+                      value = {
+                        shortcut = if isDarwin then "MacCtrl+P" else "Ctrl+P";
+                      };
+                    }
+                  ];
+                };
+              };
+            };
           };
         };
         activation = {

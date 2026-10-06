@@ -29,7 +29,6 @@ lib.composeManyExtensions [
       emacs = pkgs-unstable.emacs31;
     }
   )
-  inputs.nur.overlays.default
   inputs.emacs-overlay.overlays.package
   inputs.dune2nix.overlays.dune
 ]
