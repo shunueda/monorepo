@@ -52,7 +52,7 @@
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        backupFileExtension = "hm-backup";
+        backupCommand = "rm";
       };
       environment = {
         shells = [ pkgs.bash ];

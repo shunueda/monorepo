@@ -20,6 +20,7 @@ in
       imports = [
         inputs.nocommit.homeModules.default
         ./ghq.nix
+        ./tridactyl.nix
       ];
       xdg = {
         enable = true;
@@ -219,7 +220,10 @@ in
           policies = {
             GenerativeAI.Enabled = false;
           };
-          nativeMessagingHosts = with pkgs; [ passff-host ];
+          nativeMessagingHosts = with pkgs; [
+            passff-host
+            tridactyl-native
+          ];
           profiles.default = {
             search = {
               force = true;
@@ -240,7 +244,7 @@ in
               force = true;
               packages = with firefox-addons; [
                 passff
-                vimium
+                tridactyl
               ];
             };
             settings = {
@@ -345,7 +349,7 @@ in
             text = "";
           };
           # Hack to manage LibreWolf extension configs
-          "${config.programs.librewolf.configPath}/default/extension-settings.json" = {
+          "${config.programs.librewolf.configPath}/Profiles/default/extension-settings.json" = {
             text = lib.toJSON {
               version = 3;
               commands = {
@@ -356,7 +360,7 @@ in
                       enabled = true;
                       installDate = 1000;
                       value = {
-                        shortcut = if isDarwin then "MacCtrl+P" else "Ctrl+P";
+                        shortcut = if isDarwin then "MacCtrl+J" else "Ctrl+J";
                       };
                     }
                   ];
