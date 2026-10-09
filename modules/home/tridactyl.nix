@@ -1,6 +1,7 @@
 { lib, ... }:
 let
   prelude = [
+    "set newtab about:blank"
     "set modeindicatorshowkeys true"
     "set smoothscroll true"
     "unbind --all"

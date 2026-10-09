@@ -274,6 +274,11 @@
 (use-package editorconfig :config (editorconfig-mode 1))
 
 (use-package
+  elfeed
+  :ensure t
+  :bind ("C-x w" . elfeed)
+  :config (setq elfeed-feeds '("https://www.takeokunn.org/index.xml")))
+(use-package
   eglot
   :custom (eglot-extend-to-xref t)
   :hook

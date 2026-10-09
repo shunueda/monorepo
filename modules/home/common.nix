@@ -127,6 +127,7 @@ in
               corfu
               diff-hl
               dimmer
+              elfeed
               embark
               embark-consult
               envrc
