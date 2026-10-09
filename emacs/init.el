@@ -211,29 +211,6 @@
   (exec-path-from-shell-initialize))
 
 (use-package
-  forge
-  :after magit
-  :custom (forge-database-file (expand-file-name "emacs/forge-database.sqlite" (xdg-data-home)))
-  :custom-face
-  ;; Tone forge's colors down to match magit's palette
-  (forge-topic-open ((t (:inherit magit-branch-remote))))
-  (forge-topic-closed ((t (:inherit magit-dimmed))))
-  (forge-topic-merged ((t (:inherit magit-branch-local))))
-  (forge-topic-unmerged ((t (:inherit magit-dimmed))))
-  (forge-pullreq-open ((t (:inherit magit-branch-remote))))
-  (forge-pullreq-merged ((t (:inherit magit-branch-local))))
-  (forge-pullreq-rejected ((t (:inherit magit-dimmed))))
-  (forge-pullreq-draft ((t (:inherit magit-dimmed))))
-  (forge-topic-unread ((t (:inherit bold))))
-  (forge-dimmed ((t (:inherit magit-dimmed))))
-  ;; Labels: drop the bright colored boxes
-  (forge-topic-label ((t (:inherit magit-dimmed :box nil))))
-  :config
-  (advice-add
-    'ghub--token
-    :override (lambda (&rest _) (string-trim (auth-source-pass-get 'secret "ApiKeys/GH_TOKEN")))))
-
-(use-package
   org
   :config
   ;; OCaml uses Tuareg by default, but I use neocaml.

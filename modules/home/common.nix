@@ -132,7 +132,6 @@ in
               embark-consult
               envrc
               exec-path-from-shell
-              forge
               gptel
               hl-todo
               kkp
