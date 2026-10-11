@@ -685,6 +685,22 @@
         "type": "github"
       }
     },
+    "plaid-openapi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790963161,
+        "narHash": "sha256-vTR2aY1qQ+dbOp/QTop2pLHuHu8qEH99687Q1F6faC8=",
+        "owner": "plaid",
+        "repo": "plaid-openapi",
+        "rev": "325e2e192bcb422df708029bafe9d950c94df2fd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "plaid",
+        "repo": "plaid-openapi",
+        "type": "github"
+      }
+    },
     "revdeps-dune": {
       "inputs": {
         "melange": [
@@ -765,6 +781,7 @@
         "nocommit": "nocommit",
         "nur": "nur",
         "package-lock2nix": "package-lock2nix",
+        "plaid-openapi": "plaid-openapi",
         "systems": "systems_2",
         "tools": "tools",
         "treefmt-nix": "treefmt-nix"

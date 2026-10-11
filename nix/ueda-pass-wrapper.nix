@@ -7,6 +7,7 @@
   name,
   secrets,
   main,
+  passthru ? {}
 }:
 let
   # Project agnostic.
@@ -15,9 +16,10 @@ let
       name,
       secrets,
       main,
+      passthru ? {}
     }:
     writeShellApplication {
-      inherit name;
+      inherit name passthru;
       runtimeInputs = [ pass ];
       text = ''
         ${lib.concatMapAttrsStringSep "\n" (k: v: ''
@@ -31,6 +33,6 @@ let
 in
 # My opinionated take.
 passWrapper {
-  inherit name main;
+  inherit name main passthru;
   secrets = lib.listToAttrs (map (secret: lib.nameValuePair secret "ApiKeys/${secret}") secrets);
 }
