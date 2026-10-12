@@ -33,7 +33,7 @@ export function createPlaidTools({
 
   const summary = endpoints
     .map(({ method, path, summary }) => `${method} ${path} — ${summary}`)
-    .join(EOL)
+    .join(EOL);
 
   const headers = new Headers({
     "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export function createPlaidTools({
         if (!token) {
           return `Unknown account "${account}".`;
         }
-        const url = new URL(path, baseUrl)
+        const url = new URL(path, baseUrl);
         const res = await fetch(url, {
           method: endpoint.method,
           headers,

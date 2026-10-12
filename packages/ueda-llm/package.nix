@@ -22,7 +22,7 @@ uedaPassWrapper {
   main = package-lock2nix.mkNpmModule { src = ./.; };
 
   passthru.gen = runCommand "ueda-llm-gen" { nativeBuildInputs = [ yq ]; } ''
-      mkdir -p $out
-      <${inputs.plaid-openapi}/*.yml yq >$out/plaid-openapi.json
-    '';
+    mkdir -p $out
+    <${inputs.plaid-openapi}/*.yml yq >$out/plaid-openapi.json
+  '';
 }

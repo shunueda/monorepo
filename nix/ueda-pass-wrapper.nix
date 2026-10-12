@@ -7,7 +7,7 @@
   name,
   secrets,
   main,
-  passthru ? {}
+  passthru ? { },
 }:
 let
   # Project agnostic.
@@ -16,7 +16,7 @@ let
       name,
       secrets,
       main,
-      passthru ? {}
+      passthru ? { },
     }:
     writeShellApplication {
       inherit name passthru;
