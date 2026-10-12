@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@ai-sdk/tui": "^1.0.138",
+    "@modelcontextprotocol/sdk": "^1.32.1",
     "@openrouter/ai-sdk-provider": "^3.1.0",
     "ai": "^7.0.137",
     "plaid": "^48.0.0",
