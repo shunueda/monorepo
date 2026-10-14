@@ -333,6 +333,7 @@ in
             git-absorb
             homerow
             hut
+            man-pages-posix
             moreutils
             pngpaste
             qrcode
