@@ -1,5 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(require 'xdg)
 
-;; (add-to-list 'default-frame-alist '(undecorated-round . t))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(menu-bar-lines . 0))
+(add-to-list 'default-frame-alist '(tool-bar-lines . 0))
+(add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
+
+(startup-redirect-eln-cache (expand-file-name "emacs/eln-cache/" (xdg-cache-home)))

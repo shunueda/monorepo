@@ -99,13 +99,18 @@ in
             export PS1="\[\033[1;32m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ "
 
             z() {
-              local repo=$(ghq list | fzf) && cd "$(ghq root)/$repo"
+              local repo="$(ghq list | fzf)"
+              if [[ -n "$repo" ]]; then
+                cd "$(ghq root)/$repo"
+              fi
             }
 
             zi() {
-              local root=$(git rev-parse --show-toplevel)
-              local dir
-              dir=$(cd "$root" && fd --type d . | fzf) && cd "$root/$dir"
+              local root="$(git rev-parse --show-toplevel)"
+              local dir="$(cd "$root" && fd --type d . | fzf)"
+              if [[ -n "$dir" ]]; then
+                cd "$root/$dir"
+              fi
             }
 
             alias ns="nix-search-tv print | fzf --preview 'nix-search-tv preview {}' --scheme history"
@@ -123,6 +128,7 @@ in
             epkgs: with epkgs; [
               # keep-sorted start
               avy
+              browse-at-remote
               consult
               corfu
               diff-hl
@@ -141,6 +147,7 @@ in
               multiple-cursors
               neocaml
               nix-ts-mode
+              no-littering
               orderless
               org-modern
               paredit

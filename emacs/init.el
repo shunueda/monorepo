@@ -2,6 +2,13 @@
 
 (require 'xdg)
 
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(use-package
+  no-littering
+  :init (setq no-littering-var-directory (expand-file-name "emacs/" (xdg-state-home)))
+  :config (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
+
 (setq
   ;; keep-sorted start
   ;; Don't warn on advice
@@ -10,7 +17,6 @@
   auto-save-default nil
   completion-cycle-threshold t
   confirm-kill-emacs 'yes-or-no-p
-  custom-file (concat user-emacs-directory "custom.el")
   eglot-code-action-indications nil
   eglot-documentation-renderer 'markdown-ts-view-mode
   eldoc-help-at-pt t
@@ -29,6 +35,7 @@
   make-backup-files nil
   markdown-display-remote-images t
   markdown-enable-math t
+  mode-line-collapse-minor-modes '(flymake-mode undo-tree-mode super-save-mode eldoc-mode visual-line-mode)
   ;; Silence compiler warnings as they can be pretty disruptive
   native-comp-async-report-warnings-errors nil
   org-startup-with-inline-images t
@@ -51,8 +58,6 @@
   visible-bell t
   ;; keep-sorted end
   )
-
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 ;; Local custom file if possible
 (when (file-exists-p custom-file) (load custom-file))
@@ -98,9 +103,10 @@
 (tab-bar-history-mode 1)
 ;; Hide the tool bar
 (tool-bar-mode 0)
-;; Enable mouse events in terminal Emacs
-(xterm-mouse-mode 1)
 ;; keep-sorted end
+
+;; Terminal only
+(unless (display-graphic-p) (xterm-mouse-mode 1))
 
 (defun ueda/irc-connect ()
   (interactive)
@@ -182,6 +188,7 @@
   :unless (display-graphic-p)
   :custom (kkp-active-enhancements '(disambiguate-escape-codes report-alternate-keys))
   :hook (tty-setup . global-kkp-mode))
+(use-package xclip :unless (display-graphic-p) :config (xclip-mode 1))
 (use-package
   dimmer
   :custom
@@ -313,6 +320,7 @@
   :custom
   ;; https://github.com/minad/org-modern/issues/272
   (org-modern-fold-stars '(("▶" . "▼") ("▷" . "▽") ("⏵" . "⏷") ("▹" . "▿") ("▸" . "▾"))))
+(use-package browse-at-remote :custom (browse-at-remote-prefer-symbolic nil))
 (use-package
   magit
   :config
