@@ -113,6 +113,21 @@ in
               fi
             }
 
+            histsync() {
+              history -a
+
+              local passentry="ShellHistories/$HOSTNAME"
+
+              (cat "$HISTFILE" 2>/dev/null; pass show "$passentry" 2>/dev/null) |
+                awk '!a[$0]++' |
+                ${pkgs.moreutils}/bin/sponge "$HISTFILE"
+
+              <"$HISTFILE" pass insert -mf "$passentry"
+
+              history -c
+              history -r
+            }
+
             alias ns="nix-search-tv print | fzf --preview 'nix-search-tv preview {}' --scheme history"
 
             . "${pkgs.passExtensions.pass-otp}/share/bash-completion/completions/pass-otp"
@@ -344,7 +359,6 @@ in
             qrcode
             sops
             tree
-            ueda-tools
             yubikey-manager
             zbar
             # keep-sorted end

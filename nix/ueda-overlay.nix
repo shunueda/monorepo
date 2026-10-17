@@ -17,7 +17,7 @@ lib.composeManyExtensions [
     in
     {
       # Custom packages
-      inherit (self.packages.${system}) displaymode ueda-tools;
+      inherit (self.packages.${system}) displaymode;
 
       inherit (pkgs-unstable)
         # Backport from unstable
