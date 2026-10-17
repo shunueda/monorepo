@@ -107,6 +107,7 @@
         ./modules/disko/single-disk-ext4.nix
         ./modules/home/common.nix
         ./modules/nixos/common.nix
+        ./nix/flake-modules/apps.nix
         ./nix/flake-modules/codegen.nix
         ./nix/flake-modules/constants.nix
         ./nix/flake-modules/devshells.nix

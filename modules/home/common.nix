@@ -222,6 +222,7 @@ in
               trust = "ultimate";
             }
           ];
+          homedir = "${config.xdg.dataHome}/gnupg";
           scdaemonSettings = {
             disable-ccid = true;
           };
@@ -275,6 +276,7 @@ in
               "browser.startup.homepage" = "about:blank";
               "browser.startup.page" = 1; # homepage
               "browser.cache.disk.parent_directory" = "${config.xdg.cacheHome}/librewolf";
+              "browser.uidensity" = 1; # compact
               "signon.rememberSignons" = false;
               "browser.toolbars.bookmarks.visibility" = "never";
               "privacy.resistFingerprinting" = false; # Make rendering smoother
@@ -330,9 +332,6 @@ in
         # keep-sorted end
       };
       services = {
-        colima = {
-          enable = true;
-        };
         gpg-agent = {
           enable = true;
           enableSshSupport = true;
@@ -365,9 +364,6 @@ in
           ]
         );
         file = {
-          ".hushlogin" = {
-            text = "";
-          };
           # Hack to manage LibreWolf extension configs
           "${config.programs.librewolf.configPath}/Profiles/default/extension-settings.json" =
             lib.mkIf config.programs.librewolf.enable
@@ -407,7 +403,10 @@ in
                     # Set the default browser
                     defaultbrowser ${pkgs.librewolf.pname}
 
-                    # A little hacky way to get the display size
+                    # Residue from setup
+                    rm -f ~/.zsh_history ~/.zsh_sessions
+
+                    # Get the display size
                     width=$(/usr/sbin/system_profiler SPDisplaysDataType | awk '/Resolution/ {print $2; exit}')
                     if [[ "$width" = 3456 ]]; then # 16-inch
                       displaymode t 2056 1329 || true

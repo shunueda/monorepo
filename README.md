@@ -9,7 +9,7 @@ Shun's kitchen-sink.
 Bootstrap:
 
 ```console
-sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake github:shunueda/monorepo#<profile>
+sudo nix --extra-experimental-features "nix-command flakes" run github:shunueda/monorepo#darwin-<profile>-active
 ```
 
 Initialize password-store
