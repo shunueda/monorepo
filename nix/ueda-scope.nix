@@ -65,7 +65,7 @@ let
         overrideScope = pl2nixOverlay;
       };
 
-      dune2nix = callPackage inputs.dune2nix.lib.dune2nix { overrideScope = final: prev: { }; };
+      dune2nix = callPackage inputs.dune2nix.lib.dune2nix { };
 
       uedaPassWrapper = callPackage ./ueda-pass-wrapper.nix { };
     }

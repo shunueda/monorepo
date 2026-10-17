@@ -256,16 +256,13 @@ in
               ];
             };
             settings = {
-              force = true;
               "extensions.autoDisableScopes" = 0; # Enable extensions automatically
               "browser.startup.homepage" = "about:blank";
               "browser.startup.page" = 1; # homepage
-              "browser.newtab.url" = "about:blank";
               "browser.cache.disk.parent_directory" = "${config.xdg.cacheHome}/librewolf";
               "signon.rememberSignons" = false;
               "browser.toolbars.bookmarks.visibility" = "never";
-              # Make rendering smoother
-              "privacy.resistFingerprinting" = false;
+              "privacy.resistFingerprinting" = false; # Make rendering smoother
               "layers.acceleration.force-enabled" = true;
               "gfx.webrender.all" = true;
             };
