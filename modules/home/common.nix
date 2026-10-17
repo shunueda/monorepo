@@ -224,6 +224,7 @@ in
         # TODO: separate homeModule for desktop
         librewolf = lib.mkIf isDarwin {
           enable = true;
+          configPath = "${config.xdg.configHome}/librewolf";
           policies = {
             GenerativeAI.Enabled = false;
           };
@@ -260,6 +261,7 @@ in
               "browser.startup.homepage" = "about:blank";
               "browser.startup.page" = 1; # homepage
               "browser.newtab.url" = "about:blank";
+              "browser.cache.disk.parent_directory" = "${config.xdg.cacheHome}/librewolf";
               "signon.rememberSignons" = false;
               "browser.toolbars.bookmarks.visibility" = "never";
               # Make rendering smoother
