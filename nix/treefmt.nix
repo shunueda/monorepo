@@ -20,7 +20,6 @@
     oxfmt.enable = true;
     rustfmt.enable = true;
     shellcheck.enable = true;
-    typstyle.enable = true;
     # keep-sorted end
   };
   settings = {

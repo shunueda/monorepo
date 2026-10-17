@@ -1,7 +1,0 @@
-keys:
-  - &yubikey C879B61CBD7C81A8783AD90965A3009821043C2C
-creation_rules:
-  - path_regex: secrets/.*\.yaml$
-    key_groups:
-      - pgp:
-          - *yubikey

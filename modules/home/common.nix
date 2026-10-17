@@ -369,25 +369,27 @@ in
             text = "";
           };
           # Hack to manage LibreWolf extension configs
-          "${config.programs.librewolf.configPath}/Profiles/default/extension-settings.json" = {
-            text = lib.toJSON {
-              version = 3;
-              commands = {
-                _execute_browser_action = {
-                  precedenceList = [
-                    {
-                      id = firefox-addons.passff.addonId;
-                      enabled = true;
-                      installDate = 1000;
-                      value = {
-                        shortcut = if isDarwin then "MacCtrl+J" else "Ctrl+J";
-                      };
-                    }
-                  ];
+          "${config.programs.librewolf.configPath}/Profiles/default/extension-settings.json" =
+            lib.mkIf config.programs.librewolf.enable
+              {
+                text = lib.toJSON {
+                  version = 3;
+                  commands = {
+                    _execute_browser_action = {
+                      precedenceList = [
+                        {
+                          id = firefox-addons.passff.addonId;
+                          enabled = true;
+                          installDate = 1000;
+                          value = {
+                            shortcut = if isDarwin then "MacCtrl+J" else "Ctrl+J";
+                          };
+                        }
+                      ];
+                    };
+                  };
                 };
               };
-            };
-          };
         };
         activation = {
           # Darwin-specific activation script
@@ -405,7 +407,7 @@ in
                     # Set the default browser
                     defaultbrowser ${pkgs.librewolf.pname}
 
-                    # A little hacy way to get the display size
+                    # A little hacky way to get the display size
                     width=$(/usr/sbin/system_profiler SPDisplaysDataType | awk '/Resolution/ {print $2; exit}')
                     if [[ "$width" = 3456 ]]; then # 16-inch
                       displaymode t 2056 1329 || true

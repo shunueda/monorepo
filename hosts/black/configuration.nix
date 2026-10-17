@@ -1,4 +1,9 @@
-{ self, inputs, ... }:
+{
+  config,
+  self,
+  inputs,
+  ...
+}:
 let
   user = "ueda";
   specialArgs = { inherit self inputs; };
@@ -34,7 +39,7 @@ in
             "networkmanager"
           ];
           isNormalUser = true;
-          openssh.authorizedKeys.keyFiles = [ ../../keys/C879B61CBD7C81A8783AD90965A3009821043C2C.pub ];
+          openssh.authorizedKeys.keyFiles = [ config.constants.ueda.keys.ssh ];
         };
         # keep-sorted end
       })
