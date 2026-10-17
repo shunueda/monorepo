@@ -94,7 +94,7 @@ in
           ];
           historySize = 1000000;
           historyFileSize = 1000000;
-          historyFile = "${config.home.homeDirectory}/.sh_history";
+          historyFile = "${config.xdg.stateHome}/bash/history";
           initExtra = ''
             export PS1="\[\033[1;32m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ "
 

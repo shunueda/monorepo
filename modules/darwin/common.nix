@@ -23,6 +23,7 @@
       nix = {
         settings = {
           allow-import-from-derivation = false;
+          use-xdg-base-directories = true;
           experimental-features = [
             "nix-command"
             "flakes"
