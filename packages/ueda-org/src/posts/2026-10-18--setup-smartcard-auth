@@ -1,0 +1,5 @@
+#+TITLE: (macOS) Setting up smartcard authentication
+#+DATE: <2026-10-18
+#+FILETAGS: :security:
+
+I finally set up smartcard auth for my MacBook. This guide was helpful: [[https://developers.yubico.com/PIV/Guides/Smart_card-only_authentication_on_macOS.html][https://developers.yubico.com/PIV/Guides/Smart_card-only_authentication_on_macOS.html]].

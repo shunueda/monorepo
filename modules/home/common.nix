@@ -277,6 +277,7 @@ in
               "browser.startup.page" = 1; # homepage
               "browser.cache.disk.parent_directory" = "${config.xdg.cacheHome}/librewolf";
               "browser.uidensity" = 1; # compact
+              "browser.nova.enabled" = false;
               "signon.rememberSignons" = false;
               "browser.toolbars.bookmarks.visibility" = "never";
               "privacy.resistFingerprinting" = false; # Make rendering smoother
@@ -400,6 +401,9 @@ in
                     gawk
                   ];
                   text = ''
+                    # No way?
+                    export PATH="$PATH:/usr/bin:/usr/sbin"
+
                     # Set the default browser
                     defaultbrowser ${pkgs.librewolf.pname}
 
@@ -407,11 +411,16 @@ in
                     rm -f ~/.zsh_history ~/.zsh_sessions
 
                     # Get the display size
-                    width=$(/usr/sbin/system_profiler SPDisplaysDataType | awk '/Resolution/ {print $2; exit}')
+                    width=$(system_profiler SPDisplaysDataType | awk '/Resolution/ {print $2; exit}')
                     if [[ "$width" = 3456 ]]; then # 16-inch
                       displaymode t 2056 1329 || true
                     else # 14-inch
                       displaymode t 1800 1169 || true
+                    fi
+
+                    paired=$(sc_auth list | awk '/Hash:/ {print $2}')
+                    if [[ "$paired" != *"${constants.ueda.keys.piv.hash}"* ]]; then
+                      sudo sc_auth pair -h ${constants.ueda.keys.piv.hash}
                     fi
 
                     # Flush macOS preference caches

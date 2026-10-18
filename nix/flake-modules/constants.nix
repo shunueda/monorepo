@@ -20,6 +20,7 @@
           inherit fingerprint;
           gpg = ../../keys/${fingerprint}.asc;
           ssh = ../../keys/${fingerprint}.pub;
+          piv.hash = "E48ABB23FB16D298B498B5CABB78A07C499B4ACA";
         };
     };
   };
