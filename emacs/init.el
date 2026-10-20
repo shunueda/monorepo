@@ -190,6 +190,11 @@
   :hook (tty-setup . global-kkp-mode))
 (use-package xclip :unless (display-graphic-p) :config (xclip-mode 1))
 (use-package
+  jinx
+  :hook (emacs-startup . global-jinx-mode)
+  :bind (("M-$" . jinx-correct) ("C-M-$" . jinx-languages))
+  :config (setf (alist-get 'prog-mode jinx-include-faces) '(font-lock-comment-face font-lock-doc-face)))
+(use-package
   dimmer
   :custom
   (dimmer-fraction 0.75)

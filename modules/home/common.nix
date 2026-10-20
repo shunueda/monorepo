@@ -155,6 +155,7 @@ in
               exec-path-from-shell
               gptel
               hl-todo
+              jinx
               kkp
               kotlin-ts-mode
               magit
