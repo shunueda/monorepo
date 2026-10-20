@@ -35,7 +35,7 @@
   make-backup-files nil
   markdown-display-remote-images t
   markdown-enable-math t
-  mode-line-collapse-minor-modes '(flymake-mode undo-tree-mode super-save-mode eldoc-mode visual-line-mode)
+  mode-line-collapse-minor-modes '(flymake-mode undo-tree-mode super-save-mode eldoc-mode visual-line-mode jinx-mode)
   ;; Silence compiler warnings as they can be pretty disruptive
   native-comp-async-report-warnings-errors nil
   org-startup-with-inline-images t
@@ -165,7 +165,7 @@
   :custom
   ;; Immediately show results
   (consult-async-min-input 1) (consult-async-input-debounce 0) (consult-async-input-throttle 0)
-  ;; Overlay default keybinds
+  ;; Overlay default key-binds
   :bind
   (("C-s" . consult-line)
     ("C-x b" . consult-buffer)
@@ -333,7 +333,11 @@
   (transient-replace-suffix
     'magit-commit
     'magit-commit-autofixup
-    '("x" "Absorb changes" magit-commit-absorb)))
+    '("x" "Absorb changes" magit-commit-absorb))
+
+  (defun ueda/magit-clone-ghq-directory (url)
+    (file-name-directory (directory-file-name (car (process-lines "ghq" "get" "--dry-run" url)))))
+  (setq magit-clone-default-directory #'ueda/magit-clone-ghq-directory))
 
 (use-package
   gptel

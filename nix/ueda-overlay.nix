@@ -27,6 +27,10 @@ lib.composeManyExtensions [
         ;
 
       emacs = pkgs-unstable.emacs31;
+
+      ghq = pkgs-unstable.ghq.overrideAttrs (old: {
+        patches = old.patches or [ ] ++ [ ../patches/ghq/get-dry-run.patch ];
+      });
     }
   )
   inputs.emacs-overlay.overlays.package
