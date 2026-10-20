@@ -26,7 +26,12 @@ lib.composeManyExtensions [
         emacsPackagesFor
         ;
 
-      emacs = pkgs-unstable.emacs31;
+      emacs = pkgs-unstable.emacs31.overrideAttrs (old: {
+        patches = old.patches or [ ] ++ [
+          ../patches/emacs-31/fix-ns-x-colors.patch
+          ../patches/emacs-31/round-undecorated-frame.patch
+        ];
+      });
 
       ghq = pkgs-unstable.ghq.overrideAttrs (old: {
         patches = old.patches or [ ] ++ [ ../patches/ghq/get-dry-run.patch ];
