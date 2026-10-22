@@ -32,10 +32,6 @@ lib.composeManyExtensions [
           ../patches/emacs-31/round-undecorated-frame.patch
         ];
       });
-
-      ghq = pkgs-unstable.ghq.overrideAttrs (old: {
-        patches = old.patches or [ ] ++ [ ../patches/ghq/get-dry-run.patch ];
-      });
     }
   )
   inputs.emacs-overlay.overlays.package

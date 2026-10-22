@@ -333,11 +333,7 @@
   (transient-replace-suffix
     'magit-commit
     'magit-commit-autofixup
-    '("x" "Absorb changes" magit-commit-absorb))
-
-  (defun ueda/magit-clone-ghq-directory (url)
-    (file-name-directory (directory-file-name (car (process-lines "ghq" "get" "--dry-run" url)))))
-  (setq magit-clone-default-directory #'ueda/magit-clone-ghq-directory))
+    '("x" "Absorb changes" magit-commit-absorb)))
 
 (use-package
   gptel

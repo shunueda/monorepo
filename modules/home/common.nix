@@ -151,6 +151,7 @@ in
               elfeed
               embark
               embark-consult
+              remoto
               envrc
               exec-path-from-shell
               gptel
