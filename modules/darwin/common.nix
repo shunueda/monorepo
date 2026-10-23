@@ -63,6 +63,9 @@
       launchd.user.envVariables = {
         DEVELOPER_DIR = stubDeveloperDir;
       };
+      programs = {
+        bash.enable = true;
+      };
       system = {
         startup.chime = false;
         defaults = {

@@ -25,7 +25,6 @@ in
           hostName = name;
         };
         nixpkgs.hostPlatform = system;
-        programs.bash.enable = true;
         system = {
           primaryUser = user;
           stateVersion = 7;
