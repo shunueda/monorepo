@@ -151,7 +151,6 @@ in
               elfeed
               embark
               embark-consult
-              remoto
               envrc
               exec-path-from-shell
               gptel
@@ -169,6 +168,7 @@ in
               org-modern
               paredit
               password-store
+              remoto
               super-save
               treesit-auto
               treesit-grammars.with-all-grammars
@@ -353,6 +353,7 @@ in
             # keep-sorted start
             coreutils
             docker
+            findutils
             git-absorb
             homerow
             hut
@@ -360,6 +361,7 @@ in
             pngpaste
             qrcode
             sops
+            trash-cli
             tree
             yubikey-manager
             zbar

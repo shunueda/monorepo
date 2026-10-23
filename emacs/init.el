@@ -17,6 +17,7 @@
   auto-save-default nil
   completion-cycle-threshold t
   confirm-kill-emacs 'yes-or-no-p
+  delete-by-moving-to-trash t
   eglot-code-action-indications nil
   eglot-documentation-renderer 'markdown-ts-view-mode
   eldoc-help-at-pt t
@@ -58,6 +59,9 @@
   visible-bell t
   ;; keep-sorted end
   )
+
+;; On macOS disable the native trash
+(when (and (eq system-type 'darwin)) (fmakunbound 'system-move-file-to-trash))
 
 ;; Local custom file if possible
 (when (file-exists-p custom-file) (load custom-file))
