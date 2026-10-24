@@ -19,6 +19,9 @@ in
             home.stateVersion = "26.05";
           };
         };
+        nix = {
+          settings.trusted-users = [ user ];
+        };
         networking = {
           computerName = name;
           localHostName = name;
