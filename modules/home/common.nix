@@ -358,6 +358,7 @@ in
             homerow
             hut
             moreutils
+            plaid
             pngpaste
             qrcode
             sops

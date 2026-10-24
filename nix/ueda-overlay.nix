@@ -17,7 +17,7 @@ lib.composeManyExtensions [
     in
     {
       # Custom packages
-      inherit (self.packages.${system}) displaymode;
+      inherit (self.packages.${system}) displaymode plaid;
 
       inherit (pkgs-unstable)
         # Backport from unstable

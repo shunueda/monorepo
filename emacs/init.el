@@ -340,6 +340,13 @@
     'magit-commit-autofixup
     '("x" "Absorb changes" magit-commit-absorb)))
 
+
+(defun ueda/plaid-cli (cmd &rest args)
+  "Run plaid-cli CMD with ARGS, return JSON. Uses ~/.config/plaid-cli config."
+  (let ((proc (apply #'start-process "plaid" "*plaid*" "plaid" cmd "--json" args)))
+    (while (eq (process-status proc) 'run) (sit-for 0.05))
+    (with-current-buffer "*plaid*" (buffer-string))))
+
 (use-package
   gptel
   :bind
@@ -348,6 +355,12 @@
     ("C-c g m" . gptel-menu)
     ("C-c g r" . gptel-rewrite))
   :config
+  (require 'gptel-integrations)
+   (gptel-make-tool
+   :name "plaid_cli" :category "plaid" :confirm t :function #'ueda/plaid-cli
+   :description "Run plaid-cli with JSON output. Uses your logged-in config (~/.config/plaid-cli)."
+   :args '((:name "cmd" :type string :description "Full plaid-cli command, e.g. 'balance', 'transactions list --count 10'")))
+
   (setq
     gptel-include-reasoning nil
     gptel-model 'deepseek/deepseek-v4-flash
