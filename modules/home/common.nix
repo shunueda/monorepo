@@ -153,6 +153,7 @@ in
               embark-consult
               envrc
               exec-path-from-shell
+              ghq
               gptel
               hl-todo
               jinx
@@ -174,6 +175,7 @@ in
               treesit-grammars.with-all-grammars
               undo-tree
               vertico
+              wgrep
               xclip
               # keep-sorted end
             ];
