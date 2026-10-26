@@ -19,13 +19,13 @@ in
             home.stateVersion = "26.05";
           };
         };
-        nix = {
-          settings.trusted-users = [ user ];
-        };
         networking = {
           computerName = name;
           localHostName = name;
           hostName = name;
+        };
+        nix = {
+          settings.trusted-users = [ user ];
         };
         nixpkgs.hostPlatform = system;
         system = {

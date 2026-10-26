@@ -309,6 +309,10 @@ in
           enableGitIntegration = true;
           useConfigBasedHook = true;
         };
+        npm = {
+          enable = true;
+          package = null; # I just want the xdg configs
+        };
         password-store = {
           enable = true;
           package = pkgs.pass.withExtensions (
@@ -368,6 +372,7 @@ in
             # keep-sorted end
           ]
         );
+        preferXdgDirectories = true;
         file = {
           # Hack to manage LibreWolf extension configs
           "${config.programs.librewolf.configPath}/Profiles/default/extension-settings.json" =
@@ -426,6 +431,11 @@ in
                     if [[ "$paired" != *"${constants.ueda.keys.piv.hash}"* ]]; then
                       sudo sc_auth pair -h ${constants.ueda.keys.piv.hash}
                     fi
+
+                    # Cleanup homedir
+                    killall Finder
+                    osascript -e 'tell application "Finder" to quit'
+                    rm -rf ~/Downloads ~/Desktop ~/Documents ~/Movies ~/Music ~/Pictures
 
                     # Flush macOS preference caches
                     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u

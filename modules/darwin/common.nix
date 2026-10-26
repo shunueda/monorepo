@@ -82,6 +82,7 @@
             tilesize = 32;
             static-only = true;
           };
+          finder.QuitMenuItem = true;
           CustomUserPreferences = {
             "com.apple.loginwindow" = {
               # https://github.com/nix-darwin/nix-darwin/pull/1848
