@@ -9,6 +9,8 @@
   :init (setq no-littering-var-directory (expand-file-name "emacs/" (xdg-state-home)))
   :config (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
 
+(use-package gcmh :init (gcmh-mode 1))
+
 (setq
   ;; keep-sorted start
   ;; Don't warn on advice
@@ -36,7 +38,7 @@
   make-backup-files nil
   markdown-display-remote-images t
   markdown-enable-math t
-  mode-line-collapse-minor-modes '(flymake-mode undo-tree-mode super-save-mode eldoc-mode visual-line-mode jinx-mode)
+  mode-line-collapse-minor-modes '(flymake-mode undo-tree-mode super-save-mode eldoc-mode visual-line-mode jinx-mode gcmh-mode)
   ;; Silence compiler warnings as they can be pretty disruptive
   native-comp-async-report-warnings-errors nil
   org-startup-with-inline-images t
@@ -339,6 +341,18 @@
     'magit-commit
     'magit-commit-autofixup
     '("x" "Absorb changes" magit-commit-absorb)))
+
+(use-package
+  mistty
+  :custom (mistty-install-dir (file-name-concat (xdg-data-home) "emacs" "mistty"))
+  :bind (("C-c s" . mistty) :map mistty-prompt-map ("C-r" . mistty-send-key))
+  :init (add-to-list 'load-path mistty-install-dir)
+  :config
+  (require 'mistty-install)
+  (unless
+    (file-exists-p (expand-file-name (mistty-alacritty-modulename) mistty-install-dir))
+    (make-directory mistty-install-dir t)
+    (mistty-install-dwim)))
 
 (use-package
   gptel

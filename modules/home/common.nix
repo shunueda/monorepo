@@ -153,6 +153,7 @@ in
               embark-consult
               envrc
               exec-path-from-shell
+              gcmh
               ghq
               gptel
               hl-todo
@@ -161,6 +162,7 @@ in
               kotlin-ts-mode
               magit
               markdown-mode
+              mistty
               multiple-cursors
               neocaml
               nix-ts-mode
