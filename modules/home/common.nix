@@ -160,6 +160,7 @@ in
               kkp
               kotlin-ts-mode
               magit
+              magit-difftastic
               markdown-mode
               multiple-cursors
               neocaml
