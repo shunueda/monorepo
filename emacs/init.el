@@ -340,6 +340,10 @@
     'magit-commit-autofixup
     '("x" "Absorb changes" magit-commit-absorb)))
 
+(use-package consult-gh
+  :config
+  (require 'consult-gh-transient))
+
 (use-package
   gptel
   :bind

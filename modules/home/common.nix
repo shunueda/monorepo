@@ -145,6 +145,7 @@ in
               avy
               browse-at-remote
               consult
+              consult-gh
               corfu
               diff-hl
               dimmer
@@ -182,6 +183,17 @@ in
         };
         fd.enable = true;
         fzf.enable = true;
+        gh = {
+          enable = true;
+          package = pkgs.writeShellApplication {
+            name = "gh";
+            runtimeInputs = [ pkgs.gh ];
+            text = ''
+              GH_TOKEN=$(pass show ApiKeys/GH_TOKEN) exec gh "$@"
+            '';
+          };
+          gitCredentialHelper.enable = false;
+        };
         ghq = {
           enable = true;
           settings = {
