@@ -76,10 +76,6 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.systems.follows = "systems";
     };
-    plaid-openapi = {
-      url = "github:plaid/plaid-openapi";
-      flake = false;
-    };
     systems.url = "github:nix-systems/triplet";
     tools = {
       url = "github:anteriorcore/tools";

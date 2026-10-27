@@ -434,10 +434,10 @@ in
                       sudo sc_auth pair -h ${constants.ueda.keys.piv.hash}
                     fi
 
-                    # Cleanup homedir
-                    killall Finder
-                    osascript -e 'tell application "Finder" to quit'
-                    rm -rf ~/Downloads ~/Desktop ~/Documents ~/Movies ~/Music ~/Pictures
+                    # TODO: Cleanup homedir
+                    # killall Finder
+                    # osascript -e 'tell application "Finder" to quit'
+                    # rm -rf ~/Downloads ~/Desktop ~/Documents ~/Movies ~/Music ~/Pictures
 
                     # Flush macOS preference caches
                     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
