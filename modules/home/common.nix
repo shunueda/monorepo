@@ -148,6 +148,7 @@ in
               corfu
               diff-hl
               dimmer
+              difftastic
               elfeed
               embark
               embark-consult
@@ -183,6 +184,10 @@ in
         };
         fd.enable = true;
         fzf.enable = true;
+        difftastic = {
+          enable = true;
+          git.enable = true;
+        };
         ghq = {
           enable = true;
           settings = {

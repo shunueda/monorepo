@@ -269,7 +269,6 @@
 
 (use-package
   elfeed
-  :ensure t
   :bind ("C-x w" . elfeed)
   :config (setq elfeed-feeds '("https://www.takeokunn.org/index.xml")))
 (use-package
@@ -339,6 +338,14 @@
     'magit-commit
     'magit-commit-autofixup
     '("x" "Absorb changes" magit-commit-absorb)))
+
+(use-package magit-difftastic
+  :after magit
+  :config
+  (magit-difftastic-mode +1)
+  :custom
+  (magit-difftastic-display "inline")
+  (magit-difftastic-line-numbers t))
 
 (use-package
   gptel
