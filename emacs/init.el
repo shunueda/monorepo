@@ -73,8 +73,10 @@
 (global-unset-key [C-wheel-up])
 (global-unset-key [C-wheel-down])
 
-;; Disable minimize
-(global-unset-key [C-z])
+;; Disable minimizing the window
+(global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-x C-z"))
+(global-unset-key (kbd "s-m"))
 
 ;; Don't go all the way to the front of line
 (keymap-global-set "C-a" #'back-to-indentation)
