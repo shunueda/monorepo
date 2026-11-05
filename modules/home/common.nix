@@ -173,6 +173,7 @@ in
               super-save
               treesit-auto
               treesit-grammars.with-all-grammars
+              trust-manager
               undo-tree
               vertico
               wgrep

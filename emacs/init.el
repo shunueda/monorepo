@@ -140,7 +140,9 @@
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-(use-package super-save :config (super-save-mode +1))
+(use-package super-save :config (super-save-mode t))
+
+(use-package trust-manager :config (trust-manager-mode t))
 
 (use-package undo-tree :config (setq undo-tree-auto-save-history nil) (global-undo-tree-mode))
 
