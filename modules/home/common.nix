@@ -368,6 +368,7 @@ in
             pngpaste
             qrcode
             sops
+            steam-darwin
             trash-cli
             tree
             yubikey-manager
