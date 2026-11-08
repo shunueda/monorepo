@@ -16,7 +16,7 @@
               type = "app";
               program = lib.getExe (
                 pkgs.writeShellApplication {
-                  name = "darwin-${name}-active";
+                  name = "darwin-${name}-activate";
                   text = ''
                     nix \
                       --extra-experimental-features "nix-command flakes" \
