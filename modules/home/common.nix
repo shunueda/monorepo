@@ -133,6 +133,11 @@ in
             . "${pkgs.passExtensions.pass-otp}/share/bash-completion/completions/pass-otp"
           '';
         };
+        cargo = {
+          enable = true;
+          package = null;
+          cargoHome = "${config.xdg.dataHome}/cargo";
+        };
         direnv = {
           enable = true;
           nix-direnv.enable = true;
@@ -219,6 +224,13 @@ in
             github.user = "shunueda";
           };
         };
+        go = {
+          enable = true;
+          package = null;
+          env = {
+            GOPATH = "${config.xdg.dataHome}/go";
+          };
+        };
         gpg = {
           enable = true;
           publicKeys = [
@@ -240,6 +252,12 @@ in
             no-emit-version = true;
             no-greeting = true;
           };
+        };
+        gradle = {
+          enable = true;
+          package = null;
+          # https://github.com/nix-community/home-manager/pull/10092
+          home = "${config.xdg.dataHome}/gradle";
         };
         home-manager.enable = true;
         # TODO: separate homeModule for desktop
@@ -324,6 +342,9 @@ in
               pass-otp
             ]
           );
+          settings = {
+            PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
+          };
         };
         ripgrep.enable = true;
         ssh = {
@@ -376,6 +397,10 @@ in
           ]
         );
         preferXdgDirectories = true;
+        sessionVariables = {
+          NODE_REPL_HISTORY = "${config.xdg.dataHome}/node_repl_history";
+          PYTHON_HISTORY = "${config.xdg.stateHome}/python_history";
+        };
         file = {
           # Hack to manage LibreWolf extension configs
           "${config.programs.librewolf.configPath}/Profiles/default/extension-settings.json" =

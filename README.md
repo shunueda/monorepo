@@ -15,7 +15,7 @@ sudo nix --extra-experimental-features "nix-command flakes" run github:shunueda/
 Initialize password-store
 
 ```
-git clone git@github.com:shunueda/password-store.git ~/.password-store
+git clone git@github.com:shunueda/password-store.git "$XDG_DATA_HOME/password-store"
 ```
 
 Switch:
