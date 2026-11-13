@@ -6,6 +6,7 @@
   ueda-cdktf-providers,
   lib,
   uedaPassWrapper,
+  opentofu
 }:
 let
   uedaCdktf = package-lock2nix.mkNpmModule { src = ./.; };
@@ -35,6 +36,7 @@ uedaPassWrapper {
       GPG_FINGERPRINT = constants.ueda.keys.fingerprint;
       SSH_PUBLIC_KEY = builtins.readFile constants.ueda.keys.ssh;
       GPG_PUBLIC_KEY = builtins.readFile constants.ueda.keys.gpg;
+      TERRAFORM_BINARY_NAME = opentofu.meta.mainProgram;
     };
 
     runtimeInputs = [

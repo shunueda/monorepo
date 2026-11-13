@@ -21,9 +21,9 @@ lib.composeManyExtensions [
 
       inherit (pkgs-unstable)
         # Backport from unstable
-        homerow
         prismlauncher
         emacsPackagesFor
+        opentofu
         ;
 
       emacs = pkgs-unstable.emacs31.overrideAttrs (old: {

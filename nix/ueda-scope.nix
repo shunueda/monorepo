@@ -56,7 +56,7 @@ let
 
       inherit (inputs.tools.packages.${system}) nix-flake-check-changed nix-grep-to-build;
 
-      terraform = pkgs.terraform.withPlugins (_: uedaTerraformProviders);
+      terraform = pkgs.opentofu.withPlugins (_: uedaTerraformProviders);
 
       nodejs = pkgs.nodejs_24;
 
