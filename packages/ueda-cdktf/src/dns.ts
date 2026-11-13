@@ -1,6 +1,4 @@
-import { DataCloudflareRegistrarDomain } from "@ueda/cdktf-providers/cloudflare/data-cloudflare-registrar-domain";
 import { DnsRecord } from "@ueda/cdktf-providers/cloudflare/dns-record";
-import { RegistrarDomain } from "@ueda/cdktf-providers/cloudflare/registrar-domain";
 import { Ruleset } from "@ueda/cdktf-providers/cloudflare/ruleset";
 import { Zone } from "@ueda/cdktf-providers/cloudflare/zone";
 import type { TerraformStack } from "cdktf";
@@ -8,36 +6,22 @@ import { mustEnv } from "./helpers.ts";
 
 export type Domain = Readonly<{
   id: string;
-  domain: RegistrarDomain | DataCloudflareRegistrarDomain;
+  domain: string;
   zone: Zone;
 }>;
 
 export function createDomain(
   stack: TerraformStack,
   accountId: string,
-  domainName: string,
-  isData: boolean = false,
+  domain: string
 ): Domain {
-  const id = domainName.replaceAll(".", "-");
-
-  const domain = isData
-    ? new DataCloudflareRegistrarDomain(stack, `${id}-registrar-domain`, {
-        accountId,
-        domainName,
-      })
-    : new RegistrarDomain(stack, `${id}-registrar-domain`, {
-        accountId,
-        domainName,
-        privacy: true,
-        autoRenew: true,
-        locked: true,
-      });
+  const id = domain.replaceAll(".", "-");
 
   const zone = new Zone(stack, `${id}-zone`, {
     account: {
       id: accountId,
     },
-    name: domain.domainName,
+    name: domain,
     type: "full",
   });
 
@@ -76,7 +60,7 @@ export function fastmail(stack: TerraformStack, { id, domain, zone }: Domain) {
     ttl: 1,
     type: "CNAME",
     zoneId: zone.id,
-    content: `fm1.${domain.domainName}.dkim.fmhosted.com`,
+    content: `fm1.${domain}.dkim.fmhosted.com`,
     proxied: false,
   });
 
@@ -85,7 +69,7 @@ export function fastmail(stack: TerraformStack, { id, domain, zone }: Domain) {
     ttl: 1,
     type: "CNAME",
     zoneId: zone.id,
-    content: `fm2.${domain.domainName}.dkim.fmhosted.com`,
+    content: `fm2.${domain}.dkim.fmhosted.com`,
     proxied: false,
   });
 
@@ -94,7 +78,7 @@ export function fastmail(stack: TerraformStack, { id, domain, zone }: Domain) {
     ttl: 1,
     type: "CNAME",
     zoneId: zone.id,
-    content: `fm3.${domain.domainName}.dkim.fmhosted.com`,
+    content: `fm3.${domain}.dkim.fmhosted.com`,
     proxied: false,
   });
 
@@ -120,7 +104,7 @@ export function sourcehutPages(
   { id, domain, zone }: Domain,
 ) {
   new DnsRecord(stack, `${id}-srht-a`, {
-    name: domain.domainName,
+    name: domain,
     ttl: 1, // automatic
     type: "A",
     zoneId: zone.id,
@@ -128,7 +112,7 @@ export function sourcehutPages(
   });
 
   new DnsRecord(stack, `${id}-srht-aaaa`, {
-    name: domain.domainName,
+    name: domain,
     ttl: 1, // automatic
     type: "AAAA",
     zoneId: zone.id,
@@ -157,14 +141,14 @@ export function redirect(
     phase: "http_request_dynamic_redirect",
     rules: [
       {
-        description: `Redirect ${source.domain.domainName} to ${destination.domain.domainName}`,
+        description: `Redirect ${source.domain} to ${destination.domain}`,
         expression: "true",
         action: "redirect",
         actionParameters: {
           fromValue: {
             statusCode: 301,
             targetUrl: {
-              value: `https://${destination.domain.domainName}`,
+              value: `https://${destination.domain}`,
             },
           },
         },

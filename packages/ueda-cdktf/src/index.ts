@@ -39,7 +39,7 @@ function synth() {
   const domains = {
     shunueda_org: createDomain(stack, cloudflareAccountId, "shunueda.org"),
     shunueda_com: createDomain(stack, cloudflareAccountId, "shunueda.com"),
-    shu_nu: createDomain(stack, cloudflareAccountId, "shu.nu", true),
+    shu_nu: createDomain(stack, cloudflareAccountId, "shu.nu"),
   } as const;
 
   fastmail(stack, domains.shunueda_org);
@@ -60,7 +60,7 @@ function synth() {
   new R2CustomDomain(stack, "nix-cache-r2-custom-domain", {
     accountId: cloudflareAccountId,
     bucketName: nixCacheBucket.name,
-    domain: `nix-cache.${domains.shunueda_org.domain.domainName}`,
+    domain: `nix-cache.${domains.shunueda_org.domain}`,
     enabled: true,
     zoneId: domains.shunueda_org.zone.id,
   });
