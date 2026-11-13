@@ -13,7 +13,7 @@ export type Domain = Readonly<{
 export function createDomain(
   stack: TerraformStack,
   accountId: string,
-  domain: string
+  domain: string,
 ): Domain {
   const id = domain.replaceAll(".", "-");
 
