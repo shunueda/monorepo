@@ -103,7 +103,15 @@ export function fastmail(stack: TerraformStack, { id, domain, zone }: Domain) {
     ttl: 1,
     type: "TXT",
     zoneId: zone.id,
-    content: `"v=spf1 include:spf.messagingengine.com ?all"`,
+    content: `"v=spf1 include:spf.messagingengine.com -all"`,
+  });
+
+  new DnsRecord(stack, `${id}-fastmail-dmarc`, {
+    name: "_dmarc",
+    ttl: 1,
+    type: "TXT",
+    zoneId: zone.id,
+    content: "v=DMARC1; p=reject; rua=mailto:me@shunueda.org;",
   });
 }
 
