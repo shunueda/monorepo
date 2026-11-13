@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/guardrails
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/guardrails
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -8,9 +8,9 @@ import * as cdktf from 'cdktf';
 
 export interface DataOpenrouterGuardrailsConfig extends cdktf.TerraformMetaArguments {
   /**
-  * Filter guardrails by workspace ID. By default, guardrails in the default workspace are returned.
+  * Filter guardrails by workspace ID. When omitted, an organization management key gets guardrails in the default workspace and a workspace-scoped key gets guardrails in its own workspace. A workspace-scoped key gets 403 for any other workspace.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/guardrails#workspace_id DataOpenrouterGuardrails#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/guardrails#workspace_id DataOpenrouterGuardrails#workspace_id}
   */
   readonly workspaceId?: string;
 }
@@ -160,6 +160,11 @@ export class DataOpenrouterGuardrailsDataContentFiltersOutputReference extends c
     return this.getStringAttribute('action');
   }
 
+  // is_enforced - computed: true, optional: false, required: false
+  public get isEnforced() {
+    return this.getBooleanAttribute('is_enforced');
+  }
+
   // label - computed: true, optional: false, required: false
   public get label() {
     return this.getStringAttribute('label');
@@ -240,6 +245,16 @@ export class DataOpenrouterGuardrailsDataOutputReference extends cdktf.ComplexOb
     }
   }
 
+  // allow_safety_retention_google - computed: true, optional: false, required: false
+  public get allowSafetyRetentionGoogle() {
+    return this.getBooleanAttribute('allow_safety_retention_google');
+  }
+
+  // allow_safety_retention_other - computed: true, optional: false, required: false
+  public get allowSafetyRetentionOther() {
+    return this.getBooleanAttribute('allow_safety_retention_other');
+  }
+
   // allowed_data_regions - computed: true, optional: false, required: false
   public get allowedDataRegions() {
     return this.getListAttribute('allowed_data_regions');
@@ -290,6 +305,11 @@ export class DataOpenrouterGuardrailsDataOutputReference extends cdktf.ComplexOb
   // enable_paid_model_training - computed: true, optional: false, required: false
   public get enablePaidModelTraining() {
     return this.getBooleanAttribute('enable_paid_model_training');
+  }
+
+  // enforce_first_party_harness_models - computed: true, optional: false, required: false
+  public get enforceFirstPartyHarnessModels() {
+    return this.getBooleanAttribute('enforce_first_party_harness_models');
   }
 
   // enforce_zdr - computed: true, optional: false, required: false
@@ -388,7 +408,7 @@ export class DataOpenrouterGuardrailsDataList extends cdktf.ComplexList {
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/guardrails openrouter_guardrails}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/guardrails openrouter_guardrails}
 */
 export class DataOpenrouterGuardrails extends cdktf.TerraformDataSource {
 
@@ -404,7 +424,7 @@ export class DataOpenrouterGuardrails extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterGuardrails resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterGuardrails to import
-  * @param importFromId The id of the existing DataOpenrouterGuardrails that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/guardrails#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterGuardrails that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/guardrails#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterGuardrails to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -416,7 +436,7 @@ export class DataOpenrouterGuardrails extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/guardrails openrouter_guardrails} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/guardrails openrouter_guardrails} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -427,7 +447,7 @@ export class DataOpenrouterGuardrails extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_guardrails',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.137'
+        providerVersion: '0.3.258'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

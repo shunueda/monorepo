@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/api_keys
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/api_keys
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,19 +10,19 @@ export interface DataOpenrouterApiKeysConfig extends cdktf.TerraformMetaArgument
   /**
   * Whether to include disabled API keys in the response
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/api_keys#include_disabled DataOpenrouterApiKeys#include_disabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/api_keys#include_disabled DataOpenrouterApiKeys#include_disabled}
   */
   readonly includeDisabled?: string;
   /**
-  * Number of API keys to skip for pagination
+  * Whether to include expired API keys in the response. Expired keys are excluded by default and returned only when this is true.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/api_keys#offset DataOpenrouterApiKeys#offset}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/api_keys#include_expired DataOpenrouterApiKeys#include_expired}
   */
-  readonly offset?: number;
+  readonly includeExpired?: string;
   /**
-  * Filter API keys by workspace ID. By default, keys in the default workspace are returned.
+  * Filter API keys by workspace ID. By default an organization-scoped management key gets the default workspace; a workspace-scoped management key always gets its own workspace and cannot list another.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/api_keys#workspace_id DataOpenrouterApiKeys#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/api_keys#workspace_id DataOpenrouterApiKeys#workspace_id}
   */
   readonly workspaceId?: string;
 }
@@ -137,6 +137,11 @@ export class DataOpenrouterApiKeysDataOutputReference extends cdktf.ComplexObjec
     return this.getStringAttribute('label');
   }
 
+  // last_used_at - computed: true, optional: false, required: false
+  public get lastUsedAt() {
+    return this.getStringAttribute('last_used_at');
+  }
+
   // limit - computed: true, optional: false, required: false
   public get limit() {
     return this.getNumberAttribute('limit');
@@ -208,7 +213,7 @@ export class DataOpenrouterApiKeysDataList extends cdktf.ComplexList {
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/api_keys openrouter_api_keys}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/api_keys openrouter_api_keys}
 */
 export class DataOpenrouterApiKeys extends cdktf.TerraformDataSource {
 
@@ -224,7 +229,7 @@ export class DataOpenrouterApiKeys extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterApiKeys resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterApiKeys to import
-  * @param importFromId The id of the existing DataOpenrouterApiKeys that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/api_keys#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterApiKeys that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/api_keys#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterApiKeys to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -236,7 +241,7 @@ export class DataOpenrouterApiKeys extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/api_keys openrouter_api_keys} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/api_keys openrouter_api_keys} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -247,7 +252,7 @@ export class DataOpenrouterApiKeys extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_api_keys',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.137'
+        providerVersion: '0.3.258'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
@@ -258,7 +263,7 @@ export class DataOpenrouterApiKeys extends cdktf.TerraformDataSource {
       forEach: config.forEach
     });
     this._includeDisabled = config.includeDisabled;
-    this._offset = config.offset;
+    this._includeExpired = config.includeExpired;
     this._workspaceId = config.workspaceId;
   }
 
@@ -288,20 +293,20 @@ export class DataOpenrouterApiKeys extends cdktf.TerraformDataSource {
     return this._includeDisabled;
   }
 
-  // offset - computed: false, optional: true, required: false
-  private _offset?: number; 
-  public get offset() {
-    return this.getNumberAttribute('offset');
+  // include_expired - computed: false, optional: true, required: false
+  private _includeExpired?: string; 
+  public get includeExpired() {
+    return this.getStringAttribute('include_expired');
   }
-  public set offset(value: number) {
-    this._offset = value;
+  public set includeExpired(value: string) {
+    this._includeExpired = value;
   }
-  public resetOffset() {
-    this._offset = undefined;
+  public resetIncludeExpired() {
+    this._includeExpired = undefined;
   }
   // Temporarily expose input value. Use with caution.
-  public get offsetInput() {
-    return this._offset;
+  public get includeExpiredInput() {
+    return this._includeExpired;
   }
 
   // workspace_id - computed: false, optional: true, required: false
@@ -327,7 +332,7 @@ export class DataOpenrouterApiKeys extends cdktf.TerraformDataSource {
   protected synthesizeAttributes(): { [name: string]: any } {
     return {
       include_disabled: cdktf.stringToTerraform(this._includeDisabled),
-      offset: cdktf.numberToTerraform(this._offset),
+      include_expired: cdktf.stringToTerraform(this._includeExpired),
       workspace_id: cdktf.stringToTerraform(this._workspaceId),
     };
   }
@@ -340,11 +345,11 @@ export class DataOpenrouterApiKeys extends cdktf.TerraformDataSource {
         type: "simple",
         storageClassType: "string",
       },
-      offset: {
-        value: cdktf.numberToHclTerraform(this._offset),
+      include_expired: {
+        value: cdktf.stringToHclTerraform(this._includeExpired),
         isBlock: false,
         type: "simple",
-        storageClassType: "number",
+        storageClassType: "string",
       },
       workspace_id: {
         value: cdktf.stringToHclTerraform(this._workspaceId),

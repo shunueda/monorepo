@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -8,75 +8,99 @@ import * as cdktf from 'cdktf';
 
 export interface ByokKeyConfig extends cdktf.TerraformMetaArguments {
   /**
-  * Optional allowlist of OpenRouter API key hashes (`api_keys.hash`) that may use this credential. `null` means no restriction. Must contain at least one hash if provided. Hashes that do not belong to your account return a 400.
+  * Optional allowlist of OpenRouter API key hashes (`api_keys.hash`) that may use this credential. `null` means no restriction. Must contain at least one hash if provided. Hashes that do not belong to your account return a 400; for a credential pinned to a workspace, so do hashes of API keys outside that workspace.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#allowed_api_key_hashes ByokKey#allowed_api_key_hashes}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#allowed_api_key_hashes ByokKey#allowed_api_key_hashes}
   */
   readonly allowedApiKeyHashes?: string[];
   /**
   * Optional allowlist of model slugs this credential may be used for. `null` means no restriction.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#allowed_models ByokKey#allowed_models}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#allowed_models ByokKey#allowed_models}
   */
   readonly allowedModels?: string[];
   /**
   * Optional allowlist of user IDs that may use this credential. `null` means no restriction.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#allowed_user_ids ByokKey#allowed_user_ids}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#allowed_user_ids ByokKey#allowed_user_ids}
   */
   readonly allowedUserIds?: string[];
   /**
+  * Your declaration of the data region in which the upstream provider account behind this credential processes requests, used for routing eligibility on OpenRouter's regional hosts. `null` means undeclared and `global` is behaviorally identical: the credential follows the region OpenRouter records for the endpoint. `europe` or `us` lets requests to `eu.openrouter.ai` or `us.openrouter.ai` use this credential for that provider (private endpoints, endpoints pinned to another cloud region, cross-region inference profiles and video models are excluded). Self-declared and not verified by OpenRouter. For OpenAI and Fireworks the region comes from the key material (a `{"api_key": ..., "region": ...}` key), so the value must match the key's region. Among other providers, Azure accepts `europe` or `us` and Anthropic accepts `us` only. Defaults to the key's region for OpenAI and Fireworks, otherwise `null`. must be one of ["global", "europe", "us"]
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#declared_region ByokKey#declared_region}
+  */
+  readonly declaredRegion?: string;
+  /**
+  * Your declaration of whether the upstream provider account behind this credential has zero data retention (ZDR). `null` inherits OpenRouter's data policy for the provider's endpoint; `true` declares the account ZDR so requests that require ZDR may route to this credential even when the shared endpoint retains data; `false` declares it non-ZDR so such requests never route to it. Self-declared and not verified by OpenRouter. Defaults to `null`.
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#declared_zdr ByokKey#declared_zdr}
+  */
+  readonly declaredZdr?: boolean | cdktf.IResolvable;
+  /**
   * Whether this credential should be created in a disabled state.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#disabled ByokKey#disabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#disabled ByokKey#disabled}
   */
   readonly disabled?: boolean | cdktf.IResolvable;
   /**
   * Whether OpenRouter's shared endpoints on this provider are removed for every model, including models outside `allowed_models` and after all of your keys for the provider fail. The provider is skipped instead of spending OpenRouter credits. Only valid on non-fallback credentials. Defaults to `false`.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#is_byok_only ByokKey#is_byok_only}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#is_byok_only ByokKey#is_byok_only}
   */
   readonly isByokOnly?: boolean | cdktf.IResolvable;
   /**
   * Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. Cannot be combined with `is_byok_only`.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#is_fallback ByokKey#is_fallback}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#is_fallback ByokKey#is_fallback}
   */
   readonly isFallback?: boolean | cdktf.IResolvable;
   /**
   * Whether OpenRouter's shared endpoints on this provider are removed for the models this credential applies to (its `allowed_models`, or every model when `null`). Requests for those models run only on your keys; models outside the allowlist may still fall back to shared capacity on this provider. Defaults to `false`.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#is_required ByokKey#is_required}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#is_required ByokKey#is_required}
   */
   readonly isRequired?: boolean | cdktf.IResolvable;
   /**
-  * The raw provider API key or credential. This value is encrypted at rest and never returned in API responses.
+  * The raw provider API key or credential. This value is encrypted at rest and never returned in API responses. It is stored in Terraform state; set `key_wo` instead to keep it out of state and plans. One of `key` and `key_wo` is required to create a key.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#key ByokKey#key}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#key ByokKey#key}
   */
-  readonly key: string;
+  readonly key?: string;
+  /**
+  * Write-only alternative to `key`: the raw provider API key or credential, never stored in Terraform state or plans. Requires Terraform 1.11 or later and `key_wo_version`. Cannot be combined with `key`. Must be at least 4 characters long, so it can be redacted from logs. Moving an existing credential to this attribute removes it from the current state only: earlier state versions, state backups and saved plan files still contain it, so rotate the credential when you migrate.
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#key_wo ByokKey#key_wo}
+  */
+  readonly keyWo?: string;
+  /**
+  * Rotation trigger for `key_wo`. The credential is sent on create, and again whenever this value changes. Increment it to rotate the key; any positive integer works.
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#key_wo_version ByokKey#key_wo_version}
+  */
+  readonly keyWoVersion?: number;
   /**
   * Optional human-readable name for the credential.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#name ByokKey#name}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#name ByokKey#name}
   */
   readonly name?: string;
   /**
-  * The upstream provider this credential authenticates against, as a lowercase slug (e.g. `openai`, `anthropic`, `amazon-bedrock`). must be one of ["ai21", "aion-labs", "akashml", "alibaba", "amazon-bedrock", "amazon-bedrock/claude-on-aws", "amazon-nova", "ambient", "anthropic", "anthropic/2", "arcee-ai", "assemblyai", "atlas-cloud", "avian", "azure", "baidu", "baseten", "black-forest-labs", "byteplus", "cerebras", "chutes", "cirrascale", "clarifai", "claude-on-aws", "cloudflare", "cohere", "coreweave", "cosine", "crusoe", "darkbloom", "databricks", "decart", "deepgram", "deepinfra", "deepseek", "dekallm", "digitalocean", "featherless", "fireworks", "fish-audio", "friendli", "gmicloud", "google-ai-studio", "google-vertex", "groq", "heygen", "inception", "inceptron", "inferact-vllm", "inference-net", "infermatic", "inflection", "io-net", "ionstream", "krea", "liquid", "makora", "mancer", "mara", "meta", "minimax", "mistral", "modal", "modelrun", "modular", "moonshotai", "morph", "near-ai", "nebius", "nex-agi", "nextbit", "novita", "nvidia", "ollama", "open-inference", "openai", "parasail", "perceptron", "perplexity", "phala", "poolside", "primeintellect", "quiver", "recraft", "reka", "relace", "runway", "sail-research", "sakana", "sakana-ai", "sambanova", "seed", "siliconflow", "sourceful", "stepfun", "streamlake", "switchpoint", "tencent", "tenstorrent", "thinkingmachines", "together", "typesafe", "unbiased", "upstage", "venice", "voyageai", "wafer", "wandb", "wandb-legacy", "xai", "xiaomi", "z-ai"]; Requires replacement if changed.
+  * The upstream provider this credential authenticates against, as a lowercase slug (e.g. `openai`, `anthropic`, `amazon-bedrock`). must be one of ["ai21", "aion-labs", "akashml", "alibaba", "amazon-bedrock", "amazon-bedrock/claude-on-aws", "amazon-nova", "ambient", "antdigital", "anthropic", "anthropic/2", "arcee-ai", "assemblyai", "atlas-cloud", "avian", "azure", "baidu", "baseten", "black-forest-labs", "byteplus", "cerebras", "chutes", "cirrascale", "clarifai", "claude-on-aws", "cloudflare", "cohere", "coreweave", "cosine", "crusoe", "darkbloom", "databricks", "decart", "deepgram", "deepinfra", "deepseek", "dekallm", "digitalocean", "elevenlabs", "featherless", "fireworks", "fish-audio", "friendli", "gmicloud", "google-ai-studio", "google-vertex", "groq", "heygen", "inception", "inceptron", "inferact-vllm", "inference-net", "infermatic", "inflection", "io-net", "ionstream", "krea", "kt", "liquid", "makora", "mancer", "mara", "meta", "minimax", "mistral", "modal", "modelrun", "modular", "moonshotai", "morph", "near-ai", "nebius", "nex-agi", "nextbit", "novita", "nvidia", "ollama", "open-inference", "openai", "parallel", "parasail", "pareto-alpha", "particle-ai", "pearl-research", "perceptron", "perplexity", "phala", "poolside", "primalabs", "primeintellect", "quiver", "recraft", "recursive", "reka", "relace", "respan", "river", "runway", "sail-research", "sakana", "sakana-ai", "sambanova", "scaledown", "seed", "siliconflow", "sourceful", "speechify", "stepfun", "streamlake", "switchpoint", "tencent", "tenstorrent", "thinkingmachines", "together", "typesafe", "unbiased", "upstage", "venice", "voyageai", "wafer", "wandb", "wandb-legacy", "xai", "xiaomi", "z-ai"]; Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#provider_slug ByokKey#provider_slug}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#provider_slug ByokKey#provider_slug}
   */
   readonly providerSlug: string;
   /**
-  * Optional workspace ID to scope the credential to. When omitted, the credential is created in the account's default workspace; if that default has been deleted, the request returns a 400 and you must pass `workspace_id` explicitly. Requires replacement if changed.
+  * Optional workspace ID to scope the credential to. When omitted, a workspace-scoped management key creates it in its own workspace. An organization management key creates it in the account's default workspace; if that default has been deleted, the request returns a 400 and you must pass `workspace_id` explicitly. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#workspace_id ByokKey#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#workspace_id ByokKey#workspace_id}
   */
   readonly workspaceId?: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key openrouter_byok_key}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key openrouter_byok_key}
 */
 export class ByokKey extends cdktf.TerraformResource {
 
@@ -92,7 +116,7 @@ export class ByokKey extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a ByokKey resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the ByokKey to import
-  * @param importFromId The id of the existing ByokKey that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing ByokKey that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the ByokKey to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -104,7 +128,7 @@ export class ByokKey extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/byok_key openrouter_byok_key} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/byok_key openrouter_byok_key} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -115,7 +139,7 @@ export class ByokKey extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_byok_key',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.137'
+        providerVersion: '0.3.258'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
@@ -128,11 +152,15 @@ export class ByokKey extends cdktf.TerraformResource {
     this._allowedApiKeyHashes = config.allowedApiKeyHashes;
     this._allowedModels = config.allowedModels;
     this._allowedUserIds = config.allowedUserIds;
+    this._declaredRegion = config.declaredRegion;
+    this._declaredZdr = config.declaredZdr;
     this._disabled = config.disabled;
     this._isByokOnly = config.isByokOnly;
     this._isFallback = config.isFallback;
     this._isRequired = config.isRequired;
     this._key = config.key;
+    this._keyWo = config.keyWo;
+    this._keyWoVersion = config.keyWoVersion;
     this._name = config.name;
     this._providerSlug = config.providerSlug;
     this._workspaceId = config.workspaceId;
@@ -193,6 +221,38 @@ export class ByokKey extends cdktf.TerraformResource {
   // created_at - computed: true, optional: false, required: false
   public get createdAt() {
     return this.getStringAttribute('created_at');
+  }
+
+  // declared_region - computed: true, optional: true, required: false
+  private _declaredRegion?: string; 
+  public get declaredRegion() {
+    return this.getStringAttribute('declared_region');
+  }
+  public set declaredRegion(value: string) {
+    this._declaredRegion = value;
+  }
+  public resetDeclaredRegion() {
+    this._declaredRegion = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get declaredRegionInput() {
+    return this._declaredRegion;
+  }
+
+  // declared_zdr - computed: true, optional: true, required: false
+  private _declaredZdr?: boolean | cdktf.IResolvable; 
+  public get declaredZdr() {
+    return this.getBooleanAttribute('declared_zdr');
+  }
+  public set declaredZdr(value: boolean | cdktf.IResolvable) {
+    this._declaredZdr = value;
+  }
+  public resetDeclaredZdr() {
+    this._declaredZdr = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get declaredZdrInput() {
+    return this._declaredZdr;
   }
 
   // disabled - computed: true, optional: true, required: false
@@ -264,7 +324,7 @@ export class ByokKey extends cdktf.TerraformResource {
     return this._isRequired;
   }
 
-  // key - computed: false, optional: false, required: true
+  // key - computed: false, optional: true, required: false
   private _key?: string; 
   public get key() {
     return this.getStringAttribute('key');
@@ -272,9 +332,44 @@ export class ByokKey extends cdktf.TerraformResource {
   public set key(value: string) {
     this._key = value;
   }
+  public resetKey() {
+    this._key = undefined;
+  }
   // Temporarily expose input value. Use with caution.
   public get keyInput() {
     return this._key;
+  }
+
+  // key_wo - computed: false, optional: true, required: false
+  private _keyWo?: string; 
+  public get keyWo() {
+    return this.getStringAttribute('key_wo');
+  }
+  public set keyWo(value: string) {
+    this._keyWo = value;
+  }
+  public resetKeyWo() {
+    this._keyWo = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get keyWoInput() {
+    return this._keyWo;
+  }
+
+  // key_wo_version - computed: false, optional: true, required: false
+  private _keyWoVersion?: number; 
+  public get keyWoVersion() {
+    return this.getNumberAttribute('key_wo_version');
+  }
+  public set keyWoVersion(value: number) {
+    this._keyWoVersion = value;
+  }
+  public resetKeyWoVersion() {
+    this._keyWoVersion = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get keyWoVersionInput() {
+    return this._keyWoVersion;
   }
 
   // label - computed: true, optional: false, required: false
@@ -341,11 +436,15 @@ export class ByokKey extends cdktf.TerraformResource {
       allowed_api_key_hashes: cdktf.listMapper(cdktf.stringToTerraform, false)(this._allowedApiKeyHashes),
       allowed_models: cdktf.listMapper(cdktf.stringToTerraform, false)(this._allowedModels),
       allowed_user_ids: cdktf.listMapper(cdktf.stringToTerraform, false)(this._allowedUserIds),
+      declared_region: cdktf.stringToTerraform(this._declaredRegion),
+      declared_zdr: cdktf.booleanToTerraform(this._declaredZdr),
       disabled: cdktf.booleanToTerraform(this._disabled),
       is_byok_only: cdktf.booleanToTerraform(this._isByokOnly),
       is_fallback: cdktf.booleanToTerraform(this._isFallback),
       is_required: cdktf.booleanToTerraform(this._isRequired),
       key: cdktf.stringToTerraform(this._key),
+      key_wo: cdktf.stringToTerraform(this._keyWo),
+      key_wo_version: cdktf.numberToTerraform(this._keyWoVersion),
       name: cdktf.stringToTerraform(this._name),
       provider_slug: cdktf.stringToTerraform(this._providerSlug),
       workspace_id: cdktf.stringToTerraform(this._workspaceId),
@@ -371,6 +470,18 @@ export class ByokKey extends cdktf.TerraformResource {
         isBlock: false,
         type: "list",
         storageClassType: "stringList",
+      },
+      declared_region: {
+        value: cdktf.stringToHclTerraform(this._declaredRegion),
+        isBlock: false,
+        type: "simple",
+        storageClassType: "string",
+      },
+      declared_zdr: {
+        value: cdktf.booleanToHclTerraform(this._declaredZdr),
+        isBlock: false,
+        type: "simple",
+        storageClassType: "boolean",
       },
       disabled: {
         value: cdktf.booleanToHclTerraform(this._disabled),
@@ -401,6 +512,18 @@ export class ByokKey extends cdktf.TerraformResource {
         isBlock: false,
         type: "simple",
         storageClassType: "string",
+      },
+      key_wo: {
+        value: cdktf.stringToHclTerraform(this._keyWo),
+        isBlock: false,
+        type: "simple",
+        storageClassType: "string",
+      },
+      key_wo_version: {
+        value: cdktf.numberToHclTerraform(this._keyWoVersion),
+        isBlock: false,
+        type: "simple",
+        storageClassType: "number",
       },
       name: {
         value: cdktf.stringToHclTerraform(this._name),

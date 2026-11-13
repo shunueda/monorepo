@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/observability_destinations
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/observability_destinations
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -8,9 +8,15 @@ import * as cdktf from 'cdktf';
 
 export interface DataOpenrouterObservabilityDestinationsConfig extends cdktf.TerraformMetaArguments {
   /**
-  * Optional workspace ID to filter by. Defaults to the authenticated entity's default workspace.
+  * Whether to include credential-bearing fields in the `config` blocks. Set to `true` to include credentials, headers, and URLs, so they are stored in state. Defaults to `false`: the `config` blocks then keep only a known-public set of fields.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/observability_destinations#workspace_id DataOpenrouterObservabilityDestinations#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/observability_destinations#include_sensitive_config DataOpenrouterObservabilityDestinations#include_sensitive_config}
+  */
+  readonly includeSensitiveConfig?: boolean | cdktf.IResolvable;
+  /**
+  * Optional workspace ID to filter by. Defaults to the authenticated entity's default workspace, or a workspace-scoped management key's own workspace.
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/observability_destinations#workspace_id DataOpenrouterObservabilityDestinations#workspace_id}
   */
   readonly workspaceId?: string;
 }
@@ -432,6 +438,11 @@ export class DataOpenrouterObservabilityDestinationsDataArizeOutputReference ext
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -916,6 +927,11 @@ export class DataOpenrouterObservabilityDestinationsDataBraintrustOutputReferenc
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -1051,6 +1067,11 @@ export class DataOpenrouterObservabilityDestinationsDataClickhouseConfigOutputRe
   // password - computed: true, optional: false, required: false
   public get password() {
     return this.getStringAttribute('password');
+  }
+
+  // should_include_cache_write_tokens - computed: true, optional: false, required: false
+  public get shouldIncludeCacheWriteTokens() {
+    return this.getBooleanAttribute('should_include_cache_write_tokens');
   }
 
   // table - computed: true, optional: false, required: false
@@ -1406,6 +1427,11 @@ export class DataOpenrouterObservabilityDestinationsDataClickhouseOutputReferenc
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -1890,6 +1916,11 @@ export class DataOpenrouterObservabilityDestinationsDataDatadogOutputReference e
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -2372,6 +2403,11 @@ export class DataOpenrouterObservabilityDestinationsDataGrafanaOutputReference e
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -2852,6 +2888,11 @@ export class DataOpenrouterObservabilityDestinationsDataLangfuseOutputReference 
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -3341,6 +3382,11 @@ export class DataOpenrouterObservabilityDestinationsDataLangsmithOutputReference
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -3816,6 +3862,11 @@ export class DataOpenrouterObservabilityDestinationsDataNewrelicOutputReference 
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -4300,6 +4351,11 @@ export class DataOpenrouterObservabilityDestinationsDataOpikOutputReference exte
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -4425,6 +4481,16 @@ export class DataOpenrouterObservabilityDestinationsDataOtelCollectorConfigOutpu
   private _headers = new cdktf.StringMap(this, "headers");
   public get headers() {
     return this._headers;
+  }
+
+  // metrics_endpoint - computed: true, optional: false, required: false
+  public get metricsEndpoint() {
+    return this.getStringAttribute('metrics_endpoint');
+  }
+
+  // should_send_metrics - computed: true, optional: false, required: false
+  public get shouldSendMetrics() {
+    return this.getBooleanAttribute('should_send_metrics');
   }
 }
 export interface DataOpenrouterObservabilityDestinationsDataOtelCollectorFilterRulesGroupsRulesValue {
@@ -4770,6 +4836,11 @@ export class DataOpenrouterObservabilityDestinationsDataOtelCollectorOutputRefer
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -5249,6 +5320,11 @@ export class DataOpenrouterObservabilityDestinationsDataPosthogOutputReference e
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -5726,6 +5802,11 @@ export class DataOpenrouterObservabilityDestinationsDataRampOutputReference exte
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -5847,6 +5928,11 @@ export class DataOpenrouterObservabilityDestinationsDataS3ConfigOutputReference 
     return this.getStringAttribute('access_key_id');
   }
 
+  // auth_mode - computed: true, optional: false, required: false
+  public get authMode() {
+    return this.getStringAttribute('auth_mode');
+  }
+
   // bucket_name - computed: true, optional: false, required: false
   public get bucketName() {
     return this.getStringAttribute('bucket_name');
@@ -5855,6 +5941,11 @@ export class DataOpenrouterObservabilityDestinationsDataS3ConfigOutputReference 
   // endpoint - computed: true, optional: false, required: false
   public get endpoint() {
     return this.getStringAttribute('endpoint');
+  }
+
+  // external_id - computed: true, optional: false, required: false
+  public get externalId() {
+    return this.getStringAttribute('external_id');
   }
 
   // headers - computed: true, optional: false, required: false
@@ -5873,9 +5964,19 @@ export class DataOpenrouterObservabilityDestinationsDataS3ConfigOutputReference 
     return this.getStringAttribute('prefix');
   }
 
+  // provider - computed: true, optional: false, required: false
+  public get provider() {
+    return this.getStringAttribute('provider');
+  }
+
   // region - computed: true, optional: false, required: false
   public get region() {
     return this.getStringAttribute('region');
+  }
+
+  // role_arn - computed: true, optional: false, required: false
+  public get roleArn() {
+    return this.getStringAttribute('role_arn');
   }
 
   // secret_access_key - computed: true, optional: false, required: false
@@ -6231,6 +6332,11 @@ export class DataOpenrouterObservabilityDestinationsDataS3OutputReference extend
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -6710,6 +6816,11 @@ export class DataOpenrouterObservabilityDestinationsDataSentryOutputReference ex
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -6845,6 +6956,11 @@ export class DataOpenrouterObservabilityDestinationsDataSnowflakeConfigOutputRef
   // schema - computed: true, optional: false, required: false
   public get schema() {
     return this.getStringAttribute('schema');
+  }
+
+  // should_include_cache_write_tokens - computed: true, optional: false, required: false
+  public get shouldIncludeCacheWriteTokens() {
+    return this.getBooleanAttribute('should_include_cache_write_tokens');
   }
 
   // table - computed: true, optional: false, required: false
@@ -7205,6 +7321,11 @@ export class DataOpenrouterObservabilityDestinationsDataSnowflakeOutputReference
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -7694,6 +7815,11 @@ export class DataOpenrouterObservabilityDestinationsDataWeaveOutputReference ext
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -8171,6 +8297,11 @@ export class DataOpenrouterObservabilityDestinationsDataWebhookOutputReference e
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -8412,7 +8543,7 @@ export class DataOpenrouterObservabilityDestinationsDataList extends cdktf.Compl
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/observability_destinations openrouter_observability_destinations}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/observability_destinations openrouter_observability_destinations}
 */
 export class DataOpenrouterObservabilityDestinations extends cdktf.TerraformDataSource {
 
@@ -8428,7 +8559,7 @@ export class DataOpenrouterObservabilityDestinations extends cdktf.TerraformData
   * Generates CDKTF code for importing a DataOpenrouterObservabilityDestinations resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterObservabilityDestinations to import
-  * @param importFromId The id of the existing DataOpenrouterObservabilityDestinations that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/observability_destinations#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterObservabilityDestinations that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/observability_destinations#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterObservabilityDestinations to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -8440,7 +8571,7 @@ export class DataOpenrouterObservabilityDestinations extends cdktf.TerraformData
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/observability_destinations openrouter_observability_destinations} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/observability_destinations openrouter_observability_destinations} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -8451,7 +8582,7 @@ export class DataOpenrouterObservabilityDestinations extends cdktf.TerraformData
       terraformResourceType: 'openrouter_observability_destinations',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.137'
+        providerVersion: '0.3.258'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
@@ -8461,6 +8592,7 @@ export class DataOpenrouterObservabilityDestinations extends cdktf.TerraformData
       connection: config.connection,
       forEach: config.forEach
     });
+    this._includeSensitiveConfig = config.includeSensitiveConfig;
     this._workspaceId = config.workspaceId;
   }
 
@@ -8472,6 +8604,22 @@ export class DataOpenrouterObservabilityDestinations extends cdktf.TerraformData
   private _data = new DataOpenrouterObservabilityDestinationsDataList(this, "data", false);
   public get data() {
     return this._data;
+  }
+
+  // include_sensitive_config - computed: false, optional: true, required: false
+  private _includeSensitiveConfig?: boolean | cdktf.IResolvable; 
+  public get includeSensitiveConfig() {
+    return this.getBooleanAttribute('include_sensitive_config');
+  }
+  public set includeSensitiveConfig(value: boolean | cdktf.IResolvable) {
+    this._includeSensitiveConfig = value;
+  }
+  public resetIncludeSensitiveConfig() {
+    this._includeSensitiveConfig = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get includeSensitiveConfigInput() {
+    return this._includeSensitiveConfig;
   }
 
   // total_count - computed: true, optional: false, required: false
@@ -8501,12 +8649,19 @@ export class DataOpenrouterObservabilityDestinations extends cdktf.TerraformData
 
   protected synthesizeAttributes(): { [name: string]: any } {
     return {
+      include_sensitive_config: cdktf.booleanToTerraform(this._includeSensitiveConfig),
       workspace_id: cdktf.stringToTerraform(this._workspaceId),
     };
   }
 
   protected synthesizeHclAttributes(): { [name: string]: any } {
     const attrs = {
+      include_sensitive_config: {
+        value: cdktf.booleanToHclTerraform(this._includeSensitiveConfig),
+        isBlock: false,
+        type: "simple",
+        storageClassType: "boolean",
+      },
       workspace_id: {
         value: cdktf.stringToHclTerraform(this._workspaceId),
         isBlock: false,

@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/presets
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/presets
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -7,6 +7,12 @@ import * as cdktf from 'cdktf';
 // Configuration
 
 export interface DataOpenrouterPresetsConfig extends cdktf.TerraformMetaArguments {
+  /**
+  * Workspace to act in. Also accepted as a `workspace_id` field in a JSON request body. Defaults to the key's workspace for a key limited to one workspace, otherwise to the account's default workspace.
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/presets#workspace_id DataOpenrouterPresets#workspace_id}
+  */
+  readonly workspaceId?: string;
 }
 export interface DataOpenrouterPresetsData {
 }
@@ -135,7 +141,7 @@ export class DataOpenrouterPresetsDataList extends cdktf.ComplexList {
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/presets openrouter_presets}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/presets openrouter_presets}
 */
 export class DataOpenrouterPresets extends cdktf.TerraformDataSource {
 
@@ -151,7 +157,7 @@ export class DataOpenrouterPresets extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterPresets resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterPresets to import
-  * @param importFromId The id of the existing DataOpenrouterPresets that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/presets#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterPresets that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/presets#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterPresets to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -163,7 +169,7 @@ export class DataOpenrouterPresets extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/data-sources/presets openrouter_presets} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/presets openrouter_presets} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -174,7 +180,7 @@ export class DataOpenrouterPresets extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_presets',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.137'
+        providerVersion: '0.3.258'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
@@ -184,6 +190,7 @@ export class DataOpenrouterPresets extends cdktf.TerraformDataSource {
       connection: config.connection,
       forEach: config.forEach
     });
+    this._workspaceId = config.workspaceId;
   }
 
   // ==========
@@ -201,18 +208,43 @@ export class DataOpenrouterPresets extends cdktf.TerraformDataSource {
     return this.getNumberAttribute('total_count');
   }
 
+  // workspace_id - computed: false, optional: true, required: false
+  private _workspaceId?: string; 
+  public get workspaceId() {
+    return this.getStringAttribute('workspace_id');
+  }
+  public set workspaceId(value: string) {
+    this._workspaceId = value;
+  }
+  public resetWorkspaceId() {
+    this._workspaceId = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get workspaceIdInput() {
+    return this._workspaceId;
+  }
+
   // =========
   // SYNTHESIS
   // =========
 
   protected synthesizeAttributes(): { [name: string]: any } {
     return {
+      workspace_id: cdktf.stringToTerraform(this._workspaceId),
     };
   }
 
   protected synthesizeHclAttributes(): { [name: string]: any } {
     const attrs = {
+      workspace_id: {
+        value: cdktf.stringToHclTerraform(this._workspaceId),
+        isBlock: false,
+        type: "simple",
+        storageClassType: "string",
+      },
     };
-    return attrs;
+
+    // remove undefined attributes
+    return Object.fromEntries(Object.entries(attrs).filter(([_, value]) => value !== undefined && value.value !== undefined ))
   }
 }

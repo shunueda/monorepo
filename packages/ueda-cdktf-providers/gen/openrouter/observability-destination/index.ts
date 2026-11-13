@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -8,81 +8,99 @@ import * as cdktf from 'cdktf';
 
 export interface ObservabilityDestinationConfig extends cdktf.TerraformMetaArguments {
   /**
-  * Optional allowlist of OpenRouter API key hashes whose traffic is forwarded. `null` or omitted means all keys. Must contain at least one hash if provided.
+  * Optional allowlist of OpenRouter API key hashes whose traffic is forwarded. `null` or omitted means all keys. Must contain at least one hash if provided. Every hash must belong to an API key in the destination's workspace; any other hash returns 400.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#api_key_hashes ObservabilityDestination#api_key_hashes}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#api_key_hashes ObservabilityDestination#api_key_hashes}
   */
   readonly apiKeyHashes?: string[];
   /**
   * When true, include cost and billing generation metadata.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#broadcast_generation_cost ObservabilityDestination#broadcast_generation_cost}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#broadcast_generation_cost ObservabilityDestination#broadcast_generation_cost}
   */
   readonly broadcastGenerationCost?: boolean | cdktf.IResolvable;
   /**
+  * Beta. When true, include openrouter_cost_allocation: per-token-kind usage and cost, sent only when they reconcile with the billed cost.
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#broadcast_generation_cost_allocation ObservabilityDestination#broadcast_generation_cost_allocation}
+  */
+  readonly broadcastGenerationCostAllocation?: boolean | cdktf.IResolvable;
+  /**
   * When true, include identity generation metadata.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#broadcast_generation_identity ObservabilityDestination#broadcast_generation_identity}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#broadcast_generation_identity ObservabilityDestination#broadcast_generation_identity}
   */
   readonly broadcastGenerationIdentity?: boolean | cdktf.IResolvable;
   /**
   * When true, include request-context generation metadata.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#broadcast_generation_request_context ObservabilityDestination#broadcast_generation_request_context}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#broadcast_generation_request_context ObservabilityDestination#broadcast_generation_request_context}
   */
   readonly broadcastGenerationRequestContext?: boolean | cdktf.IResolvable;
   /**
-  * Provider-specific configuration. The shape depends on `type` and is validated server-side.
+  * Provider-specific configuration. The shape depends on `type` and is validated server-side. Everything in this map is stored in Terraform state; put credentials in `config_secrets_wo` instead to keep them out of state and plans. At least one of `config` and `config_secrets_wo` is required to create a destination.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#config ObservabilityDestination#config}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#config ObservabilityDestination#config}
   */
-  readonly config: { [key: string]: string };
+  readonly config?: { [key: string]: string };
+  /**
+  * Write-only credentials for the destination, as JSON-encoded values keyed like `config`. They are merged into `config` in the API request and never stored in Terraform state or plans. Requires Terraform 1.11 or later and `config_secrets_wo_version`. A key may appear in `config` or `config_secrets_wo`, not both, and keys the API returns in plain text (such as `username` or `region`) must go in `config`. Each non-empty string in a value must be at least 4 characters long. While this is set, the computed `config` blocks in the response omit credentials, headers, and URLs not declared in `config`. Moving an existing credential to this attribute removes it from the current state only: earlier state versions, state backups and saved plan files still contain it, so rotate the credential when you migrate.
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#config_secrets_wo ObservabilityDestination#config_secrets_wo}
+  */
+  readonly configSecretsWo?: { [key: string]: string };
+  /**
+  * Rotation trigger for `config_secrets_wo`. The credentials are sent on create, and again whenever this value changes. Increment it to rotate them; any positive integer works. Unchanged versions leave stored credentials as they are. Removing this attribute and `config_secrets_wo` returns the destination to storing everything the API returns in the computed `config` blocks, which can include the credentials the API still holds. To stop using write-only credentials, set them in `config` or replace the destination.
+  *
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#config_secrets_wo_version ObservabilityDestination#config_secrets_wo_version}
+  */
+  readonly configSecretsWoVersion?: number;
   /**
   * Whether this destination should be enabled immediately.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#enabled ObservabilityDestination#enabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#enabled ObservabilityDestination#enabled}
   */
   readonly enabled?: boolean | cdktf.IResolvable;
   /**
   * Optional structured filter rules controlling which events are forwarded.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#filter_rules ObservabilityDestination#filter_rules}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#filter_rules ObservabilityDestination#filter_rules}
   */
   readonly filterRules?: ObservabilityDestinationFilterRules;
   /**
   * Human-readable name for the destination.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#name ObservabilityDestination#name}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#name ObservabilityDestination#name}
   */
   readonly name: string;
   /**
   * When true, request/response bodies are not forwarded — only metadata.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#privacy_mode ObservabilityDestination#privacy_mode}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#privacy_mode ObservabilityDestination#privacy_mode}
   */
   readonly privacyMode?: boolean | cdktf.IResolvable;
   /**
   * Data regions this destination applies to. `eu` is accepted as an alias for `europe` and normalizes to `europe`. Omitting this field defaults to ['global']; the array must be non-empty. Default: ["global"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#regions ObservabilityDestination#regions}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#regions ObservabilityDestination#regions}
   */
   readonly regions?: string[];
   /**
   * Sampling rate between 0.0001 and 1 (1 = 100%).
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#sampling_rate ObservabilityDestination#sampling_rate}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#sampling_rate ObservabilityDestination#sampling_rate}
   */
   readonly samplingRate?: number;
   /**
   * The destination type. Only stable destination types are accepted. must be one of ["arize", "braintrust", "clickhouse", "datadog", "grafana", "langfuse", "langsmith", "newrelic", "opik", "otel-collector", "posthog", "ramp", "s3", "sentry", "snowflake", "weave", "webhook"]; Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#type ObservabilityDestination#type}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#type ObservabilityDestination#type}
   */
   readonly type: string;
   /**
-  * Optional workspace ID. Defaults to the authenticated entity's default workspace. Requires replacement if changed.
+  * Optional workspace ID. Defaults to the authenticated entity's default workspace, or a workspace-scoped management key's own workspace. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#workspace_id ObservabilityDestination#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#workspace_id ObservabilityDestination#workspace_id}
   */
   readonly workspaceId?: string;
 }
@@ -504,6 +522,11 @@ export class ObservabilityDestinationArizeOutputReference extends cdktf.ComplexO
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -988,6 +1011,11 @@ export class ObservabilityDestinationBraintrustOutputReference extends cdktf.Com
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -1123,6 +1151,11 @@ export class ObservabilityDestinationClickhouseConfigOutputReference extends cdk
   // password - computed: true, optional: false, required: false
   public get password() {
     return this.getStringAttribute('password');
+  }
+
+  // should_include_cache_write_tokens - computed: true, optional: false, required: false
+  public get shouldIncludeCacheWriteTokens() {
+    return this.getBooleanAttribute('should_include_cache_write_tokens');
   }
 
   // table - computed: true, optional: false, required: false
@@ -1478,6 +1511,11 @@ export class ObservabilityDestinationClickhouseOutputReference extends cdktf.Com
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -1962,6 +2000,11 @@ export class ObservabilityDestinationDatadogOutputReference extends cdktf.Comple
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -2031,11 +2074,11 @@ export class ObservabilityDestinationDatadogOutputReference extends cdktf.Comple
 }
 export interface ObservabilityDestinationFilterRulesGroupsRulesValue {
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#number ObservabilityDestination#number}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#number ObservabilityDestination#number}
   */
   readonly number?: number;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#str ObservabilityDestination#str}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#str ObservabilityDestination#str}
   */
   readonly str?: string;
 }
@@ -2160,17 +2203,17 @@ export interface ObservabilityDestinationFilterRulesGroupsRules {
   /**
   * must be one of ["model", "provider", "session_id", "user_id", "api_key_name", "finish_reason", "input", "output", "total_cost", "total_tokens", "prompt_tokens", "completion_tokens"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#field ObservabilityDestination#field}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#field ObservabilityDestination#field}
   */
   readonly field: string;
   /**
   * must be one of ["equals", "not_equals", "contains", "not_contains", "regex", "starts_with", "ends_with", "gt", "lt", "gte", "lte", "exists", "not_exists"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#operator ObservabilityDestination#operator}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#operator ObservabilityDestination#operator}
   */
   readonly operator: string;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#value ObservabilityDestination#value}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#value ObservabilityDestination#value}
   */
   readonly value?: ObservabilityDestinationFilterRulesGroupsRulesValue;
 }
@@ -2340,11 +2383,11 @@ export interface ObservabilityDestinationFilterRulesGroups {
   /**
   * Default: "and"; must be one of ["and", "or"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#logic ObservabilityDestination#logic}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#logic ObservabilityDestination#logic}
   */
   readonly logic?: string;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#rules ObservabilityDestination#rules}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#rules ObservabilityDestination#rules}
   */
   readonly rules: ObservabilityDestinationFilterRulesGroupsRules[] | cdktf.IResolvable;
 }
@@ -2488,11 +2531,11 @@ export interface ObservabilityDestinationFilterRules {
   /**
   * Default: true
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#enabled ObservabilityDestination#enabled}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#enabled ObservabilityDestination#enabled}
   */
   readonly enabled?: boolean | cdktf.IResolvable;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#groups ObservabilityDestination#groups}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#groups ObservabilityDestination#groups}
   */
   readonly groups: ObservabilityDestinationFilterRulesGroups[] | cdktf.IResolvable;
 }
@@ -3025,6 +3068,11 @@ export class ObservabilityDestinationGrafanaOutputReference extends cdktf.Comple
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -3505,6 +3553,11 @@ export class ObservabilityDestinationLangfuseOutputReference extends cdktf.Compl
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -3994,6 +4047,11 @@ export class ObservabilityDestinationLangsmithOutputReference extends cdktf.Comp
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -4469,6 +4527,11 @@ export class ObservabilityDestinationNewrelicOutputReference extends cdktf.Compl
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -4953,6 +5016,11 @@ export class ObservabilityDestinationOpikOutputReference extends cdktf.ComplexOb
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -5078,6 +5146,16 @@ export class ObservabilityDestinationOtelCollectorConfigOutputReference extends 
   private _headers = new cdktf.StringMap(this, "headers");
   public get headers() {
     return this._headers;
+  }
+
+  // metrics_endpoint - computed: true, optional: false, required: false
+  public get metricsEndpoint() {
+    return this.getStringAttribute('metrics_endpoint');
+  }
+
+  // should_send_metrics - computed: true, optional: false, required: false
+  public get shouldSendMetrics() {
+    return this.getBooleanAttribute('should_send_metrics');
   }
 }
 export interface ObservabilityDestinationOtelCollectorFilterRulesGroupsRulesValue {
@@ -5423,6 +5501,11 @@ export class ObservabilityDestinationOtelCollectorOutputReference extends cdktf.
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -5902,6 +5985,11 @@ export class ObservabilityDestinationPosthogOutputReference extends cdktf.Comple
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -6379,6 +6467,11 @@ export class ObservabilityDestinationRampOutputReference extends cdktf.ComplexOb
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -6500,6 +6593,11 @@ export class ObservabilityDestinationS3ConfigOutputReference extends cdktf.Compl
     return this.getStringAttribute('access_key_id');
   }
 
+  // auth_mode - computed: true, optional: false, required: false
+  public get authMode() {
+    return this.getStringAttribute('auth_mode');
+  }
+
   // bucket_name - computed: true, optional: false, required: false
   public get bucketName() {
     return this.getStringAttribute('bucket_name');
@@ -6508,6 +6606,11 @@ export class ObservabilityDestinationS3ConfigOutputReference extends cdktf.Compl
   // endpoint - computed: true, optional: false, required: false
   public get endpoint() {
     return this.getStringAttribute('endpoint');
+  }
+
+  // external_id - computed: true, optional: false, required: false
+  public get externalId() {
+    return this.getStringAttribute('external_id');
   }
 
   // headers - computed: true, optional: false, required: false
@@ -6526,9 +6629,19 @@ export class ObservabilityDestinationS3ConfigOutputReference extends cdktf.Compl
     return this.getStringAttribute('prefix');
   }
 
+  // provider - computed: true, optional: false, required: false
+  public get provider() {
+    return this.getStringAttribute('provider');
+  }
+
   // region - computed: true, optional: false, required: false
   public get region() {
     return this.getStringAttribute('region');
+  }
+
+  // role_arn - computed: true, optional: false, required: false
+  public get roleArn() {
+    return this.getStringAttribute('role_arn');
   }
 
   // secret_access_key - computed: true, optional: false, required: false
@@ -6884,6 +6997,11 @@ export class ObservabilityDestinationS3OutputReference extends cdktf.ComplexObje
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -7363,6 +7481,11 @@ export class ObservabilityDestinationSentryOutputReference extends cdktf.Complex
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -7498,6 +7621,11 @@ export class ObservabilityDestinationSnowflakeConfigOutputReference extends cdkt
   // schema - computed: true, optional: false, required: false
   public get schema() {
     return this.getStringAttribute('schema');
+  }
+
+  // should_include_cache_write_tokens - computed: true, optional: false, required: false
+  public get shouldIncludeCacheWriteTokens() {
+    return this.getBooleanAttribute('should_include_cache_write_tokens');
   }
 
   // table - computed: true, optional: false, required: false
@@ -7858,6 +7986,11 @@ export class ObservabilityDestinationSnowflakeOutputReference extends cdktf.Comp
   // broadcast_generation_cost - computed: true, optional: false, required: false
   public get broadcastGenerationCost() {
     return this.getBooleanAttribute('broadcast_generation_cost');
+  }
+
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
   }
 
   // broadcast_generation_identity - computed: true, optional: false, required: false
@@ -8347,6 +8480,11 @@ export class ObservabilityDestinationWeaveOutputReference extends cdktf.ComplexO
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -8824,6 +8962,11 @@ export class ObservabilityDestinationWebhookOutputReference extends cdktf.Comple
     return this.getBooleanAttribute('broadcast_generation_cost');
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: false, required: false
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+
   // broadcast_generation_identity - computed: true, optional: false, required: false
   public get broadcastGenerationIdentity() {
     return this.getBooleanAttribute('broadcast_generation_identity');
@@ -8893,7 +9036,7 @@ export class ObservabilityDestinationWebhookOutputReference extends cdktf.Comple
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination openrouter_observability_destination}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination openrouter_observability_destination}
 */
 export class ObservabilityDestination extends cdktf.TerraformResource {
 
@@ -8909,7 +9052,7 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a ObservabilityDestination resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the ObservabilityDestination to import
-  * @param importFromId The id of the existing ObservabilityDestination that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing ObservabilityDestination that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the ObservabilityDestination to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -8921,7 +9064,7 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.2.137/docs/resources/observability_destination openrouter_observability_destination} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/observability_destination openrouter_observability_destination} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -8932,7 +9075,7 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_observability_destination',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.2.137'
+        providerVersion: '0.3.258'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
@@ -8944,9 +9087,12 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
     });
     this._apiKeyHashes = config.apiKeyHashes;
     this._broadcastGenerationCost = config.broadcastGenerationCost;
+    this._broadcastGenerationCostAllocation = config.broadcastGenerationCostAllocation;
     this._broadcastGenerationIdentity = config.broadcastGenerationIdentity;
     this._broadcastGenerationRequestContext = config.broadcastGenerationRequestContext;
     this._config = config.config;
+    this._configSecretsWo = config.configSecretsWo;
+    this._configSecretsWoVersion = config.configSecretsWoVersion;
     this._enabled = config.enabled;
     this._filterRules.internalValue = config.filterRules;
     this._name = config.name;
@@ -9005,6 +9151,22 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
     return this._broadcastGenerationCost;
   }
 
+  // broadcast_generation_cost_allocation - computed: true, optional: true, required: false
+  private _broadcastGenerationCostAllocation?: boolean | cdktf.IResolvable; 
+  public get broadcastGenerationCostAllocation() {
+    return this.getBooleanAttribute('broadcast_generation_cost_allocation');
+  }
+  public set broadcastGenerationCostAllocation(value: boolean | cdktf.IResolvable) {
+    this._broadcastGenerationCostAllocation = value;
+  }
+  public resetBroadcastGenerationCostAllocation() {
+    this._broadcastGenerationCostAllocation = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get broadcastGenerationCostAllocationInput() {
+    return this._broadcastGenerationCostAllocation;
+  }
+
   // broadcast_generation_identity - computed: true, optional: true, required: false
   private _broadcastGenerationIdentity?: boolean | cdktf.IResolvable; 
   public get broadcastGenerationIdentity() {
@@ -9043,7 +9205,7 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
     return this._clickhouse;
   }
 
-  // config - computed: false, optional: false, required: true
+  // config - computed: false, optional: true, required: false
   private _config?: { [key: string]: string }; 
   public get config() {
     return this.getStringMapAttribute('config');
@@ -9051,9 +9213,44 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
   public set config(value: { [key: string]: string }) {
     this._config = value;
   }
+  public resetConfig() {
+    this._config = undefined;
+  }
   // Temporarily expose input value. Use with caution.
   public get configInput() {
     return this._config;
+  }
+
+  // config_secrets_wo - computed: false, optional: true, required: false
+  private _configSecretsWo?: { [key: string]: string }; 
+  public get configSecretsWo() {
+    return this.getStringMapAttribute('config_secrets_wo');
+  }
+  public set configSecretsWo(value: { [key: string]: string }) {
+    this._configSecretsWo = value;
+  }
+  public resetConfigSecretsWo() {
+    this._configSecretsWo = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get configSecretsWoInput() {
+    return this._configSecretsWo;
+  }
+
+  // config_secrets_wo_version - computed: false, optional: true, required: false
+  private _configSecretsWoVersion?: number; 
+  public get configSecretsWoVersion() {
+    return this.getNumberAttribute('config_secrets_wo_version');
+  }
+  public set configSecretsWoVersion(value: number) {
+    this._configSecretsWoVersion = value;
+  }
+  public resetConfigSecretsWoVersion() {
+    this._configSecretsWoVersion = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get configSecretsWoVersionInput() {
+    return this._configSecretsWoVersion;
   }
 
   // created_at - computed: true, optional: false, required: false
@@ -9285,9 +9482,12 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
     return {
       api_key_hashes: cdktf.listMapper(cdktf.stringToTerraform, false)(this._apiKeyHashes),
       broadcast_generation_cost: cdktf.booleanToTerraform(this._broadcastGenerationCost),
+      broadcast_generation_cost_allocation: cdktf.booleanToTerraform(this._broadcastGenerationCostAllocation),
       broadcast_generation_identity: cdktf.booleanToTerraform(this._broadcastGenerationIdentity),
       broadcast_generation_request_context: cdktf.booleanToTerraform(this._broadcastGenerationRequestContext),
       config: cdktf.hashMapper(cdktf.stringToTerraform)(this._config),
+      config_secrets_wo: cdktf.hashMapper(cdktf.stringToTerraform)(this._configSecretsWo),
+      config_secrets_wo_version: cdktf.numberToTerraform(this._configSecretsWoVersion),
       enabled: cdktf.booleanToTerraform(this._enabled),
       filter_rules: observabilityDestinationFilterRulesToTerraform(this._filterRules.internalValue),
       name: cdktf.stringToTerraform(this._name),
@@ -9313,6 +9513,12 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
         type: "simple",
         storageClassType: "boolean",
       },
+      broadcast_generation_cost_allocation: {
+        value: cdktf.booleanToHclTerraform(this._broadcastGenerationCostAllocation),
+        isBlock: false,
+        type: "simple",
+        storageClassType: "boolean",
+      },
       broadcast_generation_identity: {
         value: cdktf.booleanToHclTerraform(this._broadcastGenerationIdentity),
         isBlock: false,
@@ -9330,6 +9536,18 @@ export class ObservabilityDestination extends cdktf.TerraformResource {
         isBlock: false,
         type: "map",
         storageClassType: "stringMap",
+      },
+      config_secrets_wo: {
+        value: cdktf.hashMapperHcl(cdktf.stringToHclTerraform)(this._configSecretsWo),
+        isBlock: false,
+        type: "map",
+        storageClassType: "stringMap",
+      },
+      config_secrets_wo_version: {
+        value: cdktf.numberToHclTerraform(this._configSecretsWoVersion),
+        isBlock: false,
+        type: "simple",
+        storageClassType: "number",
       },
       enabled: {
         value: cdktf.booleanToHclTerraform(this._enabled),
