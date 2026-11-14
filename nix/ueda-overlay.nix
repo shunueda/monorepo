@@ -23,7 +23,6 @@ lib.composeManyExtensions [
         # Backport from unstable
         prismlauncher
         emacsPackagesFor
-        opentofu
         ;
 
       emacs = pkgs-unstable.emacs31.overrideAttrs (old: {

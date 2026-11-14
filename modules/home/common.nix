@@ -380,15 +380,11 @@ in
           [
             # keep-sorted start
             coreutils
-            docker
             findutils
             git-absorb
-            homerow
-            hut
             moreutils
             pngpaste
             qrcode
-            sops
             trash-cli
             tree
             yubikey-manager

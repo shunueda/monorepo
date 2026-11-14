@@ -27,7 +27,7 @@
               nodejs
               python3
               rustToolchain
-              opentofu
+              terraform
 
               # LSPs
               nixd
