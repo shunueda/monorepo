@@ -110,6 +110,7 @@
         ./nix/flake-modules/misc.nix
         ./nix/flake-modules/treefmt.nix
         ./nix/flake-modules/ueda-scope.nix
+        ./templates
         inputs.codegen.flakeModules.default
         inputs.devshell.flakeModule
         inputs.disko.flakeModule
