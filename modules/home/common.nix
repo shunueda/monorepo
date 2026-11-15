@@ -260,8 +260,7 @@ in
           home = "${config.xdg.dataHome}/gradle";
         };
         home-manager.enable = true;
-        # TODO: separate homeModule for desktop
-        librewolf = lib.mkIf isDarwin {
+        librewolf = {
           enable = true;
           configPath = "${config.xdg.configHome}/librewolf";
           policies = {
