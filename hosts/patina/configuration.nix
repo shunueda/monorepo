@@ -26,7 +26,10 @@ in
             options hid_apple iso_layout=0
           '';
         };
-        hardware.asahi.enable = true;
+        hardware.asahi = {
+          enable = true;
+          avd.enable = false;
+        };
         home-manager = {
           extraSpecialArgs = specialArgs;
           users.${user} = {
