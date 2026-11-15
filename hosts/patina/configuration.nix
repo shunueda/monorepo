@@ -39,6 +39,7 @@ in
         networking.hostName = name;
         networking.networkmanager.wifi.backend = "iwd";
         nixpkgs.hostPlatform = system;
+        programs.niri.enable = true;
         system.stateVersion = "26.05";
         users.users.${user} = {
           extraGroups = [ "wheel" ];

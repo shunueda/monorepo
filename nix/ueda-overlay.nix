@@ -8,7 +8,7 @@ lib.composeManyExtensions [
   (
     final: prev:
     let
-      inherit (final.stdenv.hostPlatform) system;
+      inherit (final.stdenv.hostPlatform) system isDarwin;
 
       pkgs-unstable = import inputs.nixpkgs-unstable {
         inherit system;
@@ -26,10 +26,12 @@ lib.composeManyExtensions [
         ;
 
       emacs = pkgs-unstable.emacs31.overrideAttrs (old: {
-        patches = old.patches or [ ] ++ [
-          ../patches/emacs-31/fix-ns-x-colors.patch
-          ../patches/emacs-31/round-undecorated-frame.patch
-        ];
+        patches =
+          old.patches or [ ]
+          ++ lib.optionals isDarwin [
+            ../patches/emacs-31/fix-ns-x-colors.patch
+            ../patches/emacs-31/round-undecorated-frame.patch
+          ];
       });
     }
   )
