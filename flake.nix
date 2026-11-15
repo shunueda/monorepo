@@ -51,6 +51,10 @@
       url = "github:nix-darwin/nix-darwin/pull/1690/head";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-apple-silicon = {
+      url = "github:nix-community/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs-terraform-providers-bin = {
       url = "github:nix-community/nixpkgs-terraform-providers-bin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -98,6 +102,7 @@
       imports = [
         # keep-sorted start
         ./hosts/black/configuration.nix
+        ./hosts/patina/configuration.nix
         ./hosts/silver/darwin-configuration.nix
         ./modules/darwin/common.nix
         ./modules/disko/single-disk-ext4.nix

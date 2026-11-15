@@ -37,35 +37,5 @@
       useGlobalPkgs = true;
       useUserPackages = true;
     };
-    services = {
-      openssh = {
-        enable = true;
-        settings = {
-          PasswordAuthentication = false;
-        };
-      };
-      avahi = {
-        enable = true;
-        ipv4 = true;
-        nssmdns4 = true;
-        publish = {
-          enable = true;
-          addresses = true;
-          workstation = true;
-        };
-      };
-      logind = {
-        settings = {
-          Login = {
-            HandleLidSwitch = "ignore";
-          };
-        };
-      };
-    };
-    boot.loader.grub = {
-      enable = true;
-      efiSupport = true;
-      efiInstallAsRemovable = true;
-    };
   };
 }
