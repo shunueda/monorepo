@@ -36,13 +36,21 @@ in
             imports = [ ./users/ueda.nix ];
           };
         };
-        networking.hostName = name;
-        networking.networkmanager.wifi.backend = "iwd";
+        networking = {
+          hostName = name;
+          networkmanager = {
+            enable = true;
+            wifi.backend = "iwd";
+          };
+        };
         nixpkgs.hostPlatform = system;
         programs.niri.enable = true;
         system.stateVersion = "26.05";
         users.users.${user} = {
-          extraGroups = [ "wheel" ];
+          extraGroups = [
+            "wheel"
+            "networkmanager"
+          ];
           isNormalUser = true;
           openssh.authorizedKeys.keyFiles = [ config.constants.ueda.keys.ssh ];
         };
