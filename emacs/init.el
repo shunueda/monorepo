@@ -21,6 +21,7 @@
   eglot-code-action-indications nil
   eglot-documentation-renderer 'markdown-ts-view-mode
   eldoc-help-at-pt t
+  frame-resize-pixelwise t
   ;; Revert Dired and other buffers
   global-auto-revert-non-file-buffers t
   indent-tabs-mode nil
@@ -57,6 +58,7 @@
   ;; Follow symlinks to VC-controlled files without warning
   vc-follow-symlinks t
   visible-bell t
+  window-resize-pixelwise t
   ;; keep-sorted end
   )
 

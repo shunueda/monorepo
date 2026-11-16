@@ -11,7 +11,7 @@ in
       ...
     }:
     let
-      inherit (pkgs.stdenv.hostPlatform) system isDarwin;
+      inherit (pkgs.stdenv.hostPlatform) system isDarwin isLinux;
       availableOnSystem = lib.meta.availableOn { inherit system; };
 
       inherit (inputs.nur.legacyPackages.${system}.repos.rycee) firefox-addons;
@@ -30,6 +30,10 @@ in
             recursive = true;
           };
         };
+      };
+      gtk = {
+        enable = isLinux;
+        gtk3.extraConfig.gtk-key-theme-name = "Emacs";
       };
       programs = {
         # keep-sorted start block=yes
@@ -305,7 +309,8 @@ in
               "privacy.resistFingerprinting" = false; # Make rendering smoother
               "layers.acceleration.force-enabled" = true;
               "gfx.webrender.all" = true;
-            };
+            }
+            // (lib.optionalAttrs isLinux { "ui.key.accelKey" = 224; });
           };
         };
         mergiraf = {

@@ -41,29 +41,44 @@
         };
       };
 
-      layout = {
-        gaps = 8;
-        struts = {
-          top = -8;
-          bottom = -8;
+      layout =
+        let
+          gaps = 4;
+        in
+        {
+          inherit gaps;
+          struts = {
+            top = -gaps;
+            bottom = -gaps;
+          };
+          center-focused-column = "never";
+          focus-ring = {
+            enable = false;
+          };
+          preset-column-widths = [
+            { proportion = 0.33333; }
+            { proportion = 0.5; }
+            { proportion = 0.66667; }
+          ];
         };
-        center-focused-column = "never";
-        focus-ring = {
-          enable = false;
-        };
-        preset-column-widths = [
-          { proportion = 0.33333; }
-          { proportion = 0.5; }
-          { proportion = 0.66667; }
-        ];
-      };
+      window-rules = [
+        {
+          geometry-corner-radius =
+            let
+              r = 12.0;
+            in
+            {
+              top-left = r;
+              top-right = r;
+              bottom-left = r;
+              bottom-right = r;
+            };
+          clip-to-geometry = true;
+        }
+      ];
 
       binds = with config.lib.niri.actions; {
-        "Mod+T" = {
-          action = spawn "alacritty";
-          hotkey-overlay.title = "Open a Terminal: alacritty";
-        };
-        "Mod+D" = {
+        "Mod+Space" = {
           action = spawn "fuzzel";
           hotkey-overlay.title = "Run an Application: fuzzel";
         };
