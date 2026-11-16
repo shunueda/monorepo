@@ -25,14 +25,18 @@ lib.composeManyExtensions [
         emacsPackagesFor
         ;
 
-      emacs = pkgs-unstable.emacs31.overrideAttrs (old: {
-        patches =
-          old.patches or [ ]
-          ++ lib.optionals isDarwin [
-            ../patches/emacs-31/fix-ns-x-colors.patch
-            ../patches/emacs-31/round-undecorated-frame.patch
-          ];
-      });
+      emacs =
+        if isDarwin then
+          pkgs-unstable.emacs31.overrideAttrs (old: {
+            patches =
+              old.patches or [ ]
+              ++ lib.optionals isDarwin [
+                ../patches/emacs-31/fix-ns-x-colors.patch
+                ../patches/emacs-31/round-undecorated-frame.patch
+              ];
+          })
+        else
+          pkgs-unstable.emacs31-pgtk;
     }
   )
   inputs.emacs-overlay.overlays.package

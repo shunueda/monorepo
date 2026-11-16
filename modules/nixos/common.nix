@@ -36,6 +36,7 @@
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+      backupCommand = "rm";
     };
     services.keyd = {
       enable = true;
@@ -44,5 +45,6 @@
         settings.main.capslock = "leftcontrol";
       };
     };
+    services.pcscd.enable = true;
   };
 }

@@ -366,7 +366,7 @@ in
           enable = true;
           enableSshSupport = true;
           pinentry = {
-            package = lib.mkIf isDarwin pkgs.pinentry_mac;
+            package = if isDarwin then pkgs.pinentry_mac else pkgs.pinentry-gnome3;
           };
           defaultCacheTtl = 600;
           maxCacheTtl = 7200;

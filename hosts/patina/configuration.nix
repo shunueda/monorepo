@@ -16,12 +16,14 @@ in
     modules = [
       ./hardware-configuration.nix
       self.nixosModules.common
+      inputs.niri-flake.nixosModules.niri
       inputs.nixos-apple-silicon.nixosModules.default
       ({ ... }: {
         # keep-sorted start block=yes
         boot = {
           loader.systemd-boot.enable = true;
           loader.efi.canTouchEfiVariables = false;
+          kernelParams = [ "appledrm.show_notch=1" ];
           extraModprobeConfig = ''
             options hid_apple iso_layout=0
           '';
@@ -43,8 +45,17 @@ in
             wifi.backend = "iwd";
           };
         };
+        niri-flake.cache.enable = false;
         nixpkgs.hostPlatform = system;
-        programs.niri.enable = true;
+        programs = {
+          niri.enable = true;
+        };
+        services = {
+          displayManager.sddm = {
+            enable = true;
+            wayland.enable = true;
+          };
+        };
         system.stateVersion = "26.05";
         users.users.${user} = {
           extraGroups = [
