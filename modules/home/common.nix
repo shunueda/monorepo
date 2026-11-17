@@ -383,14 +383,17 @@ in
           with pkgs;
           [
             # keep-sorted start
+            brightnessctl
             coreutils
             findutils
             git-absorb
             moreutils
+            playerctl
             pngpaste
             qrcode
             trash-cli
             tree
+            wireplumber
             yubikey-manager
             zbar
             # keep-sorted end
