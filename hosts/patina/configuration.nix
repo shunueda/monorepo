@@ -19,7 +19,7 @@ in
       self.nixosModules.common
       inputs.niri-flake.nixosModules.niri
       inputs.nixos-apple-silicon.nixosModules.default
-      ({ ... }: {
+      ({ pkgs, ... }: {
         # keep-sorted start block=yes
         boot = {
           loader.systemd-boot.enable = true;
@@ -62,7 +62,22 @@ in
         niri-flake.cache.enable = false;
         nixpkgs.hostPlatform = system;
         programs = {
-          niri.enable = true;
+          niri = {
+            enable = true;
+            package =
+              inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.niri-stable.overrideAttrs
+                (old: {
+                  postPatch = (old.postPatch or "") + ''
+                    substituteInPlace src/ui/mru.rs \
+                      --replace-fail \
+                        "Color32F::new(0., 0., 0., 0.8)" \
+                        "Color32F::new(0., 0., 0., 0.0)" \
+                     --replace-fail \
+                        "if let Some(texture) = panel_texture {" \
+                        "if let Some(texture) = panel_texture.filter(|_| false) {"
+                  '';
+                });
+          };
         };
         services = {
           displayManager.sddm = {

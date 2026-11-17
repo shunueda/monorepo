@@ -28,8 +28,14 @@
       '';
     };
     niri.settings = {
+      animations.enable = false;
       input = {
-        keyboard.numlock = true;
+        keyboard = {
+          numlock = true;
+          # Match macOS: KeyRepeat = 1 (~15 ms) and InitialKeyRepeat = 15 (225 ms)
+          "repeat-delay" = 225;
+          "repeat-rate" = 67;
+        };
         touchpad = {
           tap = false;
           natural-scroll = true;
@@ -40,7 +46,17 @@
           scale = 1.5;
         };
       };
-
+      recent-windows = {
+        open-delay-ms = 0;
+        previews = {
+          max-height = 160; # px, default is 480
+          max-scale = 0.15; # default is 0.5
+        };
+        highlight = {
+          padding = 10;
+          corner-radius = 10;
+        };
+      };
       layout =
         let
           gaps = 4;
