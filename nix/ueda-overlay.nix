@@ -23,7 +23,10 @@ lib.composeManyExtensions [
         # Backport from unstable
         prismlauncher
         emacsPackagesFor
+        river
         ;
+
+      oxbow = self.inputs.oxbow.packages.${system}.default;
 
       emacs =
         if isDarwin then
@@ -37,18 +40,6 @@ lib.composeManyExtensions [
           })
         else
           pkgs-unstable.emacs31-pgtk;
-
-      niri-stable = inputs.niri-flake.packages.${system}.niri-stable.overrideAttrs (old: {
-        postPatch = (old.postPatch or "") + ''
-          substituteInPlace src/ui/mru.rs \
-            --replace-fail \
-              "Color32F::new(0., 0., 0., 0.8)" \
-              "Color32F::new(0., 0., 0., 0.0)" \
-           --replace-fail \
-              "if let Some(texture) = panel_texture {" \
-              "if let Some(texture) = panel_texture.filter(|_| false) {"
-        '';
-      });
     }
   )
   inputs.emacs-overlay.overlays.package

@@ -3,6 +3,7 @@
   self,
   inputs,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -17,75 +18,84 @@ in
     modules = [
       ./hardware-configuration.nix
       self.nixosModules.common
-      inputs.niri-flake.nixosModules.niri
       inputs.nixos-apple-silicon.nixosModules.default
-      ({ pkgs, ... }: {
-        # keep-sorted start block=yes
-        boot = {
-          loader.systemd-boot.enable = true;
-          loader.efi.canTouchEfiVariables = false;
-          kernelParams = [ "appledrm.show_notch=1" ];
-          extraModprobeConfig = ''
-            options hid_apple iso_layout=0
-          '';
-        };
-        # TODO Not sure
-        # environment.etc."libinput/local-overrides.quirks".text = lib.generators.toINI { } {
-        #   "Keyd Virtual Keyboard" = {
-        #     MatchName = "keyd virtual keyboard";
-        #     AttrKeyboardIntegration = "internal";
-        #   };
-        #   "Apple Silicon touchpad palm tuning" = {
-        #     MatchUdevType = "touchpad";
-        #     MatchBus = "spi";
-        #     MatchVendor = "0x5AC";
-        #     AttrPalmSizeThreshold = 1000;
-        #   };
-        # };
-        hardware.asahi = {
-          enable = true;
-          avd.enable = false;
-        };
-        home-manager = {
-          extraSpecialArgs = specialArgs;
-          users.${user} = {
-            imports = [ ./users/ueda.nix ];
+      (
+        { pkgs, ... }:
+        let
+          riverSession = pkgs.writeTextFile {
+            name = "river-session";
+            destination = "/share/wayland-sessions/river.desktop";
+            text = ''
+              [Desktop Entry]
+              Name=River
+              Exec=${lib.getExe pkgs.river}
+              Type=Application
+            '';
+            passthru.providedSessions = [ "river" ];
           };
-        };
-        networking = {
-          hostName = name;
-          networkmanager = {
+        in
+        {
+          # keep-sorted start block=yes
+          boot = {
+            loader.systemd-boot.enable = true;
+            loader.efi.canTouchEfiVariables = false;
+            kernelParams = [ "appledrm.show_notch=1" ];
+            extraModprobeConfig = ''
+              options hid_apple iso_layout=0
+            '';
+          };
+          # TODO Not sure
+          # environment.etc."libinput/local-overrides.quirks".text = lib.generators.toINI { } {
+          #   "Keyd Virtual Keyboard" = {
+          #     MatchName = "keyd virtual keyboard";
+          #     AttrKeyboardIntegration = "internal";
+          #   };
+          #   "Apple Silicon touchpad palm tuning" = {
+          #     MatchUdevType = "touchpad";
+          #     MatchBus = "spi";
+          #     MatchVendor = "0x5AC";
+          #     AttrPalmSizeThreshold = 1000;
+          #   };
+          # };
+          hardware.asahi = {
             enable = true;
-            wifi.backend = "iwd";
+            avd.enable = false;
           };
-        };
-        niri-flake.cache.enable = false;
-        nixpkgs.hostPlatform = system;
-        programs = {
-          niri = {
-            enable = true;
-            package = pkgs.niri-stable;
+          home-manager = {
+            extraSpecialArgs = specialArgs;
+            users.${user} = {
+              imports = [ ./users/ueda.nix ];
+            };
           };
-        };
-        services = {
-          displayManager.sddm = {
-            enable = true;
-            wayland.enable = true;
+          networking = {
+            hostName = name;
+            networkmanager = {
+              enable = true;
+              wifi.backend = "iwd";
+            };
           };
-          libinput.enable = true;
-        };
-        system.stateVersion = "26.05";
-        users.users.${user} = {
-          extraGroups = [
-            "wheel"
-            "networkmanager"
-            "input"
-          ];
-          isNormalUser = true;
-          openssh.authorizedKeys.keyFiles = [ config.constants.ueda.keys.ssh ];
-        };
-        # keep-sorted end
-      })
+          nixpkgs.hostPlatform = system;
+          services = {
+            displayManager.sddm = {
+              enable = true;
+              wayland.enable = true;
+            };
+            libinput.enable = true;
+          };
+          services.displayManager.sessionPackages = [ riverSession ];
+          system.stateVersion = "26.05";
+          users.users.${user} = {
+            extraGroups = [
+              "wheel"
+              "networkmanager"
+              "input"
+            ];
+            isNormalUser = true;
+            openssh.authorizedKeys.keyFiles = [ config.constants.ueda.keys.ssh ];
+          };
+          # keep-sorted end
+        }
+      )
     ];
   };
 

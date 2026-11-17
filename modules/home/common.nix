@@ -309,8 +309,7 @@ in
               "privacy.resistFingerprinting" = false; # Make rendering smoother
               "layers.acceleration.force-enabled" = true;
               "gfx.webrender.all" = true;
-            }
-            // (lib.optionalAttrs isLinux { "ui.key.accelKey" = 224; });
+            };
           };
         };
         mergiraf = {
@@ -394,6 +393,7 @@ in
             trash-cli
             tree
             wireplumber
+            wlr-randr
             yubikey-manager
             zbar
             # keep-sorted end

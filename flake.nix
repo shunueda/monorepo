@@ -42,10 +42,6 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri-flake = {
-      url = "github:epireyn/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -76,6 +72,10 @@
       url = "github:nix-community/nur";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
+    };
+    oxbow = {
+      url = "github:3L0C/oxbow";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     package-lock2nix = {
       url = "github:anteriorcore/package-lock2nix";
