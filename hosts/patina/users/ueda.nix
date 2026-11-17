@@ -151,14 +151,25 @@
         height = 42; # Match the Notch size on 14-in MacBook Pro
         margin = "0";
         exclusive = true;
+        modules-left = [ "niri/window" ];
         modules-right = [
           "network"
           "battery"
           "clock"
+          "custom/lock"
         ];
+        "niri/window".format = "{app_id}";
+        clock.format = "{:%a %b %d  %I:%M %p}";
+        "custom/lock" = {
+          format = "";
+          on-click = "swaylock";
+        };
       };
       style = ''
         * { min-height: 0; border: none; border-radius: 0; background: transparent; }
+         #window, #network, #battery, #clock, #custom-lock { padding: 0 10px; }
+         #window { margin-left: 12px; }
+         #custom-lock { margin-right: 12px; }
       '';
     };
   };
