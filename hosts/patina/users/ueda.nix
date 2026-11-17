@@ -7,26 +7,8 @@
 {
   imports = [ self.homeModules.common ];
   programs = {
+    # keep-sorted start block=yes
     fuzzel.enable = true;
-    waybar = {
-      enable = true;
-      systemd.enable = true;
-      settings.mainBar = {
-        layer = "bottom";
-        position = "top";
-        height = 42; # Match the Notch size on 14-in MacBook Pro
-        margin = "0";
-        exclusive = true;
-        modules-right = [
-          "network"
-          "battery"
-          "clock"
-        ];
-      };
-      style = ''
-        * { min-height: 0; border: none; border-radius: 0; background: transparent; }
-      '';
-    };
     niri.settings = {
       animations.enable = false;
       input = {
@@ -102,11 +84,6 @@
           action = spawn "swaylock";
           hotkey-overlay.title = "Lock the Screen: swaylock";
         };
-        "Super+Alt+S" = {
-          action = spawn-sh "pkill orca || exec orca";
-          allow-when-locked = true;
-          hotkey-overlay.hidden = true;
-        };
 
         "XF86AudioRaiseVolume" = {
           action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
@@ -164,6 +141,27 @@
         "Mod+Shift+E".action = quit;
       };
     };
+    swaylock.enable = true;
+    waybar = {
+      enable = true;
+      systemd.enable = true;
+      settings.mainBar = {
+        layer = "bottom";
+        position = "top";
+        height = 42; # Match the Notch size on 14-in MacBook Pro
+        margin = "0";
+        exclusive = true;
+        modules-right = [
+          "network"
+          "battery"
+          "clock"
+        ];
+      };
+      style = ''
+        * { min-height: 0; border: none; border-radius: 0; background: transparent; }
+      '';
+    };
   };
+  # keep-sorted end
   home.stateVersion = "26.05";
 }
