@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_member
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_member
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,19 +10,19 @@ export interface WorkspaceMemberConfig extends cdktf.TerraformMetaArguments {
   /**
   * User ID of the organization member to add to the workspace. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_member#user_id WorkspaceMember#user_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_member#user_id WorkspaceMember#user_id}
   */
   readonly userId: string;
   /**
   * ID (UUID) of the workspace. Slugs are rejected. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_member#workspace_id WorkspaceMember#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_member#workspace_id WorkspaceMember#workspace_id}
   */
   readonly workspaceId: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_member openrouter_workspace_member}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_member openrouter_workspace_member}
 */
 export class WorkspaceMember extends cdktf.TerraformResource {
 
@@ -38,7 +38,7 @@ export class WorkspaceMember extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a WorkspaceMember resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the WorkspaceMember to import
-  * @param importFromId The id of the existing WorkspaceMember that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_member#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing WorkspaceMember that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_member#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the WorkspaceMember to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -50,7 +50,7 @@ export class WorkspaceMember extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_member openrouter_workspace_member} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_member openrouter_workspace_member} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -61,7 +61,7 @@ export class WorkspaceMember extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_workspace_member',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.3.258'
+        providerVersion: '0.3.280'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

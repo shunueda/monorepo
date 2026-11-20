@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_member_assignment
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_member_assignment
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,25 +10,25 @@ export interface GuardrailMemberAssignmentConfig extends cdktf.TerraformMetaArgu
   /**
   * ID of the guardrail to assign. Must belong to `workspace_id` and must not be the workspace default guardrail. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_member_assignment#guardrail_id GuardrailMemberAssignment#guardrail_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_member_assignment#guardrail_id GuardrailMemberAssignment#guardrail_id}
   */
   readonly guardrailId: string;
   /**
   * User ID of the organization member to assign the guardrail to. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_member_assignment#user_id GuardrailMemberAssignment#user_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_member_assignment#user_id GuardrailMemberAssignment#user_id}
   */
   readonly userId: string;
   /**
   * ID (UUID) of the workspace the guardrail belongs to. Slugs are rejected. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_member_assignment#workspace_id GuardrailMemberAssignment#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_member_assignment#workspace_id GuardrailMemberAssignment#workspace_id}
   */
   readonly workspaceId: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_member_assignment openrouter_guardrail_member_assignment}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_member_assignment openrouter_guardrail_member_assignment}
 */
 export class GuardrailMemberAssignment extends cdktf.TerraformResource {
 
@@ -44,7 +44,7 @@ export class GuardrailMemberAssignment extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a GuardrailMemberAssignment resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the GuardrailMemberAssignment to import
-  * @param importFromId The id of the existing GuardrailMemberAssignment that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_member_assignment#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing GuardrailMemberAssignment that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_member_assignment#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the GuardrailMemberAssignment to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -56,7 +56,7 @@ export class GuardrailMemberAssignment extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_member_assignment openrouter_guardrail_member_assignment} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_member_assignment openrouter_guardrail_member_assignment} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -67,7 +67,7 @@ export class GuardrailMemberAssignment extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_guardrail_member_assignment',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.3.258'
+        providerVersion: '0.3.280'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

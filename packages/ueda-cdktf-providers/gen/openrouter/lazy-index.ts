@@ -4,6 +4,9 @@ Object.defineProperty(exports, 'byokKey', { get: function () { return require('.
 Object.defineProperty(exports, 'guardrail', { get: function () { return require('./guardrail'); } });
 Object.defineProperty(exports, 'guardrailKeyAssignment', { get: function () { return require('./guardrail-key-assignment'); } });
 Object.defineProperty(exports, 'guardrailMemberAssignment', { get: function () { return require('./guardrail-member-assignment'); } });
+Object.defineProperty(exports, 'guardrailPolicyBudget', { get: function () { return require('./guardrail-policy-budget'); } });
+Object.defineProperty(exports, 'guardrailPolicyModelAvailability', { get: function () { return require('./guardrail-policy-model-availability'); } });
+Object.defineProperty(exports, 'guardrailPolicyModeration', { get: function () { return require('./guardrail-policy-moderation'); } });
 Object.defineProperty(exports, 'observabilityDestination', { get: function () { return require('./observability-destination'); } });
 Object.defineProperty(exports, 'organizationSettings', { get: function () { return require('./organization-settings'); } });
 Object.defineProperty(exports, 'privateEndpoint', { get: function () { return require('./private-endpoint'); } });
@@ -20,6 +23,9 @@ Object.defineProperty(exports, 'dataOpenrouterCredits', { get: function () { ret
 Object.defineProperty(exports, 'dataOpenrouterGuardrail', { get: function () { return require('./data-openrouter-guardrail'); } });
 Object.defineProperty(exports, 'dataOpenrouterGuardrailKeyAssignments', { get: function () { return require('./data-openrouter-guardrail-key-assignments'); } });
 Object.defineProperty(exports, 'dataOpenrouterGuardrailMemberAssignments', { get: function () { return require('./data-openrouter-guardrail-member-assignments'); } });
+Object.defineProperty(exports, 'dataOpenrouterGuardrailPolicyBudget', { get: function () { return require('./data-openrouter-guardrail-policy-budget'); } });
+Object.defineProperty(exports, 'dataOpenrouterGuardrailPolicyModelAvailability', { get: function () { return require('./data-openrouter-guardrail-policy-model-availability'); } });
+Object.defineProperty(exports, 'dataOpenrouterGuardrailPolicyModeration', { get: function () { return require('./data-openrouter-guardrail-policy-moderation'); } });
 Object.defineProperty(exports, 'dataOpenrouterGuardrails', { get: function () { return require('./data-openrouter-guardrails'); } });
 Object.defineProperty(exports, 'dataOpenrouterModel', { get: function () { return require('./data-openrouter-model'); } });
 Object.defineProperty(exports, 'dataOpenrouterModels', { get: function () { return require('./data-openrouter-models'); } });

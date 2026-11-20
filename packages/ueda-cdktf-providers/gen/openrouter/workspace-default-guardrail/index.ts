@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,145 +10,145 @@ export interface WorkspaceDefaultGuardrailConfig extends cdktf.TerraformMetaArgu
   /**
   * Whether ZDR-only requests to google/* models may also use Safety Retention endpoints, which may retain prompts and responses from any request, only to prevent abuse, and do not use them for training. false allows only ZDR endpoints. A guardrail can only be more restrictive than the account setting. Inherits the account setting when not provided.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#allow_safety_retention_google WorkspaceDefaultGuardrail#allow_safety_retention_google}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#allow_safety_retention_google WorkspaceDefaultGuardrail#allow_safety_retention_google}
   */
   readonly allowSafetyRetentionGoogle?: boolean | cdktf.IResolvable;
   /**
   * Whether ZDR-only requests to models outside the named providers (for example open-weight models on Vertex) may also use Safety Retention endpoints, which may retain prompts and responses from any request, only to prevent abuse, and do not use them for training. false allows only ZDR endpoints. A guardrail can only be more restrictive than the account setting. Inherits the account setting when not provided.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#allow_safety_retention_other WorkspaceDefaultGuardrail#allow_safety_retention_other}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#allow_safety_retention_other WorkspaceDefaultGuardrail#allow_safety_retention_other}
   */
   readonly allowSafetyRetentionOther?: boolean | cdktf.IResolvable;
   /**
   * Data regions through which requests governed by this guardrail must arrive. `global` is https://openrouter.ai, `europe` is https://eu.openrouter.ai, and `us` is https://us.openrouter.ai. Requests arriving through any other region are rejected. `null` leaves the ingress region unrestricted. When several guardrails apply (workspace default, member, API key), the effective regions are the intersection of every non-null value. An empty array is rejected. Omit or set to null to remove the restriction.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#allowed_data_regions WorkspaceDefaultGuardrail#allowed_data_regions}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#allowed_data_regions WorkspaceDefaultGuardrail#allowed_data_regions}
   */
   readonly allowedDataRegions?: string[];
   /**
   * Array of model identifiers (slug or canonical_slug accepted) Omit or set to null to remove the restriction.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#allowed_models WorkspaceDefaultGuardrail#allowed_models}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#allowed_models WorkspaceDefaultGuardrail#allowed_models}
   */
   readonly allowedModels?: string[];
   /**
   * List of allowed provider IDs Omit or set to null to remove the restriction.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#allowed_providers WorkspaceDefaultGuardrail#allowed_providers}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#allowed_providers WorkspaceDefaultGuardrail#allowed_providers}
   */
   readonly allowedProviders?: string[];
   /**
   * Builtin content filters to apply. Every builtin slug supports "block", "redact", and the detect-only "flag" action. Omit or set to null to remove the restriction.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#content_filter_builtins WorkspaceDefaultGuardrail#content_filter_builtins}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#content_filter_builtins WorkspaceDefaultGuardrail#content_filter_builtins}
   */
   readonly contentFilterBuiltins?: WorkspaceDefaultGuardrailContentFilterBuiltins[] | cdktf.IResolvable;
   /**
   * Custom regex content filters to apply to request messages Omit or set to null to remove the restriction.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#content_filters WorkspaceDefaultGuardrail#content_filters}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#content_filters WorkspaceDefaultGuardrail#content_filters}
   */
   readonly contentFilters?: WorkspaceDefaultGuardrailContentFilters[] | cdktf.IResolvable;
   /**
   * Description of the guardrail
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#description WorkspaceDefaultGuardrail#description}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#description WorkspaceDefaultGuardrail#description}
   */
   readonly description?: string;
   /**
   * Whether this guardrail allows free endpoints that publish prompts.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#enable_free_model_publication WorkspaceDefaultGuardrail#enable_free_model_publication}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#enable_free_model_publication WorkspaceDefaultGuardrail#enable_free_model_publication}
   */
   readonly enableFreeModelPublication?: boolean | cdktf.IResolvable;
   /**
   * Whether this guardrail allows free endpoints that train on request data.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#enable_free_model_training WorkspaceDefaultGuardrail#enable_free_model_training}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#enable_free_model_training WorkspaceDefaultGuardrail#enable_free_model_training}
   */
   readonly enableFreeModelTraining?: boolean | cdktf.IResolvable;
   /**
   * Whether this guardrail allows paid endpoints that train on request data.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#enable_paid_model_training WorkspaceDefaultGuardrail#enable_paid_model_training}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#enable_paid_model_training WorkspaceDefaultGuardrail#enable_paid_model_training}
   */
   readonly enablePaidModelTraining?: boolean | cdktf.IResolvable;
   /**
   * Whether coding harnesses list only their vendor's own models: Codex lists OpenAI models and Claude Code and Claude Desktop list Anthropic models. Affects only the model list those harnesses request from GET /models; a model the client names directly is still routed. Any true across the workspace default, member, and API key guardrails applies.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#enforce_first_party_harness_models WorkspaceDefaultGuardrail#enforce_first_party_harness_models}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#enforce_first_party_harness_models WorkspaceDefaultGuardrail#enforce_first_party_harness_models}
   */
   readonly enforceFirstPartyHarnessModels?: boolean | cdktf.IResolvable;
   /**
   * Deprecated. Use enforce_zdr_anthropic, enforce_zdr_openai, enforce_zdr_google, enforce_zdr_xai, and enforce_zdr_other instead. When provided, its value is copied into any of those per-provider fields that are not explicitly specified on the request.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#enforce_zdr WorkspaceDefaultGuardrail#enforce_zdr}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#enforce_zdr WorkspaceDefaultGuardrail#enforce_zdr}
   */
   readonly enforceZdr?: boolean | cdktf.IResolvable;
   /**
   * Whether to enforce zero data retention for Anthropic models. Falls back to enforce_zdr when not provided.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#enforce_zdr_anthropic WorkspaceDefaultGuardrail#enforce_zdr_anthropic}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#enforce_zdr_anthropic WorkspaceDefaultGuardrail#enforce_zdr_anthropic}
   */
   readonly enforceZdrAnthropic?: boolean | cdktf.IResolvable;
   /**
   * Whether to enforce zero data retention for Google models. Falls back to enforce_zdr when not provided.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#enforce_zdr_google WorkspaceDefaultGuardrail#enforce_zdr_google}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#enforce_zdr_google WorkspaceDefaultGuardrail#enforce_zdr_google}
   */
   readonly enforceZdrGoogle?: boolean | cdktf.IResolvable;
   /**
   * Whether to enforce zero data retention for OpenAI models. Falls back to enforce_zdr when not provided.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#enforce_zdr_openai WorkspaceDefaultGuardrail#enforce_zdr_openai}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#enforce_zdr_openai WorkspaceDefaultGuardrail#enforce_zdr_openai}
   */
   readonly enforceZdrOpenai?: boolean | cdktf.IResolvable;
   /**
   * Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. Falls back to enforce_zdr when not provided.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#enforce_zdr_other WorkspaceDefaultGuardrail#enforce_zdr_other}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#enforce_zdr_other WorkspaceDefaultGuardrail#enforce_zdr_other}
   */
   readonly enforceZdrOther?: boolean | cdktf.IResolvable;
   /**
   * Whether to enforce zero data retention for xAI models. Falls back to enforce_zdr when not provided.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#enforce_zdr_xai WorkspaceDefaultGuardrail#enforce_zdr_xai}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#enforce_zdr_xai WorkspaceDefaultGuardrail#enforce_zdr_xai}
   */
   readonly enforceZdrXai?: boolean | cdktf.IResolvable;
   /**
   * Array of model identifiers to exclude from routing (slug or canonical_slug accepted) Omit or set to null to remove the restriction.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#ignored_models WorkspaceDefaultGuardrail#ignored_models}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#ignored_models WorkspaceDefaultGuardrail#ignored_models}
   */
   readonly ignoredModels?: string[];
   /**
   * List of provider IDs to exclude from routing Omit or set to null to remove the restriction.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#ignored_providers WorkspaceDefaultGuardrail#ignored_providers}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#ignored_providers WorkspaceDefaultGuardrail#ignored_providers}
   */
   readonly ignoredProviders?: string[];
   /**
   * Whether BYOK (bring-your-own-key) inference spend counts toward this guardrail's limit_usd, in addition to OpenRouter credit spend. Defaults to false.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#include_byok_in_budgets WorkspaceDefaultGuardrail#include_byok_in_budgets}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#include_byok_in_budgets WorkspaceDefaultGuardrail#include_byok_in_budgets}
   */
   readonly includeByokInBudgets?: boolean | cdktf.IResolvable;
   /**
   * Spending limit in USD. Must be provided together with `reset_interval`: a request that sets only one of the two is rejected with a 400.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#limit_usd WorkspaceDefaultGuardrail#limit_usd}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#limit_usd WorkspaceDefaultGuardrail#limit_usd}
   */
   readonly limitUsd?: number;
   /**
   * Interval at which the limit resets (daily, weekly, monthly). must be one of ["daily", "weekly", "monthly"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#reset_interval WorkspaceDefaultGuardrail#reset_interval}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#reset_interval WorkspaceDefaultGuardrail#reset_interval}
   */
   readonly resetInterval?: string;
   /**
   * The workspace whose default guardrail is managed. The default guardrail applies to all traffic in the workspace. Member and API key guardrails combine with it and can only narrow it, never bypass it. Exactly one of these resources should exist per workspace. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#workspace_id WorkspaceDefaultGuardrail#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#workspace_id WorkspaceDefaultGuardrail#workspace_id}
   */
   readonly workspaceId: string;
 }
@@ -156,25 +156,25 @@ export interface WorkspaceDefaultGuardrailContentFilterBuiltins {
   /**
   * Action taken when the builtin filter triggers. Not Null; must be one of ["redact", "block", "flag"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#action WorkspaceDefaultGuardrail#action}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#action WorkspaceDefaultGuardrail#action}
   */
   readonly action?: string;
   /**
   * Deprecated: labels are system-assigned and cannot be set by the caller. Accepted for backward compatibility but silently ignored.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#label WorkspaceDefaultGuardrail#label}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#label WorkspaceDefaultGuardrail#label}
   */
   readonly label?: string;
   /**
   * Which message roles to scan for prompt injection. Only applies to the regex-prompt-injection builtin. Defaults to all_messages. must be one of ["user_only", "all_messages"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#scan_scope WorkspaceDefaultGuardrail#scan_scope}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#scan_scope WorkspaceDefaultGuardrail#scan_scope}
   */
   readonly scanScope?: string;
   /**
   * The builtin filter identifier. Not Null; must be one of ["email", "phone", "ssn", "credit-card", "ip-address", "secrets", "person-name", "address", "regex-prompt-injection"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#slug WorkspaceDefaultGuardrail#slug}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#slug WorkspaceDefaultGuardrail#slug}
   */
   readonly slug?: string;
 }
@@ -379,19 +379,19 @@ export interface WorkspaceDefaultGuardrailContentFilters {
   /**
   * Action taken when the pattern matches. Not Null; must be one of ["redact", "block", "flag"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#action WorkspaceDefaultGuardrail#action}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#action WorkspaceDefaultGuardrail#action}
   */
   readonly action?: string;
   /**
   * Optional label used in redaction placeholders or error messages
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#label WorkspaceDefaultGuardrail#label}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#label WorkspaceDefaultGuardrail#label}
   */
   readonly label?: string;
   /**
   * A regex pattern to match against request content. Not Null
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#pattern WorkspaceDefaultGuardrail#pattern}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#pattern WorkspaceDefaultGuardrail#pattern}
   */
   readonly pattern?: string;
 }
@@ -570,7 +570,7 @@ export class WorkspaceDefaultGuardrailContentFiltersList extends cdktf.ComplexLi
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail openrouter_workspace_default_guardrail}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail openrouter_workspace_default_guardrail}
 */
 export class WorkspaceDefaultGuardrail extends cdktf.TerraformResource {
 
@@ -586,7 +586,7 @@ export class WorkspaceDefaultGuardrail extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a WorkspaceDefaultGuardrail resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the WorkspaceDefaultGuardrail to import
-  * @param importFromId The id of the existing WorkspaceDefaultGuardrail that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing WorkspaceDefaultGuardrail that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the WorkspaceDefaultGuardrail to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -598,7 +598,7 @@ export class WorkspaceDefaultGuardrail extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/workspace_default_guardrail openrouter_workspace_default_guardrail} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/workspace_default_guardrail openrouter_workspace_default_guardrail} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -609,7 +609,7 @@ export class WorkspaceDefaultGuardrail extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_workspace_default_guardrail',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.3.258'
+        providerVersion: '0.3.280'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

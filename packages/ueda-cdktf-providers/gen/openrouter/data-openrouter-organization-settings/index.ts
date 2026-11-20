@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/organization_settings
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/organization_settings
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,7 +10,7 @@ export interface DataOpenrouterOrganizationSettingsConfig extends cdktf.Terrafor
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/organization_settings openrouter_organization_settings}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/organization_settings openrouter_organization_settings}
 */
 export class DataOpenrouterOrganizationSettings extends cdktf.TerraformDataSource {
 
@@ -26,7 +26,7 @@ export class DataOpenrouterOrganizationSettings extends cdktf.TerraformDataSourc
   * Generates CDKTF code for importing a DataOpenrouterOrganizationSettings resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterOrganizationSettings to import
-  * @param importFromId The id of the existing DataOpenrouterOrganizationSettings that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/organization_settings#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterOrganizationSettings that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/organization_settings#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterOrganizationSettings to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -38,7 +38,7 @@ export class DataOpenrouterOrganizationSettings extends cdktf.TerraformDataSourc
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/organization_settings openrouter_organization_settings} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/organization_settings openrouter_organization_settings} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -49,7 +49,7 @@ export class DataOpenrouterOrganizationSettings extends cdktf.TerraformDataSourc
       terraformResourceType: 'openrouter_organization_settings',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.3.258'
+        providerVersion: '0.3.280'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

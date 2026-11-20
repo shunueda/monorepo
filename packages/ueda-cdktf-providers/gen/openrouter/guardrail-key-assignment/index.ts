@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_key_assignment
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_key_assignment
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,19 +10,19 @@ export interface GuardrailKeyAssignmentConfig extends cdktf.TerraformMetaArgumen
   /**
   * ID of the guardrail to assign. Must not be a workspace default guardrail. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_key_assignment#guardrail_id GuardrailKeyAssignment#guardrail_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_key_assignment#guardrail_id GuardrailKeyAssignment#guardrail_id}
   */
   readonly guardrailId: string;
   /**
   * Hash of the API key to assign the guardrail to, for example `openrouter_api_key.example.hash`. Not the secret key itself. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_key_assignment#key_hash GuardrailKeyAssignment#key_hash}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_key_assignment#key_hash GuardrailKeyAssignment#key_hash}
   */
   readonly keyHash: string;
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_key_assignment openrouter_guardrail_key_assignment}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_key_assignment openrouter_guardrail_key_assignment}
 */
 export class GuardrailKeyAssignment extends cdktf.TerraformResource {
 
@@ -38,7 +38,7 @@ export class GuardrailKeyAssignment extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a GuardrailKeyAssignment resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the GuardrailKeyAssignment to import
-  * @param importFromId The id of the existing GuardrailKeyAssignment that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_key_assignment#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing GuardrailKeyAssignment that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_key_assignment#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the GuardrailKeyAssignment to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -50,7 +50,7 @@ export class GuardrailKeyAssignment extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/guardrail_key_assignment openrouter_guardrail_key_assignment} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/guardrail_key_assignment openrouter_guardrail_key_assignment} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -61,7 +61,7 @@ export class GuardrailKeyAssignment extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_guardrail_key_assignment',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.3.258'
+        providerVersion: '0.3.280'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

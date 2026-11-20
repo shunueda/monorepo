@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,67 +10,67 @@ export interface PrivateEndpointConfig extends cdktf.TerraformMetaArguments {
   /**
   * Validate and activate the endpoint as part of create. Only sent when the endpoint is created; if validation fails, the provider deletes the draft the API kept and reports the failed checks. Later changes are recorded in state without calling the API.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#activate PrivateEndpoint#activate}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#activate PrivateEndpoint#activate}
   */
   readonly activate?: PrivateEndpointActivate;
   /**
   * HTTPS base URL of your deployment. Required unless the provider derives its URL from the BYOK credential (Azure, Amazon Bedrock, Google Vertex).
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#base_url PrivateEndpoint#base_url}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#base_url PrivateEndpoint#base_url}
   */
   readonly baseUrl?: string;
   /**
   * Parameters the upstream supports beyond the tested ones. Replaces the earlier declaration; tested parameters stay. The order configured here is the order state keeps, and a repeated name is rejected before a request is sent, so the list holds at most as many entries as there are declarable parameters. `tool_choice` requires `tools` to be tested or declared.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#declared_parameters PrivateEndpoint#declared_parameters}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#declared_parameters PrivateEndpoint#declared_parameters}
   */
   readonly declaredParameters?: string[];
   /**
   * Attest where this deployment processes data. must be one of ["global", "europe", "us"]; Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#declared_region PrivateEndpoint#declared_region}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#declared_region PrivateEndpoint#declared_region}
   */
   readonly declaredRegion?: string;
   /**
   * Attest that this deployment retains no prompt or completion data. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#declared_zdr PrivateEndpoint#declared_zdr}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#declared_zdr PrivateEndpoint#declared_zdr}
   */
   readonly declaredZdr?: boolean | cdktf.IResolvable;
   /**
   * Retry-safe create: a repeated create with the same key from the same organization returns the endpoint the first request created instead of creating another. The endpoint is returned as it is now. Reusing a key with a different request body (model, provider, base URL, upstream model ID, declared ZDR or region, pricing, or declared parameters) is rejected with 422 `idempotency_key_reused`. Declared parameters are compared as a set, so a retry that reorders or repeats a name replays the endpoint. `activate` and `settings` are not compared, and later edits to the endpoint do not affect the comparison. `settings` is still validated before the replay, so a retry with invalid settings returns 400 `settings_invalid` instead of the endpoint. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#idempotency_key PrivateEndpoint#idempotency_key}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#idempotency_key PrivateEndpoint#idempotency_key}
   */
   readonly idempotencyKey?: string;
   /**
   * Permanent slug of the model this endpoint serves. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#model_permaslug PrivateEndpoint#model_permaslug}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#model_permaslug PrivateEndpoint#model_permaslug}
   */
   readonly modelPermaslug: string;
   /**
   * Negotiated per-token rates reported for requests routed to this endpoint.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#pricing PrivateEndpoint#pricing}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#pricing PrivateEndpoint#pricing}
   */
   readonly pricing?: PrivateEndpointPricing;
   /**
   * Slug of the upstream provider. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#provider_slug PrivateEndpoint#provider_slug}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#provider_slug PrivateEndpoint#provider_slug}
   */
   readonly providerSlug: string;
   /**
   * Capabilities and limits to set over the ones copied from the public endpoint for this model and provider (or from the model). Omitted fields keep the copied values.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#settings PrivateEndpoint#settings}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#settings PrivateEndpoint#settings}
   */
   readonly settings?: PrivateEndpointSettings;
   /**
   * Model or deployment identifier sent to the upstream provider. Requires replacement if changed.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#upstream_model_id PrivateEndpoint#upstream_model_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#upstream_model_id PrivateEndpoint#upstream_model_id}
   */
   readonly upstreamModelId: string;
 }
@@ -78,7 +78,7 @@ export interface PrivateEndpointActivate {
   /**
   * Workspace whose BYOK credential is used for the live validation call. The workspace must belong to your account.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#workspace_id PrivateEndpoint#workspace_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#workspace_id PrivateEndpoint#workspace_id}
   */
   readonly workspaceId: string;
 }
@@ -171,25 +171,25 @@ export interface PrivateEndpointPricing {
   /**
   * USD per cache-read prompt token, as a decimal string. When omitted, inherited from the public endpoint of the same model and provider: scaled by its cache-read to prompt ratio, or left at the pricing strategy default when it publishes no cache-read rate. Required when there is no such endpoint and the provider bills cache reads.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#cache_read PrivateEndpoint#cache_read}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#cache_read PrivateEndpoint#cache_read}
   */
   readonly cacheRead?: string;
   /**
   * USD per cache-write prompt token, as a decimal string. When omitted, inherited from the public endpoint of the same model and provider: scaled by its cache-write to prompt ratio, or left at the pricing strategy default when it publishes no cache-write rate. Required when there is no such endpoint and the provider bills cache writes.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#cache_write PrivateEndpoint#cache_write}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#cache_write PrivateEndpoint#cache_write}
   */
   readonly cacheWrite?: string;
   /**
   * USD per completion token, as a decimal string. Not Null
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#completion PrivateEndpoint#completion}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#completion PrivateEndpoint#completion}
   */
   readonly completion?: string;
   /**
   * USD per prompt token, as a decimal string. Not Null
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#prompt PrivateEndpoint#prompt}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#prompt PrivateEndpoint#prompt}
   */
   readonly prompt?: string;
 }
@@ -372,13 +372,13 @@ export interface PrivateEndpointSettingsCompletions {
   /**
   * Serves `/chat/completions`. `null` means the endpoint uses the provider default.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#chat PrivateEndpoint#chat}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#chat PrivateEndpoint#chat}
   */
   readonly chat?: boolean | cdktf.IResolvable;
   /**
   * Serves `/completions`. `null` means the endpoint uses the provider default.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#text PrivateEndpoint#text}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#text PrivateEndpoint#text}
   */
   readonly text?: boolean | cdktf.IResolvable;
 }
@@ -503,31 +503,31 @@ export interface PrivateEndpointSettingsInputs {
   /**
   * Accepts audio input. `null` means the endpoint uses the provider default.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#audio PrivateEndpoint#audio}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#audio PrivateEndpoint#audio}
   */
   readonly audio?: boolean | cdktf.IResolvable;
   /**
   * Accepts base64 file data. `null` means the endpoint uses the provider default.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#base64_files PrivateEndpoint#base64_files}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#base64_files PrivateEndpoint#base64_files}
   */
   readonly base64Files?: boolean | cdktf.IResolvable;
   /**
   * Accepts base64 image data. `null` means the endpoint uses the provider default.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#base64_images PrivateEndpoint#base64_images}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#base64_images PrivateEndpoint#base64_images}
   */
   readonly base64Images?: boolean | cdktf.IResolvable;
   /**
   * Accepts file URLs. `null` means the endpoint uses the provider default.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#file_urls PrivateEndpoint#file_urls}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#file_urls PrivateEndpoint#file_urls}
   */
   readonly fileUrls?: boolean | cdktf.IResolvable;
   /**
   * Accepts image URLs. `null` means the endpoint uses the provider default.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#image_urls PrivateEndpoint#image_urls}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#image_urls PrivateEndpoint#image_urls}
   */
   readonly imageUrls?: boolean | cdktf.IResolvable;
 }
@@ -739,13 +739,13 @@ export interface PrivateEndpointSettingsReasoning {
   /**
   * Where the upstream puts reasoning tokens in its response: `reasoning` and `reasoning-content` are response fields, `content-string` is inline in the message, `none` returns no reasoning. `null` means the endpoint uses the provider default. must be one of ["content-string", "reasoning-content", "reasoning", "none"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#return_mechanism PrivateEndpoint#return_mechanism}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#return_mechanism PrivateEndpoint#return_mechanism}
   */
   readonly returnMechanism?: string;
   /**
   * Whether requests with `reasoning` route to this endpoint.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#supported PrivateEndpoint#supported}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#supported PrivateEndpoint#supported}
   */
   readonly supported?: boolean | cdktf.IResolvable;
 }
@@ -870,25 +870,25 @@ export interface PrivateEndpointSettingsToolChoice {
   /**
   * Accepts `tool_choice: "auto"`.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#auto PrivateEndpoint#auto}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#auto PrivateEndpoint#auto}
   */
   readonly auto?: boolean | cdktf.IResolvable;
   /**
   * Accepts a named function in `tool_choice`.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#function PrivateEndpoint#function}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#function PrivateEndpoint#function}
   */
   readonly function?: boolean | cdktf.IResolvable;
   /**
   * Accepts `tool_choice: "none"`.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#none PrivateEndpoint#none}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#none PrivateEndpoint#none}
   */
   readonly none?: boolean | cdktf.IResolvable;
   /**
   * Accepts `tool_choice: "required"`.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#required PrivateEndpoint#required}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#required PrivateEndpoint#required}
   */
   readonly required?: boolean | cdktf.IResolvable;
 }
@@ -1069,49 +1069,49 @@ export class PrivateEndpointSettingsToolChoiceOutputReference extends cdktf.Comp
 }
 export interface PrivateEndpointSettings {
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#completions PrivateEndpoint#completions}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#completions PrivateEndpoint#completions}
   */
   readonly completions?: PrivateEndpointSettingsCompletions;
   /**
   * Longest prompt plus completion, in tokens. `null` means the model default applies.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#context_length PrivateEndpoint#context_length}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#context_length PrivateEndpoint#context_length}
   */
   readonly contextLength?: number;
   /**
   * Request parameters the upstream rejects even though the model supports them; requests using one do not route here. Cannot name a tested parameter.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#excluded_parameters PrivateEndpoint#excluded_parameters}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#excluded_parameters PrivateEndpoint#excluded_parameters}
   */
   readonly excludedParameters?: string[];
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#inputs PrivateEndpoint#inputs}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#inputs PrivateEndpoint#inputs}
   */
   readonly inputs?: PrivateEndpointSettingsInputs;
   /**
   * Longest completion the upstream returns, in tokens. `null` means the model default applies.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#max_completion_tokens PrivateEndpoint#max_completion_tokens}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#max_completion_tokens PrivateEndpoint#max_completion_tokens}
   */
   readonly maxCompletionTokens?: number;
   /**
   * Longest prompt, in tokens. `null` means no cap below the context length. Cannot exceed `context_length`, or the model context length while `context_length` is `null`.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#max_prompt_tokens PrivateEndpoint#max_prompt_tokens}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#max_prompt_tokens PrivateEndpoint#max_prompt_tokens}
   */
   readonly maxPromptTokens?: number;
   /**
   * Weight precision the deployment runs at; `unknown` when not stated. must be one of ["int4", "int8", "fp4", "mxfp4", "nvfp4", "fp6", "fp8", "mxfp8", "fp16", "bf16", "fp32", "unknown"]
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#quantization PrivateEndpoint#quantization}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#quantization PrivateEndpoint#quantization}
   */
   readonly quantization?: string;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#reasoning PrivateEndpoint#reasoning}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#reasoning PrivateEndpoint#reasoning}
   */
   readonly reasoning?: PrivateEndpointSettingsReasoning;
   /**
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#tool_choice PrivateEndpoint#tool_choice}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#tool_choice PrivateEndpoint#tool_choice}
   */
   readonly toolChoice?: PrivateEndpointSettingsToolChoice;
 }
@@ -1437,7 +1437,7 @@ export class PrivateEndpointSettingsOutputReference extends cdktf.ComplexObject 
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint openrouter_private_endpoint}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint openrouter_private_endpoint}
 */
 export class PrivateEndpoint extends cdktf.TerraformResource {
 
@@ -1453,7 +1453,7 @@ export class PrivateEndpoint extends cdktf.TerraformResource {
   * Generates CDKTF code for importing a PrivateEndpoint resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the PrivateEndpoint to import
-  * @param importFromId The id of the existing PrivateEndpoint that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing PrivateEndpoint that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the PrivateEndpoint to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -1465,7 +1465,7 @@ export class PrivateEndpoint extends cdktf.TerraformResource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/resources/private_endpoint openrouter_private_endpoint} Resource
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/resources/private_endpoint openrouter_private_endpoint} Resource
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -1476,7 +1476,7 @@ export class PrivateEndpoint extends cdktf.TerraformResource {
       terraformResourceType: 'openrouter_private_endpoint',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.3.258'
+        providerVersion: '0.3.280'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

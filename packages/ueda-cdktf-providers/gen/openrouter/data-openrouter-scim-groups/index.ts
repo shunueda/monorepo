@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/scim_groups
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/scim_groups
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,13 +10,13 @@ export interface DataOpenrouterScimGroupsConfig extends cdktf.TerraformMetaArgum
   /**
   * Exact match filter on display_name. Omitted or empty returns groups unfiltered by name (subject to offset/limit). When external_id is also present, both must match.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/scim_groups#display_name DataOpenrouterScimGroups#display_name}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/scim_groups#display_name DataOpenrouterScimGroups#display_name}
   */
   readonly displayName?: string;
   /**
   * Exact match filter on external_id, e.g. the identity provider (such as Entra ID) group object ID. Omitted or empty returns groups unfiltered by external_id (subject to offset/limit). When display_name is also present, both must match.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/scim_groups#external_id DataOpenrouterScimGroups#external_id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/scim_groups#external_id DataOpenrouterScimGroups#external_id}
   */
   readonly externalId?: string;
 }
@@ -122,7 +122,7 @@ export class DataOpenrouterScimGroupsDataList extends cdktf.ComplexList {
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/scim_groups openrouter_scim_groups}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/scim_groups openrouter_scim_groups}
 */
 export class DataOpenrouterScimGroups extends cdktf.TerraformDataSource {
 
@@ -138,7 +138,7 @@ export class DataOpenrouterScimGroups extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterScimGroups resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterScimGroups to import
-  * @param importFromId The id of the existing DataOpenrouterScimGroups that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/scim_groups#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterScimGroups that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/scim_groups#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterScimGroups to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -150,7 +150,7 @@ export class DataOpenrouterScimGroups extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/scim_groups openrouter_scim_groups} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/scim_groups openrouter_scim_groups} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -161,7 +161,7 @@ export class DataOpenrouterScimGroups extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_scim_groups',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.3.258'
+        providerVersion: '0.3.280'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,

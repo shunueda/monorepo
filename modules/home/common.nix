@@ -12,7 +12,7 @@ in
     }:
     let
       inherit (pkgs.stdenv.hostPlatform) system isDarwin isLinux;
-      availableOnSystem = lib.meta.availableOn { inherit system; };
+      availableOnSystem = p: lib.meta.availableOn { inherit system; } p && !(p.meta.broken or false);
 
       inherit (inputs.nur.legacyPackages.${system}.repos.rycee) firefox-addons;
     in

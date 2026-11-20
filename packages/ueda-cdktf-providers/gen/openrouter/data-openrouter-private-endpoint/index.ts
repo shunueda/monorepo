@@ -1,4 +1,4 @@
-// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/private_endpoint
+// https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/private_endpoint
 // generated from terraform resource schema
 
 import { Construct } from 'constructs';
@@ -10,7 +10,7 @@ export interface DataOpenrouterPrivateEndpointConfig extends cdktf.TerraformMeta
   /**
   * Stable identifier of the private endpoint.
   *
-  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/private_endpoint#id DataOpenrouterPrivateEndpoint#id}
+  * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/private_endpoint#id DataOpenrouterPrivateEndpoint#id}
   *
   * Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2.
   * If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable.
@@ -447,7 +447,7 @@ export class DataOpenrouterPrivateEndpointSettingsOutputReference extends cdktf.
 }
 
 /**
-* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/private_endpoint openrouter_private_endpoint}
+* Represents a {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/private_endpoint openrouter_private_endpoint}
 */
 export class DataOpenrouterPrivateEndpoint extends cdktf.TerraformDataSource {
 
@@ -463,7 +463,7 @@ export class DataOpenrouterPrivateEndpoint extends cdktf.TerraformDataSource {
   * Generates CDKTF code for importing a DataOpenrouterPrivateEndpoint resource upon running "cdktf plan <stack-name>"
   * @param scope The scope in which to define this construct
   * @param importToId The construct id used in the generated config for the DataOpenrouterPrivateEndpoint to import
-  * @param importFromId The id of the existing DataOpenrouterPrivateEndpoint that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/private_endpoint#import import section} in the documentation of this resource for the id to use
+  * @param importFromId The id of the existing DataOpenrouterPrivateEndpoint that should be imported. Refer to the {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/private_endpoint#import import section} in the documentation of this resource for the id to use
   * @param provider? Optional instance of the provider where the DataOpenrouterPrivateEndpoint to import is found
   */
   public static generateConfigForImport(scope: Construct, importToId: string, importFromId: string, provider?: cdktf.TerraformProvider) {
@@ -475,7 +475,7 @@ export class DataOpenrouterPrivateEndpoint extends cdktf.TerraformDataSource {
   // ===========
 
   /**
-  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.258/docs/data-sources/private_endpoint openrouter_private_endpoint} Data Source
+  * Create a new {@link https://registry.terraform.io/providers/openrouterteam/openrouter/0.3.280/docs/data-sources/private_endpoint openrouter_private_endpoint} Data Source
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
@@ -486,7 +486,7 @@ export class DataOpenrouterPrivateEndpoint extends cdktf.TerraformDataSource {
       terraformResourceType: 'openrouter_private_endpoint',
       terraformGeneratorMetadata: {
         providerName: 'openrouter',
-        providerVersion: '0.3.258'
+        providerVersion: '0.3.280'
       },
       provider: config.provider,
       dependsOn: config.dependsOn,
