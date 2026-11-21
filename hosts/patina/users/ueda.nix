@@ -39,7 +39,6 @@ in
   imports = [ self.homeModules.common ];
 
   home.packages = with pkgs; [
-    river
     oxbow
     wl-clipboard
   ];
