@@ -42,7 +42,10 @@
       enable = true;
       keyboards.default = {
         ids = [ "*" ];
-        settings.main.capslock = "leftcontrol";
+        settings.main = {
+          capslock = "leftcontrol";
+          enter = "overload(control, enter)";
+        };
       };
     };
     services.pcscd.enable = true;

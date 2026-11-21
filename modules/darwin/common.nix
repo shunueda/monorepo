@@ -19,7 +19,10 @@
       ]}";
     in
     {
-      imports = [ inputs.home-manager.darwinModules.home-manager ];
+      imports = [
+        inputs.home-manager.darwinModules.home-manager
+        ./kanata.nix
+      ];
       nix = {
         settings = {
           allow-import-from-derivation = false;
@@ -53,6 +56,15 @@
         useGlobalPkgs = true;
         useUserPackages = true;
         backupCommand = "rm";
+      };
+      services.kanata = {
+        enable = true;
+        config = ''
+          (defcfg process-unmapped-keys yes)
+          (defsrc caps ret)
+          (defalias ret-ctl (tap-hold-release 200 200 ret rctl))
+          (deflayer base lctl @ret-ctl)
+        '';
       };
       environment = {
         shells = [ pkgs.bash ];
@@ -137,10 +149,6 @@
               };
             };
           };
-        };
-        keyboard = {
-          enableKeyMapping = true;
-          remapCapsLockToControl = true;
         };
       };
       security.pam.services.sudo_local = {
