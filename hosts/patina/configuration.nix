@@ -44,19 +44,6 @@ in
               options hid_apple iso_layout=0
             '';
           };
-          # TODO Not sure
-          # environment.etc."libinput/local-overrides.quirks".text = lib.generators.toINI { } {
-          #   "Keyd Virtual Keyboard" = {
-          #     MatchName = "keyd virtual keyboard";
-          #     AttrKeyboardIntegration = "internal";
-          #   };
-          #   "Apple Silicon touchpad palm tuning" = {
-          #     MatchUdevType = "touchpad";
-          #     MatchBus = "spi";
-          #     MatchVendor = "0x5AC";
-          #     AttrPalmSizeThreshold = 1000;
-          #   };
-          # };
           hardware.asahi = {
             enable = true;
             avd.enable = false;

@@ -34,11 +34,6 @@ let
       "XF86MonBrightnessUp" = spawn "brightnessctl --class=backlight set +5%";
       "XF86MonBrightnessDown" = spawn "brightnessctl --class=backlight set 5%-";
     };
-
-  bindLines = lib.concatMapAttrsStringSep "\n" (key: cmd: ''
-    ${oxctl} unbind ${key} 2>/dev/null
-    ${oxctl} bind ${cmd} to ${key}
-  '') binds;
 in
 {
   imports = [ self.homeModules.common ];
@@ -58,25 +53,26 @@ in
   '';
 
   xdg.configFile."oxbow/init".source = pkgs.writeShellScript "oxbow-init" ''
-    # layout and look (animations/focus ring don't exist here, matching your niri setup)
     ${oxctl} layout tiling monocle --all
-    ${oxctl} gaps inner 4 --all
+
+    ${oxctl} gaps inner 0 --all
     ${oxctl} gaps outer 0 --all
-    ${oxctl} border width 2
-    ${oxctl} border color focused '#7FB4CA'
-    ${oxctl} border color unfocused '#727169'
-    ${oxctl} border color urgent '#FF5D62'
+
+    ${oxctl} border width 0
 
     ${oxctl} input keyboard repeat 67 225
     ${oxctl} input rules touchpad --name '.*' --tap disabled --natural-scroll enabled
 
-    # output scale
     ${lib.getExe pkgs.wlr-randr} --output eDP-1 --scale 1.5
 
-    # keybinds
-    ${bindLines}
+    ${oxctl} unbind --all
 
-    # autostart
+    ${lib.concatMapAttrsStringSep "\n" (key: cmd: ''
+      ${oxctl} bind ${cmd} to ${key}
+    '') binds}
+
+    ${lib.getExe pkgs.swaybg} --color 000000 &
+
     ${config.programs.waybar.package}/bin/waybar &
   '';
 
@@ -89,7 +85,7 @@ in
       settings.mainBar = {
         layer = "bottom";
         position = "top";
-        height = 42; # Match the Notch size on 14-in MacBook Pro
+        height = 43; # Match the Notch size on 14-in MacBook Pro
         margin = "0";
         exclusive = true;
         modules-left = [ "custom/window" ];
@@ -99,16 +95,26 @@ in
           "clock"
         ];
         "custom/window" = {
-          exec = "${oxctl} subscribe window | ${lib.getExe pkgs.jq} --unbuffered -r '.app_id // \"\"'";
+          exec = "${oxctl} subscribe window | ${lib.getExe pkgs.jq} --unbuffered -r .app_id";
           format = "{}";
         };
         clock.format = "{:%a %b %d  %I:%M %p}";
       };
       style = ''
-        * { min-height: 0; border: none; border-radius: 0; background: transparent; }
-        #custom-window, #network, #battery, #clock, #custom-lock { padding: 0 10px; }
-        #custom-window { margin-left: 12px; }
-        #custom-lock { margin-right: 12px; }
+        * {
+            min-height: 0;
+            border: none;
+            border-radius: 0;
+            padding-left: 8px;
+            padding-right: 8px;
+            font-size: 13px;
+            color: #ffffff;
+            font-weight: 500;
+          }
+
+          window#waybar {
+            background: transparent;
+          }
       '';
     };
   };
