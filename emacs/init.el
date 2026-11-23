@@ -86,9 +86,6 @@
 ;; Swap the Backspace and DEL
 (define-key key-translation-map (kbd "C-h") (kbd "DEL"))
 
-;; Use C-m instead
-(define-key input-decode-map [return] [])
-
 ;; Core modes keep-sorted start
 ;; Show column number on mode line
 (column-number-mode 1)

@@ -61,9 +61,12 @@
         enable = true;
         config = ''
           (defcfg process-unmapped-keys yes)
-          (defsrc caps ret)
-          (defalias ret-ctl (tap-hold-release 200 200 ret rctl))
-          (deflayer base lctl @ret-ctl)
+          (defsrc caps ret fn f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12)
+          (defalias
+            ret-ctl (tap-hold-release 200 200 ret rctl)
+            fn (multi fn (layer-while-held fkeys)))
+          (deflayer base lctl @ret-ctl @fn brdn brup mctl _ _ _ prev pp next mute vold volu)
+          (deflayer fkeys _ _ _ f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12)
         '';
       };
       environment = {
