@@ -9,6 +9,26 @@
   :init (setq no-littering-var-directory (expand-file-name "emacs/" (xdg-state-home)))
   :config (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
 
+(use-package
+  exec-path-from-shell
+  :when (memq window-system '(mac ns x))
+  :config
+  ;; https://github.com/purcell/exec-path-from-shell/blob/6146fdc16e9882df270be7e58ae8d628032d6bc4/README.md#usage
+  (dolist
+    (var
+      '
+      ("SSH_AUTH_SOCK"
+        "SSH_AGENT_PID"
+        "GPG_AGENT_INFO"
+        "GNUPGHOME"
+        "LANG"
+        "LC_CTYPE"
+        "NIX_SSL_CERT_FILE"
+        "NIX_PATH"
+        "PASSWORD_STORE_DIR"))
+    (add-to-list 'exec-path-from-shell-variables var))
+  (exec-path-from-shell-initialize))
+
 (setq
   ;; keep-sorted start
   ;; Don't warn on advice
@@ -69,7 +89,7 @@
 (when (file-exists-p custom-file) (load custom-file))
 
 ;; Enable pass for auth-source
-(auth-source-pass-enable)
+(use-package auth-source-pass :config (auth-source-pass-enable))
 
 ;; Causes Emacs to freeze
 (global-unset-key [C-wheel-up])
@@ -116,13 +136,23 @@
 ;; Terminal only
 (unless (display-graphic-p) (xterm-mouse-mode 1))
 
-(defun ueda/irc-connect ()
-  (interactive)
-  (erc-tls
-    :server "irc.libera.chat"
-    :port 6697
-    :nick "ueda"
-    :password (auth-source-pass-get 'secret "InternetAccounts/libera")))
+(use-package
+  erc
+  :defer t
+  :init
+  (defun ueda/irc-connect ()
+    (interactive)
+    (erc-tls
+      :server "chat.sr.ht"
+      :port 6697
+      :nick "ueda"
+      :user "ueda/irc.libera.chat"
+      :id 'Libera.Chat
+      :password (auth-source-pass-get 'secret "ApiKeys/SRHT_TOKEN")))
+  :custom (erc-track-position-in-mode-line nil)
+  :config
+  (add-to-list 'erc-modules 'sasl)
+  (remove-hook 'erc-kill-channel-hook #'erc-part-channel-on-kill))
 
 (use-package avy :config (global-set-key (kbd "C-'") 'avy-goto-char-2))
 
@@ -214,24 +244,6 @@
   (dimmer-configure-org)
   (dimmer-mode t))
 (use-package embark-consult :hook (embark-collect-mode . consult-preview-at-point-mode))
-(use-package
-  exec-path-from-shell
-  :when (memq window-system '(mac ns x))
-  :config
-  ;; https://github.com/purcell/exec-path-from-shell/blob/6146fdc16e9882df270be7e58ae8d628032d6bc4/README.md#usage
-  (dolist
-    (var
-      '
-      ("SSH_AUTH_SOCK"
-        "SSH_AGENT_PID"
-        "GPG_AGENT_INFO"
-        "GNUPGHOME"
-        "LANG"
-        "LC_CTYPE"
-        "NIX_SSL_CERT_FILE"
-        "NIX_PATH"))
-    (add-to-list 'exec-path-from-shell-variables var))
-  (exec-path-from-shell-initialize))
 
 (use-package
   org
